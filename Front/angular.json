@@ -31,12 +31,14 @@
           },
           "configurations": {
             "production": {
+            
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
                   "maximumError": "1mb"
                 },
+                
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
@@ -58,7 +60,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options":{
+            "port":4201
+          },
           "configurations": {
+            
             "production": {
               "browserTarget": "ProjetPi:build:production"
             },
@@ -149,7 +155,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options":{
+            "port": 4203
+          },
           "configurations": {
+            
             "production": {
               "browserTarget": "backOffice:build:production"
             },
@@ -162,6 +172,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
+            "port":"4202",
             "browserTarget": "backOffice:build"
           }
         },
@@ -241,6 +252,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "options":{
+              "port": 4203
+            },
             "production": {
               "browserTarget": "Front-Office:build:production"
             },
