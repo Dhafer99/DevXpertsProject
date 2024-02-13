@@ -1,0 +1,23 @@
+<div class="packs-container">
+    <div class="pack" *ngFor="let pack of packs" [ngClass]="{'diamond': pack.type === 'diamond', 'gold': pack.type === 'gold', 'silver': pack.type === 'silver'}" (mouseover)="flipCard($event)" (mouseleave)="resetCard($event)">
+      <div class="card">
+        <div class="card-front">
+          <div class="pack-header">
+            <h2>{{ pack.name }}</h2>
+            <p>{{ pack.type }}</p>
+          </div>
+          <div class="pack-details">
+            <p><strong>Prix:</strong> {{ pack.price }} EUR</p>
+            <p><strong>Avantages:</strong></p>
+            <ul>
+              <li *ngFor="let feature of pack.features">{{ feature }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-back">
+          <!-- Description à afficher au dos de la carte -->
+          {{ pack.description }}
+        </div>
+      </div>
+    </div>
+  </div>

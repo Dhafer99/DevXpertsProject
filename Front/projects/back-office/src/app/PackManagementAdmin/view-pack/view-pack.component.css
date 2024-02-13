@@ -1,0 +1,103 @@
+/* view-packs.component.css */
+
+.packs-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pack {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.diamond {
+  background-color: #8e44ad; /* Violet color for diamond pack */
+  color: #fff; /* White text for better contrast */
+}
+
+.gold {
+  background-color: #f39c12; /* Orange color for gold pack */
+  color: #fff;
+}
+
+.silver {
+  background-color: #bdc3c7; /* Silver color for silver pack */
+  color: #000; /* Black text for better contrast */
+}
+
+.pack:hover {
+  transform: scale(1.05);
+}
+
+.pack-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pack-header h2 {
+  margin: 0;
+}
+
+.pack-details {
+  margin-top: 10px;
+}
+
+.pack-details p {
+  margin: 5px 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+/* view-packs.component.css */
+
+.packs-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pack {
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.card {
+  width: 300px;
+  height: 400px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-color: #3498db; /* Couleur de fond pour le dos de la carte */
+  color: #fff; /* Couleur du texte pour un meilleur contraste */
+  padding: 15px;
+  font-size: 14px;
+}
+
+/* Ajoutez le reste du style pour .diamond, .gold, .silver comme précédemment */
+  
