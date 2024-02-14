@@ -5,6 +5,7 @@ import com.example.supplier.Repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,11 +15,19 @@ public class EventServiceImpl implements EventService{
     private final EventRepository eventRepository;
 
     @Override
-    public void save(Event booth) {
-        eventRepository.save(booth);
+    public void save(Event event) {
+        event.setCreated_at(new Date());
+        event.setLastModified_at(new Date());
+        event.setLastModified_by(event.getCreated_by());
+        event.setViewsCounter(0);
+        event.setInterestedCounter(0);
+        event.setRating(0);
+        eventRepository.save(event);
     }
     public List<Event> findAllEvents(){
         return eventRepository.findAll();
     }
+
+
 
 }

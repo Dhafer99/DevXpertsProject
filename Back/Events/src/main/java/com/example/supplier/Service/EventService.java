@@ -9,5 +9,4 @@ public interface EventService {
 public void save(Event event);
     public List<Event> findAllEvents();
 
-
 }

@@ -11,16 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/Events")
+@RequestMapping("/api/Event/Events")
 @RequiredArgsConstructor
 public class Controller {
     private final EventService service ;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(
-            @RequestBody Event event
-    )
+    public void save(@RequestBody Event event )
     {
          service.save(event);
     }
@@ -28,5 +26,6 @@ public class Controller {
     public ResponseEntity<List<Event>> findAllEvents(){
         return ResponseEntity.ok(service.findAllEvents());
     }
+
 
 }

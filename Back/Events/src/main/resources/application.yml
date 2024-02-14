@@ -3,5 +3,5 @@ spring:
   application:
     name: Event
   config:
-    import: optional:configserver:http://localhost:8889
+    import: optional:configserver:http://localhost:8888
 
