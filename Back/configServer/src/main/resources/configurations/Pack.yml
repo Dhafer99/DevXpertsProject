@@ -20,3 +20,7 @@ spring:
     hibernate:
       ddl-auto: update
     database: mysql
+
+application:
+  config:
+    Auction-url: http://localhost:8083/api/rooms

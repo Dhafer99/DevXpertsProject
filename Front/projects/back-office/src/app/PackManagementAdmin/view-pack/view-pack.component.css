@@ -1,103 +1,151 @@
-/* view-packs.component.css */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap');
 
-.packs-container {
+:root {
+  --ticket-height: 60px;
+  --color-blue: lightblue;
+  --color-orange: salmon;
+  --color-green: red;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #F1F1F1;
+  font-family: 'Open Sans', sans-serif;
+  background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
 }
 
-.pack {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  margin: 10px;
-  padding: 15px;
-  width: 300px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
-  cursor: pointer;
-  background-color: #fff;
+.section-prices {
+  padding: 1.5rem 1rem;
+}
+.section-prices .section-header {
+  background-color: #FFF;
+  margin-bottom: 1rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: #555;
+  font-weight: 700;
+  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, .3);
 }
 
-.diamond {
-  background-color: #8e44ad; /* Violet color for diamond pack */
-  color: #fff; /* White text for better contrast */
-}
-
-.gold {
-  background-color: #f39c12; /* Orange color for gold pack */
-  color: #fff;
-}
-
-.silver {
-  background-color: #bdc3c7; /* Silver color for silver pack */
-  color: #000; /* Black text for better contrast */
-}
-
-.pack:hover {
-  transform: scale(1.05);
-}
-
-.pack-header {
+.list-boxs {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-}
-
-.pack-header h2 {
-  margin: 0;
-}
-
-.pack-details {
-  margin-top: 10px;
-}
-
-.pack-details p {
-  margin: 5px 0;
-}
-
-ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-/* view-packs.component.css */
-
-.packs-container {
-  display: flex;
   flex-wrap: wrap;
 }
 
-.pack {
-  perspective: 1000px;
+.list-boxs .card {
+  width: 32%;
+  text-align: center;
+  position: relative;
+  max-width: 300px;
+}
+
+.list-boxs .card .head,
+.list-boxs .card .body {
+  background-color: #FFF;
+  padding: 1.5rem 1rem;
+}
+
+.list-boxs .card .head {
+  color: #333;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  transform: translateY(50px);
+  transition: transform .3s linear;
+  border-bottom: 1px solid #F2F2F2;
+}
+.list-boxs .card:hover .head {
+  transform: translateY(0);
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
+}
+
+.list-boxs .card .ticket {
+  color: #0a0101;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  height: var(--ticket-height);
+  box-shadow: inset 0px 6px 6px -5px rgba(0, 0, 0, .25),
+              inset 0px -6px 6px -5px rgba(0, 0, 0, .25);
+}
+.list-boxs .starter .ticket {
+  background-color:  #fffd8d;
+}
+.list-boxs .standard .ticket {
+  background-color: #ffb9cc;
+}
+.list-boxs .premium .ticket {
+  background-color: var(--color-orange);
+}
+
+.list-boxs .card .body {
+  transform: translateY(-30px);
+  transition: transform .3s linear;
+}
+.list-boxs .card:hover .body {
+  transform: translateY(0);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+}
+
+.list-boxs .card p {
+  font-size: .95rem;
+  color: #333;
+  text-align: justify;
+}
+.list-boxs .card .btn {
+  margin-top: 2rem;
+  padding: .6rem 1rem;
+  outline: none;
+  font-size: .85rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  min-width: 160px;
+  border: 1px solid #555;
+  background-color: #555;
+  color: #333;
   cursor: pointer;
-  margin: 10px;
+  transition: all .2s linear;
+}
+.list-boxs .card .btn:hover {
+  box-shadow: 0 5px 10px 1px rgba(0, 0, 0, .15);
 }
 
-.card {
-  width: 300px;
-  height: 400px;
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
+.list-boxs .starter .btn {
+  background: #2CD8D5;
+  border-color: var(--color-green);
+}
+.list-boxs .standard .btn {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+}
+.list-boxs .premium .btn {
+  background: var(--color-orange);
+  border-color: var(--color-orange);
 }
 
-.card:hover {
-  transform: rotateY(180deg);
+
+@media screen and (max-width: 750px) {
+  .list-boxs {
+    justify-content: space-around;
+  }
+  .list-boxs .card {
+    width: 45%;
+  }
 }
 
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
+@media screen and (max-width: 550px) {
+  .list-boxs .card {
+    width: 95%;
+  }
 }
-
-.card-back {
-  transform: rotateY(180deg);
-  background-color: #3498db; /* Couleur de fond pour le dos de la carte */
-  color: #fff; /* Couleur du texte pour un meilleur contraste */
-  padding: 15px;
-  font-size: 14px;
-}
-
-/* Ajoutez le reste du style pour .diamond, .gold, .silver comme précédemment */
-  

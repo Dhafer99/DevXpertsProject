@@ -1,23 +1,62 @@
-<div class="packs-container">
-    <div class="pack" *ngFor="let pack of packs" [ngClass]="{'diamond': pack.type === 'diamond', 'gold': pack.type === 'gold', 'silver': pack.type === 'silver'}" (mouseover)="flipCard($event)" (mouseleave)="resetCard($event)">
-      <div class="card">
-        <div class="card-front">
-          <div class="pack-header">
-            <h2>{{ pack.name }}</h2>
-            <p>{{ pack.type }}</p>
-          </div>
-          <div class="pack-details">
-            <p><strong>Prix:</strong> {{ pack.price }} EUR</p>
-            <p><strong>Avantages:</strong></p>
-            <ul>
-              <li *ngFor="let feature of pack.features">{{ feature }}</li>
-            </ul>
-          </div>
+<section class="section-prices">
+    <h2 class="section-header">Our Pricing</h2>
+    <div class="list-boxs">
+        
+        <div class="card starter">
+            <div class="head">
+                Starter
+                <br><span class="badge bg-success" >Reserved</span>
+            </div>
+            
+            <div class="ticket">$5.90 </div>
+            <div class="body">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore
+                    magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat.
+                </p>
+                <button class="btn">Order Now</button>
+            </div>
         </div>
-        <div class="card-back">
-          <!-- Description à afficher au dos de la carte -->
-          {{ pack.description }}
+        <div class="card standard">
+           
+            <div class="head">
+                Standard
+                <br> <span class="badge bg-danger">NotReserved</span>
+            </div>
+            
+            <div class="ticket">$10.50</div>
+            <div class="body">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore
+                    magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat.
+                </p>
+                <button class="btn">Order Now</button>
+            </div>
         </div>
-      </div>
+        <div class="card premium">
+            <div class="head">
+                Premium
+            </div>
+            <div class="ticket">$15.90</div>
+            <div class="body">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore
+                    magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat.
+                </p>
+                <button class="btn">Order Now</button>
+            </div>
+        </div>
+       
+  
     </div>
-  </div>
+    </section>
+ 

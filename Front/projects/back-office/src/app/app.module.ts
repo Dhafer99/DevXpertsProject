@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { AddPackComponent } from './PackManagementAdmin/add-pack/add-pack.component';
 import { ViewPackComponent } from './PackManagementAdmin/view-pack/view-pack.component';
+import { UpdatePackComponent } from './PackManagementAdmin/update-pack/update-pack.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ViewPackComponent } from './PackManagementAdmin/view-pack/view-pack.com
     ListUsersComponent,
     AddPackComponent,
     ViewPackComponent,
+    UpdatePackComponent,
    
   ],
   imports: [
