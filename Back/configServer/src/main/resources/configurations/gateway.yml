@@ -19,6 +19,10 @@ spring:
             uri: http://localhost:8070
             predicates:
               - Path=/exhibitor/api/Exhibitors/**
+          - id: events
+            uri: http://localhost:8091
+            predicates:
+            - Path=/api/Event/**
 
 
 
