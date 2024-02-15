@@ -23,4 +23,7 @@ export class AfficherOffreComponent implements OnInit{
   console.log("mylist:"+JSON.stringify(this.listOffers))
     })
   }
+  detail(){
+    alert('Your details are displayed')
+  }
 }

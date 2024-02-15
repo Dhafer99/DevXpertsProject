@@ -18,6 +18,9 @@ export class OfferService {
   addOffer(offer:Offer):Observable<Offer[]>{
     return this.http.post<Offer[]>(this.offerUrl+'/add',offer)
   }
+  getOfferById(id:number):Observable<Offer[]>{
+    return this.http.get<Offer[]>(+this.offerUrl+'/offer/'+id)
+  }
   deleteappartment(id : number):Observable<Offer[]>{
     return this.http.delete<Offer[]>(this.offerUrl+'/'+id)
   }

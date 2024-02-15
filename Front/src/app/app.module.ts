@@ -8,13 +8,15 @@ import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.co
 import { HttpClientModule } from '@angular/common/http';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     AfficherOffreComponent,
-    AjouterOffreComponent
+    AjouterOffreComponent,
+    DetailOffreComponent
   ],
   imports: [
     BrowserModule,
