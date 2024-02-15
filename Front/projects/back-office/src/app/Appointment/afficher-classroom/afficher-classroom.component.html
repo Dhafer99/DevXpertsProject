@@ -1,0 +1,24 @@
+<p>afficher-classroom works!</p>
+
+<p>afficher-offre works!</p>
+
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row" *ngFor="let o of classroomList  ;let i=index"> 
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                <div class="icon-box iconbox-blue">
+                   
+                    <h4><a href="">{{o.id}}</a></h4>
+                    <p>{{o.block}}</p>
+                    <p>{{o.classRoomNumber}}</p>
+                    <p>{{o.level}}</p>
+                    <a [routerLink]="['/offers', o.id]" class="btn btn-primary">Detail</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Services Section -->
