@@ -8,15 +8,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Booth" />
-        <module name="configServer" />
+        <module name="AppointementAndClassroom" />
+        <module name="gateway" />
         <module name="discovery" />
         <module name="Exhibitor" />
-        <module name="gateway" />
+        <module name="configServer" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AppointementAndClassroom" options="-parameters" />
       <module name="Booth" options="-parameters" />
       <module name="Exhibitor" options="-parameters" />
       <module name="configServer" options="-parameters" />
