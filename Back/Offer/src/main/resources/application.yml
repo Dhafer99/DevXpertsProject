@@ -1,0 +1,8 @@
+
+spring:
+  application:
+    name: Offer
+  config:
+    import: optional:configserver:http://localhost:8888
+
+

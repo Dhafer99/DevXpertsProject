@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Booth" />
+        <module name="Offer" />
         <module name="configServer" />
         <module name="discovery" />
         <module name="Exhibitor" />
@@ -19,6 +20,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Booth" options="-parameters" />
       <module name="Exhibitor" options="-parameters" />
+      <module name="Offer" options="-parameters" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
