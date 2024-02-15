@@ -13,19 +13,24 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/Event/Events")
 @RequiredArgsConstructor
-public class Controller {
+public class EventController {
     private final EventService service ;
 
-    @PostMapping
+    @PostMapping("/addEvent")
     @ResponseStatus(HttpStatus.CREATED)
     public void save(@RequestBody Event event )
     {
          service.save(event);
     }
-    @GetMapping
+    @GetMapping("/Allevents")
     public ResponseEntity<List<Event>> findAllEvents(){
         return ResponseEntity.ok(service.findAllEvents());
     }
 
-
+    @PutMapping("/{user}")
+    @ResponseStatus(HttpStatus.OK)
+    public void update(@RequestBody Event event,@PathVariable("user") long userId )
+    {
+        service.update(event,userId);
+    }
 }

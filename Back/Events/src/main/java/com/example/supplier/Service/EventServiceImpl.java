@@ -24,6 +24,16 @@ public class EventServiceImpl implements EventService{
         event.setRating(0);
         eventRepository.save(event);
     }
+
+    @Override
+    public void update(Event event,long UserId) {
+
+        event.setLastModified_at(new Date());
+        event.setLastModified_by(UserId);
+
+        eventRepository.save(event);
+    }
+
     public List<Event> findAllEvents(){
         return eventRepository.findAll();
     }

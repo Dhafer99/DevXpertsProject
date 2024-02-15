@@ -25,7 +25,4 @@ public class InterestedBy {
 
 
 
-    private String BoothPosition;
-
-    private Integer exhibitorId ;
 }
