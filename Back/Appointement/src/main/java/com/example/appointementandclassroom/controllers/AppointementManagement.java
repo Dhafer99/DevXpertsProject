@@ -16,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/AppointementAndClassrooms/")
 @RequiredArgsConstructor
+@CrossOrigin
 public class AppointementManagement {
     @Autowired
     private  final AppointementService appointementService ;
