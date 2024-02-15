@@ -1,5 +1,6 @@
 package tn.esprit.packmangement.Entites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,9 +24,11 @@ public class Package {
     private int quantity ;
     private String description ;
     private boolean status ;
+    private boolean reserved;
     // supplier
     // company
     private float price ;
+    @JsonIgnore
     @ManyToOne
     Room room;
 

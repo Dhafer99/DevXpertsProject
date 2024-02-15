@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface PackageInterface {
     List<Package> getpackBYType(TypePack typePack);
+    List<Package> getAllPacks();
     Package AffecterPackToRoom(Long roomId , Long packid);
     Package addPackge(Package pack);
     Package updatePackage (Package pack);

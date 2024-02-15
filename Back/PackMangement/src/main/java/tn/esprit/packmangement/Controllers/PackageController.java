@@ -8,6 +8,7 @@ import tn.esprit.packmangement.Entites.TypePack;
 import tn.esprit.packmangement.Services.PackageInterface;
 
 import java.util.List;
+@CrossOrigin(origins = "http://localhost:4203")
 
 @RestController
 @AllArgsConstructor
@@ -18,6 +19,10 @@ public class PackageController {
     @GetMapping("/getRoomPackages")
     public List<Package> getRoomPackages(@RequestParam Long idRomm) {
         return  packageInterface.findRoomPackages(idRomm);
+    }
+    @GetMapping("/getAllPacks")
+    public List<Package> getAllPacks() {
+        return  packageInterface.getAllPacks();
     }
 
     // Afficher les packs d'un type spécifiques
@@ -47,8 +52,8 @@ public class PackageController {
     }
 
     // Afficher les details d'un packs
-    @GetMapping("/retrievePackage")
-    public Package retrievePackage(@RequestParam Long idpack) {
+    @GetMapping("/retrievePackage/{idpack}")
+    public Package retrievePackage(@PathVariable("idpack") Long idpack) {
         return  packageInterface.retrievePackage(idpack);
     }
 

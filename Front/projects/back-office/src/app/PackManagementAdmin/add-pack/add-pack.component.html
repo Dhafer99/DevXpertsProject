@@ -4,9 +4,9 @@
       <div class="card-body">
         <h5 class="card-title">Add Pack</h5>
 
-        <form>
+        <form (ngSubmit)="addPack()" #addPackForm="ngForm">
           <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">Select Pack Type</label>
+            <label class="col-sm-2 col-form-label" id="typePack" name="typePack" [(ngModel)]="pack.typePack">Select Pack Type</label>
             <div class="col-sm-10">
               <select class="form-select" aria-label="Default select example">
                 <option selected>Category</option>
@@ -22,7 +22,7 @@
               >Quantity</label
             >
             <div class="col-sm-10">
-              <input type="number" class="form-control" />
+              <input type="number" class="form-control" id="quantity" [(ngModel)]="pack.quantity" name="quantity" />
             </div>
           </div>
           <div class="row mb-3">
@@ -30,30 +30,17 @@
               >Price</label
             >
             <div class="col-sm-10">
-              <input type="number" class="form-control" />
+              <input type="number" class="form-control" id="price" [(ngModel)]="pack.price" name="price" />
             </div>
           </div>
 
-          <div class="row mb-3">
-            <label for="inputColor" class="col-sm-2 col-form-label"
-              >Color Pack</label
-            >
-            <div class="col-sm-10">
-              <input
-                type="color"
-                class="form-control form-control-color"
-                id="exampleColorInput"
-                value="#4154f1"
-                title="Choose your color"
-              />
-            </div>
-          </div>
+          
           <div class="row mb-3">
             <label for="inputPassword" class="col-sm-2 col-form-label"
               >Pack description</label
             >
             <div class="col-sm-10">
-              <textarea class="form-control" style="height: 100px"></textarea>
+              <textarea class="form-control" style="height: 100px" id="description" [(ngModel)]="pack.description" name="description"></textarea>
             </div>
           </div>
 

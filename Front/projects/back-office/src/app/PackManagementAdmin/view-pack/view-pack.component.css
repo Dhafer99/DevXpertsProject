@@ -1,41 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap');
-
-:root {
-  --ticket-height: 60px;
-  --color-blue: lightblue;
-  --color-orange: salmon;
-  --color-green: red;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #F1F1F1;
-  font-family: 'Open Sans', sans-serif;
-  background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
-}
-
-.section-prices {
-  padding: 1.5rem 1rem;
-}
-.section-prices .section-header {
-  background-color: #FFF;
-  margin-bottom: 1rem;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  color: #555;
-  font-weight: 700;
-  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, .3);
-}
-
 .list-boxs {
   display: flex;
   justify-content: space-between;
@@ -47,6 +9,21 @@ body {
   text-align: center;
   position: relative;
   max-width: 300px;
+  cursor: pointer;
+}
+/* Ajoutez ici votre CSS existant */
+
+.title-box {
+  background-color: #FFF;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: #555;
+  font-weight: 700;
+  box-shadow: 0 10px 35px -10px rgba(0, 0, 0, .3);
+}
+
+.list-boxs .card:hover {
+  cursor: pointer;
 }
 
 .list-boxs .card .head,
@@ -63,6 +40,7 @@ body {
   transition: transform .3s linear;
   border-bottom: 1px solid #F2F2F2;
 }
+
 .list-boxs .card:hover .head {
   transform: translateY(0);
   box-shadow: 0 -5px 10px rgba(0, 0, 0, .1);
@@ -78,15 +56,29 @@ body {
   height: var(--ticket-height);
   box-shadow: inset 0px 6px 6px -5px rgba(0, 0, 0, .25),
               inset 0px -6px 6px -5px rgba(0, 0, 0, .25);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.list-boxs .card .ticket.diamond {
+  background-color: #0a0101; /* ou toute autre couleur pour standard */
 }
 .list-boxs .starter .ticket {
-  background-color:  #fffd8d;
+  background-color: #fffd8d;
+}
+.list-boxs .diamond .ticket {
+  background-color: #fffd8d;
 }
 .list-boxs .standard .ticket {
-  background-color: #ffb9cc;
+  background-color: #30ccc4;
 }
-.list-boxs .premium .ticket {
-  background-color: var(--color-orange);
+.list-boxs .silver .ticket {
+  background-color: #0ed176;
+}
+
+
+.list-boxs .card:hover .ticket {
+  opacity: 1;
 }
 
 .list-boxs .card .body {
@@ -103,6 +95,7 @@ body {
   color: #333;
   text-align: justify;
 }
+
 .list-boxs .card .btn {
   margin-top: 2rem;
   padding: .6rem 1rem;
@@ -112,28 +105,28 @@ body {
   font-weight: 500;
   min-width: 160px;
   border: 1px solid #555;
-  background-color: #555;
-  color: #333;
   cursor: pointer;
   transition: all .2s linear;
 }
+
 .list-boxs .card .btn:hover {
   box-shadow: 0 5px 10px 1px rgba(0, 0, 0, .15);
 }
 
 .list-boxs .starter .btn {
-  background: #2CD8D5;
+  background: blue;
   border-color: var(--color-green);
 }
+
 .list-boxs .standard .btn {
   background: var(--color-blue);
   border-color: var(--color-blue);
 }
+
 .list-boxs .premium .btn {
   background: var(--color-orange);
   border-color: var(--color-orange);
 }
-
 
 @media screen and (max-width: 750px) {
   .list-boxs {

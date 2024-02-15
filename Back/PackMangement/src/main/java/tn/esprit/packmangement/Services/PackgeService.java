@@ -31,12 +31,19 @@ public class PackgeService implements PackageInterface {
     }
 
     @Override
+    public List<Package> getAllPacks() {
+        return packgeRepository.findAll();
+    }
+
+    @Override
     public Package AffecterPackToRoom(Long roomId, Long packid) {
 
         Room room = roomClient.findRoom(roomId);
         Package pack = packgeRepository.findById(packid).get();
         roomRepository.save(room);
         pack.setRoom(room);
+        pack.setStatus(false);
+        pack.setReserved(false);
         System.out.println(roomId);
         packgeRepository.save(pack);
         return pack;

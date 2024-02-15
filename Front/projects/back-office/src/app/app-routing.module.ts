@@ -8,7 +8,7 @@ import { UpdatePackComponent } from './PackManagementAdmin/update-pack/update-pa
 const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 { path: 'addPack', component: AddPackComponent },
 { path: 'viewPack', component: ViewPackComponent }
-,{ path: 'DetailsPack', component: UpdatePackComponent }
+,{ path: 'DetailsPack/:id', component: UpdatePackComponent }
 ];
 
 @NgModule({
