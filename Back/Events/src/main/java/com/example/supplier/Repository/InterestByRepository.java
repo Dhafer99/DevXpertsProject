@@ -9,7 +9,7 @@ import java.util.List;
 public interface InterestByRepository extends JpaRepository<InterestedBy,Long> {
 
 
-    InterestedBy findByEventIDAndAndUserID(long event,long userid);
+    InterestedBy findInterestedByEventIDAndUserID(long event,long userid);
 
-    List<InterestedBy> findByUserID(long user);
+    List<InterestedBy> findInterestedBIESByUserID(long user);
 }

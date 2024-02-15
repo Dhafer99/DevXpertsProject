@@ -1,7 +1,9 @@
 package com.example.supplier.Service;
 
+import com.example.supplier.Entity.Event;
 import com.example.supplier.Entity.InterestedBy;
 import com.example.supplier.Entity.Rating;
+import com.example.supplier.Repository.EventRepository;
 import com.example.supplier.Repository.InterestByRepository;
 import com.example.supplier.Repository.RatingRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,11 +17,16 @@ import java.util.List;
 public class RatingServiceImpl implements RatingService{
 
     private final RatingRepository ratingRepository;
+    private final EventRepository eventRepository;
 
     @Override
     public void save(Rating rating) {
+        Event event1=eventRepository.findById(rating.getEventID()).get();
 
-        ratingRepository.save(rating);
+        event1.getRatings().add(rating);
+
+        eventRepository.save(event1);
+        updateRatingForEvent(event1.getId());
     }
 
 
@@ -29,6 +36,7 @@ public class RatingServiceImpl implements RatingService{
 
 
         ratingRepository.delete(rating);
+        updateRatingForEvent(rating.getEventID());
     }
 
     @Override
@@ -45,11 +53,34 @@ public class RatingServiceImpl implements RatingService{
 
             Rating rating=ratingRepository.findRatingByEventIDAndUserID(event,userId);
         ratingRepository.delete(rating);
+        updateRatingForEvent(rating.getEventID());
     }
-    public List<InterestedBy> findAllInterests(){
-        return InterestRepository.findAll();
+    public List<Rating> findAllRatings(){
+        return ratingRepository.findAll();
     }
 
+    @Override
+    public void updateRating(Rating rating) {
+        Rating rating1=ratingRepository.findById(rating.getId()).get();
+        rating1.setComment(rating.getComment());
+        ratingRepository.save(rating1);
+    }
+
+    @Override
+    public void updateRatingForEvent(long event) {
+        Event event1=eventRepository.findById(event).get();
+        int size=event1.getRatings().size();
+        double somme=event1.getRatings().stream().mapToDouble(Rating::getRating).sum();
+      if (size ==0)
+      {
+          event1.setRating(0);
+      }else
+      {
+          event1.setRating(somme/ (double) size);
+      }
+
+        eventRepository.save(event1);
+    }
 
 
 }

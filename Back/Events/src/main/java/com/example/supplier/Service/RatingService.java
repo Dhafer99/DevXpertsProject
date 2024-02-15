@@ -15,4 +15,5 @@ public void remove(long event,long userId);
     public List<Rating> findAllRatings();
 
     public void updateRating(Rating rating);
+    public void updateRatingForEvent(long event);
 }

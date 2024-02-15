@@ -23,6 +23,15 @@ public class RatingController {
     public void addRating(@RequestBody Rating rating )
     {
         service.save(rating);
+        service.updateRatingForEvent(rating.getEventID());
+    }
+    @PutMapping("/updateRating")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void updateRating(@RequestBody Rating rating )
+    {
+        service.updateRating(rating);
+        service.updateRatingForEvent(rating.getEventID());
+
     }
     @GetMapping("/AllRating")
     public ResponseEntity<List<Rating>> findAllRatings(){
@@ -42,11 +51,14 @@ public class RatingController {
     public void remove(@RequestBody Rating rating)
     {
         service.remove(rating);
+        service.updateRatingForEvent(rating.getEventID());
+
     }
     @DeleteMapping("/removeInterest/{event}/{user}")
     @ResponseStatus(HttpStatus.OK)
     public void remove(@PathVariable("user") long event,@PathVariable("user") long userId )
     {
         service.remove(event,userId);
+
     }
 }
