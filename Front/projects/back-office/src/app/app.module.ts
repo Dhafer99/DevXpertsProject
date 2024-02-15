@@ -9,6 +9,8 @@ import { ViewPackComponent } from './PackManagementAdmin/view-pack/view-pack.com
 import { UpdatePackComponent } from './PackManagementAdmin/update-pack/update-pack.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HistoriquePacksComponent } from './PackManagementAdmin/historique-packs/historique-packs.component';
+import { CreateRoomComponent } from './RoomManagement/create-room/create-room.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,9 @@ import { FormsModule } from '@angular/forms';
     AddPackComponent,
     ViewPackComponent,
     UpdatePackComponent,
+    HistoriquePacksComponent,
+    CreateRoomComponent
+    ,
    
   ],
   imports: [

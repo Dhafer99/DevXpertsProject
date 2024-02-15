@@ -25,7 +25,7 @@ export class AddPackComponent {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Fill all the inputs !",
+        text: "You Need To Fill all the inputs !",
       });
       return;
     }

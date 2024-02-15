@@ -19,7 +19,7 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idRoom")
     private Long idRoom;
-    private Long codeRoom;
+    private String codeRoom;
     //CompanyList
     private Date dateDebut;
     private Date DateFin ;
