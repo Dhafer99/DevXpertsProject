@@ -10,6 +10,8 @@ import { AfficherClassroomComponent } from './Appointment/afficher-classroom/aff
 import { CardClassroomComponent } from './Appointment/card-classroom/card-classroom.component';
 import { AddClassroomComponent } from './Appointment/add-classroom/add-classroom.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CalenderComponent } from './Appointment/calender/calender.component';
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AfficherClassroomComponent,
     CardClassroomComponent,
     AddClassroomComponent,
+    CalenderComponent,
    
   ],
   imports: [
@@ -27,8 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ScheduleModule ,
   ],
-  providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

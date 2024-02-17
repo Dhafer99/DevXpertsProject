@@ -25,20 +25,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
-            
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
                   "maximumError": "1mb"
                 },
-                
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
@@ -60,11 +59,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options":{
-            "port":4201
+          "options": {
+            "port": 4201
           },
           "configurations": {
-            
             "production": {
               "browserTarget": "ProjetPi:build:production"
             },
@@ -93,7 +91,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
             ],
             "scripts": []
           }
@@ -155,11 +154,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options":{
+          "options": {
             "port": 4203
           },
           "configurations": {
-            
             "production": {
               "browserTarget": "backOffice:build:production"
             },
@@ -172,7 +170,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "port":"4202",
+            "port": "4202",
             "browserTarget": "backOffice:build"
           }
         },
@@ -252,7 +250,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "options":{
+            "options": {
               "port": 4203
             },
             "production": {

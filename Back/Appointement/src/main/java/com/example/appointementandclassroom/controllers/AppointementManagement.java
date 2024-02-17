@@ -22,15 +22,19 @@ public class AppointementManagement {
     private  final AppointementService appointementService ;
     @Autowired
     private  final ClassroomService classroomService ;
+    //----------------------Swager -------------------------------
+    //  http://localhost:8095/swagger-ui/index.html#/
+    //-----------------------------------------------------------
 
-
+//------------------------------------------------------------------
     //-------------------------Appointement CRUD ------------------------
-
+//--------------------------------------------------------------------
    // @Operation(description = "Add appointement")
     @PostMapping("/add_Appointement")
     public Appointement addappointement(@RequestBody Appointement appointement){
         return  appointementService.addappointement(appointement);
     }
+
 
 
     @Operation(description = "Retrieve all Appointement")
