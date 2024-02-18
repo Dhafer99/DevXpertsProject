@@ -38,10 +38,7 @@
                   "maximumWarning": "500kb",
                   "maximumError": "1mb"
                 },
-<<<<<<< HEAD
-=======
 
->>>>>>> 6f932ffb00ce51a891d0ec57ed7f466bb9f56792
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
@@ -67,10 +64,6 @@
             "port": 4201
           },
           "configurations": {
-<<<<<<< HEAD
-=======
-
->>>>>>> 6f932ffb00ce51a891d0ec57ed7f466bb9f56792
             "production": {
               "browserTarget": "ProjetPi:build:production"
             },
@@ -166,10 +159,7 @@
             "port": 4203
           },
           "configurations": {
-<<<<<<< HEAD
-=======
 
->>>>>>> 6f932ffb00ce51a891d0ec57ed7f466bb9f56792
             "production": {
               "browserTarget": "backOffice:build:production"
             },
