@@ -1,0 +1,36 @@
+package com.example.supplier.Controller;
+
+
+import com.example.supplier.Entity.Event;
+import com.example.supplier.Service.EventService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/Event/Events")
+@RequiredArgsConstructor
+public class EventController {
+    private final EventService service ;
+
+    @PostMapping("/addEvent")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void save(@RequestBody Event event )
+    {
+         service.save(event);
+    }
+    @GetMapping("/Allevents")
+    public ResponseEntity<List<Event>> findAllEvents(){
+        return ResponseEntity.ok(service.findAllEvents());
+    }
+
+    @PutMapping("/{user}")
+    @ResponseStatus(HttpStatus.OK)
+    public void update(@RequestBody Event event,@PathVariable("user") long userId )
+    {
+        service.update(event,userId);
+    }
+}

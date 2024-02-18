@@ -8,8 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Booth" />
+<<<<<<< HEAD
         <module name="AppointementAndClassroom" />
         <module name="gateway" />
+=======
+        <module name="Events" />
+        <module name="configServer" />
+>>>>>>> 6f932ffb00ce51a891d0ec57ed7f466bb9f56792
         <module name="discovery" />
         <module name="Exhibitor" />
         <module name="configServer" />
@@ -20,6 +25,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AppointementAndClassroom" options="-parameters" />
       <module name="Booth" options="-parameters" />
+      <module name="Events" options="-parameters" />
       <module name="Exhibitor" options="-parameters" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
