@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CalenderComponent } from './calender/calender.component';
 import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
+import { EventComponent } from './event/event.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    CalenderComponent
+    CalenderComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,
