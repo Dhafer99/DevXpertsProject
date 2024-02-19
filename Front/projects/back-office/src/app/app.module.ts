@@ -12,6 +12,10 @@ import { AddClassroomComponent } from './Appointment/add-classroom/add-classroom
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalenderComponent } from './Appointment/calender/calender.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
+import { EventsComponent } from './events/events.component';
+import { EventCreateComponent } from './events/event-create/event-create.component';
+import { EventDisplayComponent } from './events/event-display/event-display.component';
+import { EventListComponent } from './events/event-list/event-list.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,8 @@ import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
     CardClassroomComponent,
     AddClassroomComponent,
     CalenderComponent,
+    EventsComponent,
+
    
   ],
   imports: [
