@@ -19,6 +19,7 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id ;
+
     private EventType Type;
     private String Name;
     // event will be at

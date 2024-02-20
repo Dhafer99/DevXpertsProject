@@ -27,7 +27,7 @@ import { EventListComponent } from './events/event-list/event-list.component';
     AddClassroomComponent,
     CalenderComponent,
     EventsComponent,
-
+    
    
   ],
   imports: [

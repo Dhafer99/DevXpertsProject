@@ -47,8 +47,8 @@ export class Event {
 // event-type.enum.ts
 
 export enum EventType {
-    EnterpriseDay = 'Enterprise_Day',
-    ClubDay = 'Club_Day',
-    AssociationDay = 'Association_Day',
+    Enterprise_Day = "Enterprise Day",
+    Club_Day = "Club Day",
+    Association_Day = "Association Day",
   }
   

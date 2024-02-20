@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EventService } from '../../services/event.service';
+import { EventType } from '../../models/event';
+
 
 @Component({
   selector: 'app-event-create',
@@ -12,15 +15,17 @@ export class EventCreateComponent implements OnInit {
   id:any; 
   myform!:FormGroup;
 
-  constructor(private router: Router,private acr:ActivatedRoute) {}
+  eventType= EventType
+
+  constructor(private router: Router,private acr:ActivatedRoute,private eventService:EventService) {}
   ngOnInit(): void {
-    this.id=this.acr.snapshot.params["id"];  
+   // this.id=this.acr.snapshot.params["id"];  
     this.myform=new FormGroup({
-      type:new FormControl('',[Validators.required]),
-      name:new FormControl ('',[Validators.required,Validators.minLength(6)]),
-      date:new FormControl('',[Validators.required]),
-      disableDate:new FormControl('',[Validators.required]),
-      
+       type:new FormControl('',[Validators.required]),
+       name:new FormControl ('',[Validators.required,Validators.minLength(6)]),
+      // date:new FormControl('',[Validators.required]),
+      // disableDate:new FormControl('',[Validators.required]),
+
     })
     throw new Error('Method not implemented.');
   }
@@ -29,4 +34,11 @@ export class EventCreateComponent implements OnInit {
   goToEventDisplay() {
     this.router.navigate(['/events/display']);
   }
-}
+  add(){
+    this.eventService.addEvent(this.myform.value).subscribe ((response)=>{
+        console.log(response)
+      console.log("classroom"+JSON.stringify(this.myform.value))})
+    }
+  }
+  
+

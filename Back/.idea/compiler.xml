@@ -8,16 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Booth" />
-<<<<<<< HEAD
-        <module name="AppointementAndClassroom" />
-        <module name="gateway" />
-=======
         <module name="Events" />
         <module name="configServer" />
->>>>>>> 6f932ffb00ce51a891d0ec57ed7f466bb9f56792
         <module name="discovery" />
         <module name="Exhibitor" />
-        <module name="configServer" />
+        <module name="AppointementAndClassroom" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
   </component>

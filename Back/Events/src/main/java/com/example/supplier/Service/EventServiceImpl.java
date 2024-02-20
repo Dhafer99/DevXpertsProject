@@ -15,7 +15,7 @@ public class EventServiceImpl implements EventService{
     private final EventRepository eventRepository;
 
     @Override
-    public void save(Event event) {
+    public Event save(Event event) {
         event.setCreated_at(new Date());
         event.setLastModified_at(new Date());
         event.setLastModified_by(event.getCreated_by());
@@ -23,6 +23,7 @@ public class EventServiceImpl implements EventService{
         event.setInterestedCounter(0);
         event.setRating(0);
         eventRepository.save(event);
+        return event;
     }
 
     @Override

@@ -19,19 +19,15 @@ spring:
             uri: http://localhost:8070
             predicates:
               - Path=/exhibitor/api/Exhibitors/**
-<<<<<<< HEAD
           - id: Appointement
             uri: http://localhost:8095
             predicates:
               - Path=/api/AppointementAndClassrooms/**
 
-
-=======
           - id: events
             uri: http://localhost:8091
             predicates:
             - Path=/api/Event/Events/**
->>>>>>> 6f932ffb00ce51a891d0ec57ed7f466bb9f56792
 
 
 

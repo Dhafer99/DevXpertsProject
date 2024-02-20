@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface EventService {
 
-public void save(Event event);
+public Event save(Event event);
 public void update(Event event,long UserId);
     public List<Event> findAllEvents();
 
