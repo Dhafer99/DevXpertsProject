@@ -1,5 +1,6 @@
 package tn.esprit.auction.Entites;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,11 +22,16 @@ public class Room {
     @Column(name="idRoom")
     private Long idRoom;
     private String codeRoom;
-    //CompanyList
+    private float price;
+    private TypePack typePack ;
     private Date dateDebut;
-    private Date DateFin ;
-    private Float EncherePrice ;
+    private int duration ;
+    private int maxParticipants ;
+    private String description ;
     private Boolean status ;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
-    private Set<Package> packages;
+    private List<Pack> packages;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
+    private List<Company> companies;
+
 }

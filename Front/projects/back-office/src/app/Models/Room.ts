@@ -1,8 +1,15 @@
+import { Pack } from "./Pack";
+
 export class Room{
-    id!:number;
-    quantity!:number;
-    typePack!:string;
-    description!:string;
-    status!:boolean;
+
+    idRoom!:number;
+    codeRoom!:number;
     price!:number;
+    typePack!:string;
+    dateDebut!:Date;
+    duration !:number;
+    description!:string
+    status !:boolean;
+    maxParticipants!:number;
+    packs!:Pack[]
 }

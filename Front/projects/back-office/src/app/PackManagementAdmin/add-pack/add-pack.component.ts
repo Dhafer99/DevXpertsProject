@@ -3,6 +3,8 @@ import { Pack } from '../../Models/Pack';
 import { PackServiceService } from '../../Services/pack-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Room } from '../../Models/Room';
+import { RoomServiceService } from '../../Services/room-service.service';
 
 @Component({
   selector: 'app-add-pack',
@@ -10,9 +12,10 @@ import Swal from 'sweetalert2';
   styleUrls: ['./add-pack.component.css']
 })
 export class AddPackComponent {
-  constructor(private packService: PackServiceService , private route:Router) {}
+  constructor(private packService: PackServiceService , private route:Router ) {}
 
   pack: Pack = new Pack();
+ 
   addPack(): void {
    
     if (

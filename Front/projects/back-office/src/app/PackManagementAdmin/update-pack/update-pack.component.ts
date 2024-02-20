@@ -8,13 +8,15 @@ import { Pack } from '../../Models/Pack';
   templateUrl: './update-pack.component.html',
   styleUrls: ['./update-pack.component.css']
 })
-export class UpdatePackComponent implements OnInit{
-  constructor(private packService: PackServiceService, private activate:ActivatedRoute) {}
+export class UpdatePackComponent implements OnInit {
+  constructor(private packService: PackServiceService, private activate: ActivatedRoute) {}
   packs!: Pack;
-  id=0;
-  
+  id = 0;
+
   ngOnInit(): void {
-    this.id=this.activate.snapshot.params['id']
+    this.id = this.activate.snapshot.params['id'];  
+  
+  console.log('ID:', this.id);
     this.packService.getDetailsPackById(this.id).subscribe(
       (packs) => {
         this.packs = packs;
@@ -27,6 +29,4 @@ export class UpdatePackComponent implements OnInit{
       }
     );
   }
-  
-
 }

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PackServiceService {
-  url = "http://localhost:8082/api/packs/";
+  url = "http://localhost:8083/api/packs/";
    
   httpOptions = {
     headers: new HttpHeaders({
@@ -34,5 +34,22 @@ export class PackServiceService {
   public getAllPacks (  ): Observable<any>
   {
     return this.http.get<any>( this.url + "getAllPacks" );
+  }
+
+  
+  public findPacksByIdRoom ( id: number ): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }findPacksByIdRoom/${ id }`, {
+      withCredentials: true,
+    } );
+ 
+  }
+
+  public findByTypePack ( typePack: string ): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }getpackBYType/${ typePack }`, {
+      withCredentials: true,
+    } );
+ 
   }
 }

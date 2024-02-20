@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HistoriquePacksComponent } from './PackManagementAdmin/historique-packs/historique-packs.component';
 import { CreateRoomComponent } from './RoomManagement/create-room/create-room.component';
+import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.component';
+import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { CreateRoomComponent } from './RoomManagement/create-room/create-room.co
     ViewPackComponent,
     UpdatePackComponent,
     HistoriquePacksComponent,
-    CreateRoomComponent
+    CreateRoomComponent,
+    ViewRoomsComponent,
+    DetailRoomComponent
     ,
    
   ],

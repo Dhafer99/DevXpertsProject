@@ -1,4 +1,4 @@
-package tn.esprit.packmangement.Entites;
+package tn.esprit.auction.Entites;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -7,14 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-public class Package {
+public class Pack {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idPack")
@@ -24,14 +22,13 @@ public class Package {
     private int quantity ;
     private String description ;
     private boolean status ;
-    private boolean reserved;
+    private boolean reserved ;
     // supplier
     // company
     private float price ;
     @JsonIgnore
     @ManyToOne
     Room room;
-
 
 
 }

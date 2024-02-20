@@ -1,7 +1,7 @@
 .list-boxs {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  
 }
 
 .list-boxs .card {
@@ -10,6 +10,9 @@
   position: relative;
   max-width: 300px;
   cursor: pointer;
+}
+.list-boxs div{
+  margin: 0.75%;
 }
 /* Ajoutez ici votre CSS existant */
 
@@ -118,15 +121,6 @@
   
 }
 
-.list-boxs .standard .btn {
-  background: var(--color-blue);
-  border-color: var(--color-blue);
-}
-
-.list-boxs .premium .btn {
-  background: var(--color-orange);
-  border-color: var(--color-orange);
-}
 
 @media screen and (max-width: 750px) {
   .list-boxs {

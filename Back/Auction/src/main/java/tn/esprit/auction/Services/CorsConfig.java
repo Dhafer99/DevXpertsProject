@@ -1,4 +1,4 @@
-package tn.esprit.packmangement.Services;
+package tn.esprit.auction.Services;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

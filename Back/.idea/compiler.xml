@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Booth" />
-        <module name="PackMangement" />
         <module name="configServer" />
         <module name="discovery" />
         <module name="Exhibitor" />
@@ -19,6 +18,7 @@
     <bytecodeTargetLevel>
       <module name="AuctionPackage" target="17" />
       <module name="Pack" target="17" />
+      <module name="PackMangement" target="17" />
       <module name="test" target="17" />
     </bytecodeTargetLevel>
   </component>
