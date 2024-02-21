@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Candidature } from 'src/app/models/candidature';
 import { CandidatureService } from 'src/app/services/candidature.service';
 
@@ -9,13 +10,14 @@ import { CandidatureService } from 'src/app/services/candidature.service';
 })
 export class AfficherCandidatureComponent implements OnInit{
 
-  constructor(private candidatureService:CandidatureService){  }
+  constructor(private activateroute:ActivatedRoute,private candidatureService:CandidatureService){  }
   
   listCandidatures:Candidature[]=[]
+  id!:number
   
   ngOnInit(): void {
-
-  this.candidatureService.getAllApplications().subscribe((data:Candidature[])=>{
+  this.id=this.activateroute.snapshot.params['id'];
+  this.candidatureService.getAllApplicationsByOffer(this.id).subscribe((data:Candidature[])=>{
   this.listCandidatures=data
   console.log("mylist:"+JSON.stringify(this.listCandidatures))
     })

@@ -6,6 +6,7 @@ import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.compo
 import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
 import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.component';
 import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
+import { AfficherCandidatursUserComponent } from './candidature/afficher-candidaturs-user/afficher-candidaturs-user.component';
 
 const routes: Routes = [  
   { path: 'profile', component: ProfileComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'addoffer', component:AjouterOffreComponent},
   { path: 'offers/:id', component:DetailOffreComponent},
   { path: 'modifier/:id', component:ModifierOfferComponent},
-  { path: 'applications', component:AfficherCandidatureComponent}
+  { path: 'offer/applications/:id', component:AfficherCandidatureComponent},
+  { path: 'myapplications', component:AfficherCandidatursUserComponent}
   ];
 
 @NgModule({

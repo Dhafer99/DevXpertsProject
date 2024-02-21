@@ -13,7 +13,7 @@ import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.co
 import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
 import { DetailCandidatureComponent } from './candidature/detail-candidature/detail-candidature.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AfficherOfferComponent } from './projects/back-office/offer/afficher-offer/afficher-offer.component';
+import { AfficherCandidatursUserComponent } from './candidature/afficher-candidaturs-user/afficher-candidaturs-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { AfficherOfferComponent } from './projects/back-office/offer/afficher-of
     ModifierOfferComponent,
     AfficherCandidatureComponent,
     DetailCandidatureComponent,
-    AfficherOfferComponent
+    AfficherCandidatursUserComponent,
   ],
   imports: [
     BrowserModule,
