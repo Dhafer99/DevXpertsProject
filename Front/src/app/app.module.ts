@@ -9,6 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
+import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.component';
+import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
+import { DetailCandidatureComponent } from './candidature/detail-candidature/detail-candidature.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AfficherOfferComponent } from './projects/back-office/offer/afficher-offer/afficher-offer.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +21,19 @@ import { DetailOffreComponent } from './offer/detail-offre/detail-offre.componen
     ProfileComponent,
     AfficherOffreComponent,
     AjouterOffreComponent,
-    DetailOffreComponent
+    DetailOffreComponent,
+    ModifierOfferComponent,
+    AfficherCandidatureComponent,
+    DetailCandidatureComponent,
+    AfficherOfferComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

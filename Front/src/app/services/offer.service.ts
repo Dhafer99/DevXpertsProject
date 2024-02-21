@@ -15,17 +15,24 @@ export class OfferService {
   getAllOffers():Observable<Offer[]>{
     return this.http.get<Offer[]>(this.offerUrl+'/allOffers')
   }
-  addOffer(offer:Offer):Observable<Offer[]>{
-    return this.http.post<Offer[]>(this.offerUrl+'/add',offer)
+  getAllOffersByExibitor(id : number):Observable<Offer[]>{
+    return this.http.get<Offer[]>(this.offerUrl+'/offerExibitor/'+id)
   }
-  getOfferById(id:number):Observable<Offer[]>{
-    return this.http.get<Offer[]>(+this.offerUrl+'/offer/'+id)
+  addOffer(formData:FormData): Observable<any> {
+    return this.http.post<any>(this.offerUrl+'/add',formData)
   }
-  deleteappartment(id : number):Observable<Offer[]>{
-    return this.http.delete<Offer[]>(this.offerUrl+'/'+id)
+  deleteOffer(id : number):Observable<Offer>{
+    return this.http.delete<Offer>(this.offerUrl+'/'+id)
   }
 
-  upadateappartment(id:number,appartement:Offer):Observable<Offer[]>
-{
-  return this.http.put<Offer[]>(this.offerUrl+'/'+id,appartement)
-}}
+  updateOffer(formData:FormData):Observable<Offer[]>
+  {
+    return this.http.put<Offer[]>(this.offerUrl+'/update',formData)
+  }
+
+  getOfferById(id:number):Observable<Offer>
+  {
+    return this.http.get<Offer>(this.offerUrl+'/offer/'+id);
+  }
+
+}

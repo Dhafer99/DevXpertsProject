@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
@@ -14,7 +15,13 @@ export class AjouterOffreComponent implements OnInit{
 
   constructor(private offerService:OfferService, private route:Router){  }
 
+  selectedFile!: File;
+  uploadProgress!: number;
+
   offerForm!:FormGroup;
+  offer!:Offer;
+  formData = new FormData();
+  //params = new HttpParams();
 
   ngOnInit(): void {
     //this.id=this.acr.snapshot.params['id']
@@ -25,13 +32,29 @@ export class AjouterOffreComponent implements OnInit{
       file:new FormControl('',Validators.required),
     })
   }
-
     get description(){return this.offerForm.get('description')}
     get lastDateApplication(){return this.offerForm.get('lastDateApplication')}
     get nbrCandidature(){return this.offerForm.get('nbrCandidature')}
     get file(){return this.offerForm.get('file')}
 
+
+    //FILE
+
+    onFileSelected(event: any): void {
+    const fileList: FileList = event.target.files;
+    if (fileList && fileList.length > 0) {
+      this.selectedFile = fileList[0];
+    }
+  }
+
+    //End File
     add(){
+      this.offer=this.offerForm.value; 
+      this.formData.append('description', this.description?.value);
+      this.formData.append('lastDateApplication', this.lastDateApplication?.value);
+      this.formData.append('nbrCandidature', this.nbrCandidature?.value);
+      this.formData.append('file', this.selectedFile);
+      this.formData.append('exibitorId',this.nbrCandidature?.value);
       if (this.description?.value=='' || this.lastDateApplication?.value=='' || this.nbrCandidature?.value=='' || this.file?.value==''){
         Swal.fire({
           icon: "error",
@@ -40,10 +63,11 @@ export class AjouterOffreComponent implements OnInit{
         });
       }
       else{
-      this.offerService.addOffer(this.offerForm.value).subscribe(()=>{
+        this.offerService.addOffer(this.formData).subscribe(()=>{
         console.log( "l'offre a été ajoutée")
         console.log("notre form"+JSON.stringify(this.offerForm.value))})
         this.route.navigate(['/offers']);
+        
     }
   }
 

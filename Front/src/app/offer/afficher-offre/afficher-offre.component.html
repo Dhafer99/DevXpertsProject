@@ -2,15 +2,15 @@
 <section id="testimonials" class="testimonials section-bg">
     <div class="container">
     <br>
-    <input type="submit" class="btn btn-primary" value="Ajouter Offre" [routerLink]="['/addoffer']">
+    <input type="submit" class="btn btn-danger" value="Ajouter Offre" [routerLink]="['/addoffer']">
     <br>
         <div class="row">
 
             <div class="col-lg-6" data-aos="fade-up" *ngFor="let o of listOffers ;let i=index"> 
                 <div class="testimonial-item" [routerLink]="['/offers', o.id]">
                     <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                    <h3>Saul Goodman</h3>
-                    <h4>Ceo &amp; Founder</h4>
+                    <h3>Nom entreprise</h3>
+                    <h4>Domaine</h4>
                     <p>
                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                         {{o.description}}

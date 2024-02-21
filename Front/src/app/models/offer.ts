@@ -3,5 +3,6 @@ export class Offer {
     description!:string;
     lastDateApplication!:Date;
     nbrCandidature!:number;
-    file!:string;
+    file!:File;
+    exibitorId!:number;
 }

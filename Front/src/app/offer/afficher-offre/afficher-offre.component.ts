@@ -14,11 +14,12 @@ export class AfficherOffreComponent implements OnInit{
 
   constructor(private offerService:OfferService){  }
   
-  
+  exibitorId!:number;
   listOffers:Offer[]=[]
-
+  
   ngOnInit(): void {
-  this.offerService.getAllOffers().subscribe((data:Offer[])=>{
+  this.exibitorId=1;
+  this.offerService.getAllOffersByExibitor(this.exibitorId).subscribe((data:Offer[])=>{
   this.listOffers=data
   console.log("mylist:"+JSON.stringify(this.listOffers))
     })
