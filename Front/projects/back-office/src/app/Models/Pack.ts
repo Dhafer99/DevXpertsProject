@@ -1,3 +1,5 @@
+import { Room } from "./Room";
+
 export class Pack{
     idPack!:number;
     quantity!:number;
@@ -6,4 +8,5 @@ export class Pack{
     status!:boolean;
     price!:number;
     reserved!:boolean;
+    room!:Room;
 }

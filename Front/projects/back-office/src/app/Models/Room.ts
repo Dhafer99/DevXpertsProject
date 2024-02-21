@@ -11,5 +11,5 @@ export class Room{
     description!:string
     status !:boolean;
     maxParticipants!:number;
-    packs!:Pack[]
+    packages!:Pack[]
 }

@@ -1,6 +1,7 @@
 package tn.esprit.auction.Controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.TypePack;
@@ -10,7 +11,7 @@ import tn.esprit.auction.Services.PackageInterface;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4203")
-
+@Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/packs")
@@ -48,7 +49,7 @@ public class PackageController {
     //Update Package
     @PutMapping("/updatePackage")
     public Pack updatePackage(@RequestBody Pack p) {
-
+        log.info("hhh"+p);
         return packageInterface.updatePackage(p);
     }
 

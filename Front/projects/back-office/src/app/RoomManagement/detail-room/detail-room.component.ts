@@ -47,7 +47,7 @@ export class DetailRoomComponent  implements OnInit {
 
   updateRoom():void { 
     this.room.idRoom= this.id ; 
-    this.room.packs = this.pack;
+    this.room.packages = this.pack;
     this.roomService.UpdateRoom(this.room).subscribe(
    
       () => {

@@ -1,6 +1,7 @@
 package tn.esprit.auction.Entites;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,9 +27,10 @@ public class Pack {
     // supplier
     // company
     private float price ;
-    @JsonIgnore
-    @ManyToOne
-    Room room;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    
+    private Room room;
 
 
 }

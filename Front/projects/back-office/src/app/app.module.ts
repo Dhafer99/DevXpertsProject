@@ -14,6 +14,7 @@ import { CreateRoomComponent } from './RoomManagement/create-room/create-room.co
 import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.component';
 import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

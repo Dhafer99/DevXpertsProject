@@ -1,6 +1,7 @@
 package tn.esprit.auction.Entites;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +30,8 @@ public class Room {
     private int maxParticipants ;
     private String description ;
     private Boolean status ;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Pack> packages;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
     private List<Company> companies;

@@ -6,9 +6,8 @@ import { ViewPackComponent } from './PackManagementAdmin/view-pack/view-pack.com
 import { UpdatePackComponent } from './PackManagementAdmin/update-pack/update-pack.component';
 import { HistoriquePacksComponent } from './PackManagementAdmin/historique-packs/historique-packs.component';
 import { CommonModule } from '@angular/common';
-import { AppModule } from './app.module';
-import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.component';
+import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 
 const routes: Routes = [  
   

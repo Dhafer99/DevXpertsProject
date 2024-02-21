@@ -52,6 +52,12 @@ public class PackgeService implements PackageInterface {
     public Pack updatePackage(Pack pack) {
 
 
+        if(pack.getTypePack() != pack.getRoom().getTypePack())
+        {
+            Room room = roomRepository.findByTypePack(pack.getTypePack());
+            pack.setRoom(room);
+        }
+
         return packgeRepository.save(pack);
     }
 

@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class PackServiceService {
   url = "http://localhost:8083/api/packs/";
-   
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -24,7 +23,8 @@ export class PackServiceService {
   }
   UpdatePack ( data: any ): Observable<any> 
   {
-    return this.http.put<any>( this.url + 'updatePackage', data );
+   
+    return this.http.put<any>( this.url + 'updatePackage', data ,this.httpOptions);
   
   }
   addPack ( data: any )
