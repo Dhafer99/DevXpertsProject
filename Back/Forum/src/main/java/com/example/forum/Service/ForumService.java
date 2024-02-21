@@ -6,16 +6,16 @@ import com.example.forum.Entity.Post;
 import java.util.List;
 
 public interface ForumService {
-    public void savePost(Post post);
-    public List<Post> findAllPosts();
-    public Post retrievePost(Long postId);
-    public void removePost(Long postId);
-    public Post modifyPost(Post post);
+     void savePost(Post post);
+     List<Post> findAllPosts();
+     Post retrievePost(Long postId);
+     void removePost(Long postId);
+     Post modifyPost(Post post);
 
 
-    public Comment saveComment(Comment comment);
-    public List<Comment> findAllComments();
-    public Comment retrieveComment(Long commentId);
-    public void removeComment(Long commentId);
-    public Comment modifyComment(Comment comment);
+     Comment saveComment(Comment comment);
+     List<Comment> findAllComments();
+     Comment retrieveComment(Long commentId);
+     void removeComment(Long commentId);
+     Comment modifyComment(Comment comment);
 }

@@ -17,6 +17,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long IdPost ;
     private boolean featuredSubject;
+    private String title;
+    private String image;
     private String descriptionSubject;
     private int likesSubject;
 

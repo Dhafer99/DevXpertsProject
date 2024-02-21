@@ -5,6 +5,7 @@ import com.example.forum.Entity.Post;
 import com.example.forum.Repository.CommentRepository;
 import com.example.forum.Repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ForumServiceImp implements ForumService{
+
     private final PostRepository postRepo;
+
     private final CommentRepository commentRepo;
 
     @Override

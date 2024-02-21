@@ -1,0 +1,38 @@
+<section id="contact" class="contact">
+
+  <div class="container">
+
+      
+
+      <div class="row mt-5 justify-content-center" data-aos="fade-up">
+        <div class="col-lg-10">
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+          
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="title" id="title"
+              [(ngModel)]="post.title"  placeholder="Title" required>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="image" id="image"
+              [(ngModel)]="post.image"  placeholder="Image" required >
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="subject" rows="5"
+              [(ngModel)]="post.descriptionSubject"  placeholder="Subject" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your post has been posted. Thank you!</div>
+            </div>
+            <div class="text-center"><button (click)="savePost()" class = "btn btn-success "type="submit">Add Post</button>
+            
+            </div>
+         
+          
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Contact Section -->
