@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'ListPacks', component: ListPacksComponent },
   { path: 'ListPacks/DetailPack/:typePack', component: DetailPackComponent },
   { path: 'MyPacks', component: MyPacksComponent },
-  { path: 'ListRooms', component: RoomsListComponent },
+  { path: 'ListPacks/ListRooms', component: RoomsListComponent },
 
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }
   

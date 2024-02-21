@@ -11,6 +11,7 @@ import { RoomServiceService } from 'projects/back-office/src/app/Services/room-s
 })
 export class RoomsListComponent implements OnInit{
   rooms: Room[] = [];
+  test:boolean=false;
 
   constructor(private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
 
@@ -18,5 +19,20 @@ export class RoomsListComponent implements OnInit{
     this.roomService.getAllRooms().subscribe(res => {
       this.rooms = res;
     });
+  }
+      room!: Room ;
+ Participate(id:number){
+    this.roomService.getRoomById(id).subscribe(
+      (r) => {
+        this.room = r;
+        this.test=true
+      },
+      (error) => {
+        console.error(
+          "Erreur lors de la récupération du room :",
+          error
+        );
+      }
+    );
   }
 }
