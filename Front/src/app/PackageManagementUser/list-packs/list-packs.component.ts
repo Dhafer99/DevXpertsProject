@@ -15,7 +15,7 @@ export class ListPacksComponent implements OnInit {
   packsSilver: Pack[] = [];
   constructor(private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
 
-  @Input() messageFromParent: string;
+  
   ngOnInit() {
     this.packService.findByTypePack('diamond').subscribe(res => {
       this.packsDiamond = res;

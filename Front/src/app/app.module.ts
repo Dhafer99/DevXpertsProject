@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListPacksComponent } from './PackageManagementUser/list-packs/list-packs.component';
 import { DetailPackComponent } from './PackageManagementUser/detail-pack/detail-pack.component';
 import { MyPacksComponent } from './PackageManagementUser/my-packs/my-packs.component';
+import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { MyPacksComponent } from './PackageManagementUser/my-packs/my-packs.comp
     ListPacksComponent,
     DetailPackComponent,
     MyPacksComponent,
+    RoomsListComponent,
   ],
   imports: [
     BrowserModule,

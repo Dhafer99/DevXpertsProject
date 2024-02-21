@@ -104,6 +104,7 @@
       left: 0;
       width: 100%;
       padding: 2rem;
+      
       -webkit-box-sizing: border-box;
               box-sizing: border-box;
       outline: 1px solid transparent;
@@ -111,6 +112,11 @@
               perspective: inherit;
       z-index: 2;
   }
+.line-break{
+    max-width: 270px;
+    overflow-wrap: break-word;
+}
+
   
   .container .back{
       -webkit-transform: rotateY(180deg);
@@ -143,7 +149,6 @@
   .front .inner p{
     font-size: 2rem;
     margin-bottom: 2rem;
-    position: relative;
   }
   
   .front .inner p:after{
