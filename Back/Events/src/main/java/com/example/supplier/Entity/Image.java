@@ -15,8 +15,15 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id ;
-    private long UserID;
-    private long EventID;
+    private String name;
+    private int userID;
+    private int eventID;
+    private String imageUrl;
+    private String imageId;
 
-
+    public Image(String name, String imageUrl, String imageId) {
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.imageId = imageId;
+    }
 }

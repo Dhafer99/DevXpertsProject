@@ -1,5 +1,7 @@
 // event.ts
 
+import { Image } from "./image";
+
 export class Event {
     id!: number;
     type!: EventType; // Assuming EventType is also transformed to TypeScript
@@ -19,7 +21,7 @@ export class Event {
     depositNotes!: string;
   
     interestedBys?: InterestedBy[]; // Assuming InterestedBy is another TypeScript interface
-    collaborations?: Collaboration[];
+    images?: Image[];
     ratings?: Rating[];
   }
   
@@ -31,11 +33,7 @@ export class Event {
     eventID!: number;
     timestamp!: Date;
   }
-  
-  export class Collaboration {
-    id!:number;
-  }
-  
+
   export class Rating {
     id!: number;
     userID!: number;

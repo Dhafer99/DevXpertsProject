@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Image.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/CloudinaryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Repository/ImageRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Service/CloudinaryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Service/ImageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Events/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Collaboration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -38,27 +46,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;events&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fares/OneDrive/Bureau/google calender/google-calendar-api&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "events",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/fares/OneDrive/Bureau/google calender/google-calendar-api",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.supplier.Controller" />
+      <recent name="com.example.supplier.Repository" />
+      <recent name="com.example.supplier.Entity" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -136,7 +154,7 @@
       <workItem from="1708354348771" duration="3921000" />
       <workItem from="1708364985385" duration="1679000" />
       <workItem from="1708433341344" duration="1875000" />
-      <workItem from="1708481185995" duration="1880000" />
+      <workItem from="1708481185995" duration="5956000" />
     </task>
     <servers />
   </component>

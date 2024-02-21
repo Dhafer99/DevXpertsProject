@@ -18,50 +18,51 @@ import java.util.Set;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id ;
-
-    private EventType Type;
-    private String Name;
+    private int id ;
+//---- the Cloudinary things ----
+    private String imageUrl;
+    private String imageId;
+    // -------------------------
+    private EventType type;
+    private String name;
     // event will be at
-    private Date Date;
+    private Date date;
     // the event created in database
-    private Date Created_at;
+    private Date created_at;
     // reference USER
-    private int Created_by;
-    private String Note;
+    private int created_by;
+    private String note;
     // a number
-    private int ViewsCounter;
+    private int viewsCounter;
     // a number
-    private int InterestedCounter;
+    private int interestedCounter;
     // active is before and during the event date ------ will check it
-    private boolean Active;
+    private boolean active;
 
-    private Date DisableDate;
+    private Date disableDate;
     //  a rating table to calculate it
-    private double Rating;
+    private double rating;
     // cant remove this , it is a checkbox that the event creator MUST select or NOT
-    @Column(nullable = false, columnDefinition = "boolean default false")
-    @DefaultValue("false")
-    private boolean Collaboration;
-    private Date LastModified_at;
-    private int LastModified_by;
-    private String DepositNotes;
+
+    private Date lastModified_at;
+    private int lastModified_by;
+    private String depositNotes;
 
 
 
     /// One to Many    UNIDIRECTIONNEL -----> i dont have accss to the USERs
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<InterestedBy> InterestedBys;
+    private Set<InterestedBy> interestedBys;
 
-    /// One to Many    UNIDIRECTIONNEL   -- ----  association de collaboration
+    /// One to Many    UNIDIRECTIONNEL   -- ----  association Galery
     // les personne qui peut voir les stats du event/admin
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Collaboration> Collaborations;
+    private Set<Image> images;
 
     /// One to Many    UNIDIRECTIONNEL
     // la liste des commentaire / ratings
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Rating> Ratings;
+    private Set<Rating> ratings;
 
 
 }
