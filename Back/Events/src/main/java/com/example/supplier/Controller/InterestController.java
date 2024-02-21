@@ -20,7 +20,7 @@ public class InterestController {
 
     @PostMapping("/addInterest/{user}/{event}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addInterest(@PathVariable("user") long user,@PathVariable("event") long event )
+    public void addInterest(@PathVariable("user") int user,@PathVariable("event") int event )
     {
         service.save(event,user);
     }
@@ -29,7 +29,7 @@ public class InterestController {
         return ResponseEntity.ok(service.findAllInterests());
     }
     @GetMapping("/UserInterest/{user}")
-    public ResponseEntity<List<InterestedBy>> findUserIntereset(@PathVariable("user") long user){
+    public ResponseEntity<List<InterestedBy>> findUserIntereset(@PathVariable("user") int user){
         return ResponseEntity.ok(service.findByUserID(user));
     }
 
@@ -41,7 +41,7 @@ public class InterestController {
     }
     @DeleteMapping("/removeInterest/{user}/{event}")
     @ResponseStatus(HttpStatus.OK)
-    public void remove(@PathVariable("user") long event,@PathVariable("user") long userId )
+    public void remove(@PathVariable("user") int event,@PathVariable("user") int userId )
     {
         service.remove(event,userId);
     }

@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Image.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Service/EventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Service/EventServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configServer/src/main/java/com/example/configserver/ConfigServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/configServer/src/main/java/com/example/configserver/ConfigServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/GatewayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/event-create/event-create.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/event-create/event-create.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/event-create/event-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/event-create/event-create.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/events.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/events.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +31,9 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2cHSLehdkaYMgWFPfAw1fGGgPj1" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -145,7 +135,8 @@
       <workItem from="1708345061956" duration="2668000" />
       <workItem from="1708354348771" duration="3921000" />
       <workItem from="1708364985385" duration="1679000" />
-      <workItem from="1708433341344" duration="1276000" />
+      <workItem from="1708433341344" duration="1875000" />
+      <workItem from="1708481185995" duration="1880000" />
     </task>
     <servers />
   </component>

@@ -17,6 +17,8 @@ const routes: Routes = [
       { path: '**', component: EventCreateComponent },
     ]
   },
+ 
+  
 ];
 
 @NgModule({

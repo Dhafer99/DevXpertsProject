@@ -38,12 +38,12 @@ public class RatingController {
         return ResponseEntity.ok(service.findAllRatings());
     }
     @GetMapping("/UserRating/{user}")
-    public ResponseEntity<List<Rating>> findUserRatings(@PathVariable("user") long user){
+    public ResponseEntity<List<Rating>> findUserRatings(@PathVariable("user") int user){
         return ResponseEntity.ok(service.findUserRatings(user));
     }
 
     @GetMapping("/EventRating/{event}")
-    public ResponseEntity<List<Rating>> findEventRatings(@PathVariable("event") long event){
+    public ResponseEntity<List<Rating>> findEventRatings(@PathVariable("event") int event){
         return ResponseEntity.ok(service.findEventRatings(event));
     }
     @DeleteMapping("/removeRating/rating")
@@ -56,7 +56,7 @@ public class RatingController {
     }
     @DeleteMapping("/removeInterest/{event}/{user}")
     @ResponseStatus(HttpStatus.OK)
-    public void remove(@PathVariable("user") long event,@PathVariable("user") long userId )
+    public void remove(@PathVariable("user") int event,@PathVariable("user") int userId )
     {
         service.remove(event,userId);
 

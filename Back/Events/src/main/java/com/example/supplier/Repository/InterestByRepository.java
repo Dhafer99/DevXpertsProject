@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface InterestByRepository extends JpaRepository<InterestedBy,Long> {
+public interface InterestByRepository extends JpaRepository<InterestedBy,Integer> {
 
 
-    InterestedBy findInterestedByEventIDAndUserID(long event,long userid);
+    InterestedBy findInterestedByEventIDAndUserID(int event,int userid);
 
-    List<InterestedBy> findInterestedBIESByUserID(long user);
+    List<InterestedBy> findInterestedBIESByUserID(int user);
 }

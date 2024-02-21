@@ -17,7 +17,7 @@ public class InterestServiceImpl implements InterestService{
     private final InterestByRepository InterestRepository;
     private final EventRepository eventRepository;
     @Override
-    public void save(long event,long user) {
+    public void save(int event,int user) {
         InterestedBy interested=new InterestedBy(0,event,user,new Date());
         Event event1=eventRepository.findById(event).get();
         event1.setInterestedCounter(event1.getInterestedCounter()+1);
@@ -40,12 +40,12 @@ public class InterestServiceImpl implements InterestService{
     }
 
     @Override
-    public List<InterestedBy> findByUserID(long user) {
+    public List<InterestedBy> findByUserID(int user) {
         return InterestRepository.findInterestedBIESByUserID(user);
     }
 
     @Override
-    public void remove(long event,long userId){
+    public void remove(int event,int userId){
 
             InterestedBy interested=InterestRepository.findInterestedByEventIDAndUserID(event,userId);
         Event event1=eventRepository.findById(interested.getEventID()).get();

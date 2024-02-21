@@ -30,7 +30,7 @@ public class EventController {
 
     @PutMapping("/{user}")
     @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody Event event,@PathVariable("user") long userId )
+    public void update(@RequestBody Event event,@PathVariable("user") int userId )
     {
         service.update(event,userId);
     }

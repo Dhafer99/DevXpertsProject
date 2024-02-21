@@ -14,9 +14,9 @@ import lombok.*;
 public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id ;
-    private long userID;
-    private long eventID;
+    private int Id ;
+    private int userID;
+    private int eventID;
     private double rating;
     private String comment;
 

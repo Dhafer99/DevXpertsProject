@@ -18,7 +18,7 @@ import java.util.Set;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id ;
+    private int Id ;
 
     private EventType Type;
     private String Name;
@@ -27,12 +27,12 @@ public class Event {
     // the event created in database
     private Date Created_at;
     // reference USER
-    private long Created_by;
+    private int Created_by;
     private String Note;
     // a number
-    private long ViewsCounter;
+    private int ViewsCounter;
     // a number
-    private long InterestedCounter;
+    private int InterestedCounter;
     // active is before and during the event date ------ will check it
     private boolean Active;
 
@@ -44,7 +44,7 @@ public class Event {
     @DefaultValue("false")
     private boolean Collaboration;
     private Date LastModified_at;
-    private long LastModified_by;
+    private int LastModified_by;
     private String DepositNotes;
 
 

@@ -4,9 +4,6 @@ package com.example.supplier.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-import java.util.Set;
-
 @Entity
 @Getter
 @Setter
@@ -14,15 +11,12 @@ import java.util.Set;
 @NoArgsConstructor
 @Table
 @Builder
-public class InterestedBy {
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id ;
-    private int userID;
-    private int eventID;
-    private Date timestamp;
-
-
+    private long UserID;
+    private long EventID;
 
 
 }

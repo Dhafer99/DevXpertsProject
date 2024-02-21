@@ -40,16 +40,16 @@ public class RatingServiceImpl implements RatingService{
     }
 
     @Override
-    public List<Rating> findUserRatings(long user) {
+    public List<Rating> findUserRatings(int user) {
         return ratingRepository.findByUserID(user);
     }
     @Override
-    public List<Rating> findEventRatings(long event) {
+    public List<Rating> findEventRatings(int event) {
         return ratingRepository.findByEventID(event);
     }
 
     @Override
-    public void remove(long event,long userId){
+    public void remove(int event,int userId){
 
             Rating rating=ratingRepository.findRatingByEventIDAndUserID(event,userId);
         ratingRepository.delete(rating);
@@ -67,7 +67,7 @@ public class RatingServiceImpl implements RatingService{
     }
 
     @Override
-    public void updateRatingForEvent(long event) {
+    public void updateRatingForEvent(int event) {
         Event event1=eventRepository.findById(event).get();
         int size=event1.getRatings().size();
         double somme=event1.getRatings().stream().mapToDouble(Rating::getRating).sum();

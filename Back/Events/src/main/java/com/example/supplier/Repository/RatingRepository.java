@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface RatingRepository extends JpaRepository<Rating  ,Long> {
+public interface RatingRepository extends JpaRepository<Rating  ,Integer> {
 
-    List<Rating> findByUserID(long user);
-    Rating findRatingByEventIDAndUserID(long event,long user);
+    List<Rating> findByUserID(int user);
+    Rating findRatingByEventIDAndUserID(int event,int user);
 
 
-    List<Rating> findByEventID(long event);
+    List<Rating> findByEventID(int event);
 
 }

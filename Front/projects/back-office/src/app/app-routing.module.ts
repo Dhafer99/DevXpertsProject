@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { ClassroomComponent } from './Appointment/classroom/classroom.component';
 import { AfficherClassroomComponent } from './Appointment/afficher-classroom/afficher-classroom.component';
@@ -13,6 +13,7 @@ const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 {path: 'calender', component: CalenderComponent },
 {path: 'create', component: EventCreateComponent },
 
+
 {
   path: 'events', 
   loadChildren: () => import('./events/events.module').then(m => m.EventsModule)
@@ -21,7 +22,10 @@ const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    {
+      preloadingStrategy:PreloadAllModules
+    })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

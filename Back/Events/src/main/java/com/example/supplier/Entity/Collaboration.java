@@ -16,9 +16,9 @@ import java.util.Set;
 public class Collaboration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id ;
-    private long UserID;
-    private long EventID;
+    private int Id ;
+    private int UserID;
+    private int EventID;
 
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent {
-
+  constructor(private router: Router){}
+  goToEventCreate() {
+    this.router.navigate(['/events/create']);
+  }
 }

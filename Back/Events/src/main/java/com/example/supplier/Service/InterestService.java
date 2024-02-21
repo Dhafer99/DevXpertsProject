@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface InterestService {
 
-public void save(long event,long userId);
-public void remove(long event,long userId);
+public void save(int event,int userId);
+public void remove(int event,int userId);
     public void remove(InterestedBy interested);
-    public List<InterestedBy> findByUserID(long user);
+    public List<InterestedBy> findByUserID(int user);
     public List<InterestedBy> findAllInterests();
 
 }

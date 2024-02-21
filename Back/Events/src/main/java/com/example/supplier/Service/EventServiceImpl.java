@@ -27,7 +27,7 @@ public class EventServiceImpl implements EventService{
     }
 
     @Override
-    public void update(Event event,long UserId) {
+    public void update(Event event,int UserId) {
 
         event.setLastModified_at(new Date());
         event.setLastModified_by(UserId);
