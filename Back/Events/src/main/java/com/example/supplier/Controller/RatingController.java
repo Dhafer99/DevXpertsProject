@@ -15,6 +15,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/Event/Rating")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
+
 public class RatingController {
     private final RatingService service ;
 

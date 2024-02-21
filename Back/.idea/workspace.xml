@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/CloudinaryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Repository/ImageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Service/CloudinaryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Service/ImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Events/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Collaboration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/CloudinaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/CloudinaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/RatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Controller/RatingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/supplier/Entity/Image.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,28 +43,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "events",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/fares/OneDrive/Bureau/google calender/google-calendar-api",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;events&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/fares/OneDrive/Bureau/google calender/google-calendar-api&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -93,9 +90,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AppointementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="AppointementAndClassroom" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.appointementandclassroom.AppointementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BoothApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Booth" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.supplier.BoothApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoothApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Booth" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.supplier.BoothApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="configServer" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.configserver.ConfigServerApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -114,6 +132,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DiscoveryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="discovery" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.discovery.DiscoveryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Events" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.supplier.EventApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EventApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Events" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.supplier.EventApplication" />
@@ -124,6 +156,20 @@
     <configuration name="ExhibitorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Exhibitor" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.exhibitor.ExhibitorApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExhibitorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Exhibitor" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.exhibitor.ExhibitorApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.gateway.GatewayApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -155,6 +201,7 @@
       <workItem from="1708364985385" duration="1679000" />
       <workItem from="1708433341344" duration="1875000" />
       <workItem from="1708481185995" duration="5956000" />
+      <workItem from="1708502494497" duration="4578000" />
     </task>
     <servers />
   </component>

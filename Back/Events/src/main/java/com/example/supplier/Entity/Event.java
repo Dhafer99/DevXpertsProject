@@ -32,21 +32,21 @@ public class Event {
     // reference USER
     private int created_by;
     private String note;
-    // a number
+    // a numberd
     private int viewsCounter;
     // a number
     private int interestedCounter;
     // active is before and during the event date ------ will check it
-    private boolean active;
+    private String active;
 
-    private Date disableDate;
+
     //  a rating table to calculate it
     private double rating;
     // cant remove this , it is a checkbox that the event creator MUST select or NOT
 
     private Date lastModified_at;
     private int lastModified_by;
-    private String depositNotes;
+
 
 
 

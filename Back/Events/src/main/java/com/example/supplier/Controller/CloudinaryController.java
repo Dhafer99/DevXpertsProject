@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cloudinary")
+@RequestMapping("/api/Event/cloudinary")
 @CrossOrigin(origins = "*")
 public class CloudinaryController {
     @Autowired
@@ -67,7 +67,7 @@ public class CloudinaryController {
             return new ResponseEntity<>("Failed to delete image from Cloudinary", HttpStatus.INTERNAL_SERVER_ERROR);
         }
         imageService.delete(id);
-        return new ResponseEntity<>("Deleted Successfully !", HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
 }

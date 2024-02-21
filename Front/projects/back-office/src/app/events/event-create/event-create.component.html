@@ -7,12 +7,27 @@
 
 <button type="button" class="btn btn-secondary rounded-pill" (click)="goToEventDisplay()">Display</button>
 <Form [formGroup]="myform">
-	<div class="row mb-3">
-		<label for="inputText" class="col-sm-2 col-form-label">Name</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control">
-		</div>
+  {{mainImage.name}}
+
+	<div class="col-sm-10" *ngIf="!mainImageAdded; else MainImageFound">
+		<input type="file" (change)="onFileChange($event)" multiple>
+		<button (click)="onUploadMainImage()" type="submit" class="btn btn-outline-dark" [disabled]="!image">
+			<i class="fas fa-upload"></i>
+			Upload
+    </button>
 	</div>
+  <ng-template #MainImageFound>
+	<div class="col-xs-12">
+		
+				<img src="{{mainImage.imageUrl}}" class="card-img-top" alt="Image 1" height="175px">
+				<div class="card-body">
+					<h4 class="card-title">{{mainImage.name}}</h4>
+					<button class="btn btn-danger" (click)="deleteMainImage(mainImage.id)">Delete</button>
+				
+			</div>
+	</div>
+</ng-template>
+
 	<section class="section">
 		<div class="row">
 			<div class="col-lg-6">
@@ -20,14 +35,18 @@
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title">General Form Elements</h5>
+
 						<!-- Single ITEM-->
-						<div class="row mb-3">
-							<label for="inputText" class="col-sm-2 col-form-label">Name</label>
+
+						<!-- """""""""""""""""""""""""""""""" -->
+
+						<!-- Single ITEM-->
+							<div class="row mb-3"> <label for="inputText" class="col-sm-2 col-form-label">Name</label>
 							<div class="col-sm-10">
-								<input type="text" formControlName="name" name="name" class="form-control">
+								<input type="text" formcontrolname="name" name="name" class="form-control">
 							</div>
 						</div>
-                        <!-- """""""""""""""""""""""""""""""" -->
+						<!-- """""""""""""""""""""""""""""""" -->
 						<!-- Single ITEM-->
 						<div class="row mb-3">
 							<label for="inputDate" class="col-sm-2 col-form-label">Date</label>
@@ -35,86 +54,52 @@
 								<input type="date" class="form-control">
 							</div>
 						</div>
-                        <!-- """""""""""""""""""""""""""""""" -->
-					 <!-- """""""""Radio buttons from type"""""""" -->
+						<!-- """""""""""""""""""""""""""""""" -->
+						<!-- """""""""Radio buttons from type"""""""" -->
 
-						 <fieldset class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                  <div class="col-sm-10">
-                    <div class="form-check" *ngFor="let item of eventType | keyvalue">
-                      <input class="form-check-input" type="radio" name="type" id="{{item.key}}" value="{{item.key}}" formControlName="type">
-                      <label class="form-check-label" for="{{item.key}}">
-                       {{item.value}}
-                      </label>
-                    </div>
-                  
-                    
-                  </div>
-                </fieldset>
-   <!-- """""""""""""""""""""""""""""""" -->
+						<fieldset class="row mb-3">
+							<legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+							<div class="col-sm-10">
+								<div class="form-check" *ngFor="let item of eventType | keyvalue">
+									<input class="form-check-input" type="radio" name="type" id="{{item.key}}" value="{{item.key}}" formcontrolname="type">
+									<label class="form-check-label" for="{{item.key}}">
+										{{item.value}}
+									</label>
+								</div>
+
+
+							</div>
+						</fieldset>
+						<!-- """""""""""""""""""""""""""""""" -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+	<input type="file" (change)="onFileChange($event)" multiple>
+	<button (click)="onUploadImages()" type="submit" class="btn btn-outline-dark" [disabled]="!image">
+		<i class="fas fa-upload"></i>
+		Upload</button>
 </Form>
 <!-- FORM END******************************************-->
 <input type="Submit" class="form-control Submit" (click)="add()" aria-label="Sizing example input">
 
-<div class="container mt-5">
-  <div class="row">
-    <div class="card">
-      <div class="card-header">
-        <h2>File Upload</h2>
-      </div>
-      <div class="card-body">
-        <div class="example-container">
-          <form (ngSubmit)="onUpload()" novalidate enctype="multipart/form-data">
-            <div class="form-group">
-             
-                <ngx-mat-file-input placeholder="Single Upload" id="image" #imageInputFile
-                  (change)="onFileChange($event)" accept="image/png, image/jpeg, image/jpg, image/gif">
-                </ngx-mat-file-input>
-                <label>cloud_upload</label>
-            
-            </div>
-            <div class="form-group">
-              <div *ngIf="image">
-                <div>
-                  <img class="image-thumbnail" style="max-width: 100px" [src]="imageMin">
-                </div>
-              </div>
-            </div>
-            <div class="form-group d-flex justify-content-between my-3">
-              <button type="submit" class="btn btn-outline-dark" [disabled]="!image"><i class="fas fa-upload"></i>
-                Upload</button>
-              <button class="btn btn-outline-danger" (click)="reset()"><i class="fas fa-sync-alt"></i>
-                Reset</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="container mt-5">
-  <div class="row">
-      <div class="col-md-4" *ngFor="let image of images">
-          <div class="card mb-3">
-              <img src="{{image.imageUrl}}" class="card-img-top" alt="Image 1" height="175px">
-              <div class="card-body">
-                  <h4 class="card-title">{{image.name}}</h4>
-                  <button class="btn btn-danger" (click)="deleteImage(image.id)">Delete</button>
-              </div>
-          </div>
-      </div>
-  </div>
+	<div class="row">
+		<div class="col-md-4" *ngFor="let image of images">
+			<div class="card mb-3">
+				<img src="{{image.imageUrl}}" class="card-img-top" alt="Image 1" height="175px">
+				<div class="card-body">
+					<h4 class="card-title">{{image.name}}</h4>
+					<button class="btn btn-danger" (click)="deleteImage(image.id)">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-  <ng-template #noImagesFound>
-    <div class="col-xs-12">
-      <p>No images found.</p>
-    </div>
-  </ng-template>
-
-
+<ng-template #noImagesFound>
+	<div class="col-xs-12">
+		<p>No images found.</p>
+	</div>
+</ng-template>

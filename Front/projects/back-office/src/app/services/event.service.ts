@@ -16,8 +16,11 @@ export class EventService {
   
   constructor(private http:HttpClient) { }
 //-------------------------------ADD EVENT ------------------------------------------
-  addEvent(Event:Event):Observable<Event>{
+  addEvent(Event:Event,images:Image[],mainImage:Image):Observable<Event>{
     //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+    Event.images=images;
+    Event.imageId=mainImage.imageId;
+    Event.imageUrl=mainImage.imageUrl;
     return  this.http.post<Event>(this.__URL+this.eventURL+'/addEvent',Event)
 
   }
@@ -39,11 +42,11 @@ public imagesForEvent(eventId : number): Observable<Image[]> {
 public upload(image: File): Observable<any> {
   const formData = new FormData();
   formData.append('multipartFile', image);
-  return this.http.post<any>(this.__URL+this.imageURL + 'upload', formData);
+  return this.http.post<any>(this.__URL+this.imageURL + '/upload', formData);
 }
 
 public delete(id: any): Observable<any> {
-  return this.http.delete<any>(this.__URL+this.imageURL + `delete/${id}`);
+  return this.http.delete<any>(this.__URL+this.imageURL + `/delete/${id}`);
 }
 //-------------------------------------------------------------
 }

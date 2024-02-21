@@ -13,12 +13,14 @@ export class Event {
     viewsCounter!: number;
     interestedCounter!: number;
     active!: boolean;
-    disableDate!: Date;
     rating!: number;
     collaboration!: boolean;
     lastModifiedAt!: Date;
     lastModifiedBy!: number;
     depositNotes!: string;
+
+      imageUrl?:string
+     imageId?:string
   
     interestedBys?: InterestedBy[]; // Assuming InterestedBy is another TypeScript interface
     images?: Image[];
