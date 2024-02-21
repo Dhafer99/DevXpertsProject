@@ -10,7 +10,7 @@ import tn.esprit.auction.Services.PackageInterface;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4203")
+@CrossOrigin(origins = {"http://localhost:4203", "http://localhost:4201"})
 @Slf4j
 @RestController
 @AllArgsConstructor

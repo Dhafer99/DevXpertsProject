@@ -7,6 +7,7 @@ import tn.esprit.auction.Entites.Room;
 import tn.esprit.auction.Services.RoomInterface;
 
 import java.util.List;
+@CrossOrigin(origins = {"http://localhost:4203", "http://localhost:4201"})
 
 @RestController
 @AllArgsConstructor
