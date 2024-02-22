@@ -7,10 +7,7 @@ import com.example.supplier.Repository.ImageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -20,28 +17,34 @@ public class EventServiceImpl implements EventService{
     private final ImageRepository imageRepository;
     @Override
     public Event save(Event event) {
-        event.setCreated_at(new Date());
-        event.setLastModified_at(new Date());
-        event.setLastModified_by(event.getCreated_by());
-        event.setViewsCounter(0);
-        event.setInterestedCounter(0);
-        event.setRating(0);
-        Set<Image> list=event.getImages();
-        event.setImages(null);
 
+       Set<Image> list=event.getImages();
+       if (event.getId()<1) {
+           event.setImages(null);
+       }
+       System.out.println(event.getId()+"FIRST");
         eventRepository.save(event);
-     //   event.getImages().forEach(a->a.even);
-        saveimages(list,event);
+        System.out.println(event.getId()+"Seoncd");
+        if (event.getId()<1) {
+     saveimages(list,event);
+        }
         return event;
     }
 
     public void saveimages(Set<Image> list,Event event){
         Set<Image> list2=new HashSet<>();
         list.forEach(a->{
-            a.setEventID(event.getId());
-            list2.add(a);
-            imageRepository.save(a);
+            if (a.getEventID()!=event.getId()){
+                a.setEventID(event.getId());
+                imageRepository.save(a);
+                list2.add(a);
+            }
+
+
+
         });
+        System.out.println(event.getId()+"UPDATING");
+
         event.setImages(list2);
         eventRepository.save(event);
     }
@@ -58,6 +61,29 @@ public class EventServiceImpl implements EventService{
         return eventRepository.findAll();
     }
 
+    @Override
+    public List<Event> findAllEventsNoGalery() {
 
+        return eventRepository.findAll();
+    }
+
+    @Override
+    public Event findbyId(int id) {
+        return eventRepository.findById(id).get();
+    }
+    @Override
+    public void removeImageIdFromEvent(int id) {
+        Optional<Event> eventOptional = eventRepository.findByImages_Id(id);
+
+        if (eventOptional.isPresent()) {
+            Event event = eventOptional.get();
+
+            // Remove the image with the specified id from the images set
+            event.getImages().removeIf(image -> image.getId() == id);
+
+            // Save the updated event back to the repository
+            eventRepository.save(event);
+        }
+    }
 
 }

@@ -18,10 +18,12 @@ export class Event {
     lastModifiedAt!: Date;
     lastModifiedBy!: number;
     depositNotes!: string;
-
+// ------ IMAGE THINGS
       imageUrl?:string
-     imageId?:string
-  
+      imageIdCloudinary?:string
+imageId?:number;
+//-------------------
+
     interestedBys?: InterestedBy[]; // Assuming InterestedBy is another TypeScript interface
     images?: Image[];
     ratings?: Rating[];

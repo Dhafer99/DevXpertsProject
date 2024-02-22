@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', 
     component: EventsComponent,
     children: [
-      { path: 'create', component: EventCreateComponent },
+      { path: 'create/:id', component: EventCreateComponent },
       { path: 'display', component: EventDisplayComponent },
       { path: 'list', component: EventListComponent },
       { path: '', pathMatch: 'full', redirectTo: '/events/create' },

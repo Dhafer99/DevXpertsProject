@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
-import { EventType } from '../../models/event';
+import { Event, EventType } from '../../models/event';
 import { Image } from '../../models/image';
 
 @Component({
@@ -18,26 +18,52 @@ export class EventCreateComponent implements OnInit {
   uploadingFile:boolean=false;
   mainImage: Image = new Image();
   mainImageAdded: boolean = false;
-  id: any;
+  id: any =-1;
   newForm!: FormGroup;
 
   eventType = EventType;
-
+  event:Event = new Event();
   constructor(
     private router: Router,
     private acr: ActivatedRoute,
     private eventService: EventService
   ) {}
   ngOnInit(): void {
-    this.fetchImages();
-    // this.id=this.acr.snapshot.params["id"];
     this.newForm = new FormGroup({
       type: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
       date:new FormControl('',[Validators.required]),
 
     });
+    this.acr.params.subscribe(params => {
+      this.event.id=params['id'];
+      this.id=params['id']
+      this.eventService.fetchEvent(this.event.id).subscribe((result)=> {
+        this.event= result;
+        this.mainImageAdded=true
+        this.mainImage.id=this.event.imageId
+        this.mainImage.imageId=this.event.imageIdCloudinary
+        this.mainImage.imageUrl=this.event.imageUrl
+        this.images=this.event.images!
+        this.newForm.setValue({
+          type: this.event.type,
+          name: this.event.name,
+          date: this.event.date
+        });
+        console.log(this.event.date)
+        console.log(this.newForm.value.date)
+          })
+
+    },(error)=>{
+      this.fetchImages(this.id);
+    });
+
+
     throw new Error('Method not implemented.');
+
+    
+    // this.id=this.acr.snapshot.params["id"];
+   
   }
    get Name(){ return this.newForm.get("name");}
   get Type(){ return this.newForm.get("type");}
@@ -48,9 +74,22 @@ export class EventCreateComponent implements OnInit {
   }
   add() {
     if (this.mainImageAdded)
+    if (this.event.id==-1)
     {
+      console.log(" id   = == = = -1")
       this.eventService
       .addEvent(this.newForm.value, this.images, this.mainImage)
+      .subscribe((response) => {
+        console.log(response);
+        console.log('classroom' + JSON.stringify(this.newForm.value));
+      });
+    }
+    else{
+      console.log(" id   = == = = "+this.event.id)
+
+       this.eventService
+       
+      .updateEvent(this.newForm.value, this.images, this.mainImage,this.id)
       .subscribe((response) => {
         console.log(response);
         console.log('classroom' + JSON.stringify(this.newForm.value));
@@ -112,9 +151,9 @@ export class EventCreateComponent implements OnInit {
     }
   }
 
-  fetchImages() {
+  fetchImages(id: number) {
     this.uploadingFile=true;
-    this.eventService.imagesForEvent(0).subscribe(
+    this.eventService.imagesForEvent(id).subscribe(
       (images) => {
         this.images = images;
         this.uploadingFile=false;
@@ -129,7 +168,7 @@ export class EventCreateComponent implements OnInit {
   deleteImage(id: any): void {
     this.eventService.delete(id).subscribe(
       () => {
-        this.fetchImages();
+        this.fetchImages(this.id);
         console.log('Image Deleted');
       },
       (error) => {

@@ -2,6 +2,7 @@ package com.example.supplier.Controller;
 
 import com.example.supplier.Entity.Image;
 import com.example.supplier.Service.CloudinaryService;
+import com.example.supplier.Service.EventService;
 import com.example.supplier.Service.ImageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class CloudinaryController {
     @Autowired
     ImageService imageService;
 
+    @Autowired
+    EventService eventService;
     @GetMapping("/list")
     public ResponseEntity<List<Image>> list(){
         List<Image> list = imageService.list();
@@ -71,6 +74,7 @@ public class CloudinaryController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {
+        eventService.removeImageIdFromEvent(id);
         Optional<Image> imageOptional = imageService.getOne(id);
         if (imageOptional.isEmpty()) {
             return new ResponseEntity<>("Not Found", HttpStatus.NOT_FOUND);

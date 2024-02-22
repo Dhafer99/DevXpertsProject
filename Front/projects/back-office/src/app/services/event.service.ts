@@ -19,16 +19,46 @@ export class EventService {
   addEvent(Event:Event,images:Image[],mainImage:Image):Observable<Event>{
     //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
     Event.images=images;
-    Event.imageId=mainImage.imageId;
+    Event.imageId=mainImage.id;
     Event.imageUrl=mainImage.imageUrl;
+    Event.imageIdCloudinary=mainImage.imageId
+    Event.createdAt=new Date();
+    Event.lastModifiedAt=new Date();
+    // paladin the user who created it
+    //Event.setLastModified_by(event.getCreated_by());
+    Event.viewsCounter=0;
+    Event.interestedCounter=0;
+    Event.rating=0;
     console.log(Event)
     return  this.http.post<Event>(this.__URL+this.eventURL+'/addEvent',Event)
 
   }
 //------------------------------------------------------------------------------------
+//-------------------------------Update EVENT ------------------------------------------
+updateEvent(Event:Event,images:Image[],mainImage:Image,id:number):Observable<Event>{
+  //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+  Event.images=images;
+  Event.imageId=mainImage.id;
+  Event.imageUrl=mainImage.imageUrl;
+  Event.imageIdCloudinary=mainImage.imageId
+  Event.id=id;
+  Event.lastModifiedAt=new Date();
+  // paladin the user who created it
+  //Event.setLastModified_by(event.getCreated_by());
+  console.log("SENDING THIS EVENT")
+  console.log(Event)
+  return  this.http.post<Event>(this.__URL+this.eventURL+'/addEvent',Event)
+
+}
+//------------------------------------------------------------------------------------
 //-----------------------------------Get ALL EVENTS--------------------------------------
 getAllEvents():Observable<Event[]>{
   return this.http.get<Event[]>(this.__URL+this.eventURL+'/Allevents')
+}
+//------------------------------------------------------------------------------------------
+//-----------------------------------Fetch EVENT--------------------------------------
+fetchEvent(id : number):Observable<Event>{
+  return this.http.get<Event>(this.__URL+this.eventURL+'/fetchEvent/'+id)
 }
 //------------------------------------------------------------------------------------------
 

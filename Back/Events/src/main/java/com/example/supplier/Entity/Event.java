@@ -21,7 +21,8 @@ public class Event {
     private int id ;
 //---- the Cloudinary things ----
     private String imageUrl;
-    private String imageId;
+    private String imageIdCloudinary;
+    private int imageId;
     // -------------------------
     private EventType type;
     private String name;

@@ -28,6 +28,18 @@ public class EventController {
         return ResponseEntity.ok(service.findAllEvents());
     }
 
+    // THIS FUNCTION DOES NOTHING AND IS DUPLICATED FROM ABOVE
+    // paladin
+    @GetMapping("/AlleventsNoGalery")
+    public ResponseEntity<List<Event>> findAllEventsNoGalery(){
+        return ResponseEntity.ok(service.findAllEvents());
+    }
+
+    @GetMapping("/fetchEvent/{id}")
+    public ResponseEntity<Event> findEventById(@PathVariable("id") int id){
+        return ResponseEntity.ok(service.findbyId(id));
+    }
+
     @PutMapping("/{user}")
     @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody Event event,@PathVariable("user") int userId )
