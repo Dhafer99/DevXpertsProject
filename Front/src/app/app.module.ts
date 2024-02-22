@@ -13,6 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { PostFormComponent } from './post-form/post-form.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { UpdateFormComponent } from './update-form/update-form.component';
+import { NgbModal, NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -24,7 +27,8 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     ClaimComponent,
     ForumComponent,
     PostFormComponent,
-    PostDetailComponent
+    PostDetailComponent,
+    UpdateFormComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,10 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     HttpClientModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    NgbModalModule,
+    NgbModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

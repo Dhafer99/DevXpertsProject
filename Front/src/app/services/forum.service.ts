@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Post} from './models/post';
-import {Comment} from './models/comment';
+import {Post} from '../models/post';
+import {Comment} from '../models/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -24,16 +24,20 @@ export class ForumService {
     return this.http.put<Post>(`http://localhost:8040/api/Posts/update-post`, post);
   }
 
-  public deletePost(postId: number): Observable<void> {
-    return this.http.delete<void>(`http://localhost:8040/api/Posts/remove-post/${postId}`);
+  public deletePost(IdPost: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:8040/api/Posts/remove-post/${IdPost}`);
   }
 
-  public getPost(postId: number): Observable<Post> {
-    return this.http.get<Post>(`http://localhost:8040/api/Posts/retrieve-post/${postId}`);
-  }
+  public getPost(IdPost: number): Observable<Post> {
+    return this.http.get<Post>(`http://localhost:8040/api/Posts/retrieve-post/${IdPost}`);}
+  
 
-  public getComments(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`http://localhost:8040/api/Comments/retrieve-comment/${postId}`);
+ /* public getPost(permaLink: Number):Observable<Post>{
+    return this.http.get<Post>(`http://localhost:8040/api/Posts/retrieve-post/`+permaLink);
+  }*/
+
+  public getComments(IdPost: number): Observable<Comment[]> {
+    return this.http.get<Comment[]> (`http://localhost:8040/api/Comments/retrieve-comment/${IdPost}`);
   }
 
   public addComment(comment: Comment, idComment: number): Observable<Comment> {

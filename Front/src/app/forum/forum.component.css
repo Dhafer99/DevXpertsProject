@@ -1,0 +1,24 @@
+.confirmation-dialog {
+    background-color: #f8d7da; /* Red background */
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .confirmation-dialog p {
+    margin-bottom: 10px;
+  }
+  
+  .confirmation-dialog button {
+    background-color: #dc3545; /* Red button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .confirmation-dialog button:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+  

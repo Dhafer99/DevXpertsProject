@@ -15,13 +15,20 @@ import java.util.Set;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long IdPost ;
+    private long idPost ;
     private boolean featuredSubject;
     private String title;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String image;
     private String descriptionSubject;
     private int likesSubject;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
     private Set<Comment> comment;
+
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }

@@ -6,6 +6,7 @@ import { ForumComponent } from './forum/forum.component';
 import { ClaimComponent } from './claim/claim.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { UpdateFormComponent } from './update-form/update-form.component';
 
 const routes: Routes = [  
 
@@ -14,7 +15,9 @@ const routes: Routes = [
   { path: 'forum', component: ForumComponent },
   { path: 'claim', component: ClaimComponent},
   { path: 'postForm', component: PostFormComponent},
-  { path: 'postDetail', component: PostDetailComponent}
+  { path: 'postDetail/:id', component: PostDetailComponent},
+  { path: 'updateForm', component: UpdateFormComponent},
+
 
   ];
 

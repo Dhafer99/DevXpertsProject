@@ -1,5 +1,5 @@
 export class Post{
-    IdPost!: number;
+    idPost!: number;
     featuredSubject!: boolean;
     title!: string;
     image!:string;

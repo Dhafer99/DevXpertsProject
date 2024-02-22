@@ -7,22 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/Posts")
 @RequiredArgsConstructor
-@CrossOrigin(origins = { "*" })
+@CrossOrigin(origins = "http://localhost:4201")
 public class PostController {
 
     private final ForumService service;
 
     @PostMapping("/add-post")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody Post post)
+    public void save(@RequestParam ("title") String title,
+                     @RequestParam ("descriptionSubject") String descriptionSubject,
+                     @RequestParam("file") MultipartFile file)
     {
-        service.savePost(post);
+        service.savePost(title,descriptionSubject,file);
     }
 
     @GetMapping("/retrieve-all-posts")
