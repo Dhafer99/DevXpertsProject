@@ -18,7 +18,7 @@ export class EventCreateComponent implements OnInit {
   uploadingFile:boolean=false;
   mainImage: Image = new Image();
   mainImageAdded: boolean = false;
-  id: any =-1;
+  id: number =-1;
   newForm!: FormGroup;
 
   eventType = EventType;
@@ -119,7 +119,7 @@ export class EventCreateComponent implements OnInit {
           this.uploadingFile=false;
         },
         (err) => {
-          this.reset();
+          console.log(err);
           this.uploadingFile=false;
         }
       );
@@ -136,27 +136,23 @@ export class EventCreateComponent implements OnInit {
           this.uploadingFile=false;
         },
         (err) => {
-          this.reset();
+          console.log(err);
+
         }
       );
     }
   }
 
-  reset(): void {
-    this.image = null;
-    this.imageMin = null;
-    const imageInputFile = document.getElementById('image') as HTMLInputElement;
-    if (imageInputFile) {
-      imageInputFile.value = '';
-    }
-  }
+  
 
   fetchImages(id: number) {
+    console.log("Started to FETCH "+ id)
     this.uploadingFile=true;
     this.eventService.imagesForEvent(id).subscribe(
       (images) => {
         this.images = images;
         this.uploadingFile=false;
+        console.log("FETCHING DONE")
       },
       (error) => {
         this.uploadingFile=false;
@@ -168,6 +164,7 @@ export class EventCreateComponent implements OnInit {
   deleteImage(id: any): void {
     this.eventService.delete(id).subscribe(
       () => {
+        console.log("FETCHING")
         this.fetchImages(this.id);
         console.log('Image Deleted');
       },

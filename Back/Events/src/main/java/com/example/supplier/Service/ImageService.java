@@ -1,6 +1,7 @@
 package com.example.supplier.Service;
 
 import com.example.supplier.Entity.Image;
+import com.example.supplier.Repository.EventRepository;
 import com.example.supplier.Repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class ImageService {
     @Autowired
     ImageRepository imageRepository;
+  @Autowired
+  EventRepository eventRepository;
 
     public List<Image> list()
     {
@@ -21,7 +24,8 @@ public class ImageService {
     }
     public List<Image> list(int eventid)
     {
-        return imageRepository.findImagesByEventID(eventid);
+        return eventRepository.findById(eventid).get().getImages().stream().toList();
+     //   return imageRepository.findImagesByEventID(eventid);
     }
 
     public Optional<Image> getOne(int id){return imageRepository.findById(id);}

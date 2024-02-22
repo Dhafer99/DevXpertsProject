@@ -22,12 +22,11 @@ public class EventServiceImpl implements EventService{
        if (event.getId()<1) {
            event.setImages(null);
        }
-       System.out.println(event.getId()+"FIRST");
+
         eventRepository.save(event);
-        System.out.println(event.getId()+"Seoncd");
-        if (event.getId()<1) {
+
      saveimages(list,event);
-        }
+
         return event;
     }
 
@@ -38,9 +37,9 @@ public class EventServiceImpl implements EventService{
                 a.setEventID(event.getId());
                 imageRepository.save(a);
                 list2.add(a);
+            }else {
+                list2.add(a);
             }
-
-
 
         });
         System.out.println(event.getId()+"UPDATING");
