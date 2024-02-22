@@ -15,11 +15,11 @@ export class EventCreateComponent implements OnInit {
   image: File | null = null;
   imageMin: File | null = null;
   images: Image[] = [];
-
+  uploadingFile:boolean=false;
   mainImage: Image = new Image();
   mainImageAdded: boolean = false;
   id: any;
-  myform!: FormGroup;
+  newForm!: FormGroup;
 
   eventType = EventType;
 
@@ -31,25 +31,31 @@ export class EventCreateComponent implements OnInit {
   ngOnInit(): void {
     this.fetchImages();
     // this.id=this.acr.snapshot.params["id"];
-    this.myform = new FormGroup({
+    this.newForm = new FormGroup({
       type: new FormControl('', [Validators.required]),
-      name: new FormControl('', [Validators.required, Validators.minLength(6)]),
-      // date:new FormControl('',[Validators.required]),
-      // disableDate:new FormControl('',[Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      date:new FormControl('',[Validators.required]),
+
     });
     throw new Error('Method not implemented.');
   }
-
+   get Name(){ return this.newForm.get("name");}
+  get Type(){ return this.newForm.get("type");}
+   get Date(){ return this.newForm.get("date");}
+ 
   goToEventDisplay() {
     this.router.navigate(['/events/display']);
   }
   add() {
-    this.eventService
-      .addEvent(this.myform.value, this.images, this.mainImage)
+    if (this.mainImageAdded)
+    {
+      this.eventService
+      .addEvent(this.newForm.value, this.images, this.mainImage)
       .subscribe((response) => {
         console.log(response);
-        console.log('classroom' + JSON.stringify(this.myform.value));
+        console.log('classroom' + JSON.stringify(this.newForm.value));
       });
+    }
   }
 
   onFileChange(event: any) {
@@ -65,25 +71,30 @@ export class EventCreateComponent implements OnInit {
   }
 
   onUploadImages() {
+    this.uploadingFile=true;
     if (this.image) {
       this.eventService.upload(this.image).subscribe(
         (data) => {
           this.images.push(data);
           console.log(data);
+          this.uploadingFile=false;
         },
         (err) => {
           this.reset();
+          this.uploadingFile=false;
         }
       );
     }
   }
   onUploadMainImage() {
+    this.uploadingFile=true;
     if (this.image) {
-      this.eventService.upload(this.image).subscribe(
+      this.eventService.uploadForEvent(this.image,-1).subscribe(
         (data) => {
           this.mainImage = data;
           this.mainImageAdded = !this.mainImageAdded;
           console.log(data);
+          this.uploadingFile=false;
         },
         (err) => {
           this.reset();
@@ -102,11 +113,14 @@ export class EventCreateComponent implements OnInit {
   }
 
   fetchImages() {
-    this.eventService.list().subscribe(
+    this.uploadingFile=true;
+    this.eventService.imagesForEvent(0).subscribe(
       (images) => {
         this.images = images;
+        this.uploadingFile=false;
       },
       (error) => {
+        this.uploadingFile=false;
         console.error('Error fetching images:', error);
       }
     );
@@ -135,4 +149,7 @@ export class EventCreateComponent implements OnInit {
       }
     );
   }
+
+
+
 }

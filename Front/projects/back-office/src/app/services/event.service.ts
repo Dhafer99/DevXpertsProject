@@ -21,6 +21,7 @@ export class EventService {
     Event.images=images;
     Event.imageId=mainImage.imageId;
     Event.imageUrl=mainImage.imageUrl;
+    console.log(Event)
     return  this.http.post<Event>(this.__URL+this.eventURL+'/addEvent',Event)
 
   }
@@ -39,10 +40,15 @@ public imagesForEvent(eventId : number): Observable<Image[]> {
   return this.http.get<Image[]>(this.__URL+this.imageURL + '/list/'+eventId);
 }
 
+public uploadForEvent(image: File,eventId:number): Observable<any> {
+  const formData = new FormData();
+  formData.append('multipartFile', image);
+  return this.http.post<any>(this.__URL+this.imageURL + "/upload/"+eventId, formData);
+}
 public upload(image: File): Observable<any> {
   const formData = new FormData();
   formData.append('multipartFile', image);
-  return this.http.post<any>(this.__URL+this.imageURL + '/upload', formData);
+  return this.http.post<any>(this.__URL+this.imageURL + "/upload", formData);
 }
 
 public delete(id: any): Observable<any> {

@@ -52,6 +52,22 @@ public class CloudinaryController {
         imageService.save(image);
         return new ResponseEntity<>(image, HttpStatus.OK);
     }
+    @PostMapping("/upload/{eventId}")
+    @ResponseBody
+    public ResponseEntity<Image> uploadForEvent(@RequestParam MultipartFile multipartFile,@PathVariable("eventId") int eventId) throws IOException {
+        BufferedImage bi = ImageIO.read(multipartFile.getInputStream());
+        if (bi == null) {
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        Map result = cloudinaryService.upload(multipartFile);
+        Image image = new Image((String) result.get("original_filename"),
+                (String) result.get("url"),
+                (String) result.get("public_id"));
+                image.setEventID(eventId);
+        imageService.save(image);
+        return new ResponseEntity<>(image, HttpStatus.OK);
+    }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id) {

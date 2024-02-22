@@ -14,7 +14,6 @@ import { CalenderComponent } from './Appointment/calender/calender.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { EventsComponent } from './events/events.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +24,7 @@ import { EventsComponent } from './events/events.component';
     AddClassroomComponent,
     CalenderComponent,
     EventsComponent,
-    
+ 
    
   ],
   imports: [
@@ -35,6 +34,7 @@ import { EventsComponent } from './events/events.component';
     FormsModule,
     ReactiveFormsModule,
     ScheduleModule ,
+
   ],
 
   bootstrap: [AppComponent]
