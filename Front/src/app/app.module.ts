@@ -7,11 +7,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { CalenderComponent } from './calender/calender.component';
 import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    CalenderComponent
+    CalenderComponent,
+    
   ],
   imports: [
     BrowserModule,

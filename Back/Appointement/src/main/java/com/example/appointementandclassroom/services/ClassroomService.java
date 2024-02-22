@@ -25,10 +25,17 @@ public class ClassroomService implements  IClassroomService{
     @Override
     public Classroom updateClassroom(Classroom classroom) {
         return classroomRepo.save(classroom);
+
     }
 
     @Override
     public Classroom retrieveClassroom(int numClassroom) {
         return classroomRepo.findById(numClassroom).orElse(null);
+    }
+
+    @Override
+    public void deleteClassroom(int id) {
+
+        classroomRepo.deleteById(id);
     }
 }

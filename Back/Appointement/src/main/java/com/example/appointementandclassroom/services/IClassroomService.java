@@ -15,4 +15,7 @@ public interface IClassroomService {
     Classroom updateClassroom(Classroom classroom);
 
     Classroom retrieveClassroom(int numClassroom);
+
+    //Offer updateOffer(Offer offer);
+    void deleteClassroom(int id);
 }

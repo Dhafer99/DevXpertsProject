@@ -13,4 +13,8 @@ public interface IAppointementService {
     Appointement updateappointement(Appointement appointement);
 
     Appointement retrieveappointement(int numAppointement);
+
+    List<Appointement> retrieveappointement(int sender, int reciever);
+
+
 }

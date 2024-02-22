@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassroomService } from '../../services/classroom.service';
 import { Classroom } from '../../models/classroom';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-afficher-classroom',
@@ -8,7 +9,7 @@ import { Classroom } from '../../models/classroom';
   styleUrls: ['./afficher-classroom.component.css']
 })
 export class AfficherClassroomComponent implements OnInit{
-constructor(private classRoomS:ClassroomService){}
+constructor(private classRoomS:ClassroomService, private router:Router){}
  
 // tableau 
 classroomList : Classroom[]=[];
@@ -19,5 +20,13 @@ ngOnInit(): void {
   })
 }
 
+updateClassroom(id :Number){
+this.router.navigate(['/addclassroom',id]);
+
+}
+deleateClassroom(id :number){
+  this.classRoomS.deleteClassroom(id).subscribe(()  => this.classroomList = this.classroomList.filter((c: Classroom) => c.id !== id))
+  
+}
 
 }

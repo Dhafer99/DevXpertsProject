@@ -54,6 +54,18 @@ public class AppointementManagement {
     public Appointement getById(@PathVariable("id-Appointement") int numappointement){
         return appointementService.retrieveappointement(numappointement);
     }
+
+    @Operation(description = "Retrieve all Appointement for youser")
+    @GetMapping("/all_Appointement_foryouser/{id}")
+    public List<Appointement> getAllAppointementforUser(@PathVariable("id") int id)
+    {
+        return appointementService.retrieveappointement(id,id);
+
+    }
+
+
+
+
     //--------------------------------------------------------------
 //--------------------- Classeroom CRUD ------------------------
 //----------------------------------------------------------
@@ -75,6 +87,9 @@ public class AppointementManagement {
         return  classroomService.updateClassroom(classroom);
 
 
+
+
+
     }
 
     @Operation(description = "Retrieve Classroom by Id")
@@ -82,6 +97,19 @@ public class AppointementManagement {
     public Classroom getClassroomById(@PathVariable("id-Classroom") int numClassroom){
         return classroomService.retrieveClassroom(numClassroom);
     }
+
+
+
+    @DeleteMapping("/deleteClassroom/{idClassroom}")
+    public void deleteClassroom(@PathVariable("idClassroom") int id){
+        classroomService.deleteClassroom(id);
+    }
+
+
+
+
+
+
 
 //----------------------------------------------------------
 }

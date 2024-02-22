@@ -20,10 +20,11 @@ public class Appointement {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idAppointement;
-    private Date startDate ;
-    private Date endDate ;
-    private String subject ;
-
+    private Date startTime ;
+    private Date endTime ;
+    private String eventName ;
+    private int sender;
+    private  int receiver ;
     private int classroomFK;
     @JsonIgnore
     @ManyToOne

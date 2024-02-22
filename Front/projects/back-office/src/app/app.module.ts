@@ -12,6 +12,8 @@ import { AddClassroomComponent } from './Appointment/add-classroom/add-classroom
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalenderComponent } from './Appointment/calender/calender.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
+import { UpdateClassroomComponent } from './Appointment/update-classroom/update-classroom.component';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
     CardClassroomComponent,
     AddClassroomComponent,
     CalenderComponent,
+    UpdateClassroomComponent,
+   
    
   ],
   imports: [

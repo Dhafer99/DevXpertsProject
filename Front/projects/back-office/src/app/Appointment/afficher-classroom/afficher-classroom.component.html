@@ -1,32 +1,14 @@
 <p>afficher-classroom works!</p>
 
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
 
-<!-- ======= Services Section ======= -->
+<!-- ---------------------------------------Cards Affichager---------------------------------------------------------------------- -->
 
-           <!--  <section id="services" class="services section-bg">
-                
-                            <div class="card-body" style="width: 18rem;">
-                                    <div class="container" data-aos="fade-up">
-                                
-                                        <div class="row" *ngFor="let o of classroomList  ;let i=index"> 
-                                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                                                <div class="icon-box iconbox-blue">
-                                            
-                                                    <h4><a href="">{{o.id}}</a></h4>
-                                                    <p>{{o.block}}</p>
-                                                    <p>{{o.classRoomNumber}}</p>
-                                                    <p>{{o.level}}</p>
-                                                    <a [routerLink]="['/offers', o.id]" class="btn btn-primary">Detail</a>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                            </div>
-                
-            </section> --><!-- End Services Section -->
-             <!-- //////////prof   --> 
-             <div class="row">
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+
+         <!--     <div class="row">
                 <div
                   class="card m-3"
                   *ngFor="let r of classroomList; let i = index"
@@ -36,9 +18,10 @@
                   <div class="card-body">
                     <h5 class="card-title">classroom</h5>
                     <p class="card-text">
-                        <p>{{r.block}}</p>
-                                                    <p>{{r.classRoomNumber}}</p>
-                                                    <p>{{r.level}}</p>
+                        <p>Block : {{r.block}}</p>
+                                                    
+                                                    <p>classRoomNumber: {{r.classRoomNumber}}</p>
+                                                    <p>level: {{r.level}}</p>
                      <a [routerLink]="['/offers', r.id]" class="btn btn-primary" style="margin:20px">Detail</a>  
                     
                      <a [routerLink]="['/offers', r.id]" class="btn btn-danger">Delete</a>
@@ -46,9 +29,51 @@
                   </div>
                 </div>
               </div>
+ -->
+
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
+<!-- ------------------------------------------------Table---------------------------------------------------------- -->
+
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
+<h1 class="text-center" >classroomList</h1>
+<div class="container">
+
+<table class="table table-striped">
+        <thead>
+          <tr> 
+              <th>Block</th>
+              <th>Level</th>
+              <th>Classroom Number</th>
+              <th>Actions</th>
+            </tr>  
+            </thead>
+        <tbody>
+            <tr *ngFor="let c of classroomList">
+                <td> {{c.block}} </td>
+                <td> {{c.level}} </td>
+                <td> {{c.classRoomNumber}} </td>
+                <td>
+                  <button (click)= "updateClassroom(c.id)"  class="btn btn-info">Update </button>
+                  <button  (click)= "deleateClassroom(c.id)" class="btn btn-danger" style="margin-left: 50px;">Delete </button>
+                </td>
+            </tr>
+        </tbody>
+
+</table>
+
+
+  
 
 
 
+
+
+
+
+
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------- -->
 
   <!-- Sales Card -->
   <!-- <div class="col-xxl-4 col-md-6">

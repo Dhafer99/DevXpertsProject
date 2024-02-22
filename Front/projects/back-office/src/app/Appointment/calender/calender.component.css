@@ -1,0 +1,4 @@
+::ng-deep .e-schedule-toolbar .e-toolbar-item.e-prev, 
+::ng-deep .e-schedule-toolbar .e-toolbar-item.e-next {
+    display: none;
+}

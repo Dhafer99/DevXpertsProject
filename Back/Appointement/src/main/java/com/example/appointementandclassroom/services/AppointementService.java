@@ -36,4 +36,10 @@ public class AppointementService implements  IAppointementService {
     public Appointement retrieveappointement(int numAppointement) {
         return appointementRepo.findById(numAppointement).orElse(null);
     }
+
+    @Override
+    public List<Appointement> retrieveappointement(int sender, int reciever) {
+        return appointementRepo.findAppointmentsBySenderAndReceiver(sender,reciever) ;   }
+
+
 }
