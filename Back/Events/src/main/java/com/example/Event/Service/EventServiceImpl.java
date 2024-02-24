@@ -85,4 +85,19 @@ public class EventServiceImpl implements EventService{
         }
     }
 
+    @Override
+    public Event findbyName(String name) {
+        Event event= eventRepository.findEventByName(name).orElse(null);
+        if(event!=null)
+        {
+
+            event.setViewsCounter(event.getViewsCounter()+1);
+            eventRepository.save(event);
+
+        }
+        return event;
+    }
+
+
+
 }

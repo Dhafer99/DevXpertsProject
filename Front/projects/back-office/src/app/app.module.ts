@@ -14,6 +14,10 @@ import { CalenderComponent } from './Appointment/calender/calender.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { EventsComponent } from './events/events.component';
 import { ChartModule } from 'angular-highcharts';
+import { EventsModule } from './events/events.module';
+import { EventCreateComponent } from './events/event-create/event-create.component';
+import { EventsStatsComponent } from './events/events/events-stats/events-stats.component';
+import { EventListComponent } from './events/event-list/event-list.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,9 @@ import { ChartModule } from 'angular-highcharts';
     AddClassroomComponent,
     CalenderComponent,
     EventsComponent,
-   
+    EventCreateComponent,
+    EventsStatsComponent,
+    EventListComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,7 @@ import { ChartModule } from 'angular-highcharts';
     FormsModule,
     ReactiveFormsModule,
     ScheduleModule ,
-    ChartModule
+    ChartModule,
   ],
 
   bootstrap: [AppComponent]

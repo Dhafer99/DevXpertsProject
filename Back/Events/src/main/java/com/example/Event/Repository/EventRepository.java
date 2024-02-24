@@ -9,4 +9,5 @@ public interface EventRepository extends JpaRepository<Event,Integer> {
 
 
     Optional<Event> findByImages_Id(int imageId);
+    Optional<Event> findEventByName(String name);
 }

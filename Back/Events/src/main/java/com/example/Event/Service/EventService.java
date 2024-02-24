@@ -13,4 +13,6 @@ public void update(Event event,int UserId);
 
     public Event findbyId(int id);
 public void removeImageIdFromEvent(int id);
+public Event findbyName(String name);
+
 }

@@ -2,17 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EventsComponent } from './events.component';
 import { EventCreateComponent } from './event-create/event-create.component';
-import { EventDisplayComponent } from './event-display/event-display.component';
 import { EventListComponent } from './event-list/event-list.component';
+import { EventsStatsComponent } from './events/events-stats/events-stats.component';
 
 const routes: Routes = [
   {
     path: '', 
     component: EventsComponent,
     children: [
-      { path: 'create/:id', component: EventCreateComponent },
-      { path: 'display', component: EventDisplayComponent },
-      { path: 'list', component: EventListComponent },
+      {path: 'create/:id', component: EventCreateComponent },
+      {path: 'create', component: EventCreateComponent },
+      {path: 'Eventlist', component: EventListComponent },
+      {path: 'stats', component: EventsStatsComponent },
       
       { path: '', pathMatch: 'full', redirectTo: '/events/create' },
       { path: '**', component: EventCreateComponent },

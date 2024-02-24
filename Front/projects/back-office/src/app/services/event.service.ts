@@ -58,7 +58,7 @@ getAllEvents():Observable<Event[]>{
 //------------------------------------------------------------------------------------------
 //-----------------------------------Fetch EVENT--------------------------------------
 fetchEvent(id : number):Observable<Event>{
-  return this.http.get<Event>(this.__URL+this.eventURL+'/fetchEvent/'+id)
+  return this.http.get<Event>(this.__URL+this.eventURL+'/fetchEventById/'+id)
 }
 //------------------------------------------------------------------------------------------
 

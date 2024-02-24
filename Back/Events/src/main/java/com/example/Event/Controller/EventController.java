@@ -35,9 +35,14 @@ public class EventController {
         return ResponseEntity.ok(service.findAllEvents());
     }
 
-    @GetMapping("/fetchEvent/{id}")
+    @GetMapping("/fetchEventById/{id}")
     public ResponseEntity<Event> findEventById(@PathVariable("id") int id){
+
         return ResponseEntity.ok(service.findbyId(id));
+    }
+    @GetMapping("/fetchEventByName/{name}")
+    public ResponseEntity<Event> findEventByName(@PathVariable("name") String name){
+        return ResponseEntity.ok(service.findbyName(name));
     }
 
     @PutMapping("/{user}")

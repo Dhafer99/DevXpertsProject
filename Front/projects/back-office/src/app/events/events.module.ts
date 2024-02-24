@@ -12,10 +12,7 @@ import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
-    EventCreateComponent,
-    EventDisplayComponent,
-    EventListComponent,
-    EventsStatsComponent
+  
   ],
   imports: [
     CommonModule,

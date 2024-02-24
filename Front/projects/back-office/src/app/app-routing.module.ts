@@ -18,9 +18,16 @@ const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 {path: 'Eventlist', component: EventListComponent },
 {path: 'stats', component: EventsStatsComponent },
 {
-  path: 'events', 
-  loadChildren: () => import('./events/events.module').then(m => m.EventsModule)
-},
+  path: 'events',
+  component: EventsComponent},
+
+    { path: 'events/create/:id', component: EventCreateComponent },
+    { path: 'events/create', component: EventCreateComponent },
+    { path: 'events/Eventlist', component: EventListComponent },
+    { path: 'events/stats', component: EventsStatsComponent },
+    { path: 'events/""', pathMatch: 'full', redirectTo: '/events/create' },
+    { path: 'events/**', component: EventCreateComponent },
+  
 
 ];
 

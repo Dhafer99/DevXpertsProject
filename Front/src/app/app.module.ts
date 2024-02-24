@@ -6,22 +6,24 @@ import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CalenderComponent } from './calender/calender.component';
 import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
-import { EventComponent } from './event/event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EventsComponent } from './events/events.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     CalenderComponent,
-    EventComponent
+    EventsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ScheduleModule,
      RecurrenceEditorModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,36 @@
+
+
+				
+
+					<!-- Table with stripped rows -->
+					<table>
+
+
+						<thead>
+							<tr>
+								<th>Image</th>
+								<th>Name</th>
+								<th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
+								<th>Event Type</th>
+								<th>View</th>
+								<th>Interest</th>
+							</tr>
+						</thead>
+						<!--  add stuff here -->
+						<tbody>
+
+							<tr *ngFor="let event of eventList">
+								<td>				<img src="{{event.imageUrl}}" class="card-img-top" alt="Image 1" height="175px">
+</td>
+<a [routerLink]="['/display', event.name]">Navigate to /create/id</a>
+								<td> {{event.name}} </td>
+								<td > {{event.date}} </td>
+								<td> {{event.type}} </td>
+								<td> {{event.viewsCounter}} </td>
+                                <td> {{event.interestedCounter}} </td>
+							</tr>
+
+						</tbody>
+						<!-- things -->
+					</table>
+	
