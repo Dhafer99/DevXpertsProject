@@ -24,7 +24,7 @@ export class Event {
 imageId?:number;
 //-------------------
 
-    interestedBys?: InterestedBy[]; // Assuming InterestedBy is another TypeScript interface
+interestedBys?: InterestedBy[]; // Assuming InterestedBy is another TypeScript interface
     images?: Image[];
     ratings?: Rating[];
   }

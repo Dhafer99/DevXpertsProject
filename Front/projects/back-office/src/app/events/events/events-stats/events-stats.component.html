@@ -1,0 +1,58 @@
+<div class="col-lg-6">
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Line Chart</h5>
+			<div>
+
+				<!-- MY CHART -->
+				<div [chart]="chart"></div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<button (click)="chartrecreate()"> chartrecreate
+	</button>
+
+
+</div>
+<div class="col-lg-6">
+	<div class="card">
+		<div class="card-body">
+<table class="table datatable">
+
+
+						<thead>
+							<tr><th>Track</th>
+								<th>Image</th>
+								<th>Name</th>
+								<th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
+								<th>Event Type</th>
+								<th>View</th>
+								<th>Interest</th>
+							</tr>
+						</thead>
+						<!--  add stuff here -->
+						<tbody>
+
+							<tr *ngFor="let event of eventList">
+							<td>       <input type="checkbox"  (change)="handleCheckboxChange(event)" />
+</td>
+								<td>				<img src="{{event.imageUrl}}" class="card-img-top" alt="Image 1" height="175px">
+<a [routerLink]="['/create', event.id]">Navigate to /create/id</a>
+</td>
+								<td> {{event.name}} </td>
+								<td > {{event.date}} </td>
+								<td> {{event.type}} </td>
+								<td> {{event.viewsCounter}} </td>
+                                <td> {{event.interestedCounter}} </td>
+							</tr>
+
+						</tbody>
+						<!-- things -->
+					</table>
+
+		</div>
+		</div>
+		</div>

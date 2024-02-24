@@ -13,8 +13,10 @@ const routes: Routes = [
       { path: 'create/:id', component: EventCreateComponent },
       { path: 'display', component: EventDisplayComponent },
       { path: 'list', component: EventListComponent },
+      
       { path: '', pathMatch: 'full', redirectTo: '/events/create' },
       { path: '**', component: EventCreateComponent },
+
     ]
   },
  

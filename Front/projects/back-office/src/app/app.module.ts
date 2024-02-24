@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalenderComponent } from './Appointment/calender/calender.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { EventsComponent } from './events/events.component';
+import { ChartModule } from 'angular-highcharts';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,6 @@ import { EventsComponent } from './events/events.component';
     AddClassroomComponent,
     CalenderComponent,
     EventsComponent,
- 
    
   ],
   imports: [
@@ -34,7 +34,7 @@ import { EventsComponent } from './events/events.component';
     FormsModule,
     ReactiveFormsModule,
     ScheduleModule ,
-
+    ChartModule
   ],
 
   bootstrap: [AppComponent]

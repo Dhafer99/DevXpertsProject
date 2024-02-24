@@ -6,17 +6,23 @@ import { EventCreateComponent } from './event-create/event-create.component';
 import { EventDisplayComponent } from './event-display/event-display.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EventsStatsComponent } from './events/events-stats/events-stats.component';
+import { ChartModule } from 'angular-highcharts';
 
 
 @NgModule({
   declarations: [
     EventCreateComponent,
     EventDisplayComponent,
-    EventListComponent
+    EventListComponent,
+    EventsStatsComponent
   ],
   imports: [
     CommonModule,
-    EventsRoutingModule,ReactiveFormsModule
+    EventsRoutingModule,ReactiveFormsModule,
+    ChartModule,
+    
+    
   ]
 })
 export class EventsModule { }
