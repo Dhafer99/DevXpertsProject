@@ -72,6 +72,46 @@ export class EventsStatsComponent implements OnInit{
       }
     }
   }
+  removeEmptyField() {
+    let indexesToRemove: number[] = [];
+    let allZeros :boolean
+    // Iterate through the columns (starting from the third column)
+    console.log(this.interestDataCounter[1].length)
+    for (let j = 0; j < this.interestDataCounter.length; j++) {
+       allZeros = true;
+      console.log(this.interestDataCounter.length)
+      // Check each row in the current column
+      for (let i = 2; i < this.interestDataCounter[1].length; i++)
+        {
+
+        
+        if (this.interestDataCounter[i][j] !== 0) {
+          allZeros = false;
+
+        }
+       
+      }
+      if (allZeros ) {
+        indexesToRemove.push(j);
+      }
+      // If all values in the column are zero, mark it for removal
+      
+    }
+  
+    console.log("INDEXES TO REMOVE")
+    console.log(indexesToRemove)
+    // Remove the marked columns
+    for (let k = indexesToRemove.length - 1; k >= 0; k--) {
+      const indexToRemove = indexesToRemove[k];
+      this.interestDataCounter[1].splice(indexToRemove, 1); // Remove from the header row
+     // this.interestDataCounter[].splice(indexToRemove, 1);
+      // Remove the entire column from each row
+      for (let l = 0; l < this.interestDataCounter.length; l++) {
+        this.interestDataCounter[l].splice(indexToRemove, 1);
+      }
+    }
+  }
+  
   sortData() {
     for (let i = 0; i < this.interestDataCounter[1].length; i++) {
       for (let j = 0; j < this.interestDataCounter[1].length - 1; j++) {
@@ -111,7 +151,6 @@ export class EventsStatsComponent implements OnInit{
       if (index !== -1) {
         this.interestDataCounter[eventIndex+2][index]=+this.interestDataCounter[eventIndex+2][index]+1;
       } else {
-       
         this.interestDataCounter[1].push(dateString);
         index = this.interestDataCounter[1].indexOf(dateString);
         this.interestDataCounter[eventIndex+2][index]=1;
@@ -133,7 +172,11 @@ export class EventsStatsComponent implements OnInit{
       // If unchecked, remove event ID and all numbers to the right
       if (index !== -1) {
         this.interestDataCounter[0].splice(index, 1);
-        this.interestDataCounter[index+2].splice(1);
+        this.interestDataCounter.splice(index+2,1);
+        console.log("THIS IS THE LIST WITH REMOVED ITEMS")
+        console.log(this.interestDataCounter)
+        this.removeEmptyField()
+        
       }
     }
     this.updateChart()
