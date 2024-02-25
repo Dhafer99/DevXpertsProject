@@ -1,32 +1,157 @@
-<!-- ======= Testimonials Section ======= -->
-<section id="testimonials" class="testimonials section-bg">
+<section class="activity section bg-light">
+    <!-- start container -->
     <div class="container">
-    <br>
-    <input type="submit" class="btn btn-danger" value="Ajouter Offre" [routerLink]="['/addoffer']">
-    <br>
-        <div class="row">
 
-            <div class="col-lg-6" data-aos="fade-up" *ngFor="let o of listOffers ;let i=index"> 
-                <div class="testimonial-item" [routerLink]="['/offers', o.id]">
-                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                    <h3>Nom entreprise</h3>
-                    <h4>Domaine</h4>
-                    <p>
-                        <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                        {{o.description}}
-                        <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                    </p>
-                    <p>
-                        {{o.lastDateApplication}}
-                    </p>
-                    <p>
-                        {{o.nbrCandidature}}
-                    </p>
-                </div>
-                <br>
+        <button type="button" class="btn btn-danger" routerLink="/addoffer">
+            Add an offer
+            <i class="mdi mdi-plus-thick"></i>
+        </button>
+
+
+        <div class="row d-flex align-items-start mt-5">
+            <div class="col-lg-3 nav flex-column nav-pills ps-3" id="v-pills-tab" role="tablist"
+                aria-orientation="vertical">
+                <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                    aria-selected="true"><i class="mdi mdi-weight me-2 f-18"></i>All offers</button>
+                <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                    aria-selected="false"><i class="mdi mdi-heart me-2 f-18"></i>Internship</button>
+                <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
+                    aria-selected="false"><i class="mdi mdi-cart me-2 f-18"></i>Job</button>
+                <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
+                    data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
+                    aria-selected="false"><i class="mdi mdi-plus-circle me-2 f-18"></i>Followings</button>
             </div>
+            <div class="col-lg-8 offset-lg-1 tab-content mt-4" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                    aria-labelledby="v-pills-home-tab">
+                    <div class="activity" *ngFor="let o of listOffers ;let i=index">
+                        <div class="activity-box" [routerLink]="['/offers', o.id]">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile-info">
+                                            <h6 class="fw-bold mb-0">{{o.offer}}</h6>
+                                            <p class="f-16 mb-0">{{o.description}} <span class="text-blue">
+                                                    l</span></p>
+                                        </div>
+                                        <div class="laft-day ms-auto">
+                                            <p class="fw-semibold mb-0 text-muted">{{o.lastDateApplication}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                    <div class="activity" *ngFor="let o of listStages ;let i=index">
+                        <div class="activity-box"  [routerLink]="['/offers', o.id]">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="avatar">
+                                        <img src="images/inner-image/creator/img-5.png" alt=""
+                                            class="img-fluid rounded-circle avatar-lg">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile-info">
+                                            <h6 class="fw-bold mb-0">{{o.offer}}</h6>
+                                            <p class="f-16 mb-0">{{o.description}} <span class="text-blue">
+                                                    l</span></p>
+                                        </div>
+                                        <div class="laft-day ms-auto">
+                                            <p class="fw-semibold mb-0 text-muted">{{o.lastDateApplication}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <div class="activity" *ngFor="let o of listJobs ;let i=index">
+                        <div class="activity-box" [routerLink]="['/offers', o.id]">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="avatar">
+                                        <img src="images/inner-image/creator/img-7.png" alt=""
+                                            class="img-fluid rounded-circle avatar-lg">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile-info">
+                                            <h6 class="fw-bold mb-0">{{o.offer}}</h6>
+                                            <p class="f-16 mb-0">{{o.description}} <span class="text-blue">
+                                                    l</span></p>
+                                        </div>
+                                        <div class="laft-day ms-auto">
+                                            <p class="fw-semibold mb-0 text-muted">{{o.lastDateApplication}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <div class="activity">
+                        <div class="activity-box">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="avatar">
+                                        <img src="images/inner-image/creator/img-8.png" alt=""
+                                            class="img-fluid rounded-circle avatar-lg">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile-info">
+                                            <h6 class="fw-bold mb-0">Creative Art collection</h6>
+                                            <p class="f-16 mb-0">listed by <span class="text-blue">
+                                                    @Jimmy_Wright</span></p>
+                                        </div>
+                                        <div class="laft-day ms-auto">
+                                            <p class="fw-semibold mb-0 text-muted">Last 3 days</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="activity-box mt-4">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="avatar">
+                                        <img src="images/inner-image/creator/img-1.png" alt=""
+                                            class="img-fluid rounded-circle avatar-lg">
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="profile-info">
+                                            <h6 class="fw-bold mb-0">Colorful Abstract Painting</h6>
+                                            <p class="f-16 mb-0">listed by <span class="text-blue">
+                                                    @Claude_Banks</span></p>
+                                        </div>
+                                        <div class="laft-day ms-auto">
+                                            <p class="fw-semibold mb-0 text-muted">Last 2 days</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-</section><!-- End Testimonials Section -->
+    <!-- end container -->
+</section>

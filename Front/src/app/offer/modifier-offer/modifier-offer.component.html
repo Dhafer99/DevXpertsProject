@@ -15,16 +15,29 @@
                                 required>
                         </div>
                     </div>
-                    <div class="form-group mt-3">
-                        <input type="file" class="form-control" multiple="multiple" name="file" id="file" id="file"
-                            placeholder="file" formControlName="file" (change)="onFileSelected($event)" required>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <input type="file" class="form-control" multiple="multiple" name="file" id="file" id="file" placeholder="file"
+                                formControlName="file" (change)="onFileSelected($event)" required>
+                        </div>
+                        <div class="col-md-6 form-group mt-3 mt-md-0">
+                            <select class="form-select" aria-label="Default select example" name="typeOffer" id="typeOffer"
+                                placeholder="Offer Type" (change)="selectType($event)" >
+                                <option value="job">Job</option>
+                                <option value="stage">Stage</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group mt-3">
                         <textarea class="form-control" name="message" rows="5" [(ngModel)]="offer.description"
                             name="description" id="description" formControlName="description" required></textarea>
                     </div>
+                    <br>
                     <div class="text-center">
-                        <input type="submit" class="btn btn-primary" aria-label="add" value="Update" (click)="update()">
+                        <button type="submit" class="btn btn-primary" aria-label="add" value="add" (click)="update()">
+                            Update
+                            <i class="mdi mdi-update"></i>
+                        </button>
                     </div>
                 </form>
             </div>

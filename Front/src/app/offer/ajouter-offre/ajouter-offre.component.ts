@@ -16,6 +16,7 @@ export class AjouterOffreComponent implements OnInit{
   constructor(private offerService:OfferService, private route:Router){  }
 
   selectedFile!: File;
+  offerType!: string;
   uploadProgress!: number;
 
   offerForm!:FormGroup;
@@ -36,6 +37,7 @@ export class AjouterOffreComponent implements OnInit{
     get lastDateApplication(){return this.offerForm.get('lastDateApplication')}
     get nbrCandidature(){return this.offerForm.get('nbrCandidature')}
     get file(){return this.offerForm.get('file')}
+    get typeOffre(){return this.offerForm.get('typeOffer')}
 
 
     //FILE
@@ -47,6 +49,13 @@ export class AjouterOffreComponent implements OnInit{
     }
   }
 
+  selectType(event : any):void{
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    console.log(selectedValue);
+    this.offerType = selectedValue;
+    console.log("offre selectionne : "+this.offerType);
+  }
+
     //End File
     add(){
       this.offer=this.offerForm.value; 
@@ -55,7 +64,10 @@ export class AjouterOffreComponent implements OnInit{
       this.formData.append('nbrCandidature', this.nbrCandidature?.value);
       this.formData.append('file', this.selectedFile);
       this.formData.append('exibitorId',this.nbrCandidature?.value);
-      if (this.description?.value=='' || this.lastDateApplication?.value=='' || this.nbrCandidature?.value=='' || this.file?.value==''){
+      this.formData.append('typeOffer',this.offerType);
+
+      
+      if (this.description?.value=='' || this.lastDateApplication?.value=='' || this.nbrCandidature?.value=='' || this.file?.value=='' || this.typeOffre?.value==''){
         Swal.fire({
           icon: "error",
           title: "Erreur",

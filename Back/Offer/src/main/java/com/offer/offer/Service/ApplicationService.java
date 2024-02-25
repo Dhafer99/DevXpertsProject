@@ -83,4 +83,26 @@ public class ApplicationService implements IApplicationService{
         Offer offer = offerRepository.findById(idOffer).orElse(null);
         return applicationRepository.findApplicationsByOffer(offer);
     }
+
+    @Override
+    public Application changeStatus(Long idApplication, Status status) {
+        Application app = applicationRepository.findById(idApplication).orElse(null);
+        app.setStatus(status);
+        return applicationRepository.save(app);
+    }
+
+    @Override
+    public List<Object[]> nbrApplicationOnOffer() {
+        return applicationRepository.countApplicationsByOffer();
+    }
+
+    @Override
+    public List<Object[]> nbrStatusApplication() {
+        return applicationRepository.countCandidaturesByStatus();
+    }
+
+    @Override
+    public List<Object[]> nbrApplicationsByMonth() {
+        return applicationRepository.countApplicationsByMonth();
+    }
 }

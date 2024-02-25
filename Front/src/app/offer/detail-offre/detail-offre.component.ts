@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Offer } from 'src/app/models/offer';
 import { CandidatureService } from 'src/app/services/candidature.service';
 import { OfferService } from 'src/app/services/offer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-detail-offre',
@@ -21,9 +22,11 @@ export class DetailOffreComponent implements OnInit{
    idCandidat!:number;
    modalReference :any; 
    selectedFile!: File;
-  constructor(private activateroute:ActivatedRoute,private offerService:OfferService,private route:Router,private candidatureService:CandidatureService,private modalService: NgbModal){
+   role!:string;
+  constructor(private activateroute:ActivatedRoute,private offerService:OfferService,private route:Router,private candidatureService:CandidatureService,private modalService: NgbModal,private http: HttpClient){
   }
   ngOnInit(): void {
+    this.role="exibitor";
     this.idCandidat=1;
     this.id=this.activateroute.snapshot.params['id'];
     this.offerService.getOfferById(this.id).subscribe((data)=>{
@@ -53,7 +56,8 @@ export class DetailOffreComponent implements OnInit{
     //this.offerService.updateOffer(this.offer);
   }
   downloadFile(){
-    convertToPdf(this.offer.file)
+    //convertToPdf(this.offer.file)
+    this.downloadBlob();
   }
   onFileSelected(event: any): void {
     const fileList: FileList = event.target.files;
@@ -85,7 +89,33 @@ export class DetailOffreComponent implements OnInit{
         this.modalReference=this.modalService.open(content, { size: 'md'});
       }
 
+
+      downloadBlob() {
+    //const blob = this.offer.file;
+    //const fileName = 'fichier.pdf';
+
+  // Appelez la fonction de téléchargement
+    //this.saveBlob(blob, fileName);
+    this.offerService.convertToPdf(this.id).subscribe(
+      (pdfData: ArrayBuffer) => {
+        // Traitez les données PDF ici, par exemple, en les enregistrant en tant que fichier ou en affichant un aperçu
+        const file = new Blob([pdfData], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL); // Ouvre le PDF dans un nouvel onglet
+      },
+      (error) => {
+        console.error('Failed to convert to PDF', error);
+      }
+    );
+  }
 }
+
+/*saveBlob(blob: Blob, fileName: string) {
+  // Utilisez la fonction saveAs de file-saver pour enregistrer le fichier
+  saveAs(blob, fileName);
+}
+
+}*/
 
 function convertToPdf(blob: Blob) {
   /*const fileReader = new FileReader();

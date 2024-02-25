@@ -38,5 +38,18 @@ export class CandidatureService {
   {
     return this.http.get<Candidature>(this.offerUrl+'/application/'+id);
   }
+  changeStatus(formData:FormData):Observable<Candidature>
+  {
+    return this.http.put<Candidature>(this.offerUrl+"/application/status",formData)
+  } ///api/Application/nbrCandidature
+  nbrApplicationOnOffer():Observable<any>
+  {
+    return this.http.get<any>(this.offerUrl+"/nbrCandidature")
+  }
+  ///api/Application/nbrStatusApplication
+  getNbrStatusApplication():Observable<any>
+  {
+    return this.http.get<any>(this.offerUrl+"/nbrStatusApplication")
+  }
   
 }

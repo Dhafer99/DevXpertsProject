@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Offer } from '../models/offer';
+import { Offer, typeOffer } from '../models/offer';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,15 @@ export class OfferService {
   getOfferById(id:number):Observable<Offer>
   {
     return this.http.get<Offer>(this.offerUrl+'/offer/'+id);
+  }
+
+  getOffersByTypeOffer(typeOffer: string, id:number):Observable<Offer[]>
+  {
+    return this.http.get<Offer[]>(this.offerUrl+'/OffersByTypeOffer/'+id+'/'+typeOffer);
+  }
+  convertToPdf(id:number): Observable<ArrayBuffer> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/pdf' });
+    return this.http.get('/api/convertToPdf/'+id, { headers: headers, responseType: 'arraybuffer' });
   }
 
 }

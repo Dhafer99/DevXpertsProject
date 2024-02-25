@@ -2,6 +2,7 @@ package com.offer.offer.Service;
 
 import com.offer.offer.Entity.Application;
 import com.offer.offer.Entity.Offer;
+import com.offer.offer.Entity.Status;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,4 +19,8 @@ public interface IApplicationService {
     void deleteApplication(long id);
     List<Application> getAllApplicationByUser(long idCandidat);
     List<Application> getAllApplicationForOffer(long idOffer);
+    Application changeStatus(Long idApplication, Status status);
+    List<Object[]> nbrApplicationOnOffer();
+    List<Object[]> nbrStatusApplication();
+    List<Object[]> nbrApplicationsByMonth();
 }

@@ -1,6 +1,7 @@
 package com.offer.offer.Service;
 
 import com.offer.offer.Entity.Offer;
+import com.offer.offer.Entity.TypeOffer;
 import com.offer.offer.Repository.OfferRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,8 @@ public class OfferService implements IOfferService{
     }*/
 
     @Override
-    public Offer addOffer(Offer offer, String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId, MultipartFile file) throws IOException {
-
+    public Offer addOffer(Offer offer, String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId, TypeOffer typeOffer, MultipartFile file) throws IOException {
+        offer.setOffer(typeOffer);
         offer.setDescription(description);
         offer.setLastDateApplication(lastDateApplication);
         offer.setNbrCandidature(nbrCandidature);
@@ -52,8 +53,9 @@ public class OfferService implements IOfferService{
     }
 
     @Override
-    public Offer updateOffer(Long idOffer, String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId, MultipartFile file) throws IOException {
+    public Offer updateOffer(Long idOffer, String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId,TypeOffer typeOffer ,MultipartFile file) throws IOException {
         Offer offer = offerRepository.findById(idOffer).orElse(null);
+        offer.setOffer(typeOffer);
         offer.setDescription(description);
         offer.setLastDateApplication(lastDateApplication);
         offer.setNbrCandidature(nbrCandidature);
@@ -77,6 +79,16 @@ public class OfferService implements IOfferService{
     @Override
     public List<Offer> getOfferByDomaineEntreprise(long idExibitor) {
         return null;
+    }
+
+    @Override
+    public List<Offer> getOffersByTypeOffer(TypeOffer typeOffer, long id) {
+        return offerRepository.findOffersByOfferAndExibitorId(typeOffer,id);
+    }
+
+    @Override
+    public List<Object[]> getCountOffersByType() {
+        return offerRepository.countOffersByType();
     }
 
 }

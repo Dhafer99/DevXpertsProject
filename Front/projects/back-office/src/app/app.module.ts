@@ -9,6 +9,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AfficherCandidatureOffreAdminComponent } from './offer/afficher-candidature-offre-admin/afficher-candidature-offre-admin.component';
+import { StatAdminCandidatureComponent } from './stat/stat-admin-candidature/stat-admin-candidature.component';
+
+//import { NgChartsModule } from 'ng2-charts';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -16,6 +20,7 @@ import { AfficherCandidatureOffreAdminComponent } from './offer/afficher-candida
     ListUsersComponent,
     AfficherOfferAdminComponent,
     AfficherCandidatureOffreAdminComponent,
+    StatAdminCandidatureComponent,
    
   ],
   imports: [
@@ -24,7 +29,9 @@ import { AfficherCandidatureOffreAdminComponent } from './offer/afficher-candida
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    //NgChartsModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

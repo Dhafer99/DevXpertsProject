@@ -32,8 +32,10 @@ public class Offer implements Serializable {
     @ApiModelProperty
     private byte[] file;
     private long exibitorId ;
-    /*@JsonIgnore
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy="offer")
-    private List<Application> applications;*/
+    private List<Application> applications;
+    @Enumerated(EnumType.STRING)
+    private TypeOffer offer;
 }

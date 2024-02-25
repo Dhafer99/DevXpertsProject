@@ -14,7 +14,10 @@ export class AfficherCandidatureOffreAdminComponent implements OnInit{
   constructor(private activateroute:ActivatedRoute,private route:Router,private candidatureService:CandidatureService){}
   ngOnInit(): void {
     this.id=this.activateroute.snapshot.params['id'];
-    this.candidatureService.getAllApplicationsByOffer(this.id).subscribe((data:Candidature[])=>{
+    this.getAllAppByOffer()
+  }
+  getAllAppByOffer(){
+      this.candidatureService.getAllApplicationsByOffer(this.id).subscribe((data:Candidature[])=>{
     this.listCandidatures=data
     console.log("mylist:"+JSON.stringify(this.listCandidatures))
     })

@@ -22,12 +22,15 @@ export class ModifierOfferComponent {
   offer!:Offer;
   formData = new FormData();
   params = new HttpParams();
+  offerType!: string;
+  seletedValue!:string;
 
   ngOnInit(): void {
 
     this.id=this.activateroute.snapshot.params['id'];
     this.getOffer(this.id);
-    
+    //this.seletedValue=this.offer.typeOffer.toString();
+    //console.log(this.seletedValue)
 
     //this.id=this.acr.snapshot.params['id']
     this.offerForm=new FormGroup({
@@ -57,6 +60,12 @@ export class ModifierOfferComponent {
       this.selectedFile = fileList[0];
     }
   }
+  selectType(event : any):void{
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    console.log(selectedValue);
+    this.offerType = selectedValue;
+    console.log("offre selectionne : "+this.offerType);
+  }
 
     //End File
     update(){
@@ -69,6 +78,7 @@ export class ModifierOfferComponent {
       this.formData.append('nbrCandidature', this.nbrCandidature?.value);
       this.formData.append('file', this.selectedFile);
       this.formData.append('exibitorId',this.nbrCandidature?.value);
+      this.formData.append('typeOffer',this.offerType);
       this.formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });

@@ -1,6 +1,6 @@
 import { Offer } from "./offer";
 
-enum Status {
+export enum Status {
     en_cours,accépté,refusé
   }
 export class Candidature {

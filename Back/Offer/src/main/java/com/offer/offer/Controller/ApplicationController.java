@@ -1,6 +1,7 @@
 package com.offer.offer.Controller;
 
 import com.offer.offer.Entity.Application;
+import com.offer.offer.Entity.Status;
 import com.offer.offer.Service.IApplicationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +52,27 @@ public class ApplicationController {
     @GetMapping("/allApplicationsByOffer/{idOffer}")
     public List<Application> retrieveAllApplicationsByOffer(@PathVariable("idOffer") long id) {
         return applicationService.getAllApplicationForOffer(id);
+    }
+    @PutMapping("/application/status")
+    public Application changeStatus(@RequestParam("idApplication") long id,
+                                    @RequestParam("status")Status status){
+        return applicationService.changeStatus(id,status);
+    }
+    @GetMapping("nbrCandidature")
+    public List<Object[]> nbrCandidatureOnOffer()
+    {
+        return applicationService.nbrApplicationOnOffer();
+    }
+    @GetMapping("nbrStatusApplication")
+    public List<Object[]> nbrStatusApplication()
+    {
+        return applicationService.nbrStatusApplication();
+    }
+
+    @GetMapping("nbrApplicationsByMonth")
+    public List<Object[]> nbrApplicationsByMonth()
+    {
+        return applicationService.nbrApplicationsByMonth();
     }
 
 }

@@ -1,3 +1,6 @@
+export enum typeOffer {
+    stage,job
+  }
 export class Offer {
     id!:number;
     description!:string;
@@ -5,4 +8,5 @@ export class Offer {
     nbrCandidature!:number;
     file!:File;
     exibitorId!:number;
+    offer!:typeOffer
 }
