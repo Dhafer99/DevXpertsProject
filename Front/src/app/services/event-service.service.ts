@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Image } from '../models/image';
-import { Event } from '../models/event';
+import { Event, Rating } from '../models/event';
 @Injectable({
   providedIn: 'root'
 })
@@ -46,7 +46,14 @@ export class EventServiceService {
     return this.http.get<Event>(this.__URL+this.eventURL+'/fetchEventByName/'+name)
   }
   //------------------------------------------------------------------------------------------
+    //-----------------------------------Rating related URLS-------------------------------------
+    addRating(Rating:Rating):Observable<Event>{
+      //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+   
+      return  this.http.post<Event>(this.__URL+this.ratingURL+'/addRating',Rating)
   
+    }
+  //-------------------------------- ------------------------------
   //--------------------------------Image related URLS ------------------------------
   public list(): Observable<Image[]> {
     return this.http.get<Image[]>(this.__URL+this.imageURL + '/list');

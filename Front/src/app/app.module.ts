@@ -9,6 +9,8 @@ import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsComponent } from './events/events.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ScheduleModule,
+    ReactiveFormsModule,
+    FormsModule,
      RecurrenceEditorModule,
       BrowserAnimationsModule,
-      HttpClientModule
+      HttpClientModule,
+      NgbModule,
+      
   ],
   providers: [],
   bootstrap: [AppComponent]

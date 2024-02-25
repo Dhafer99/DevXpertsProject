@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import * as highcharts from 'angular-highcharts';
+import * as highlinecharts from 'angular-highcharts';
 import { EventService } from '../../../services/event.service';
 import { Event, InterestedBy } from '../../../models/event';
 import { ChartserviceService } from '../../../services/chartservice.service';
@@ -20,28 +20,31 @@ export class EventsStatsComponent implements OnInit{
   
   constructor(private eventService:EventService,private chartservice:ChartserviceService){}
   
-  chart = new highcharts.Chart({
+  linechart = new highlinecharts.Chart({
     
   });
+  barchart=new highlinecharts.Chart({
+    
+  })
   ngOnInit(): void {
     this.fetchEvents();
   }
  
  
   
-  updateChart(){
-     this.chart= this.chartservice.ChartRecreate(this.chart,'line',this.interestDataCounter[1],"mychart",
+  updatelinechart(){
+     this.linechart= this.chartservice.ChartRecreate(this.linechart,'line',this.interestDataCounter[1],"mylinechart",
       this.interestDataCounter
       ) 
     
   }
-  chartrecreate(){
-    this.chart = new highcharts.Chart({
+  linechartrecreate(){
+    this.linechart = new highlinecharts.Chart({
       chart: {
         type: 'line'
       },
       title: {
-        text: 'Linechart'
+        text: 'Linelinechart'
       },
       xAxis: {
         categories: ['meh']
@@ -179,7 +182,7 @@ export class EventsStatsComponent implements OnInit{
         
       }
     }
-    this.updateChart()
+    this.updatelinechart()
     console.log(this.interestDataCounter);
   }
 }

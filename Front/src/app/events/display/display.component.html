@@ -1,9 +1,27 @@
 		 				<img src="{{event.imageUrl}}"  alt="Image 1" >
  
  <br>
-								  {{event.name}}  
-								 {{event.date}}  
-								  {{event.type}}  
-								  {{event.viewsCounter}}  
-                                  {{event.interestedCounter}}  
-						
+								 <p> Name:  {{event.name}}  </p>
+								<p> Date : {{event.date}}  </p>
+								  <p> Type : {{event.type}}  </p>
+								 <p> View Counter :{{event.viewsCounter}}  </p>
+                                 <p>Interest Counter :{{event.interestedCounter}}  </p>
+							<p> Rating
+								  {{event.rating | number: '1.2-2' }}
+							</p>
+<form [formGroup]= "myform" >
+<input type="text" formControlName="comment">
+						<ngb-rating [max]="5" formControlName="rating"></ngb-rating>
+						<button type="Submit" class="form-control Submit" (click)="add()" aria-label="Sizing example input" >Sumbit</button>
+</form>
+
+<table>
+	<tr>
+	<th></th>
+	<th></th>
+	</tr>
+	<tr *ngFor="let rating of event.ratings">
+	<td> {{rating.comment}} </td>
+	<td> <ngb-rating [max]="5" [rate]="rating.rating" [readonly]="true"></ngb-rating> </td>
+	</tr>
+</table>

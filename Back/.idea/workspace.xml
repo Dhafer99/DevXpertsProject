@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Repository/EventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Repository/EventRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/EventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/EventServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/RatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/RatingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/RatingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/RatingServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +203,8 @@
       <workItem from="1708674688016" duration="3851000" />
       <workItem from="1708694632033" duration="2937000" />
       <workItem from="1708757087593" duration="2569000" />
-      <workItem from="1708792537781" duration="4044000" />
+      <workItem from="1708792537781" duration="4735000" />
+      <workItem from="1708865737496" duration="6191000" />
     </task>
     <servers />
   </component>

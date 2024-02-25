@@ -6,6 +6,8 @@ import { DisplayComponent } from './display/display.component';
 import { RouterModule } from '@angular/router';
 import { EventsListComponent } from './events-list/events-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     EventsRoutingModule,
     RouterModule,
     HttpClientModule,
-    
+    ReactiveFormsModule,
+    FormsModule,
+    NgbModule,
   ]
 })
 export class EventsModule { }

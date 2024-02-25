@@ -20,20 +20,34 @@ public class RatingServiceImpl implements RatingService{
     public void save(Rating rating) {
         Event event1=eventRepository.findById(rating.getEventID()).get();
 
+        if (ratingRepository.findById(rating.getId()).isPresent())
+        {
+            updateRating(rating);
+            updateRatingForEvent(event1.getId());
+        }else {
+
+
+
+
         event1.getRatings().add(rating);
 
         eventRepository.save(event1);
         updateRatingForEvent(event1.getId());
+        }
     }
 
 
 
     @Override
     public void remove(Rating rating){
+        Event event1=eventRepository.findById(rating.getEventID()).get();
 
+        event1.getRatings().remove(rating);
 
-        ratingRepository.delete(rating);
+        eventRepository.save(event1);
         updateRatingForEvent(rating.getEventID());
+        ratingRepository.delete(rating);
+
     }
 
     @Override
@@ -58,9 +72,9 @@ public class RatingServiceImpl implements RatingService{
 
     @Override
     public void updateRating(Rating rating) {
-        Rating rating1=ratingRepository.findById(rating.getId()).get();
-        rating1.setComment(rating.getComment());
-        ratingRepository.save(rating1);
+      //  Rating rating1=ratingRepository.findById(rating.getId()).get();
+      //  rating1.setComment(rating.getComment());
+        ratingRepository.save(rating);
     }
 
     @Override

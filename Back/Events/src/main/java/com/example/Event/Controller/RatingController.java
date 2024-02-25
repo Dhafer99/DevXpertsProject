@@ -1,7 +1,9 @@
 package com.example.Event.Controller;
 
 
+import com.example.Event.Entity.Event;
 import com.example.Event.Entity.Rating;
+import com.example.Event.Service.EventService;
 import com.example.Event.Service.RatingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,13 +19,13 @@ import java.util.List;
 
 public class RatingController {
     private final RatingService service ;
-
+    private final EventService eventService;
     @PostMapping("/addRating")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addRating(@RequestBody Rating rating )
+    public Event addRating(@RequestBody Rating rating )
     {
         service.save(rating);
-        service.updateRatingForEvent(rating.getEventID());
+        return eventService.findbyId(rating.getEventID());
     }
     @PutMapping("/updateRating")
     @ResponseStatus(HttpStatus.CREATED)
