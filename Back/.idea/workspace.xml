@@ -5,9 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Repository/InterestRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/RatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/RatingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/RatingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/RatingServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Entity/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Entity/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Entity/InterestedBy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Entity/Interested.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Repository/ImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Repository/ImageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Repository/InterestByRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/InterestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/InterestServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/InterestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/events/events-stats/events-stats.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/events/events-stats/events-stats.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/models/event.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/models/event.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/event.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/event.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/display/display.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/display/display.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/display/display.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/display/display.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/events-list/events-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/events-list/events-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/models/event.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/models/event.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/services/event-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/services/event-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +70,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -205,6 +221,9 @@
       <workItem from="1708757087593" duration="2569000" />
       <workItem from="1708792537781" duration="4735000" />
       <workItem from="1708865737496" duration="6191000" />
+      <workItem from="1708936498451" duration="3273000" />
+      <workItem from="1709047775742" duration="9174000" />
+      <workItem from="1709058868158" duration="295000" />
     </task>
     <servers />
   </component>

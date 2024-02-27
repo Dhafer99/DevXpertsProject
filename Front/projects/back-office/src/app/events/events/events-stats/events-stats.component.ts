@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import * as highlinecharts from 'angular-highcharts';
 import { EventService } from '../../../services/event.service';
-import { Event, InterestedBy } from '../../../models/event';
+import { Event, Interested } from '../../../models/event';
 import { ChartserviceService } from '../../../services/chartservice.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { ChartserviceService } from '../../../services/chartservice.service';
 export class EventsStatsComponent implements OnInit{
   eventList:Event[]=[]
   createseries:any;
-  interestedBys:InterestedBy[]=[]
+  interestedBys:Interested[]=[]
   interestnumbers:string[]=[]
   interestdata:number[][]=[]
   interestCountMap = new Map<string, number>()
@@ -139,11 +139,11 @@ export class EventsStatsComponent implements OnInit{
 
   countInterestedByPerDay(Event: Event) {
  
-    this.interestedBys!=Event.interestedBys
+    this.interestedBys!=Event.interesteds
     const eventIndex=this.interestDataCounter[0].indexOf(Event.name);
     // Iterate through each InterestedBy
     this.interestDataCounter[eventIndex+2]=[];
-    for (const interestedBy of Event.interestedBys!) {
+    for (const interestedBy of Event.interesteds!) {
       // Get the date string in the format YYYY-MM-DD
   
       const dateString = interestedBy.timestamp.toLocaleString().split('T')[0]

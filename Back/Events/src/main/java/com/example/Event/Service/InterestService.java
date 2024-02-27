@@ -1,15 +1,16 @@
 package com.example.Event.Service;
 
-import com.example.Event.Entity.InterestedBy;
+import com.example.Event.Entity.Event;
+import com.example.Event.Entity.Interested;
 
 import java.util.List;
 
 public interface InterestService {
 
-public void save(int event,int userId);
-public void remove(int event,int userId);
-    public void remove(InterestedBy interested);
-    public List<InterestedBy> findByUserID(int user);
-    public List<InterestedBy> findAllInterests();
+public Interested save(int event,int userId);
+
+    public Event remove(int id);
+    public List<Interested> findByUserID(int user);
+    public List<Interested> findAllInterests();
 
 }

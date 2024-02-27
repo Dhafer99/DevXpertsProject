@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Table
 @Builder
-public class InterestedBy {
+public class Interested {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id ;

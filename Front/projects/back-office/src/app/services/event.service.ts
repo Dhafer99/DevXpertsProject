@@ -8,7 +8,7 @@ import { Image } from '../models/image';
   providedIn: 'root'
 })
 export class EventService {
-  __URL = 'http://localhost:8091/api/Event'
+  __URL = 'http://192.168.43.149:8091/api/Event'
   eventURL='/Events'
   interestURL='/Interest'
   ratingURL='/Rating'

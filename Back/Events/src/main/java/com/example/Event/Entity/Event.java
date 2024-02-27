@@ -52,7 +52,7 @@ public class Event {
 
     /// One to Many    UNIDIRECTIONNEL -----> i dont have accss to the USERs
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<InterestedBy> interestedBys;
+    private Set<Interested> interesteds;
 
     /// One to Many    UNIDIRECTIONNEL   -- ----  association Galery
     // les personne qui peut voir les stats du event/admin

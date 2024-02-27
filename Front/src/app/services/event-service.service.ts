@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Image } from '../models/image';
 import { Event, Rating } from '../models/event';
+import { Interested } from "../models/Interested";
 @Injectable({
   providedIn: 'root'
 })
@@ -47,10 +48,27 @@ export class EventServiceService {
   }
   //------------------------------------------------------------------------------------------
     //-----------------------------------Rating related URLS-------------------------------------
+    // this does add / update on a rating nothing to change here
     addRating(Rating:Rating):Observable<Event>{
       //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
    
       return  this.http.post<Event>(this.__URL+this.ratingURL+'/addRating',Rating)
+  
+    }
+  //-------------------------------- ------------------------------
+     //----------------------------------Interested related URLS-------------------------------------
+    // this does add / update on a rating nothing to change here
+    addInterest(user:number,event:number):Observable<Interested>{
+      //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+        console.log(this.__URL+this.interestURL+'/addInterest/'+user+'/'+event)
+      return   this.http.get<Interested>(this.__URL+this.interestURL+'/addInterest/'+user+'/'+event )
+  
+    }
+
+    deleteInterest(interest:Interested):Observable<Event>{
+      //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+        console.log(this.__URL+this.interestURL+'/removeInterest/'+interest.id)
+      return  this.http.delete<Event>(this.__URL+this.interestURL+'/removeInterest/'+interest.id )
   
     }
   //-------------------------------- ------------------------------

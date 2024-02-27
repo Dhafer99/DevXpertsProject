@@ -1,7 +1,8 @@
 package com.example.Event.Controller;
 
 
-import com.example.Event.Entity.InterestedBy;
+import com.example.Event.Entity.Event;
+import com.example.Event.Entity.Interested;
 import com.example.Event.Service.InterestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,31 +19,27 @@ import java.util.List;
 public class InterestController {
     private final InterestService service ;
 
-    @PostMapping("/addInterest/{user}/{event}")
+    @GetMapping("/addInterest/{user}/{event}")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addInterest(@PathVariable("user") int user,@PathVariable("event") int event )
+    public Interested addInterest(@PathVariable("user") int user,@PathVariable("event") int event )
     {
-        service.save(event,user);
+      return  service.save(event,user);
     }
     @GetMapping("/AllInterest")
-    public ResponseEntity<List<InterestedBy>> findAllInterests(){
+    public ResponseEntity<List<Interested>> findAllInterests(){
         return ResponseEntity.ok(service.findAllInterests());
     }
     @GetMapping("/UserInterest/{user}")
-    public ResponseEntity<List<InterestedBy>> findUserIntereset(@PathVariable("user") int user){
+    public ResponseEntity<List<Interested>> findUserIntereset(@PathVariable("user") int user){
         return ResponseEntity.ok(service.findByUserID(user));
     }
 
-    @DeleteMapping("/removeInterest/event")
+
+
+    @DeleteMapping("/removeInterest/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void remove(@RequestBody InterestedBy interestedBy)
+    public Event remove(@PathVariable("id") int id)
     {
-        service.remove(interestedBy);
-    }
-    @DeleteMapping("/removeInterest/{user}/{event}")
-    @ResponseStatus(HttpStatus.OK)
-    public void remove(@PathVariable("user") int event,@PathVariable("user") int userId )
-    {
-        service.remove(event,userId);
+      return   service.remove(id);
     }
 }

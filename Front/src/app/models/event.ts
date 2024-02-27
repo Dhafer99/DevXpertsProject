@@ -1,5 +1,6 @@
 // event.ts
 
+import { Interested } from "./Interested"
 import { Image } from "./image";
 
 export class Event {
@@ -24,20 +25,11 @@ export class Event {
 imageId?:number;
 //-------------------
 
-interestedBys?: InterestedBy[]; // Assuming InterestedBy is another TypeScript interface
+interesteds?: Interested[]; // Assuming InterestedBy is another TypeScript interface
     images?: Image[];
     ratings?: Rating[];
   }
   
-  // Assuming the following interfaces for related entities
-  
-  export class InterestedBy {
-    id!: number;
-    userID!: number;
-    eventID!: number;
-    timestamp!: Date;
-  }
-
   export class Rating {
     id!: number;
     userID!: number;

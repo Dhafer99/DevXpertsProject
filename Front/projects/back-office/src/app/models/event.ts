@@ -22,16 +22,16 @@ export class Event {
       imageUrl?:string
       imageIdCloudinary?:string
 imageId?:number;
-//-------------------
+//-------------------   
 
-interestedBys?: InterestedBy[]; // Assuming InterestedBy is another TypeScript interface
+interesteds?: Interested[]; // Assuming InterestedBy is another TypeScript interface
     images?: Image[];
     ratings?: Rating[];
   }
   
   // Assuming the following interfaces for related entities
   
-  export class InterestedBy {
+  export class Interested {
     id!: number;
     userID!: number;
     eventID!: number;

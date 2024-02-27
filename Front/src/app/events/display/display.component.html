@@ -9,10 +9,17 @@
 							<p> Rating
 								  {{event.rating | number: '1.2-2' }}
 							</p>
+							<div *ngIf="!interested">
+						<button  class="form-control Submit" (click)="addInterest()" aria-label="Sizing example input" >Interested</button>
+							</div>
+							<div *ngIf="interested">
+						<button class="form-control Submit" (click)="removeInterest()" aria-label="Sizing example input" >Remove Interest</button>
+							</div>
 <form [formGroup]= "myform" >
 <input type="text" formControlName="comment">
 						<ngb-rating [max]="5" formControlName="rating"></ngb-rating>
 						<button type="Submit" class="form-control Submit" (click)="add()" aria-label="Sizing example input" >Sumbit</button>
+
 </form>
 
 <table>
