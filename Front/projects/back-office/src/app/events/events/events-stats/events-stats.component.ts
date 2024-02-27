@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import * as highlinecharts from 'angular-highcharts';
+import * as highcharts from 'angular-highcharts';
 import { EventService } from '../../../services/event.service';
 import { Event, Interested } from '../../../models/event';
 import { ChartserviceService } from '../../../services/chartservice.service';
@@ -20,10 +20,10 @@ export class EventsStatsComponent implements OnInit{
   
   constructor(private eventService:EventService,private chartservice:ChartserviceService){}
   
-  linechart = new highlinecharts.Chart({
+  linechart = new highcharts.Chart({
     
   });
-  barchart=new highlinecharts.Chart({
+  barchart=new highcharts.Chart({
     
   })
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class EventsStatsComponent implements OnInit{
     
   }
   linechartrecreate(){
-    this.linechart = new highlinecharts.Chart({
+    this.linechart = new highcharts.Chart({
       chart: {
         type: 'line'
       },
@@ -67,11 +67,16 @@ export class EventsStatsComponent implements OnInit{
   }
 
   populateEmptyfield(){
+    console.log("populateEmptyfield")
     for (let i = 0; i < this.interestDataCounter.length; i++) {
       for (let j = 0; j < this.interestDataCounter[i].length; j++) {
-        if (this.interestDataCounter[i][j] === undefined || this.interestDataCounter[i][j] === null || this.interestDataCounter[i][j] === '') {
+        const value= this.interestDataCounter[i][j]
+        console.log("Indexes I =="+i+" J=="+j)
+        console.log(this.interestDataCounter[i][j])
+        if (value === undefined || value === null || value === '' || (typeof value==='number' && isNaN(value)) ) {
           this.interestDataCounter[i][j] = 0;
         }
+        console.log( "Result ==> "+this.interestDataCounter[i][j])
       }
     }
   }
@@ -80,15 +85,22 @@ export class EventsStatsComponent implements OnInit{
     let allZeros :boolean
     // Iterate through the columns (starting from the third column)
     console.log(this.interestDataCounter[1].length)
-    for (let j = 0; j < this.interestDataCounter.length; j++) {
+    for (let j = 0; j < this.interestDataCounter[1].length; j++) {
        allZeros = true;
-      console.log(this.interestDataCounter.length)
-      // Check each row in the current column
-      for (let i = 2; i < this.interestDataCounter[1].length; i++)
-        {
+       console.log("Full lenght")
 
-        
-        if (this.interestDataCounter[i][j] !== 0) {
+        console.log(this.interestDataCounter)
+      // Check each row in the current column
+      for (let i = 2; i < this.interestDataCounter.length; i++)
+        {
+          console.log("Compârring")
+          
+          console.log(this.interestDataCounter[i])
+          console.log("J == >" ,j)
+          console.log(this.interestDataCounter[i][j])
+          
+        if (this.interestDataCounter[i][j] != 0 ) {
+          console.log("CHanging Value")
           allZeros = false;
 
         }
@@ -103,13 +115,18 @@ export class EventsStatsComponent implements OnInit{
   
     console.log("INDEXES TO REMOVE")
     console.log(indexesToRemove)
+    console.log(this.interestDataCounter)
     // Remove the marked columns
     for (let k = indexesToRemove.length - 1; k >= 0; k--) {
       const indexToRemove = indexesToRemove[k];
       this.interestDataCounter[1].splice(indexToRemove, 1); // Remove from the header row
      // this.interestDataCounter[].splice(indexToRemove, 1);
       // Remove the entire column from each row
-      for (let l = 0; l < this.interestDataCounter.length; l++) {
+        for (let j=k;j<indexesToRemove.length;j++)
+        {
+          indexesToRemove[j]=indexesToRemove[j]-1
+        }
+      for (let l =2; l < this.interestDataCounter.length; l++) {
         this.interestDataCounter[l].splice(indexToRemove, 1);
       }
     }
@@ -165,7 +182,6 @@ export class EventsStatsComponent implements OnInit{
   handleCheckboxChange(event:Event ): void {
     const index = this.interestDataCounter[0].indexOf(event.name);
     const eventId=event.name;
-  
       // If checked, add event ID to the array
       if (index === -1) {
         this.interestDataCounter[0].push(eventId);
@@ -184,5 +200,6 @@ export class EventsStatsComponent implements OnInit{
     }
     this.updatelinechart()
     console.log(this.interestDataCounter);
+    
   }
 }
