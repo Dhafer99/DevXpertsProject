@@ -5,4 +5,5 @@ import tn.esprit.auction.Entites.Company;
 
 
 public interface CompanyRepository  extends JpaRepository<Company,Long> {
+
 }

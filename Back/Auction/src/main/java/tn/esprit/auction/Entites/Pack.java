@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +26,10 @@ public class Pack {
     private String description ;
     private boolean status ;
     private boolean reserved ;
+    private Date creationDate ;
+    @ManyToOne(fetch = FetchType.EAGER)
+
+    private Company company;
     // supplier
     // company
     private float price ;
@@ -33,4 +39,6 @@ public class Pack {
     private Room room;
 
 
+    public Pack(TypePack typePack, int i, double v) {
+    }
 }

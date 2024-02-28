@@ -2,10 +2,12 @@ package tn.esprit.auction.Services;
 
 
 
+import tn.esprit.auction.Entites.Company;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.TypePack;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PackageInterface {
     List<Pack> getpackBYType(TypePack typePack);
@@ -21,6 +23,12 @@ public interface PackageInterface {
     List<Pack> findMyPacks ();
 
     List<Pack> findPacksByIdRoom (Long idroom);
-    void
-    delete (Pack idpack);
+    void delete (Pack idpack);
+
+    Map<Integer, Map<Long, Long>> getPackStatisticsByYear();
+
+
+    double RevenuePeTypePack (TypePack pack);
+    List<Double> calculateReservationPercentageByType() ;
+    List<Company> findTopLoyalCustomers(int topCount);
 }

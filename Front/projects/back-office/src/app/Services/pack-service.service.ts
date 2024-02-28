@@ -14,6 +14,14 @@ export class PackServiceService {
     })
   };
   constructor(private http: HttpClient ) { }
+/********************* stat  */
+public getPackStatisticsByYearAndStatus (  ): Observable<any>
+{
+  return this.http.get<any>( this.url + "getPackStatisticsByYearAndStatus" );
+}
+
+/********************* stat  */
+
   public getDetailsPackById ( id: number ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }retrievePackage/${ id }`, {
@@ -52,4 +60,31 @@ export class PackServiceService {
     } );
  
   }
+
+
+  public RevenuePeTypePack ( typePack: string ): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }RevenuePeTypePack/${ typePack }`, {
+      withCredentials: true,
+    } );
+ 
+  }
+
+
+  public calculateReservationPercentageByType (  ): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }calculateReservationPercentageByType`, {
+      withCredentials: true,
+    } );
+ 
+  }
+  public toployalcustomers (  ): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }toployalcustomers`, {
+      withCredentials: true,
+    } );
+ 
+  }
+
+  
 }

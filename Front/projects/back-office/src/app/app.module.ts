@@ -13,6 +13,7 @@ import { HistoriquePacksComponent } from './PackManagementAdmin/historique-packs
 import { CreateRoomComponent } from './RoomManagement/create-room/create-room.component';
 import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.component';
 import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
+import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.co
     HistoriquePacksComponent,
     CreateRoomComponent,
     ViewRoomsComponent,
-    DetailRoomComponent
+    DetailRoomComponent,
+    PackSalesPerYearComponent
     ,
    
   ],

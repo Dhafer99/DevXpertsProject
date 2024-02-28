@@ -3,20 +3,45 @@ package tn.esprit.auction.Controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.auction.Entites.Company;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.TypePack;
 import tn.esprit.auction.Services.PackageInterface;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-@CrossOrigin(origins = {"http://localhost:4203", "http://localhost:4201"})
+@CrossOrigin(origins = {"http://localhost:4203", "http://localhost:4201","http://localhost:63858"})
 @Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/packs")
 public class PackageController {
     PackageInterface packageInterface;
+    ////////Stat
+    @GetMapping("/getPackStatisticsByYearAndStatus")
+    public  Map<Integer, Map<Long, Long>> getPackStatisticsByYearAndStatus() {
+        return  packageInterface.getPackStatisticsByYear();
+    }
+
+    @GetMapping("/RevenuePeTypePack/{typePack}")
+    public  double RevenuePeTypePack(@PathVariable("typePack") TypePack typePack) {
+        return  packageInterface.RevenuePeTypePack(typePack);
+    }
+    @GetMapping("/calculateReservationPercentageByType")
+    public   List<Double> calculateReservationPercentageByType() {
+        return  packageInterface.calculateReservationPercentageByType();
+    }
+    @GetMapping("/toployalcustomers")
+    public List<Company> getTopLoyalCustomers() {
+
+        return packageInterface.findTopLoyalCustomers(5);
+    }
+ 
+
+
     // Afficher les packs d'un room
     @GetMapping("/getRoomPackages")
     public List<Pack> getRoomPackages(@RequestParam Long idRomm) {

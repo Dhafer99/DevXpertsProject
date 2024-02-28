@@ -55,7 +55,7 @@ export class DetailRoomComponent  implements OnInit {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "room Created Successfully ",
+          title: "room updated Successfully ",
           showConfirmButton: false,
           timer: 1500,
         });
