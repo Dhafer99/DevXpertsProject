@@ -128,4 +128,14 @@ public class ApplicationService implements IApplicationService{
         return applicationRepository.countStagesByOfferExhibitor(exhibitorId, typeOffer);
     }
 
+    @Override
+    public List<Object[]> countApplicationsByOfferANdTypeOffer(TypeOffer typeOffer) {
+        return applicationRepository.countApplicationsByOfferANdTypeOffer(typeOffer);
+    }
+
+    @Override
+    public List<Object[]> getRecommendedOffersForUserApp(long id) {
+        return applicationRepository.findRecommendedOffersForUserApp(id);
+    }
+
 }

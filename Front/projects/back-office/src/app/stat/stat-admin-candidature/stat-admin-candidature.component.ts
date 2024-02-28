@@ -39,7 +39,9 @@ export class StatAdminCandidatureComponent implements OnInit{
   nbrApplicationMounth!:any;
   nbrOffersByType!:any;
   year!:string;
-  currentYear!:string
+  currentYear!:string;
+  colors:any;
+  lab:any;
   
   ngOnInit(): void {
 
@@ -58,6 +60,55 @@ export class StatAdminCandidatureComponent implements OnInit{
 
      const labels = this.nbrStatus.map((item: any[]) => item[0]);
      const data = this.nbrStatus.map((item: any[]) => item[1]);
+     
+     
+
+     if (labels.length==1)
+     {
+        //for (let i = 0; i < labels.length; i++) {
+        if (labels[0] == "en_cours")
+        {
+          this.lab=["In progress"]
+          this.colors=["#F6B600"];
+        }
+        else if(labels[0] == "accépté" )
+        {
+          this.lab=["Accepted"]
+          this.colors=["#08CC0A"];
+        }
+        else if(labels[0] == "refusé")
+        {
+          this.lab=["Refused"]
+          this.colors=["#FF0000"];
+        }
+      //}
+     }
+     else if (labels.length==2)
+     {
+      //for (let i = 0; i < labels.length; i++) {
+        if (labels[0] == "en_cours" && labels[1] == "accépté")
+        {
+          this.lab=["In progress","Accepted"]
+          this.colors=["#F6B600","#08CC0A"]
+        }
+        else if (labels[0] == "en_cours" && labels[1] == "refusé")
+        {
+          this.lab=["In progress","Refused"]
+          this.colors=["#F6B600","#FF0000"]
+        }
+        else if (labels[0] == "accépté" && labels[1] == "refusé")
+        {
+          this.lab=["Accepted","Refused"]
+          this.colors=["#08CC0A","#FF0000"]
+        //}
+      }
+     }
+     else if (labels.length==3)
+     {
+      this.lab=["In progress","Accepted","Refused"]
+      this.colors=["#F6B600","#08CC0A","#FF0000"]
+     }
+     
 
       this.chartOptions_status = {
       series: data,
@@ -65,8 +116,9 @@ export class StatAdminCandidatureComponent implements OnInit{
         type: "donut",
         width: 390
       },
-      labels: ["In progress","Accepted","Refused"],//labels,
-      colors: ["#F6B600", "#08CC0A", "#FF0000"],
+      
+      labels: /*["In progress","Accepted","Refused"],*/this.lab,
+      colors: /*["#F6B600", "#08CC0A", "#FF0000"], */this.colors,
       responsive: [
         {
           breakpoint: 480,

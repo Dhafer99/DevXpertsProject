@@ -93,10 +93,6 @@ public class OfferService implements IOfferService{
         return offerRepository.countOffersByType();
     }
 
-    @Override
-    public List<Offer> getRecommandedOffersForUser(long id) {
-        return offerRepository.findRecommendedOffersForUser(id);
-    }
 
     @Override
     public boolean hasApplied(long idOffer, long idCandidat) {

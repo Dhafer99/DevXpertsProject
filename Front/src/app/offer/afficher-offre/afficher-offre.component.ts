@@ -19,17 +19,49 @@ export class AfficherOffreComponent implements OnInit{
   listOffers:any;
   listStages:any;
   listJobs:any;
-  listRecommander:Offer[]=[]
+  listRecommander:any;
   role!:string;
   idUser!:string;
   
   ngOnInit(): void {
     this.role="student"
-    this.idUser="1"
-    this.getOffersByExibitor();
-    this.getOffersTypeJobByExibitor();
-    this.getOffersTypeStageByExibitor();
-    this.getOffresRecommanderPourUser(this.idUser);
+    this.idUser="2"
+    if (this.role=="exibitor"){
+      this.getOffersByExibitor();
+      this.getOffersTypeJobByExibitor();
+      this.getOffersTypeStageByExibitor();
+    }
+    else {
+      this.getOffersForUser();
+      this.getJobsForUser();
+      this.getStagesForUser();
+      this.getOffresRecommanderPourUser(this.idUser);
+    }
+  
+  }
+
+  getOffersForUser(){
+    this.candidatureService.nbrApplicationOnOffer().subscribe(res=>{
+        //this.nbrCandidature.push(res);
+        this.listOffers=res;
+      })
+  }
+  getJobsForUser(){
+    this.candidatureService.getCountApplicationsByOfferANdTypeOffer("job").subscribe(res=>{
+        //this.nbrCandidature.push(res);
+        this.listJobs=res;
+      })
+  }
+  getStagesForUser(){
+    this.candidatureService.getCountApplicationsByOfferANdTypeOffer("stage").subscribe(res=>{
+        //this.nbrCandidature.push(res);
+        this.listStages=res;
+      })
+  }
+  getOffresRecommanderPourUser(id:string){
+    this.candidatureService.getRecommendedOffersForUserApp(id).subscribe(res=>{
+      this.listRecommander=res
+    })
   }
 
   getOffersByExibitor(){
@@ -51,11 +83,6 @@ export class AfficherOffreComponent implements OnInit{
     this.listJobs=data})
   }
 
-  getOffresRecommanderPourUser(id:string){
-    this.offerService.getRecommandedOffersForUser(id).subscribe(res=>{
-      this.listRecommander=res
-    })
-  }
 
   detail(){
     alert('Your details are displayed'+this.listOffers[0]['file']) //

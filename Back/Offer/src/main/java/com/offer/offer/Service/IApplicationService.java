@@ -30,4 +30,7 @@ public interface IApplicationService {
     List<Object[]> getCountApplicationsByOfferExhibitor(long exhibitorId);
     //countStagesByOfferExhibitor
     List<Object[]> getCountStagesByOfferExhibitor(long exhibitorId, TypeOffer typeOffer);
+    List<Object[]> countApplicationsByOfferANdTypeOffer(TypeOffer typeOffer);
+
+    List<Object[]> getRecommendedOffersForUserApp(long id);
 }

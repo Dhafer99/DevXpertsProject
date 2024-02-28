@@ -143,10 +143,6 @@ public class OfferController {
     public List<Offer> getOffersAppliedByUser(@PathVariable("idUser")long id){
         return applicationService.offersOfUser(id);
     }
-    @GetMapping("/getRecommandedOffersForUser/{idUser}")
-    public List<Offer> getRecommandedOffersForUser(@PathVariable("idUser")long id){
-        return offerService.getRecommandedOffersForUser(id);
-    }
     @GetMapping("/hasApplied/{idUser}/{idOffer}")
     public boolean hasApplied(@PathVariable("idUser")long idUser,@PathVariable("idOffer")long idOffer){
         return offerService.hasApplied(idOffer, idUser);

@@ -88,4 +88,16 @@ public class ApplicationController {
         return applicationService.getCountStagesByOfferExhibitor(exhibitorId,typeOffer);
     }
 
+    @GetMapping("getCountApplicationsByOfferANdTypeOffer/{typeOffer}")
+    public List<Object[]> getCountApplicationsByOfferANdTypeOffer(@PathVariable("typeOffer")TypeOffer typeOffer)
+    {
+        return applicationService.countApplicationsByOfferANdTypeOffer(typeOffer);
+    }
+    //getRecommendedOffersForUserApp
+    @GetMapping("getRecommendedOffersForUserApp/{idUser}")
+    public List<Object[]> getRecommendedOffersForUserApp(@PathVariable("idUser")long idUser)
+    {
+        return applicationService.getRecommendedOffersForUserApp(idUser);
+    }
+
 }

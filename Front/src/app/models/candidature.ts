@@ -9,4 +9,5 @@ export class Candidature {
     idCandidat!:number;
     offer!:Offer;
     status!:Status;
+    applicationDate!:Date;
 }

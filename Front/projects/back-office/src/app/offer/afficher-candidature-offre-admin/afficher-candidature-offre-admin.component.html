@@ -1,78 +1,62 @@
-<div id="main-wrapper">
-
-    <div class="content-body">
+<div class="content-body">
+    <div class="container-fluid">
         <!-- row -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="card">
-                        <div class="card-body p-0">
-                            <div class="card review-table p-0 border-0"  *ngFor="let c of listCandidatures ;let i=index">
-                                <div
-                                    class="d-lg-flex  d-block flex-wrap align-items-center py-4   border-bottom side-box">
-                                    <div class="col-xl-4 col-xxl-4 col-lg-5 col-md-12">
-                                        <div class="media align-items-center review-img">
-                                            <div class="card-body p-0">
-                                                <p class="text-primary fs-14 mb-0">{{c.offer.nbrCandidature}}</p>
-                                                <h3 class="fs-20 text-black font-w600 mb-2">{{c.offer.offer}}</h3>
-                                                <span class="text-dark">{{c.offer.lastDateApplication}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-5 col-xxl-4 col-lg-7 col-md-12 mt-3 mt-lg-0">
-                                        <p class="mb-0 text-dark"><b>{{c.offer.titre}} : </b>{{c.offer.description}}
-                                        </p>
-                                    </div>
-                                    <div
-                                        class="col-xl-3 col-xxl-4 col-lg-7 col-md-12 offset-lg-5 offset-xl-0 mt-xl-0 mt-3">
-                                        <div class="row align-items-center">
-                                            <div class="text-xl-center start-bx col-xl-7 col-sm-9 col-lg-8 col-6">
-                                                <p>Nom et Prenom candidat {{c.idCandidat}}</p>
-                                            </div>
-                                            <div class="col-xl-5 col-sm-3 col-lg-4 col-6 btn " *ngIf="c.status.toString()=='en_cours'">
-                                                <a href="javascript:void(0);" class="text-warning fs-14 font-w600"><i class="far fa-solid fa-hourglass"></i></a>
-                                            </div>
-                                            <div class="col-xl-5 col-sm-3 col-lg-4 col-6 btn " *ngIf="c.status.toString()=='accépté'">
-                                                <a href="javascript:void(0);" class="text-success fs-14 font-w600 me-3"><i class="far fa-check-circle"></i></a>
-                                            </div>
-                                            <div class="col-xl-5 col-sm-3 col-lg-4 col-6 btn " *ngIf="c.status.toString()=='refusé'">
-                                                <a href="javascript:void(0);" class="text-danger fs-14 font-w600"><i class="far fa-times-circle"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-            <!-- PAGINATION
-            <div class="col-xl-12">
-                <div class="d-sm-flex d-block align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 mb-3">Showing 1 to 5 of 5 entries</h4>
-                    <nav>
-                        <ul class="pagination">
-                            <li class="page-item page-indicator">
-                                <a class="page-link" href="javascript:void(0)">
-                                    <i class="la la-angle-left"></i></a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                            <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                            <li class="page-item page-indicator">
-                                <a class="page-link" href="javascript:void(0)">
-                                    <i class="la la-angle-right"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+        <div class="row">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Applications </h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-responsive-md">
+                    <thead>
+                        <tr>
+                            <th style="width:50px;">
+                                <div class="form-check custom-checkbox checkbox-success check-lg me-3">
+                                    <input type="checkbox" class="form-check-input" id="checkAll" required="">
+                                    <label class="form-check-label" for="checkAll"></label>
+                                </div>
+                            </th>
+                            <th><strong>ROLL NO.</strong></th>
+                            <th><strong>NAME</strong></th>
+                            <th><strong>Offer</strong></th>
+                            <th><strong>Date</strong></th>
+                            <th><strong>Status</strong></th>
+                            <th><strong></strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of listCandidatures ;let i=index">
+                            <td>
+                                <div class="form-check custom-checkbox checkbox-success check-lg me-3">
+                                    <input type="checkbox" class="form-check-input" id="customCheckBox2" required="">
+                                    <label class="form-check-label" for="customCheckBox2"></label>
+                                </div>
+                            </td>
+                            <td><strong>{{c.id}}</strong></td>
+                            <td>
+                                <div class="d-flex align-items-center"><img src="images/avatar/1.jpg"
+                                        class="rounded-lg me-2" width="24" alt="" /> <span class="w-space-no">{{c.idCandidat}}Candidat</span></div>
+                            </td>
+                            <td>{{c.offer.titre}} </td>
+                            <td>{{c.applicationDate| date:'dd MMMM yyyy'}}</td>
+                            <td>
+                                <div class="d-flex align-items-center" *ngIf="c.status.toString()=='accépté'"><i class="fa fa-circle text-success me-1"></i>
+                                    Successful</div>
+                                <div class="d-flex align-items-center" *ngIf="c.status.toString()=='en_cours'"><i
+                                        class="fa fa-circle text-danger me-1"></i>
+                                    Refused</div>
+                                <div class="d-flex align-items-center" *ngIf="c.status.toString()=='refusé'"><i
+                                        class="fa fa-circle text-warning me-1"></i>
+                                    In Progress</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    -->
-
-
+</div>
 </div>

@@ -19,7 +19,6 @@ public interface IOfferService {
     List<Offer> getOfferByDomaineEntreprise(long idExibitor);
     List<Offer> getOffersByTypeOffer(TypeOffer typeOffer, long id);
     List<Object[]> getCountOffersByType();
-    List<Offer> getRecommandedOffersForUser(long id);
 
     boolean hasApplied(long idOffer, long idCandidat);
 

@@ -15,9 +15,12 @@ export class AfficherOfferAdminComponent {
   listOffers:Offer[]=[]
   nbrCandidature:number[]=[]
   newListOffers!:any
+  currentDate!:Date;
+  h!:boolean;
 
   
   ngOnInit(): void {
+    this.currentDate = new Date();
   /*this.offerService.getAllOffers().subscribe((data:Offer[])=>{
   this.listOffers=data
   console.log("mylist:"+JSON.stringify(this.listOffers))
@@ -28,7 +31,9 @@ export class AfficherOfferAdminComponent {
       this.candidatureService.nbrApplicationOnOffer().subscribe(res=>{
         //this.nbrCandidature.push(res);
         this.newListOffers=res;
-        console.log("AAAAA"+JSON.stringify(this.newListOffers))
+        this.h=this.newListOffers[0].lastDateApplication>this.currentDate.toISOString();
+        //console.log("AAAAA"+JSON.stringify(this.newListOffers))
+        //console.log("GGG"+this.currentDate<this.newListOffers[0].lastDateApplication+"date"+this.currentDate)
       })
     
   }

@@ -64,5 +64,14 @@ export class CandidatureService {
   {
     return this.http.get<any>(this.offerUrl+"/getCountStagesAndOffersByOfferExhibitor/"+exhibitorId+'/'+typeOffer)
   }
-  
+  ///api/Application/getCountApplicationsByOfferANdTypeOffer/{typeOffer}
+  getCountApplicationsByOfferANdTypeOffer(typeOffer:string):Observable<any>
+  {
+    return this.http.get<any>(this.offerUrl+"/getCountApplicationsByOfferANdTypeOffer/"+typeOffer)
+  }
+  ///api/Application/getRecommendedOffersForUserApp/{idUser}
+  getRecommendedOffersForUserApp(idUser:string):Observable<any>
+  {
+    return this.http.get<any>(this.offerUrl+"/getRecommendedOffersForUserApp/"+idUser)
+  }
 }
