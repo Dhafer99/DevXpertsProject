@@ -17,6 +17,7 @@ export class EventsStatsComponent implements OnInit{
   interestdata:number[][]=[]
   interestCountMap = new Map<string, number>()
   interestDataCounter: (string |number )[][]=[[], []];
+  totalsDataCounter:(string | number )[][]=[[],[]];
   
   constructor(private eventService:EventService,private chartservice:ChartserviceService){}
   
@@ -38,6 +39,12 @@ export class EventsStatsComponent implements OnInit{
       ) 
     
   }
+  updatebarchart(){
+    this.barchart= this.chartservice.ChartRecreateBar(this.barchart,'bar',this.totalsDataCounter[1],"Total Data",
+     this.totalsDataCounter
+     ) 
+   
+ }
   linechartrecreate(){
     this.linechart = new highcharts.Chart({
       chart: {
@@ -179,26 +186,46 @@ export class EventsStatsComponent implements OnInit{
     this.sortData()
     this.populateEmptyfield()
   }
+  affectTotalsDataCounter(event:Event){
+    const eventIndex=this.totalsDataCounter[0].indexOf(event.name);
+   
+    this.totalsDataCounter[1]=["Total Interest","Total Views"];
+    this.totalsDataCounter.push();
+    this.totalsDataCounter[eventIndex+2]=[event.interestedCounter,event.viewsCounter];
+
+  }
   handleCheckboxChange(event:Event ): void {
     const index = this.interestDataCounter[0].indexOf(event.name);
     const eventId=event.name;
       // If checked, add event ID to the array
       if (index === -1) {
+        // Line chart things
         this.interestDataCounter[0].push(eventId);
-        this.countInterestedByPerDay(event)
+        console.log("Initial PUSH == " +this.interestDataCounter)
+        this.countInterestedByPerDay(event);
+        // bar total things
+        this.totalsDataCounter[0].push(eventId);
+        console.log("Initial PUSH == " +this.totalsDataCounter)
+        this.affectTotalsDataCounter(event);
+      
       
     } else {
       // If unchecked, remove event ID and all numbers to the right
       if (index !== -1) {
+        // line chart things
         this.interestDataCounter[0].splice(index, 1);
         this.interestDataCounter.splice(index+2,1);
         console.log("THIS IS THE LIST WITH REMOVED ITEMS")
         console.log(this.interestDataCounter)
         this.removeEmptyField()
-        
+          // bar total things
+          this.totalsDataCounter[0].splice(index, 1);
+          this.totalsDataCounter.splice(index+2,1);
+
       }
     }
     this.updatelinechart()
+    this.updatebarchart();
     console.log(this.interestDataCounter);
     
   }
