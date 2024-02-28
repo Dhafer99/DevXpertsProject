@@ -9,6 +9,8 @@ import { ListPacksComponent } from './PackageManagementUser/list-packs/list-pack
 import { DetailPackComponent } from './PackageManagementUser/detail-pack/detail-pack.component';
 import { MyPacksComponent } from './PackageManagementUser/my-packs/my-packs.component';
 import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.component';
+import { AuctionRoomComponent } from './RoomManagementUser/auction-room/auction-room.component';
+import { CountdownComponentComponent } from './RoomManagementUser/countdown-component/countdown-component.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.c
     DetailPackComponent,
     MyPacksComponent,
     RoomsListComponent,
+    AuctionRoomComponent,
+    CountdownComponentComponent,
   ],
   imports: [
     BrowserModule,

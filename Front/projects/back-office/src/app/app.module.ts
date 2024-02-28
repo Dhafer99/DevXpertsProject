@@ -14,6 +14,7 @@ import { CreateRoomComponent } from './RoomManagement/create-room/create-room.co
 import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.component';
 import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
+import { AuctionComponent } from './auction/auction.component';
 
 
 @NgModule({
@@ -27,8 +28,9 @@ import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-
     CreateRoomComponent,
     ViewRoomsComponent,
     DetailRoomComponent,
-    PackSalesPerYearComponent
-    ,
+    PackSalesPerYearComponent,
+    AuctionComponent,
+   
    
   ],
   imports: [

@@ -9,5 +9,5 @@ import java.util.List;
 public interface RoomRepository extends JpaRepository<Room,Long> {
 
     Room findByTypePack(TypePack typePack);
-
+    Room findByCodeRoom(String code);
 }

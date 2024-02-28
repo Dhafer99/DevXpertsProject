@@ -14,6 +14,10 @@ import java.util.List;
 @RequestMapping("/api/rooms")
 public class RoomController {
     RoomInterface roomInterface ;
+    @PutMapping("/updatePrice/{nbrpoint}/{idroom}")
+    public float updatePrice(@PathVariable("nbrpoint") int nbrpoint ,@PathVariable("idroom") long idroom ) {
+        return  roomInterface.UpdatePrice(nbrpoint,idroom);
+    }
     @PostMapping("/addRoom")
     public void addRoom(@RequestBody Room room) {
 

@@ -74,6 +74,27 @@ PackgeRepository packgeRepository ;
     }
 
     @Override
+    public float UpdatePrice(int nbrpoint,Long idRoom) {
+        Room room = roomRepository.findById(idRoom).get() ;
+        float somme =0;
+        if(nbrpoint==50)
+        {
+           somme= room.getPriceAuction() + 30;
+        }
+        if(nbrpoint==100)
+        {
+            somme= room.getPriceAuction() + 50;
+        }
+        if(nbrpoint==150)
+        {
+            somme= room.getPriceAuction() + 100;
+        }
+        room.setPriceAuction(somme);
+        roomRepository.save(room);
+            return somme;
+    }
+
+    @Override
     public List<Company> getCapaniesParticipants( Long roomId) {
         Room room = roomRepository.findById(roomId).get();
 

@@ -31,4 +31,7 @@ public interface PackageInterface {
     double RevenuePeTypePack (TypePack pack);
     List<Double> calculateReservationPercentageByType() ;
     List<Company> findTopLoyalCustomers(int topCount);
+
+    void sendCoderoom(String emailCompany , String codeRoom);
+
 }

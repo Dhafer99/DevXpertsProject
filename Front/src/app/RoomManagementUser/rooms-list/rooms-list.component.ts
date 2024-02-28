@@ -13,13 +13,30 @@ export class RoomsListComponent implements OnInit{
   rooms: Room[] = [];
   test:boolean=false;
 
-  constructor(private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
+  constructor( private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
 
   ngOnInit() {
     this.roomService.getAllRooms().subscribe(res => {
       this.rooms = res;
     });
   }
+
+
+  sendcodeRoom(id:string){
+    this.packService.SendCodeRoom("eya.somai@esprit.tn",id).subscribe(
+      (r) => {
+       
+      },
+      (error) => {
+        console.error(
+          "Erreur lors de la récupération du room :",
+          error
+        );
+      }
+    );
+  }
+
+
       room!: Room ;
  Participate(id:number){
     this.roomService.getRoomById(id).subscribe(

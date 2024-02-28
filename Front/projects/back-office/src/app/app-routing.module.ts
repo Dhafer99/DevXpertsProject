@@ -20,7 +20,9 @@ const routes: Routes = [
 { path: 'HistoriquePacks', component: HistoriquePacksComponent },
 { path: 'viewRooms', component: ViewRoomsComponent },
 { path: 'viewRooms/detailRoom/:id', component: DetailRoomComponent },
-{ path: 'packSalesPerYear', component: PackSalesPerYearComponent }
+{ path: 'packSalesPerYear', component: PackSalesPerYearComponent },
+
+
 
 ];
 

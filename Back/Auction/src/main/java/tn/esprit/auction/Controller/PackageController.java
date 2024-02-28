@@ -2,8 +2,13 @@ package tn.esprit.auction.Controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.auction.Entites.Company;
+
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.TypePack;
 import tn.esprit.auction.Services.PackageInterface;
@@ -19,8 +24,18 @@ import java.util.Map;
 @AllArgsConstructor
 @RequestMapping("/api/packs")
 public class PackageController {
+
     PackageInterface packageInterface;
-    ////////Stat
+
+
+   /* @Autowired
+    private JavaMailSender mailSender;*/
+    @PutMapping("/SendCodeRoom/{email}/{code}")
+    public void SendCodeRoom(@PathVariable("email") String email, @PathVariable("code") String code) {
+       packageInterface.sendCoderoom(email,code);
+    }
+
+
     @GetMapping("/getPackStatisticsByYearAndStatus")
     public  Map<Integer, Map<Long, Long>> getPackStatisticsByYearAndStatus() {
         return  packageInterface.getPackStatisticsByYear();
@@ -39,7 +54,7 @@ public class PackageController {
 
         return packageInterface.findTopLoyalCustomers(5);
     }
- 
+
 
 
     // Afficher les packs d'un room

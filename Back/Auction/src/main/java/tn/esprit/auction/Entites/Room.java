@@ -24,10 +24,13 @@ public class Room {
     private Long idRoom;
     private String codeRoom;
     private float price;
+    private float priceAuction;
+
     private TypePack typePack ;
     private Date dateDebut;
     private int duration ;
     private int maxParticipants ;
+    private int confirmedParticipant ;
     private String description ;
     private Boolean status ;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)

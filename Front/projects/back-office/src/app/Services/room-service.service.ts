@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +38,19 @@ export class RoomServiceService {
   {
     return this.http.put<any>( this.url + 'updateRoom', data );
   
+  }
+
+
+  UpdatePriceAuction ( points: number,id:number  ): Observable<any> {
+    return this.http.put<any>(`${this.url}updatePrice/${points}/${id}`, {});
+  }
+
+  private auctionEndedSource = new Subject<void>();
+
+  auctionEnded$ = this.auctionEndedSource.asObservable();
+
+  endAuction(): void {
+    this.auctionEndedSource.next();
   }
 
 }

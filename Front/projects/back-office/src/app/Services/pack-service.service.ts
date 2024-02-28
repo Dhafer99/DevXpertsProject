@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PackServiceService {
+
+
+  
   url = "http://localhost:8083/api/packs/";
   httpOptions = {
     headers: new HttpHeaders({
@@ -86,5 +89,9 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
  
   }
 
+
+  public SendCodeRoom(email: string, code: string): Observable<any> {
+    return this.http.put<any>(`${this.url}SendCodeRoom/${email}/${code}`, {});
+  }
   
 }

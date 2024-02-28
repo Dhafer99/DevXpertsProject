@@ -1,6 +1,8 @@
 package tn.esprit.auction.Services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import tn.esprit.auction.Entites.Company;
 import tn.esprit.auction.Entites.Pack;
@@ -23,6 +25,7 @@ public class PackgeService implements PackageInterface {
     PackgeRepository packgeRepository ;
     RoomRepository roomRepository ;
     CompanyRepository companyRepository ;
+ //  private final SimpMessagingTemplate messagingTemplate;
 
     @Override
     public List<Pack> getpackBYType(TypePack typePack) {
@@ -189,20 +192,15 @@ packgeRepository.delete(idpack);
 
     @Override
     public List<Company> findTopLoyalCustomers(int topCount) {
-        // Récupérer tous les packs réservés
         List<Pack> reservedPacks = packgeRepository.findByReserved(Boolean.TRUE);
-
-        // Créer une carte pour stocker le nombre de réservations par client
         Map<Long, Integer> reservationsByCompany = new HashMap<>();
 
-        // Parcourir les packs réservés pour compter les réservations par client
         for (Pack pack : reservedPacks) {
             if(pack.getCompany()!=null) {
                 Long companyId = pack.getCompany().getId();
                 reservationsByCompany.put(companyId, reservationsByCompany.getOrDefault(companyId, 0) + 1);
             }  }
 
-        // Trier les clients par le nombre de réservations (en ordre décroissant)
         List<Long> loyalCustomerIds = reservationsByCompany.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(topCount)
@@ -210,13 +208,30 @@ packgeRepository.delete(idpack);
                 .collect(Collectors.toList());
         List<Company> topLoyalCustomers = new ArrayList<>();
         if(loyalCustomerIds!=null){
-
           topLoyalCustomers = loyalCustomerIds.stream()
                 .map(companyId -> companyRepository.findById(companyId).get())
                 .collect(Collectors.toList());}
 
 
         return topLoyalCustomers;
+    }
+
+    @Override
+    public void sendCoderoom(String emailCompany,String codeRoom) {
+
+        Room room = roomRepository.findByCodeRoom(codeRoom);
+        int nbr = room.getMaxParticipants();
+        if(room.getConfirmedParticipant()<nbr)
+        {
+            int nbrEntrant = room.getConfirmedParticipant()+1 ;
+        room.setConfirmedParticipant(nbrEntrant);
+            roomRepository.save(room);
+        }
+
+
+
+
+
     }
 
     private boolean isCreationYear(Pack pack, int currentYear) {
