@@ -21,6 +21,9 @@ public class EventServiceImpl implements EventService{
        Set<Image> list=event.getImages();
        if (event.getId()<1) {
            event.setImages(null);
+           eventRepository.save(event);
+           return event;
+
        }
 
         eventRepository.save(event);

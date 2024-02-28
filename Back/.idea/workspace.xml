@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/EventServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/EventServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/event-create/event-create.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/event-create/event-create.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +212,7 @@
       <workItem from="1709047775742" duration="9174000" />
       <workItem from="1709058868158" duration="295000" />
       <workItem from="1709078562980" duration="243000" />
-      <workItem from="1709110790004" duration="2436000" />
+      <workItem from="1709110790004" duration="2741000" />
     </task>
     <servers />
   </component>

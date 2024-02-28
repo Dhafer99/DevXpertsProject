@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventService } from '../../services/event.service';
 import { Event, EventType } from '../../models/event';
 import { Image } from '../../models/image';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-event-create',
@@ -12,6 +13,8 @@ import { Image } from '../../models/image';
 })
 export class EventCreateComponent implements OnInit {
   @Input() x!: string;
+
+
   image: File | null = null;
   imageMin: File | null = null;
   images: Image[] = [];
@@ -81,7 +84,7 @@ export class EventCreateComponent implements OnInit {
       .addEvent(this.newForm.value, this.images, this.mainImage)
       .subscribe((response) => {
         console.log(response);
-        console.log('classroom' + JSON.stringify(this.newForm.value));
+       
       });
     }
     else{
@@ -95,8 +98,18 @@ export class EventCreateComponent implements OnInit {
         console.log('classroom' + JSON.stringify(this.newForm.value));
       });
     }
+    this.swalSuces()
   }
 
+  swalSuces(){
+    console.log("Sending SWAL EVENT")
+    Swal.fire({
+      title: "Good job!",
+      text: "You clicked the button!",
+      icon: "success"
+    });
+    
+  }
   onFileChange(event: any) {
     this.image = event.target.files[0];
     this.imageMin = null;
@@ -117,6 +130,7 @@ export class EventCreateComponent implements OnInit {
           this.images.push(data);
           console.log(data);
           this.uploadingFile=false;
+    
         },
         (err) => {
           console.log(err);
