@@ -5,6 +5,10 @@
             <div class="col-lg-10">
                 <form [formGroup]="offerForm">
                     <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" name="titre" id="titre" formControlName="titre" 
+                            [(ngModel)]="offer.titre" required>
+                        </div>
                         <div class="col-md-6 form-group">
                             <input type="date" class="form-control" name="lastDateApplication" id="lastDateApplication"
                                 formControlName="lastDateApplication" [(ngModel)]="offer.lastDateApplication" required>

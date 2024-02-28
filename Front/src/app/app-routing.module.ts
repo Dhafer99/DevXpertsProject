@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'addoffer', component:AjouterOffreComponent},
   { path: 'offers/:id', component:DetailOffreComponent},
   { path: 'modifier/:id', component:ModifierOfferComponent},
-  { path: 'offer/applications/:id', component:AfficherCandidatureComponent},
+  { path: 'offer/applications/:id', component:AfficherCandidatureComponent}, //exhibitor accep/refuse candidature
   { path: 'myapplications', component:AfficherCandidatursUserComponent}
   ];
 

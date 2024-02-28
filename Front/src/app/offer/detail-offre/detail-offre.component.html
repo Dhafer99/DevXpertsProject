@@ -37,30 +37,21 @@
                             </span></a>
 
                         <div class="icon d-flex ms-auto">
-                            <div class="like">
+                            <div class="like" *ngIf="role=='exibitor'">
                                 <a href="#"><i class="mdi mdi-delete" (click)="supprimer()"></i></a>
                             </div>
-                            <div class="menu ms-3">
-                                <div class="dropdown">
-                                    <a href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                        aria-expanded="false"><i class="mdi mdi-update" [routerLink]="['/modifier', offer.id]">
-                                        </i></a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
+                            <div class="menu ms-3" *ngIf="role=='exibitor'">
+                                <div class="dropdown" >
+                                        <a href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                            aria-expanded="false"><i class="mdi mdi-update" [routerLink]="['/modifier', offer.id]">
+                                            </i>
+                                        </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="selected-menu mt-3">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Set up Your Wallet</option>
-                            <option value="1">Create Your Collection</option>
-                            <option value="2">List them for sale</option>
-                            <option value="3">least once in your lifetime</option>
-                        </select>
+                    <div>
+                        <p class="text-muted"><b>{{offer.titre}}</b> : {{offer.offer}}</p>
                     </div>
 
                     <div class="tab-box my-4">
@@ -108,12 +99,14 @@
                     <hr class="my-4">
                     
                     <div class="d-flex">
-                        <div *ngIf="role=='student' || role=='alumni'">
-                            <button class="btn btn-primary" (click)="openLg(content)">Postuler</button>
+                        <div *ngIf="role=='student' && !applied || role=='alumni' && !applied">
+                            <button class="btn btn-primary" (click)="openLg(content)">Apply</button>
+                        </div>
+                        <div *ngIf="role=='student' && applied || role=='alumni' && applied">
+                            <button class="btn btn-primary" disabled>Apply</button>
                         </div>
                         <div *ngIf="role=='exibitor'">
                             <button class="btn btn-outline-primary ms-2"[routerLink]="['/offer/applications', offer.id]">View Applications</button>
-                    
                         </div>
                     </div>
                 </div>

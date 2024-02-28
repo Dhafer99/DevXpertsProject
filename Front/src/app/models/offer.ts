@@ -3,6 +3,7 @@ export enum typeOffer {
   }
 export class Offer {
     id!:number;
+    titre!:string;
     description!:string;
     lastDateApplication!:Date;
     nbrCandidature!:number;

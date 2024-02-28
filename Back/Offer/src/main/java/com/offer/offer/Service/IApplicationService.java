@@ -3,6 +3,8 @@ package com.offer.offer.Service;
 import com.offer.offer.Entity.Application;
 import com.offer.offer.Entity.Offer;
 import com.offer.offer.Entity.Status;
+import com.offer.offer.Entity.TypeOffer;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -22,5 +24,10 @@ public interface IApplicationService {
     Application changeStatus(Long idApplication, Status status);
     List<Object[]> nbrApplicationOnOffer();
     List<Object[]> nbrStatusApplication();
-    List<Object[]> nbrApplicationsByMonth();
+    List<Object[]> nbrApplicationsByMonth(int year);
+    List<Offer> offersOfUser(long id);
+
+    List<Object[]> getCountApplicationsByOfferExhibitor(long exhibitorId);
+    //countStagesByOfferExhibitor
+    List<Object[]> getCountStagesByOfferExhibitor(long exhibitorId, TypeOffer typeOffer);
 }

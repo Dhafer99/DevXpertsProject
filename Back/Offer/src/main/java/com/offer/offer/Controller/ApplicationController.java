@@ -2,6 +2,7 @@ package com.offer.offer.Controller;
 
 import com.offer.offer.Entity.Application;
 import com.offer.offer.Entity.Status;
+import com.offer.offer.Entity.TypeOffer;
 import com.offer.offer.Service.IApplicationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -69,10 +70,22 @@ public class ApplicationController {
         return applicationService.nbrStatusApplication();
     }
 
-    @GetMapping("nbrApplicationsByMonth")
-    public List<Object[]> nbrApplicationsByMonth()
+    @GetMapping("nbrApplicationsByMonth/{year}")
+    public List<Object[]> nbrApplicationsByMonth(@PathVariable("year") int year)
     {
-        return applicationService.nbrApplicationsByMonth();
+        return applicationService.nbrApplicationsByMonth(year);
+    }
+    //getCountApplicationsByOfferExhibitor
+    @GetMapping("getCountApplicationsByOfferExhibitor/{exhibitorId}")
+    public List<Object[]> getCountApplicationsByOfferExhibitor(@PathVariable("exhibitorId") long exhibitorId)
+    {
+        return applicationService.getCountApplicationsByOfferExhibitor(exhibitorId);
+    }
+    //getCountStagesByOfferExhibitor
+    @GetMapping("getCountStagesAndOffersByOfferExhibitor/{exhibitorId}/{typeOffer}")
+    public List<Object[]> getCountStagesAndOffersByOfferExhibitor(@PathVariable("exhibitorId") long exhibitorId, @PathVariable("typeOffer")TypeOffer typeOffer)
+    {
+        return applicationService.getCountStagesByOfferExhibitor(exhibitorId,typeOffer);
     }
 
 }

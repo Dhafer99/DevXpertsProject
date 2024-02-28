@@ -2,6 +2,7 @@ package com.offer.offer.Controller;
 
 import com.offer.offer.Entity.Offer;
 import com.offer.offer.Entity.TypeOffer;
+import com.offer.offer.Service.IApplicationService;
 import com.offer.offer.Service.IOfferService;
 import com.offer.offer.Service.OfferService;
 import jakarta.validation.constraints.Size;
@@ -45,6 +46,7 @@ import java.io.InputStream;
 @CrossOrigin
 public class OfferController {
     private IOfferService offerService;
+    private IApplicationService applicationService;
 
     @GetMapping("/allOffers")
     public List<Offer> retrieveAllOffers() {
@@ -57,14 +59,15 @@ public class OfferController {
     }
 
     @PostMapping("/add")
-    public  ResponseEntity<?> addOffer(@RequestParam("description")String description,
+    public  ResponseEntity<?> addOffer(@RequestParam("titre") String titre,
+                          @RequestParam("description")String description,
                           @RequestParam("lastDateApplication") LocalDate lastDateApplication,
                           @RequestParam("nbrCandidature")int nbrCandidature,
                           @RequestParam("exibitorId")long exibitorId,
                           @RequestParam("typeOffer") TypeOffer typeOffer,
                           @RequestParam("file") /*@Size(max = 10 * 1024 * 1024)*/ MultipartFile file) throws IOException {
         Offer offer = new Offer();
-        Offer savedOffer =  offerService.addOffer(offer,description,lastDateApplication,nbrCandidature,exibitorId,typeOffer,file);
+        Offer savedOffer =  offerService.addOffer(offer,titre,description,lastDateApplication,nbrCandidature,exibitorId,typeOffer,file);
         return ResponseEntity.ok(savedOffer);
     }
     /*@PutMapping("/update/{ifOffer}")
@@ -89,6 +92,7 @@ public class OfferController {
     }
     @PutMapping("/update")
     public ResponseEntity<?> updateOffer(@RequestParam("idOffer") long id,
+                                         @RequestParam("titre") String titre,
                              @RequestParam("description")String description,
                              @RequestParam("lastDateApplication") LocalDate lastDateApplication,
                              @RequestParam("nbrCandidature")int nbrCandidature,
@@ -96,7 +100,7 @@ public class OfferController {
                              @RequestParam("typeOffer") TypeOffer typeOffer,
                              @RequestParam("file") MultipartFile file) throws IOException {
 
-        Offer savedOffer =  offerService.updateOffer(id,description,lastDateApplication,nbrCandidature,exibitorId,typeOffer,file);
+        Offer savedOffer =  offerService.updateOffer(id,titre,description,lastDateApplication,nbrCandidature,exibitorId,typeOffer,file);
         return ResponseEntity.ok(savedOffer);
     }
     @GetMapping("/OffersByTypeOffer/{exibitorId}/{typeOffer}")
@@ -133,5 +137,18 @@ public class OfferController {
     @GetMapping("/getCountOffersByType")
     public List<Object[]> getCountOffersByType(){
        return offerService.getCountOffersByType();
+    }
+
+    @GetMapping("/getOffersAppliedByUser/{idUser}")
+    public List<Offer> getOffersAppliedByUser(@PathVariable("idUser")long id){
+        return applicationService.offersOfUser(id);
+    }
+    @GetMapping("/getRecommandedOffersForUser/{idUser}")
+    public List<Offer> getRecommandedOffersForUser(@PathVariable("idUser")long id){
+        return offerService.getRecommandedOffersForUser(id);
+    }
+    @GetMapping("/hasApplied/{idUser}/{idOffer}")
+    public boolean hasApplied(@PathVariable("idUser")long idUser,@PathVariable("idOffer")long idOffer){
+        return offerService.hasApplied(idOffer, idUser);
     }
 }

@@ -10,6 +10,7 @@ import {
   ApexGrid
 } from "ng-apexcharts";
 import { CandidatureService } from 'src/app/services/candidature.service';
+import { OfferService } from 'src/app/services/offer.service';
 
 export type chartOptions_disque = {
   series: ApexAxisChartSeries;
@@ -29,14 +30,24 @@ export type chartOptions_disque = {
 })
 export class StatAdminCandidatureComponent implements OnInit{
 
-  constructor(private candidatureService:CandidatureService){}
+  constructor(private candidatureService:CandidatureService,private offreService:OfferService){}
 
-  public chartOptions_disque:any;
+  public chartOptions_status:any;
+  public chartOptions_year:any;
+  public chartOptions_type:any;
   nbrStatus!:any;
+  nbrApplicationMounth!:any;
+  nbrOffersByType!:any;
+  year!:string;
+  currentYear!:string
   
   ngOnInit(): void {
 
+    const currentDate = new Date(); // Obtenez la date courante
+    this.currentYear = currentDate.getFullYear().toString();
     this.getNbrStatus();
+    this.getNbrApplicationsMounth(this.currentYear);
+    this.getCountOffersByType();
     
   }
 
@@ -48,52 +59,7 @@ export class StatAdminCandidatureComponent implements OnInit{
      const labels = this.nbrStatus.map((item: any[]) => item[0]);
      const data = this.nbrStatus.map((item: any[]) => item[1]);
 
-      this.chartOptions_disque = {
-        /*colors : ['#0100c4','#FF0000'],
-
-      series: [
-        {
-          name: "Disque utilisé",
-          data: [0,],
-        },
-        {
-          name: "Limite",
-          //data: [this.serveurs[0].disque_totale,]
-          data: [0,1,2]
-        },
-        
-      ],
-      chart: {
-        height: 300,
-        type: "line",
-        zoom: {
-          enabled: true
-        }
-        
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        curve: "straight"
-      },
-      title: {
-        text: "Utilisation du disque au cours du temps de: ",//+this.serveurs[0].nom_serveur,
-        align: "left"
-      },
-      grid: {
-        row: {
-          colors: ["#f3f3f3", "transparent"], 
-          opacity: 0.5
-        }
-      },
-      xaxis: {
-        categories: [0,],
-        labels: {
-          show: false
-        },
-      },*/
-      //series: [this.nbrStatus[1],],
+      this.chartOptions_status = {
       series: data,
       chart: {
         type: "donut",
@@ -113,9 +79,79 @@ export class StatAdminCandidatureComponent implements OnInit{
       ]
     
     };
-
     })
 
+  }
+  getNbrApplicationsMounth(annee : string){
+    this.candidatureService.getNbrApplicationsByMonth(annee).subscribe((res) =>{
+      this.nbrApplicationMounth=res;
+      console.log(JSON.stringify(this.nbrApplicationMounth))
+      const labels = this.nbrApplicationMounth.map((item: any[]) => item[0].toString());
+      const data = this.nbrApplicationMounth.map((item: any[]) => item[1]);
+      console.log("AAAAAA"+labels)
+      this.chartOptions_year = {
+              series: [{
+          name: 'Applications',
+          data: data
+        }],
+        chart: {
+          type: 'bar',
+          width: 390
+        },
+        xaxis: {
+          categories: labels // Labels for x-axis
+        },
+        colors: ["#0000FF", "#08CC0A", "#FF0000"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: {
+                position: "bottom"
+              }
+            }
+          }
+        ]
+      }
+  })
+    
+  }
+
+  selectType(event : any):void{
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    console.log(selectedValue);
+    this.year = selectedValue;
+    console.log("Année selectionnée : "+this.year);
+    this.getNbrApplicationsMounth(this.year);
+  }
+
+  getCountOffersByType(){
+    this.offreService.getCountOffersByType().subscribe((res) => {
+  this.nbrOffersByType = res;
+
+  const labels = this.nbrOffersByType.map((item: any[]) => item[0]);
+  const data = this.nbrOffersByType.map((item: any[]) => item[1]);
+
+  this.chartOptions_type = {
+    series: data,
+    chart: {
+      type: "pie", // Mettez à jour le type de graphique en "pie"
+      width: 370
+    },
+    labels: labels,
+    colors: ["#F6B600", "#08CC0A", "#FF0000"],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          legend: {
+            position: "bottom"
+          }
+        }
+      }
+    ]
+  };
+});
   }
 
 }

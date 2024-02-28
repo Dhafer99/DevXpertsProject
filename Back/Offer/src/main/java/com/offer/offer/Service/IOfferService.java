@@ -12,12 +12,15 @@ import java.util.List;
 public interface IOfferService {
     List<Offer> getAllOffers();
     Offer getOfferById(long id);
-    Offer addOffer(Offer offer, String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId, TypeOffer typeOffer , MultipartFile file) throws IOException;
-    Offer updateOffer(Long idOffer,String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId,TypeOffer typeOffer ,MultipartFile file) throws IOException;
+    Offer addOffer(Offer offer,String titre ,String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId, TypeOffer typeOffer , MultipartFile file) throws IOException;
+    Offer updateOffer(Long idOffer,String titre ,String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId,TypeOffer typeOffer ,MultipartFile file) throws IOException;
     void deleteOffer(long id);
     List<Offer> getOfferByexibitorId(long id);
     List<Offer> getOfferByDomaineEntreprise(long idExibitor);
     List<Offer> getOffersByTypeOffer(TypeOffer typeOffer, long id);
-
     List<Object[]> getCountOffersByType();
+    List<Offer> getRecommandedOffersForUser(long id);
+
+    boolean hasApplied(long idOffer, long idCandidat);
+
 }

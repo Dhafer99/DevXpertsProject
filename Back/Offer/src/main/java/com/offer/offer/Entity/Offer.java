@@ -25,6 +25,7 @@ public class Offer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id ;
+    private String titre;
     private String description;
     private LocalDate lastDateApplication;
     private int nbrCandidature;

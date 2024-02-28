@@ -43,5 +43,14 @@ export class OfferService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/pdf' });
     return this.http.get('/api/convertToPdf/'+id, { headers: headers, responseType: 'arraybuffer' });
   }
+  getCountOffersByType():Observable<any>{
+    return this.http.get<any>(this.offerUrl+'/getCountOffersByType');
+  }
+  getRecommandedOffersForUser(id:string):Observable<Offer[]>{
+    return this.http.get<Offer[]>(this.offerUrl+'/getRecommandedOffersForUser/'+id);
+  }
+  hasApplied(idUser:string,idOffer:string):Observable<boolean>{
+    return this.http.get<boolean>(this.offerUrl+'/hasApplied/'+idUser+'/'+idOffer);
+  }
 
 }

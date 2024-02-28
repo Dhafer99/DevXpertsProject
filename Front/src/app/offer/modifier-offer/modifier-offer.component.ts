@@ -38,6 +38,7 @@ export class ModifierOfferComponent {
       lastDateApplication:new FormControl('',Validators.required),
       nbrCandidature:new FormControl('',Validators.required),
       file:new FormControl('',Validators.required),
+      titre:new FormControl('',Validators.required),
     })
   }
   getOffer(id:number){
@@ -50,6 +51,7 @@ export class ModifierOfferComponent {
     get lastDateApplication(){return this.offerForm.get('lastDateApplication')}
     get nbrCandidature(){return this.offerForm.get('nbrCandidature')}
     get file(){return this.offerForm.get('file')}
+    get titre(){return this.offerForm.get('titre')}
 
 
     //FILE
@@ -79,23 +81,24 @@ export class ModifierOfferComponent {
       this.formData.append('file', this.selectedFile);
       this.formData.append('exibitorId',this.nbrCandidature?.value);
       this.formData.append('typeOffer',this.offerType);
+      this.formData.append('titre',this.titre?.value);
       this.formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
-      if (this.description?.value=='' || this.lastDateApplication?.value=='' || this.nbrCandidature?.value=='' || this.file?.value==''){
+      /*if (this.description?.value=='' || this.lastDateApplication?.value=='' || this.nbrCandidature?.value=='' || this.file?.value==''){
         Swal.fire({
           icon: "error",
           title: "Erreur",
           text: "Completeter tous les champs"
         });
-      }
-      else{
+      }*/
+      //else{
         this.offerService.updateOffer(this.formData).subscribe(()=>{
         console.log( "l'offre a été ajoutée")
         console.log("notre form"+JSON.stringify(this.offerForm.value))})
         this.route.navigate(['/offers']);
         
-    }
+    //}
   }
 
 

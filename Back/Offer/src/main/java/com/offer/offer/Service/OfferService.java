@@ -40,7 +40,8 @@ public class OfferService implements IOfferService{
     }*/
 
     @Override
-    public Offer addOffer(Offer offer, String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId, TypeOffer typeOffer, MultipartFile file) throws IOException {
+    public Offer addOffer(Offer offer,String titre ,String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId, TypeOffer typeOffer, MultipartFile file) throws IOException {
+        offer.setTitre(titre);
         offer.setOffer(typeOffer);
         offer.setDescription(description);
         offer.setLastDateApplication(lastDateApplication);
@@ -53,8 +54,9 @@ public class OfferService implements IOfferService{
     }
 
     @Override
-    public Offer updateOffer(Long idOffer, String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId,TypeOffer typeOffer ,MultipartFile file) throws IOException {
+    public Offer updateOffer(Long idOffer,String titre ,String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId,TypeOffer typeOffer ,MultipartFile file) throws IOException {
         Offer offer = offerRepository.findById(idOffer).orElse(null);
+        offer.setTitre(titre);
         offer.setOffer(typeOffer);
         offer.setDescription(description);
         offer.setLastDateApplication(lastDateApplication);
@@ -89,6 +91,16 @@ public class OfferService implements IOfferService{
     @Override
     public List<Object[]> getCountOffersByType() {
         return offerRepository.countOffersByType();
+    }
+
+    @Override
+    public List<Offer> getRecommandedOffersForUser(long id) {
+        return offerRepository.findRecommendedOffersForUser(id);
+    }
+
+    @Override
+    public boolean hasApplied(long idOffer, long idCandidat) {
+        return offerRepository.hasApplied(idOffer, idCandidat);
     }
 
 }

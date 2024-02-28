@@ -31,6 +31,7 @@ export class AjouterOffreComponent implements OnInit{
       lastDateApplication:new FormControl('',Validators.required),
       nbrCandidature:new FormControl('',Validators.required),
       file:new FormControl('',Validators.required),
+      titre:new FormControl('',Validators.required),
     })
   }
     get description(){return this.offerForm.get('description')}
@@ -38,6 +39,7 @@ export class AjouterOffreComponent implements OnInit{
     get nbrCandidature(){return this.offerForm.get('nbrCandidature')}
     get file(){return this.offerForm.get('file')}
     get typeOffre(){return this.offerForm.get('typeOffer')}
+    get titre(){return this.offerForm.get('titre')}
 
 
     //FILE
@@ -54,11 +56,13 @@ export class AjouterOffreComponent implements OnInit{
     console.log(selectedValue);
     this.offerType = selectedValue;
     console.log("offre selectionne : "+this.offerType);
+    console.log("ooo"+this.titre?.value)
   }
 
     //End File
     add(){
       this.offer=this.offerForm.value; 
+      this.formData.append('titre', this.titre?.value);
       this.formData.append('description', this.description?.value);
       this.formData.append('lastDateApplication', this.lastDateApplication?.value);
       this.formData.append('nbrCandidature', this.nbrCandidature?.value);
@@ -67,7 +71,7 @@ export class AjouterOffreComponent implements OnInit{
       this.formData.append('typeOffer',this.offerType);
 
       
-      if (this.description?.value=='' || this.lastDateApplication?.value=='' || this.nbrCandidature?.value=='' || this.file?.value=='' || this.typeOffre?.value==''){
+      if (this.description?.value=='' || this.lastDateApplication?.value=='' || this.nbrCandidature?.value=='' || this.file?.value=='' || this.typeOffre?.value=='' || this.titre?.value==''){
         Swal.fire({
           icon: "error",
           title: "Erreur",

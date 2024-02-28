@@ -51,5 +51,18 @@ export class CandidatureService {
   {
     return this.http.get<any>(this.offerUrl+"/nbrStatusApplication")
   }
+  getNbrApplicationsByMonth(year : string):Observable<any>
+  {
+    return this.http.get<any>(this.offerUrl+"/nbrApplicationsByMonth/"+year)
+  }
+  getCountApplicationsByOfferExhibitor(exhibitorId:string):Observable<any>
+  {
+    return this.http.get<any>(this.offerUrl+"/getCountApplicationsByOfferExhibitor/"+exhibitorId)
+  }
+  ///api/Application/getCountStagesAndOffersByOfferExhibitor/{exhibitorId}/{typeOffer}
+  getCountStagesAndOffersByOfferExhibitor(exhibitorId:string,typeOffer:string):Observable<any>
+  {
+    return this.http.get<any>(this.offerUrl+"/getCountStagesAndOffersByOfferExhibitor/"+exhibitorId+'/'+typeOffer)
+  }
   
 }

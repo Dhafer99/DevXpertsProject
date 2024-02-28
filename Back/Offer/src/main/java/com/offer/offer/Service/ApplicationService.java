@@ -3,6 +3,7 @@ package com.offer.offer.Service;
 import com.offer.offer.Entity.Application;
 import com.offer.offer.Entity.Offer;
 import com.offer.offer.Entity.Status;
+import com.offer.offer.Entity.TypeOffer;
 import com.offer.offer.Repository.ApplicationRepository;
 import com.offer.offer.Repository.OfferRepository;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -102,7 +104,28 @@ public class ApplicationService implements IApplicationService{
     }
 
     @Override
-    public List<Object[]> nbrApplicationsByMonth() {
-        return applicationRepository.countApplicationsByMonth();
+    public List<Object[]> nbrApplicationsByMonth(int year) {
+        return applicationRepository.countApplicationsByMonthAndYear(year);
     }
+
+    @Override
+    public List<Offer> offersOfUser(long id) {
+        List<Offer> offers = new ArrayList<>();
+        List<Application> applications = applicationRepository.getApplicationsByIdCandidat(id);
+        for (Application a: applications) {
+            offers.add(a.getOffer());
+        }
+        return offers;
+    }
+
+    @Override
+    public List<Object[]> getCountApplicationsByOfferExhibitor(long exhibitorId) {
+        return applicationRepository.countApplicationsByOfferExhibitor(exhibitorId);
+    }
+
+    @Override
+    public List<Object[]> getCountStagesByOfferExhibitor(long exhibitorId, TypeOffer typeOffer) {
+        return applicationRepository.countStagesByOfferExhibitor(exhibitorId, typeOffer);
+    }
+
 }

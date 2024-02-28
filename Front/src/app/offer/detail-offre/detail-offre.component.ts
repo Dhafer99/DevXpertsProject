@@ -23,20 +23,33 @@ export class DetailOffreComponent implements OnInit{
    modalReference :any; 
    selectedFile!: File;
    role!:string;
+   listApplied:number[]=[]
+   idUser!:string;
+   applied!:boolean;
   constructor(private activateroute:ActivatedRoute,private offerService:OfferService,private route:Router,private candidatureService:CandidatureService,private modalService: NgbModal,private http: HttpClient){
   }
   ngOnInit(): void {
     this.role="exibitor";
     this.idCandidat=1;
+    this.idUser="2"
     this.id=this.activateroute.snapshot.params['id'];
+    this.hasApplied(this.idUser,this.id.toString());
     this.offerService.getOfferById(this.id).subscribe((data)=>{
     this.offer=data
-    console.log("une offre:"+JSON.stringify(this.offer))
+    //console.log("une offre:"+JSON.stringify(this.offer))
     })
     this.data = 'some text';
     this.blob = new Blob([this.offer.file], { type: 'application/octet-stream' });
     this.fileUrl = window.URL.createObjectURL(this.blob);
   }
+
+  hasApplied(idUser:string,idOffer:string){
+  this.offerService.hasApplied(idUser,idOffer).subscribe((data:any)=>{
+  this.applied=data
+  console.log("offerApplied:"+JSON.stringify(this.applied))
+    })
+  }
+
   supprimer(){
     //alert('supprimer')
     this.offerService.deleteOffer(this.offer.id).subscribe(()=>{})

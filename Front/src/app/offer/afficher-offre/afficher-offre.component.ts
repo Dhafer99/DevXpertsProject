@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Offer, typeOffer } from 'src/app/models/offer';
+import { CandidatureService } from 'src/app/services/candidature.service';
 import { OfferService } from 'src/app/services/offer.service';
 
 @Component({
@@ -12,39 +13,47 @@ import { OfferService } from 'src/app/services/offer.service';
 
 export class AfficherOffreComponent implements OnInit{
 
-  constructor(private offerService:OfferService){  }
+  constructor(private offerService:OfferService,private candidatureService:CandidatureService){  }
   
   exibitorId!:number;
-  listOffers:Offer[]=[]
-  listStages:Offer[]=[]
-  listJobs:Offer[]=[]
+  listOffers:any;
+  listStages:any;
+  listJobs:any;
+  listRecommander:Offer[]=[]
   role!:string;
+  idUser!:string;
   
   ngOnInit(): void {
-    this.role="exibitor"
-    this.getOffers();
-    this.getOffersTypeJob();
-    this.getOffersTypeStage();
+    this.role="student"
+    this.idUser="1"
+    this.getOffersByExibitor();
+    this.getOffersTypeJobByExibitor();
+    this.getOffersTypeStageByExibitor();
+    this.getOffresRecommanderPourUser(this.idUser);
   }
 
-  getOffers(){
+  getOffersByExibitor(){
     this.exibitorId=1;
-    this.offerService.getAllOffersByExibitor(this.exibitorId).subscribe(data=>{
+    this.candidatureService.getCountApplicationsByOfferExhibitor(this.exibitorId.toString()).subscribe(data=>{
     this.listOffers=data
     }) 
   }
 
-  getOffersTypeStage(){
+  getOffersTypeStageByExibitor(){
     this.exibitorId=1;
-    this.offerService.getOffersByTypeOffer("stage",this.exibitorId).subscribe(data=>{
-    this.listStages=data
-    })
+    this.candidatureService.getCountStagesAndOffersByOfferExhibitor(this.exibitorId.toString(),"stage").subscribe(data=>{
+    this.listStages=data})
   }
 
-  getOffersTypeJob(){
+  getOffersTypeJobByExibitor(){
     this.exibitorId=1;
-    this.offerService.getOffersByTypeOffer("job",this.exibitorId).subscribe(data=>{
-    this.listJobs=data
+    this.candidatureService.getCountStagesAndOffersByOfferExhibitor(this.exibitorId.toString(),"job").subscribe(data=>{
+    this.listJobs=data})
+  }
+
+  getOffresRecommanderPourUser(id:string){
+    this.offerService.getRecommandedOffersForUser(id).subscribe(res=>{
+      this.listRecommander=res
     })
   }
 

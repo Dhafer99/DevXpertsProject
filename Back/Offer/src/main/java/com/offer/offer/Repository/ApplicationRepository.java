@@ -2,8 +2,10 @@ package com.offer.offer.Repository;
 
 import com.offer.offer.Entity.Application;
 import com.offer.offer.Entity.Offer;
+import com.offer.offer.Entity.TypeOffer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -13,12 +15,37 @@ public interface ApplicationRepository extends JpaRepository<Application,Long> {
     //nbr candidature pour chaque offre
     @Query("SELECT o, COUNT(a) FROM Offer o LEFT JOIN o.applications a GROUP BY o")
     List<Object[]> countApplicationsByOffer();
+
+    //Offres+nbrCandidatureForExhibitor
+    /*@Query("SELECT o, COUNT(a) FROM Offer o LEFT JOIN o.applications a where o.exibitorId =:exibitorId GROUP BY o ")
+    List<Object[]> countApplicationsByOfferExhibitor(@Param("exibitorId") long exibitorId);*/
+
+    @Query("SELECT o, COUNT(a), " +
+            "(SELECT COUNT(a1) FROM Application a1 WHERE a1.offer = o AND a1.status = 'accépté'), " +
+            "(SELECT COUNT(a2) FROM Application a2 WHERE a2.offer = o AND a2.status = 'refusé'), " +
+            "(SELECT COUNT(a3) FROM Application a3 WHERE a3.offer = o AND a3.status = 'en_cours') " +
+            "FROM Offer o LEFT JOIN o.applications a " +
+            "WHERE o.exibitorId = :exibitorId " +
+            "GROUP BY o")
+    List<Object[]> countApplicationsByOfferExhibitor(@Param("exibitorId") long exibitorId);
+
+    @Query("SELECT o, COUNT(a), " +
+            "(SELECT COUNT(a1) FROM Application a1 WHERE a1.offer = o AND a1.status = 'accépté'), " +
+            "(SELECT COUNT(a2) FROM Application a2 WHERE a2.offer = o AND a2.status = 'refusé'), " +
+            "(SELECT COUNT(a3) FROM Application a3 WHERE a3.offer = o AND a3.status = 'en_cours') " +
+            "FROM Offer o LEFT JOIN o.applications a " +
+            "WHERE o.exibitorId = :exibitorId AND o.offer= :typeOffer " +
+            "GROUP BY o")
+    List<Object[]> countStagesByOfferExhibitor(@Param("exibitorId") long exibitorId,@Param("typeOffer") TypeOffer typeOffer);
+
     // nbr de candidature accepter et refusé et en_cours
     @Query("SELECT a.status, COUNT(a) " +
             "FROM Application a " +
             "GROUP BY a.status")
     List<Object[]> countCandidaturesByStatus();
     //Nombre de candidatures par période
-    @Query("SELECT FUNCTION('MONTH', a.applicationDate), FUNCTION('MONTHNAME', a.applicationDate), COUNT(a) FROM Application a GROUP BY FUNCTION('MONTH', a.applicationDate)")
-    List<Object[]> countApplicationsByMonth();
+    @Query("SELECT FUNCTION('MONTHNAME', a.applicationDate), COUNT(a) FROM Application a WHERE FUNCTION('YEAR', a.applicationDate) = :year GROUP BY FUNCTION('YEAR', a.applicationDate), FUNCTION('MONTH', a.applicationDate)")
+    List<Object[]> countApplicationsByMonthAndYear(@Param("year") int year);
+
+    List<Application> getApplicationsByIdCandidat(long id);
 }
