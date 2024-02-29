@@ -20,8 +20,6 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class PackgeService implements PackageInterface {
-
-
     PackgeRepository packgeRepository ;
     RoomRepository roomRepository ;
     CompanyRepository companyRepository ;

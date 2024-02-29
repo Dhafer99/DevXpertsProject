@@ -15,6 +15,7 @@ import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.compo
 import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
 import { AuctionComponent } from './auction/auction.component';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AuctionComponent } from './auction/auction.component';
    
   ],
   imports: [
+    CKEditorModule,
     BrowserModule,
     AppRoutingModule, HttpClientModule,FormsModule
   ],

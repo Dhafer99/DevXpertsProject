@@ -48,9 +48,8 @@
                           <h3 class="inside-page__heading inside-page__heading--ski">
                           {{room.typePack}} packs
                           </h3>
-                          <p class="inside-page__text">
-                            {{ room.description.length > 50 ? room.description.slice(0, 50) + '...' : room.description }}
-                          </p>
+                          <div [innerHTML]="sanitizeHtml(room.description.length > 50 ? room.description.slice(0, 50) + '...' : room.description )" class="formatted-text"></div>
+                         
                           <button  [routerLink]="['detailRoom', room.idRoom]" class="inside-page__btn inside-page__btn--ski">View details</button>
                       </div>
                   </div>

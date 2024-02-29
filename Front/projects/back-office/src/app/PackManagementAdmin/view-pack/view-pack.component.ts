@@ -15,7 +15,19 @@ export class ViewPackComponent implements OnInit {
   packs: Pack[] = [];
 
   constructor(private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
-
+  editorConfig = {
+    // CKEditor configuration options
+    // Example: You can add a custom toolbar here
+    toolbar: [
+      { name: 'basicstyles', items: ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat'] },
+      { name: 'styles', items: ['Styles', 'Format', 'Font', 'FontSize'] },
+      { name: 'colors', items: ['TextColor', 'BGColor'] },
+      { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar'] },
+      { name: 'paragraph', items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+      { name: 'links', items: ['Link', 'Unlink', 'Anchor'] },
+      { name: 'tools', items: ['Maximize'] }
+    ]
+  };
   ngOnInit() {
     this.packService.getAllPacks().subscribe(res => {
       this.packs = res;

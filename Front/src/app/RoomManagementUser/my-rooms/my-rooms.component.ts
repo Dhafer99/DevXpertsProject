@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Room } from 'projects/back-office/src/app/Models/Room';
 import { PackServiceService } from 'projects/back-office/src/app/Services/pack-service.service';
@@ -11,8 +12,12 @@ import { Subscription, interval } from 'rxjs';
   styleUrls: ['./my-rooms.component.css']
 })
 export class MyRoomsComponent implements OnInit {
-  constructor( private activate: ActivatedRoute,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
+  constructor(private sanitizer: DomSanitizer, private activate: ActivatedRoute,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
   room: Room = new Room();
+  sanitizeHtml(html: string): SafeHtml {
+    // Utiliser DomSanitizer pour marquer le HTML comme sûr
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
   idRoom = 0;
   hours!: number;
   minutes!: number;

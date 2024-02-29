@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RoomServiceService } from '../../Services/room-service.service';
 import { Pack } from '../../Models/Pack';
 import Swal from 'sweetalert2';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-detail-room',
@@ -15,8 +16,12 @@ export class DetailRoomComponent  implements OnInit {
   room!: Room;
   pack!: Pack[];
   id = 0;
-  constructor( private activate: ActivatedRoute,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
+  constructor(private sanitizer: DomSanitizer, private activate: ActivatedRoute,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
 
+  sanitizeHtml(html: string): SafeHtml {
+    // Utiliser DomSanitizer pour marquer le HTML comme sûr
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
   ngOnInit() {
     this.id = this.activate.snapshot.params['id'];  
     this.packService.findPacksByIdRoom(this.id).subscribe(

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Room } from 'projects/back-office/src/app/Models/Room';
 import { PackServiceService } from 'projects/back-office/src/app/Services/pack-service.service';
@@ -13,8 +14,11 @@ export class RoomsListComponent implements OnInit{
   rooms: Room[] = [];
   test:boolean=false;
 
-  constructor( private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
-
+  constructor( private sanitizer: DomSanitizer,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
+  sanitizeHtml(html: string): SafeHtml {
+    // Utiliser DomSanitizer pour marquer le HTML comme sûr
+    return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
   ngOnInit() {
     this.roomService.getAllRooms().subscribe(res => {
       this.rooms = res;

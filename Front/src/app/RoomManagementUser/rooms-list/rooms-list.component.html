@@ -72,7 +72,8 @@
       </div>
       <div class="general">
         <h3>rules</h3>
-        <p>{{ room.description }}</p>
+        <div [innerHTML]="sanitizeHtml(room.description)" class="formatted-text"></div>
+
       </div>
     </div>
   </div>
