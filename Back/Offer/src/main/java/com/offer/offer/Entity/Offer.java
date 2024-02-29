@@ -31,6 +31,7 @@ public class Offer implements Serializable {
     private int nbrCandidature;
     @Lob
     @ApiModelProperty
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] file;
     private long exibitorId ;
     @JsonIgnore

@@ -22,6 +22,7 @@ public class Application implements Serializable {
     private long Id ;
     @Lob
     @ApiModelProperty
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] lettreDeMotivation;
     private LocalDateTime applicationDate;
     private long idCandidat;

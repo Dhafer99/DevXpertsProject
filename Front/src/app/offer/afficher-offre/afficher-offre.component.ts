@@ -28,7 +28,7 @@ export class AfficherOffreComponent implements OnInit{
     //this.role="student"
     this.role="exibitor"
     this.idUser="1"
-    this.idExibitor="2"
+    this.idExibitor="1"
     if (this.role=="exibitor"){
       this.getOffersByExibitor(this.idExibitor);
       this.getOffersTypeJobByExibitor(this.idExibitor);

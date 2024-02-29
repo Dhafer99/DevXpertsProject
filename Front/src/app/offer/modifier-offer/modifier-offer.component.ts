@@ -2,7 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Offer } from 'src/app/models/offer';
+import { Offer, typeOffer } from 'src/app/models/offer';
 import { OfferService } from 'src/app/services/offer.service';
 import Swal from 'sweetalert2';
 
@@ -24,6 +24,8 @@ export class ModifierOfferComponent {
   params = new HttpParams();
   offerType!: string;
   seletedValue!:string;
+  fileClicked: boolean = false;
+  typeClicked: boolean = false;
 
   ngOnInit(): void {
 
@@ -44,7 +46,7 @@ export class ModifierOfferComponent {
   getOffer(id:number){
     this.offerService.getOfferById(id).subscribe((data)=>{
     this.offer=data
-    console.log("une offre:"+JSON.stringify(this.offer))
+    console.log("une offre:"+JSON.stringify(this.offer.offer))
     })
   }
     get description(){return this.offerForm.get('description')}
@@ -52,6 +54,7 @@ export class ModifierOfferComponent {
     get nbrCandidature(){return this.offerForm.get('nbrCandidature')}
     get file(){return this.offerForm.get('file')}
     get titre(){return this.offerForm.get('titre')}
+    get typeOffre(){return this.offerForm.get('typeOffer')}
 
 
     //FILE
@@ -61,12 +64,14 @@ export class ModifierOfferComponent {
     if (fileList && fileList.length > 0) {
       this.selectedFile = fileList[0];
     }
+    this.fileClicked=true;
   }
   selectType(event : any):void{
     const selectedValue = (event.target as HTMLSelectElement).value;
     console.log(selectedValue);
     this.offerType = selectedValue;
     console.log("offre selectionne : "+this.offerType);
+    this.typeClicked=true
   }
 
     //End File
@@ -78,28 +83,43 @@ export class ModifierOfferComponent {
       this.formData.append('description', this.description?.value);
       this.formData.append('lastDateApplication', this.lastDateApplication?.value);
       this.formData.append('nbrCandidature', this.nbrCandidature?.value);
-      this.formData.append('file', this.selectedFile);
       this.formData.append('exibitorId',this.nbrCandidature?.value);
-      this.formData.append('typeOffer',this.offerType);
       this.formData.append('titre',this.titre?.value);
+      if (!this.fileClicked && !this.typeClicked){
+        this.formData.append('file', this.offer.file);
+        this.formData.append('typeOffer',this.offer.offer.toString());
+        console.log("hhhhhh")
+      }
+      else if (!this.fileClicked){//(this.selectedFile==undefined){
+        this.formData.append('file', this.offer.file);
+        console.log("1")
+      }
+      else if (!this.typeClicked){//(this.offerType==null){
+        this.formData.append('typeOffer',this.offer.offer.toString());
+        console.log("3")
+      }
+      else{
+        this.formData.append('file', this.selectedFile);
+        this.formData.append('typeOffer',this.offerType);
+      }
+      /*else if (this.fileClicked){
+        this.formData.append('file', this.selectedFile);
+        console.log("2")
+      }
+      else if (this.typeClicked){
+        this.formData.append('typeOffer',this.offerType);
+        console.log("4")
+      }*/
       this.formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
-      /*if (this.description?.value=='' || this.lastDateApplication?.value=='' || this.nbrCandidature?.value=='' || this.file?.value==''){
-        Swal.fire({
-          icon: "error",
-          title: "Erreur",
-          text: "Completeter tous les champs"
-        });
-      }*/
-      //else{
         this.offerService.updateOffer(this.formData).subscribe(()=>{
         console.log( "l'offre a été ajoutée")
-        console.log("notre form"+JSON.stringify(this.offerForm.value))})
+        console.log("notre form"+JSON.stringify(this.offerForm.value))
         this.route.navigate(['/offers']);
+      })
         
-    //}
-  }
+}
 
 
 }
