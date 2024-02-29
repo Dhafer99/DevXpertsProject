@@ -160,11 +160,34 @@ revenuStandard!:number;
 
 revenusilver!:number;
 toployalcustomers!:[];
+QuantiteDiamond!:number;
+Quantitestandard!:number;
+Quantitesilver!:number;
+RevenuTotal!:number;
 
 
   ngOnInit(): void {
    
- 
+    this.packService.QuantitePeTypePack("diamond").subscribe(res => {
+    
+      this.QuantiteDiamond = res;
+    });
+
+    this.packService.QuantitePeTypePack("standard").subscribe(res => {
+    
+      this.Quantitestandard = res;
+    });
+
+    this.packService.QuantitePeTypePack("silver").subscribe(res => {
+    
+      this.Quantitesilver = res;
+    });
+    this.packService.revenueTotal().subscribe(res => {
+    
+      this.RevenuTotal = res;
+    });
+
+
       this.initBarChart();
       this.initCurrentChart1();
 

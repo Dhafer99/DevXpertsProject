@@ -93,5 +93,22 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
   public SendCodeRoom(email: string, code: string): Observable<any> {
     return this.http.put<any>(`${this.url}SendCodeRoom/${email}/${code}`, {});
   }
+
+
+  public QuantitePeTypePack ( typePack: string ): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }QuantitePeTypePack/${ typePack }`, {
+      withCredentials: true,
+    } );
+ 
+  }
+
+  public revenueTotal (): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }revenueTotal`, {
+      withCredentials: true,
+    } );
+ 
+  }
   
 }

@@ -34,4 +34,7 @@ public interface PackageInterface {
 
     void sendCoderoom(String emailCompany , String codeRoom);
 
+    int QuantitePeTypePack(TypePack typePack);
+    float revenueTotal();
+
 }

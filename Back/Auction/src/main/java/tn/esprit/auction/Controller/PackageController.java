@@ -40,7 +40,14 @@ public class PackageController {
     public  Map<Integer, Map<Long, Long>> getPackStatisticsByYearAndStatus() {
         return  packageInterface.getPackStatisticsByYear();
     }
-
+    @GetMapping("/QuantitePeTypePack/{typePack}")
+    public  int QuantitePeTypePack(@PathVariable("typePack") TypePack typePack) {
+        return  packageInterface.QuantitePeTypePack(typePack);
+    }
+    @GetMapping("/revenueTotal")
+    public  double revenueTotal() {
+        return  packageInterface.revenueTotal();
+    }
     @GetMapping("/RevenuePeTypePack/{typePack}")
     public  double RevenuePeTypePack(@PathVariable("typePack") TypePack typePack) {
         return  packageInterface.RevenuePeTypePack(typePack);

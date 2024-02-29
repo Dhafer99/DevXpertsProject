@@ -11,6 +11,7 @@ import { MyPacksComponent } from './PackageManagementUser/my-packs/my-packs.comp
 import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.component';
 import { AuctionRoomComponent } from './RoomManagementUser/auction-room/auction-room.component';
 import { CountdownComponentComponent } from './RoomManagementUser/countdown-component/countdown-component.component';
+import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { CountdownComponentComponent } from './RoomManagementUser/countdown-comp
     RoomsListComponent,
     AuctionRoomComponent,
     CountdownComponentComponent,
+    MyRoomsComponent,
   ],
   imports: [
     BrowserModule,

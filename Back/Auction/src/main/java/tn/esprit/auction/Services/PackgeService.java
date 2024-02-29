@@ -234,6 +234,36 @@ packgeRepository.delete(idpack);
 
     }
 
+    @Override
+    public int QuantitePeTypePack(TypePack typePack) {
+        int currentYear = Year.now().getValue();
+        List<Pack> packs = packgeRepository.findByTypePack(typePack);
+        int quantite = 0;
+
+        for (Pack pack : packs) {
+            if (pack.getTypePack() == typePack && isCreationYear(pack,currentYear)) {
+                quantite++;
+            }
+        }
+
+        return quantite;
+    }
+
+    @Override
+    public float revenueTotal() {
+        int currentYear = Year.now().getValue();
+        List<Pack> packs = packgeRepository.findAll();
+        float revenuTotal = 0;
+        for (Pack pack : packs) {
+            if ( isCreationYear(pack,currentYear)&&pack.isReserved()) {
+                revenuTotal += pack.getPrice();
+            }
+        }
+
+
+        return revenuTotal;
+    }
+
     private boolean isCreationYear(Pack pack, int currentYear) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(pack.getCreationDate());

@@ -7,6 +7,7 @@ import { MyPacksComponent } from './PackageManagementUser/my-packs/my-packs.comp
 import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.component';
 import { AuctionRoomComponent } from './RoomManagementUser/auction-room/auction-room.component';
 import { CountdownComponentComponent } from './RoomManagementUser/countdown-component/countdown-component.component';
+import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.component';
 
 
 const routes: Routes = [  
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'auction/:id', component: AuctionRoomComponent },
   { path: 'auction/:id/roullette', component: RoomsListComponent },
   { path: 'count', component: CountdownComponentComponent },
+  { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent },
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }
   
   
