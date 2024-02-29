@@ -1,10 +1,15 @@
 package com.offer.offer.Controller;
 
 import com.offer.offer.Entity.Application;
+import com.offer.offer.Entity.Offer;
 import com.offer.offer.Entity.Status;
 import com.offer.offer.Entity.TypeOffer;
 import com.offer.offer.Service.IApplicationService;
 import lombok.AllArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -98,6 +103,21 @@ public class ApplicationController {
     public List<Object[]> getRecommendedOffersForUserApp(@PathVariable("idUser")long idUser)
     {
         return applicationService.getRecommendedOffersForUserApp(idUser);
+    }
+    @GetMapping("/telecharger-pdf/{idApplication}")
+    public ResponseEntity<Resource> telechargerPDF(@PathVariable("idApplication") long idApplication) {
+        // Récupérer le tableau de bytes depuis votre entité et stockez-le dans une variable byte[]
+        Application application= applicationService.getApplicationById(idApplication);
+        ByteArrayResource resource = new ByteArrayResource(application.getLettreDeMotivation());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=fichier.pdf");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(application.getLettreDeMotivation().length)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(resource);
     }
 
 }

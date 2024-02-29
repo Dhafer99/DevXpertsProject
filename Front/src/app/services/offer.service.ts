@@ -52,5 +52,8 @@ export class OfferService {
   hasApplied(idUser:string,idOffer:string):Observable<boolean>{
     return this.http.get<boolean>(this.offerUrl+'/hasApplied/'+idUser+'/'+idOffer);
   }
+  getPdf(idOffer:string):Observable<any>{
+    return this.http.get<any>(this.offerUrl+'/telecharger-pdf/'+idOffer)
+  }
 
 }

@@ -4,7 +4,7 @@ import { Offer } from 'src/app/models/offer';
 import { CandidatureService } from 'src/app/services/candidature.service';
 import { OfferService } from 'src/app/services/offer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { saveAs } from 'file-saver';
 
 @Component({
@@ -30,7 +30,8 @@ export class DetailOffreComponent implements OnInit{
   }
   ngOnInit(): void {
     this.role="exibitor";
-    this.idCandidat=1;
+    //this.role="student";
+    this.idCandidat=2;
     this.idUser="2"
     this.id=this.activateroute.snapshot.params['id'];
     this.hasApplied(this.idUser,this.id.toString());
@@ -51,26 +52,8 @@ export class DetailOffreComponent implements OnInit{
   }
 
   supprimer(){
-    //alert('supprimer')
     this.offerService.deleteOffer(this.offer.id).subscribe(()=>{})
     this.route.navigate(['/offers'])
-    /*if (!this.offerService.deleteOffer(this.offer.id)==false){
-      alert('Suppression réussie');
-      this.route.navigate(['/offers'])
-    }else{
-      alert('Erreur de Suppression');
-    }*/
-    //this.offerService.deleteOffer(this.offer.id);
-    //this.route.navigate(['/offers']);
-    //window.location.reload();
-  }
-  modifier(){
-    alert('modifier')
-    //this.offerService.updateOffer(this.offer);
-  }
-  downloadFile(){
-    //convertToPdf(this.offer.file)
-    this.downloadBlob();
   }
   onFileSelected(event: any): void {
     const fileList: FileList = event.target.files;
@@ -103,47 +86,27 @@ export class DetailOffreComponent implements OnInit{
       }
 
 
-      downloadBlob() {
-    //const blob = this.offer.file;
-    //const fileName = 'fichier.pdf';
+      
+  ///////FILE
 
-  // Appelez la fonction de téléchargement
-    //this.saveBlob(blob, fileName);
-    this.offerService.convertToPdf(this.id).subscribe(
-      (pdfData: ArrayBuffer) => {
-        // Traitez les données PDF ici, par exemple, en les enregistrant en tant que fichier ou en affichant un aperçu
-        const file = new Blob([pdfData], { type: 'application/pdf' });
-        const fileURL = URL.createObjectURL(file);
-        window.open(fileURL); // Ouvre le PDF dans un nouvel onglet
-      },
-      (error) => {
-        console.error('Failed to convert to PDF', error);
-      }
-    );
+
+   telechargerDocument(id: number) {
+    const url = 'http://localhost:8899/api/Offer/telecharger-pdf/'+id;
+    this.http.get(url, { observe: 'response', responseType: 'blob' })
+      .subscribe((response: HttpResponse<Blob>) => {
+        this.telechargerFichier(response.body);
+      });
+  }
+
+  telechargerFichier(data: Blob | null) {
+  if (data !== null) {
+    const nomFichier = this.offer.exibitorId+'.pdf';
+    saveAs(data, nomFichier);
   }
 }
 
-/*saveBlob(blob: Blob, fileName: string) {
-  // Utilisez la fonction saveAs de file-saver pour enregistrer le fichier
-  saveAs(blob, fileName);
+
+  /////ENDFILE
 }
 
-}*/
 
-function convertToPdf(blob: Blob) {
-  /*const fileReader = new FileReader();
-  fileReader.onloadend = () => {
-    const arrayBuffer = fileReader.result as ArrayBuffer;
-    const uint8Array = new Uint8Array(arrayBuffer);
-    getDocument(uint8Array).promise.then((pdf) => {
-      pdf.getData().then((data) => {
-        const pdfBlob = new Blob([data], { type: 'application/pdf' });
-        saveAs(pdfBlob, 'converted.pdf');
-      });
-    }).catch((error) => {
-      // Handle errors here.
-    });
-  };
-  fileReader.readAsArrayBuffer(blob);*/
- 
-}

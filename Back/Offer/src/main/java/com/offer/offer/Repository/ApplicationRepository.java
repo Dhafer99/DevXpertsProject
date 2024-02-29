@@ -67,7 +67,7 @@ public interface ApplicationRepository extends JpaRepository<Application,Long> {
             "(SELECT COUNT(a2) FROM Application a2 WHERE a2.offer = o AND a2.status = 'REJECTED'), " +
             "(SELECT COUNT(a3) FROM Application a3 WHERE a3.offer = o AND a3.status = 'IN_PROGRESS') " +
             "FROM Offer o " +
-            "WHERE EXISTS (SELECT 1 FROM Application a WHERE a.idCandidat = :userId AND o.titre LIKE CONCAT('%', a.offer.titre, '%')) " +
+            "WHERE EXISTS (SELECT 1 FROM Application a WHERE a.idCandidat = :userId AND CONCAT('%',o.titre, '%') LIKE CONCAT('%', a.offer.titre, '%')) " +
             "AND o.offer IN (SELECT DISTINCT a.offer.offer FROM Application a WHERE a.idCandidat = :userId) " +
             "AND o.Id NOT IN (SELECT DISTINCT a.offer.Id FROM Application a WHERE a.idCandidat = :userId) " +
             "GROUP BY o")

@@ -22,14 +22,17 @@ export class AfficherOffreComponent implements OnInit{
   listRecommander:any;
   role!:string;
   idUser!:string;
+  idExibitor!:string;
   
   ngOnInit(): void {
-    this.role="student"
-    this.idUser="2"
+    //this.role="student"
+    this.role="exibitor"
+    this.idUser="1"
+    this.idExibitor="2"
     if (this.role=="exibitor"){
-      this.getOffersByExibitor();
-      this.getOffersTypeJobByExibitor();
-      this.getOffersTypeStageByExibitor();
+      this.getOffersByExibitor(this.idExibitor);
+      this.getOffersTypeJobByExibitor(this.idExibitor);
+      this.getOffersTypeStageByExibitor(this.idExibitor);
     }
     else {
       this.getOffersForUser();
@@ -64,22 +67,19 @@ export class AfficherOffreComponent implements OnInit{
     })
   }
 
-  getOffersByExibitor(){
-    this.exibitorId=1;
-    this.candidatureService.getCountApplicationsByOfferExhibitor(this.exibitorId.toString()).subscribe(data=>{
+  getOffersByExibitor(id:string){
+    this.candidatureService.getCountApplicationsByOfferExhibitor(id).subscribe(data=>{
     this.listOffers=data
     }) 
   }
 
-  getOffersTypeStageByExibitor(){
-    this.exibitorId=1;
-    this.candidatureService.getCountStagesAndOffersByOfferExhibitor(this.exibitorId.toString(),"stage").subscribe(data=>{
+  getOffersTypeStageByExibitor(id:string){
+    this.candidatureService.getCountStagesAndOffersByOfferExhibitor(id,"stage").subscribe(data=>{
     this.listStages=data})
   }
 
-  getOffersTypeJobByExibitor(){
-    this.exibitorId=1;
-    this.candidatureService.getCountStagesAndOffersByOfferExhibitor(this.exibitorId.toString(),"job").subscribe(data=>{
+  getOffersTypeJobByExibitor(id:string){
+    this.candidatureService.getCountStagesAndOffersByOfferExhibitor(id,"job").subscribe(data=>{
     this.listJobs=data})
   }
 

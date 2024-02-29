@@ -7,6 +7,9 @@ import com.offer.offer.Service.IOfferService;
 import com.offer.offer.Service.OfferService;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -14,7 +17,6 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +29,6 @@ import java.util.ArrayList;
 import org.apache.poi.util.IOUtils;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -146,5 +146,20 @@ public class OfferController {
     @GetMapping("/hasApplied/{idUser}/{idOffer}")
     public boolean hasApplied(@PathVariable("idUser")long idUser,@PathVariable("idOffer")long idOffer){
         return offerService.hasApplied(idOffer, idUser);
+    }
+    @GetMapping("/telecharger-pdf/{idOffer}")
+    public ResponseEntity<Resource> telechargerPDF(@PathVariable("idOffer") long idOffer) {
+        // Récupérer le tableau de bytes depuis votre entité et stockez-le dans une variable byte[]
+        Offer offer= offerService.getOfferById(idOffer);
+        ByteArrayResource resource = new ByteArrayResource(offer.getFile());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=fichier.pdf");
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentLength(offer.getFile().length)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(resource);
     }
 }

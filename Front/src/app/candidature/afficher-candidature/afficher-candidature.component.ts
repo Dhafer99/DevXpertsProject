@@ -1,7 +1,9 @@
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Candidature, Status } from 'src/app/models/candidature';
 import { CandidatureService } from 'src/app/services/candidature.service';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-afficher-candidature',
@@ -10,7 +12,7 @@ import { CandidatureService } from 'src/app/services/candidature.service';
 })
 export class AfficherCandidatureComponent implements OnInit{
 
-  constructor(private activateroute:ActivatedRoute,private candidatureService:CandidatureService){  }
+  constructor(private activateroute:ActivatedRoute,private candidatureService:CandidatureService,private http: HttpClient){  }
   
   listCandidatures:Candidature[]=[]
   id!:number
@@ -29,14 +31,7 @@ export class AfficherCandidatureComponent implements OnInit{
   console.log("mylist:"+JSON.stringify(this.listCandidatures))
     })
   }
-  detail(id:number){
-    alert('number'+id)
-  }
 
-  downloadFile(){
-    convertToPdf(this.listCandidatures[0].file)
-    alert(this.listCandidatures[0].status.toString()=="en_cours")
-  }
 
   accepterCandidature(id:string){
     this.formData.append('status', 'accépté');
@@ -54,23 +49,20 @@ export class AfficherCandidatureComponent implements OnInit{
     })
   }
 
-}
-
-
-function convertToPdf(blob: Blob) {
-  /*const fileReader = new FileReader();
-  fileReader.onloadend = () => {
-    const arrayBuffer = fileReader.result as ArrayBuffer;
-    const uint8Array = new Uint8Array(arrayBuffer);
-    getDocument(uint8Array).promise.then((pdf) => {
-      pdf.getData().then((data) => {
-        const pdfBlob = new Blob([data], { type: 'application/pdf' });
-        saveAs(pdfBlob, 'converted.pdf');
+  telechargerDocument(id: number) {
+    const url = 'http://localhost:8899/api/Application/telecharger-pdf/'+id;
+    this.http.get(url, { observe: 'response', responseType: 'blob' })
+      .subscribe((response: HttpResponse<Blob>) => {
+        this.telechargerFichier(response.body);
       });
-    }).catch((error) => {
-      // Handle errors here.
-    });
-  };
-  fileReader.readAsArrayBuffer(blob);*/
- 
+  }
+
+  telechargerFichier(data: Blob | null) {
+  if (data !== null) {
+    const nomFichier = 'Motivation.pdf';
+    saveAs(data, nomFichier);
+  }
+
 }
+}
+
