@@ -42,4 +42,10 @@ public class InterestController {
     {
       return   service.remove(id);
     }
+    @DeleteMapping("/removeInterestByUserByEvent/{id}/{event}")
+    @ResponseStatus(HttpStatus.OK)
+    public Event remove(@PathVariable("id") int id,@PathVariable("event") int event)
+    {
+        return   service.removeByUserByEvent(id,event);
+    }
 }

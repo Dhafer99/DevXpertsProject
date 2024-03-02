@@ -19,5 +19,5 @@ public class Rating {
     private int eventID;
     private double rating;
     private String comment;
-
+    private String status;
 }

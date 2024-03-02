@@ -44,6 +44,7 @@ interesteds?: Interested[]; // Assuming InterestedBy is another TypeScript inter
     eventID!: number;
     rating!: number;
     comment!: string;
+    status!:string;
   }
   
 // event-type.enum.ts

@@ -3,8 +3,7 @@
   <!-- light-dark mode button -->
   <body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="71" >
   <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-end">
-      <i class="uil uil-brightness mode-dark mx-auto" (click)="dark()"></i>
-      <i class="uil uil-moon bx-spin mode-light" (click)="light()"></i>
+
   </a>
  <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar">
   <div class="container-fluid custom-container">
@@ -36,7 +35,7 @@
               </li>
 
               <li class="nav-item">
-                  <a href="index-2.html" class="nav-link">Events</a>
+                  <a  class="nav-link" (click)="navigateEvents()" >Events</a>
               </li>
 
               <li class="nav-item">
@@ -146,7 +145,9 @@
   </div>
   <!--end container-->
 </nav>
+
 <router-outlet></router-outlet>
+
 
 <section class="footer">
   <div class="container">

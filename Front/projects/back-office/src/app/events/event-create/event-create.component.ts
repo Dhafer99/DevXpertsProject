@@ -105,7 +105,7 @@ export class EventCreateComponent implements OnInit {
     console.log("Sending SWAL EVENT")
     Swal.fire({
       title: "Good job!",
-      text: "You clicked the button!",
+      text: "Your Request is Finished!",
       icon: "success"
     });
     

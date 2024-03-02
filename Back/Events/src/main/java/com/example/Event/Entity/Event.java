@@ -24,6 +24,7 @@ public class Event {
     private int imageId;
     // -------------------------
     private EventType type;
+    @Column( unique = true)
     private String name;
     // event will be at
     private Date date;

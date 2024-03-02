@@ -1,0 +1,45 @@
+<div class="body">
+<div id="left-menu">
+    <h2>Left Menu</h2>
+    <img src="{{ event.imageUrl }}" class="controlImageSize" alt="Image 1">
+    <br>
+    <p>Name: {{ event.name }}</p>
+    <p>Date: {{ event.date }}</p>
+    <p>Type: {{ event.type }}</p>
+    <p>View Counter: {{ event.viewsCounter }}</p>
+    <p>Interest Counter: {{ event.interestedCounter }}</p>
+    <p>Rating {{ event.rating | number: '1.2-2' }}</p>
+       <div> List of Interests 
+        <div *ngFor="let interest of event.interesteds">
+            <div> {{interest.userID}} </div>
+            <div> {{interest.timestamp}} </div>
+        </div>
+    </div>
+  </div>
+
+  <div id="right-menu">
+    <h2>Right Menu</h2>
+    <div *ngFor="let gallery of event.images">
+      <img src="{{ gallery.imageUrl }}" alt="Image 1">
+    </div>
+  </div>
+
+  <div id="main-content">
+    <h1>Main Content</h1>
+    <!-- Add your main content here -->
+   
+   
+	<div class="card" style="width: 18rem;" *ngFor="let rating of event.ratings">
+  <div class="card-body">
+    <h5 class="card-title">User {{rating.userID}}</h5>
+
+    <p class="card-text">{{ rating.comment }}</p>
+    <ngb-rating [max]="5" [rate]="rating.rating" [readonly]="true"></ngb-rating>
+    <button (click)="disableRating(rating)" *ngIf="rating.status=='Accepted'">Disable Rating</button>
+    <button (click)="enableRating(rating)" *ngIf="rating.status=='Declined'">Enable Rating</button>
+ 
+  </div>
+</div>
+    <!-- Add more content as needed -->
+  </div>
+</div>

@@ -45,7 +45,7 @@
 						<!-- Single ITEM-->
 							<div class="row mb-3"> <label for="inputText" class="col-sm-2 col-form-label">Event Name</label>
 							<div class="col-sm-3">
-								<input type="text" formcontrolname="name" name="name" class="form-control">
+								<input type="text" formControlName="name" name="name" class="form-control">
 							</div>
 
 							<div class="alert alert-danger" *ngIf="Name!.touched && Name!.invalid">
@@ -58,7 +58,7 @@
 							<!-- Single ITEM-->
 								<div class="row mb-3"> <label for="inputDate" class="col-sm-2 col-form-label">Event Date</label>
 								<div class="col-sm-3">
-									<input type="date" formcontrolname="date" class="form-control">
+									<input type="date" formControlName="date" class="form-control">
 								</div>
 							</div>
 							<div class="alert alert-danger" *ngIf="Date!.touched && Date!.invalid">

@@ -1,34 +1,46 @@
-		 				<img src="{{event.imageUrl}}"  alt="Image 1" >
- 
- <br>
-								 <p> Name:  {{event.name}}  </p>
-								<p> Date : {{event.date}}  </p>
-								  <p> Type : {{event.type}}  </p>
-								 <p> View Counter :{{event.viewsCounter}}  </p>
-                                 <p>Interest Counter :{{event.interestedCounter}}  </p>
-							<p> Rating
-								  {{event.rating | number: '1.2-2' }}
-							</p>
-							<div *ngIf="!interested">
-						<button  class="form-control Submit" (click)="addInterest()" aria-label="Sizing example input" >Interested</button>
-							</div>
-							<div *ngIf="interested">
-						<button class="form-control Submit" (click)="removeInterest()" aria-label="Sizing example input" >Remove Interest</button>
-							</div>
-<form [formGroup]= "myform" >
-<input type="text" formControlName="comment">
-						<ngb-rating [max]="5" formControlName="rating"></ngb-rating>
-						<button type="Submit" class="form-control Submit" (click)="add()" aria-label="Sizing example input" >Sumbit</button>
+<div class="body">
+<div id="left-menu">
+    <h2>Left Menu</h2>
+    <img src="{{ event.imageUrl }}" class="controlImageSize" alt="Image 1">
+    <br>
+    <p>Name: {{ event.name }}</p>
+    <p>Date: {{ event.date }}</p>
+    <p>Type: {{ event.type }}</p>
+    <p>View Counter: {{ event.viewsCounter }}</p>
+    <p>Interest Counter: {{ event.interestedCounter }}</p>
+    <p>Rating {{ event.rating | number: '1.2-2' }}</p>
+    <div *ngIf="!interested">
+      <button class="form-control Submit" (click)="addInterest()" aria-label="Sizing example input">Interested</button>
+    </div>
+    <div *ngIf="interested">
+      <button class="form-control Submit" (click)="removeInterest()" aria-label="Sizing example input">Remove Interest</button>
+    </div>
+  </div>
 
-</form>
+  <div id="right-menu">
+    <h2>Right Menu</h2>
+    <div *ngFor="let gallery of event.images">
+      <img src="{{ gallery.imageUrl }}" alt="Image 1">
+    </div>
+  </div>
 
-<table>
-	<tr>
-	<th></th>
-	<th></th>
-	</tr>
-	<tr *ngFor="let rating of event.ratings">
-	<td> {{rating.comment}} </td>
-	<td> <ngb-rating [max]="5" [rate]="rating.rating" [readonly]="true"></ngb-rating> </td>
-	</tr>
-</table>
+  <div id="main-content">
+    <h1>Main Content</h1>
+    <!-- Add your main content here -->
+    <form [formGroup]="myform">
+      <input type="textarea" class="textarea" formControlName="comment">
+      <ngb-rating [max]="5" formControlName="rating"></ngb-rating>
+      <button type="Submit" class="form-control Submit" (click)="add()" aria-label="Sizing example input">Submit</button>
+    </form>
+   
+	<div class="card" style="width: 18rem;" *ngFor="let rating of event.ratings">
+  <div class="card-body" *ngIf="rating.status=='Accepted'">
+    <h5 class="card-title">User {{rating.userID}}</h5>
+
+    <p class="card-text">{{ rating.comment }}</p>
+    <ngb-rating [max]="5" [rate]="rating.rating" [readonly]="true"></ngb-rating>
+  </div>
+</div>
+    <!-- Add more content as needed -->
+  </div>
+</div>

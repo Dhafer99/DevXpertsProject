@@ -9,11 +9,13 @@ import { EventsComponent } from './events/events.component';
 import { EventCreateComponent } from './events/event-create/event-create.component';
 import { EventListComponent } from './events/event-list/event-list.component';
 import { EventsStatsComponent } from './events/events/events-stats/events-stats.component';
+import { EventDisplayComponent } from './events/event-display/event-display.component';
 const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 { path: 'classrooms', component: AfficherClassroomComponent },
 {path: 'addclassroom', component: AddClassroomComponent },
 {path: 'calender', component: CalenderComponent },
 {path: 'create/:id', component: EventCreateComponent },
+{path: 'details/:name', component: EventDisplayComponent },
 {path: 'create', component: EventCreateComponent },
 {path: 'Eventlist', component: EventListComponent },
 {path: 'stats', component: EventsStatsComponent },

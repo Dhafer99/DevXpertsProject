@@ -8,6 +8,7 @@ import { EventListComponent } from './event-list/event-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EventsStatsComponent } from './events/events-stats/events-stats.component';
 import { ChartModule } from 'angular-highcharts';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { ChartModule } from 'angular-highcharts';
     CommonModule,
     EventsRoutingModule,ReactiveFormsModule,
     ChartModule,
-    
+    NgbModule,
     
   ]
 })

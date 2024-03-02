@@ -12,5 +12,5 @@ public Interested save(int event,int userId);
     public Event remove(int id);
     public List<Interested> findByUserID(int user);
     public List<Interested> findAllInterests();
-
+    public Event removeByUserByEvent(int id, int eventid);
 }

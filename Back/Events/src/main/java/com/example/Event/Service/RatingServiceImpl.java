@@ -19,17 +19,16 @@ public class RatingServiceImpl implements RatingService{
     @Override
     public void save(Rating rating) {
         Event event1=eventRepository.findById(rating.getEventID()).get();
-
+        if (rating.getStatus()==null || rating.getStatus().isEmpty())
+        {
+            rating.setStatus("Accepted");
+        }
         if (ratingRepository.findById(rating.getId()).isPresent())
         {
             updateRating(rating);
             updateRatingForEvent(event1.getId());
         }else {
-
-
-
-
-        event1.getRatings().add(rating);
+            event1.getRatings().add(rating);
 
         eventRepository.save(event1);
         updateRatingForEvent(event1.getId());

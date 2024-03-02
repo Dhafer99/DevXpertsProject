@@ -8,7 +8,7 @@ import { Interested } from "../models/Interested";
   providedIn: 'root'
 })
 export class EventServiceService {
-    __URL = 'http://localhost:8091/api/Event'
+    __URL = 'http://localhost:8222/api/Event'
     eventURL='/Events'
     interestURL='/Interest'
     ratingURL='/Rating'
@@ -39,6 +39,11 @@ export class EventServiceService {
     return this.http.get<Event[]>(this.__URL+this.eventURL+'/Allevents')
   }
   //------------------------------------------------------------------------------------------
+    //-----------------------------------Get ALL EVENTS--------------------------------------
+    getClosestEvents():Observable<Event[]>{
+      return this.http.get<Event[]>(this.__URL+this.eventURL+'/ClosestEvent')
+    }
+    //------------------------------------------------------------------------------------------
   //-----------------------------------Fetch EVENT--------------------------------------
   fetchEventById(id : number):Observable<Event>{
     return this.http.get<Event>(this.__URL+this.eventURL+'/fetchEventById/'+id)
@@ -71,6 +76,20 @@ export class EventServiceService {
       return  this.http.delete<Event>(this.__URL+this.interestURL+'/removeInterest/'+interest.id )
   
     }
+    deleteInterestByUserByEvent(user:number,event:number):Observable<Event>{
+      //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+        console.log(this.__URL+this.interestURL+'/removeInterestByUserByEvent/'+user+"/"+event)
+      return  this.http.delete<Event>(this.__URL+this.interestURL+'/removeInterestByUserByEvent/'+user+"/"+event)
+  
+    }
+ 
+    getUserInterest(id:number):Observable<Interested[]>{
+      //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+        console.log(this.__URL+this.interestURL+'/UserInterest/'+id)
+      return  this.http.get<Interested[]>(this.__URL+this.interestURL+'/UserInterest/'+id )
+  
+    }
+
   //-------------------------------- ------------------------------
   //--------------------------------Image related URLS ------------------------------
   public list(): Observable<Image[]> {

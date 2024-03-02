@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,30 +18,43 @@ public class EventServiceImpl implements EventService{
     private final ImageRepository imageRepository;
     @Override
     public Event save(Event event) {
-
+        Event eventTosaveInfo=new Event();
+        Optional<Event> updateEvent=eventRepository.findById(event.getId());
+        if (updateEvent.isPresent())
+        {
+            System.out.println("blabla");
+            eventTosaveInfo=event;
+            event=updateEvent.get();
+            event.setName(eventTosaveInfo.getName());
+            event.setImageId(eventTosaveInfo.getImageId());
+            event.setImageUrl(eventTosaveInfo.getImageUrl());
+            event.setDate(eventTosaveInfo.getDate());
+            event.setLastModified_at(new Date());
+            event.setCreated_at(updateEvent.get().getCreated_at());
+            event.setImages(eventTosaveInfo.getImages());
+        }
        Set<Image> list=event.getImages();
        if (event.getId()<1) {
            event.setImages(null);
            eventRepository.save(event);
-           return event;
 
+           return saveimages(list,event);
        }
-
         eventRepository.save(event);
-
-     saveimages(list,event);
-
-        return event;
+        return saveimages(list,event);
     }
 
-    public void saveimages(Set<Image> list,Event event){
+    public Event saveimages(Set<Image> list,Event event){
         Set<Image> list2=new HashSet<>();
+        System.out.println(event.getId());
         list.forEach(a->{
             if (a.getEventID()!=event.getId()){
                 a.setEventID(event.getId());
                 imageRepository.save(a);
                 list2.add(a);
+                System.out.println("image 1");
             }else {
+                System.out.println("Image 2");
                 list2.add(a);
             }
 
@@ -49,14 +63,14 @@ public class EventServiceImpl implements EventService{
 
         event.setImages(list2);
         eventRepository.save(event);
+        return event;
     }
     @Override
     public void update(Event event,int UserId) {
-
+        Set<Image> list=event.getImages();
         event.setLastModified_at(new Date());
         event.setLastModified_by(UserId);
-
-        eventRepository.save(event);
+         saveimages(list,event);
     }
 
     public List<Event> findAllEvents(){
@@ -67,6 +81,16 @@ public class EventServiceImpl implements EventService{
     public List<Event> findAllEventsNoGalery() {
 
         return eventRepository.findAll();
+    }
+
+    @Override
+    public List<Event> closestEvent() {
+        List<Event> allEvents = eventRepository.findAll();
+        Date currentDate = new Date();
+        List<Event> sortedEvents = allEvents.stream()
+                .sorted(Comparator.comparingLong(event -> Math.abs(event.getDate().getTime() - currentDate.getTime())))
+                .collect(Collectors.toList());
+        return sortedEvents.stream().limit(3).collect(Collectors.toList());
     }
 
     @Override
@@ -93,10 +117,8 @@ public class EventServiceImpl implements EventService{
         Event event= eventRepository.findEventByName(name).orElse(null);
         if(event!=null)
         {
-
             event.setViewsCounter(event.getViewsCounter()+1);
             eventRepository.save(event);
-
         }
         return event;
     }

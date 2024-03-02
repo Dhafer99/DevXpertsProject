@@ -1,37 +1,56 @@
+<section class="profile section bg-light">
+	<div class="display-flex justify-content-between">
+		<div class="col-lg-3" *ngFor="let event of eventList">
+			<div class="collection-items mt-3">
+				<div class="blog-box">
+					<div class="collection-image">
+						<div class="blog-image">
+							<div class="top-image d-flex justify-content-between">
+								<div *ngFor="let gallery of event.images  | slice:0:3">
+									<img src="{{gallery.imageUrl}}" alt="" class="imageborder" width="203" height="176">
 
+								</div>
 
-				
-
-					<!-- Table with stripped rows -->
-					<table>
-
-
-						<thead>
-							<tr>
-								<th>Image</th>
-								<th>Name</th>
-								<th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-								<th>Event Type</th>
-								<th>View</th>
-								<th>Interest</th>
-							</tr>
-						</thead>
-						<!--  add stuff here -->
-						<tbody>
-
-							<tr *ngFor="let event of eventList">
-								<td>				<img src="{{event.imageUrl}}" class="card-img-top" alt="Image 1" height="175px">
-</td>
-<a [routerLink]="['/display', event.name]">Navigate to /create/id</a>
-								<td> {{event.name}} </td>
-								<td > {{event.date}} </td>
-								<td> {{event.type}} </td>
-								<td> {{event.viewsCounter}} </td>
-                                <td> {{event.interestedCounter}} </td>
+							</div>
+							<div class="mt-3">
+								<img src="{{event.imageUrl}}" alt="" class="imageborder w-100" width="656" height="492">
+							</div>
+						</div>
+					</div>
+					<div class="collection-content mt-3">
+						<div class="d-flex align-items-center">
+							<div class="collection-title">
+								<a href="#" class="fw-bold h4" [routerLink]="['/display', event.name]">{{event.name}}</a>
+							</div>
+							<div class="collection-like-icon ms-auto">
+								<p class="fw-semibold mb-0">
+								<a>
+										<i class="mdi mdi-heart" *ngIf="isEventInList(event.id)" (click)="removeInterest(event)"></i>
+                                </a>
 								
-							</tr>
+								<a>
+										<i class="mdi mdi-heart-outline" *ngIf="!isEventInList(event.id)" (click)="addInterest(event)"></i>
+                                </a>	
+									
 
-						</tbody>
-						<!-- things -->
-					</table>
-	
+
+									{{event.interestedCounter}}
+								</p>
+							</div>
+						</div>
+						<div class="blog-profile mt-3">
+							<h5 class="f-14 text-muted">
+								Views
+								<a href="#" class="text-muted">
+
+									<span>{{event.viewsCounter}}</span>
+								</a>
+							</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>

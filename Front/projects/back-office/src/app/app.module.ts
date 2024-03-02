@@ -14,10 +14,12 @@ import { CalenderComponent } from './Appointment/calender/calender.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { EventsComponent } from './events/events.component';
 import { ChartModule } from 'angular-highcharts';
-import { EventsModule } from './events/events.module';
 import { EventCreateComponent } from './events/event-create/event-create.component';
 import { EventsStatsComponent } from './events/events/events-stats/events-stats.component';
 import { EventListComponent } from './events/event-list/event-list.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { EventDisplayComponent } from './events/event-display/event-display.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +34,10 @@ import { EventListComponent } from './events/event-list/event-list.component';
     EventCreateComponent,
     EventsStatsComponent,
     EventListComponent,
+    EventDisplayComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -41,6 +45,7 @@ import { EventListComponent } from './events/event-list/event-list.component';
     ReactiveFormsModule,
     ScheduleModule ,
     ChartModule,
+    NgbModule,
   ],
 
   bootstrap: [AppComponent]

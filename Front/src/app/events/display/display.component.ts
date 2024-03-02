@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Interested } from 'src/app/models/Interested';
 import { Event } from 'src/app/models/event';
 import { EventServiceService } from 'src/app/services/event-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-display',
@@ -30,7 +31,8 @@ export class DisplayComponent implements OnInit{
       rating:new FormControl(0),
       userID: new FormControl(0),
     eventID: new FormControl(0),
-    id:new FormControl(0)
+    id:new FormControl(0),
+    status:new FormControl('Accepted')
     })
     this.acr.params.subscribe(params => {
       this.fetchEvent(params['name']);
@@ -49,13 +51,16 @@ export class DisplayComponent implements OnInit{
         this.myform.setValue({
           userID:this.idUser,
           eventID: this.event.id,
-
+          status:rate?.status,
             comment:rate?.comment ||'',
             rating:rate?.rating ||0,
             id:rate?.id ||0
 
         });
-        
+          if (rate?.status=="Declined")
+          { 
+            Swal.fire("Your Comments have been disabled for this Event");
+          }
         if (this.event.interesteds){
           this.event.interesteds.forEach(intreted => {
             if (intreted.userID==this.idUser)
@@ -65,7 +70,7 @@ export class DisplayComponent implements OnInit{
               console.log(intreted.userID==this.idUser)
               this.interested=true;
              this.interestedBy=intreted
-
+              
             }
           });
         }
@@ -87,7 +92,7 @@ export class DisplayComponent implements OnInit{
       console.log("")
       this.eventService.addInterest(this.idUser,this.event.id).subscribe((data)=>
     {
-
+      this.event.interestedCounter+=1
       this.interestedBy=data;
       this.event.interesteds?.push(this.interestedBy);
       this.interested=true;

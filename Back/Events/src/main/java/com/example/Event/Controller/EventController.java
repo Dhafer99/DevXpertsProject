@@ -51,4 +51,9 @@ public class EventController {
     {
         service.update(event,userId);
     }
+    @GetMapping("/ClosestEvent")
+    public ResponseEntity<List<Event>> closestEvent(){
+        return ResponseEntity.ok(service.closestEvent());
+    }
+
 }

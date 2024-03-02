@@ -35,6 +35,7 @@
 								<th>Event Type</th>
 								<th>View</th>
 								<th>Interest</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<!--  add stuff here -->
@@ -43,12 +44,16 @@
 							<tr *ngFor="let event of eventList">
 								<td>				<img src="{{event.imageUrl}}" class="card-img-top" alt="Image 1" height="175px">
 </td>
-<a [routerLink]="['/create', event.id]">Navigate to /create/id</a>
-								<td> {{event.name}} </td>
+
+								<td>  {{event.name}} </td>
 								<td > {{event.date}} </td>
 								<td> {{event.type}} </td>
 								<td> {{event.viewsCounter}} </td>
                                 <td> {{event.interestedCounter}} </td>
+								<td> <a [routerLink]="['/create', event.id]">Update</a>
+								 <a [routerLink]="['/create', event.id]">Delete</a>
+								 <a [routerLink]="['/details', event.name]">View</a>
+								 </td>
 							</tr>
 
 						</tbody>
