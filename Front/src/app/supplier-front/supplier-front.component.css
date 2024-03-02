@@ -1,0 +1,13 @@
+.custom-border {
+    border: 2px solid #ced4da; /* Change border width and color as needed */
+    border-radius: 5px; /* Optional: Add border radius for rounded corners */
+}
+
+.custom-row {
+   padding: 10% ;
+}
+.custom-background {
+    background: linear-gradient(98.3deg, rgb(100, 0, 0) 10.6%, rgb(255, 0, 0) 97.7%);
+
+
+}

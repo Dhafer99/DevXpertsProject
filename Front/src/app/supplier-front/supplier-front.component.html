@@ -1,0 +1,121 @@
+
+ 
+
+<div class="custom-background">
+<div class="row custom-row">
+
+   
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Bordered Tabs</h5>
+      
+          <!-- Bordered Tabs -->
+          <ul class="nav nav-tabs nav-tabs-bordered" id="borderedTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-home" type="button" role="tab" aria-controls="home" aria-selected="true">Services Needed</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Products Needed</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Services And Products </button>
+            </li>
+          </ul>
+          <div class="tab-content pt-2" id="borderedTabContent">
+            <div class="tab-pane fade show active" id="bordered-home" role="tabpanel" aria-labelledby="home-tab">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Esprit Requests </h5>
+          
+                  <!-- Default Accordion -->
+                  <div class="accordion" id="accordionExample">
+                  
+                      <div class="accordion-item" *ngFor="let item of supplierList; let i = index">
+                        <div *ngIf="item.type === 'isService'">
+                        <h2 class="accordion-header" [id]="'heading'+(i+1)">
+                          <button class="accordion-button" type="button" [attr.data-bs-toggle]="'collapse'" [attr.data-bs-target]="'#collapse'+(i+1)" [attr.aria-expanded]="false" aria-controls="collapseOne">
+                           Request #{{i+1}}
+                          </button>
+                        </h2>
+                        <div [id]="'collapse'+(i+1)" class="accordion-collapse collapse show false" [attr.aria-labelledby]="'heading'+(i+1)" data-bs-parent="#accordionExample">
+                          <div class="accordion-body">
+                            <strong>We need A {{getType(item.type)}}. </strong>
+                            <br>
+                              <strong> Available budget : {{item.price}}</strong>
+                              
+                            <h1>{{item.requirement}}</h1>
+                          </div>
+                          <button class="btn btn-danger" style="margin:20px;" (click)="RequestSent(item.id)">Send a request</button>
+                        </div>
+                      </div>
+                      </div>
+                    </div><!-- End Default Accordion Example -->
+          
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="bordered-profile" role="tabpanel" aria-labelledby="profile-tab">
+                <!-- Default Accordion -->
+                <div class="accordion" id="accordionExample">
+                  
+                  <div class="accordion-item" *ngFor="let item of supplierList; let i = index">
+                    <div *ngIf="item.type === 'isProduct' && item.status ==='Pending'">
+                    <h2 class="accordion-header" [id]="'heading'+(i+1)">
+                      <button class="accordion-button" type="button" [attr.data-bs-toggle]="'collapse'" [attr.data-bs-target]="'#collapse'+(i+1)" [attr.aria-expanded]="false" aria-controls="collapseOne">
+                       Request #{{i+1}}
+                      </button>
+                    </h2>
+                    <div [id]="'collapse'+(i+1)" class="accordion-collapse collapse show false" [attr.aria-labelledby]="'heading'+(i+1)" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong>We need A {{getType(item.type)}}. </strong>
+                        <br>
+                          <strong> Avaialable budget : {{item.price}}</strong>
+                        <h1>{{item.requirement}}</h1>
+                      </div>
+                      <button class="btn btn-danger" style="margin:20px;" (click)="RequestSent(item.id)">Send a request</button>
+                    </div>
+                  </div>
+                  </div>
+                </div><!-- End Default Accordion Example -->
+            </div>
+            <div class="tab-pane fade" id="bordered-contact" role="tabpanel" aria-labelledby="contact-tab">
+               <!-- Default Accordion -->
+               <div class="accordion" id="accordionExample">
+                  
+                <div class="accordion-item" *ngFor="let item of supplierList; let i = index">
+                  <div *ngIf="item.type === 'isProductAndService' ">
+                  <h2 class="accordion-header" [id]="'heading'+(i+1)">
+                    <button class="accordion-button" type="button" [attr.data-bs-toggle]="'collapse'" [attr.data-bs-target]="'#collapse'+(i+1)" [attr.aria-expanded]="false" aria-controls="collapseOne">
+                     Request #{{i+1}}
+                    </button>
+                  </h2>
+                  <div [id]="'collapse'+(i+1)" class="accordion-collapse collapse show false" [attr.aria-labelledby]="'heading'+(i+1)" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <strong>We need A {{getType(item.type)}}. </strong>
+                      <br>
+                        <strong> Available budget : {{item.price}}</strong>
+                        <br>
+                              <h2>Service : {{ item.servicename}}</h2>
+                              <br>
+                              <h2>Product : {{ item.productname}}</h2>
+                      <h1>{{item.requirement}}</h1>
+                    </div>
+                    <button class="btn btn-danger" style="margin:20px;" (click)="RequestSent(item.id)" >Send a request</button>
+                  </div>
+                </div>
+                </div>
+              </div><!-- End Default Accordion Example -->
+            </div>
+          </div><!-- End Bordered Tabs -->
+      
+        </div>
+      </div>
+
+      <!-- End Bordered Tabs --><!-- End Bordered Tabs --><!-- End Bordered Tabs --><!-- End Bordered Tabs -->
+
+
+   
+  </div>
+  </div>
+</div>
