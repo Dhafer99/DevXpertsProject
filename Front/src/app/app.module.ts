@@ -12,6 +12,8 @@ import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.c
 import { AuctionRoomComponent } from './RoomManagementUser/auction-room/auction-room.component';
 import { CountdownComponentComponent } from './RoomManagementUser/countdown-component/countdown-component.component';
 import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.component';
+import { PaymentComponent } from './payment/payment.component';
+import { StripeModule } from 'stripe-angular';
 
 
 @NgModule({
@@ -25,10 +27,12 @@ import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.compone
     AuctionRoomComponent,
     CountdownComponentComponent,
     MyRoomsComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,HttpClientModule
+    AppRoutingModule,HttpClientModule,
+    StripeModule.forRoot("pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC")
   ],
   providers: [],
   bootstrap: [AppComponent]

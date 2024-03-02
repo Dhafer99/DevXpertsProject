@@ -28,14 +28,14 @@ public class Pack {
     private boolean reserved ;
     private Date creationDate ;
     @ManyToOne(fetch = FetchType.EAGER)
-
+    @JsonIgnore
     private Company company;
     // supplier
     // company
     private float price ;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    
+    @JsonIgnore
     private Room room;
 
 

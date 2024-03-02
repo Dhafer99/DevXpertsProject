@@ -8,6 +8,7 @@ import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.c
 import { AuctionRoomComponent } from './RoomManagementUser/auction-room/auction-room.component';
 import { CountdownComponentComponent } from './RoomManagementUser/countdown-component/countdown-component.component';
 import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const routes: Routes = [  
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'auction/:id/roullette', component: RoomsListComponent },
   { path: 'count', component: CountdownComponentComponent },
   { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent },
+  { path: 'payments', component: PaymentComponent },
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }
   
   

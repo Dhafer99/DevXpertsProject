@@ -1,5 +1,6 @@
 package tn.esprit.auction.Controller;
 
+import com.stripe.Stripe;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.auction.Entites.Pack;
@@ -14,6 +15,9 @@ import java.util.List;
 @RequestMapping("/api/rooms")
 public class RoomController {
     RoomInterface roomInterface ;
+    private static void init() {
+        Stripe.apiKey = "pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC";
+    }
     @PutMapping("/updatePrice/{nbrpoint}/{idroom}")
     public float updatePrice(@PathVariable("nbrpoint") int nbrpoint ,@PathVariable("idroom") long idroom ) {
         return  roomInterface.UpdatePrice(nbrpoint,idroom);

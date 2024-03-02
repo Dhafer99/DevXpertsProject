@@ -14,7 +14,9 @@ export class RoomsListComponent implements OnInit{
   rooms: Room[] = [];
   test:boolean=false;
 
-  constructor( private sanitizer: DomSanitizer,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
+  constructor( private sanitizer: DomSanitizer,
+    private packService: PackServiceService,
+     private route: Router,private roomService: RoomServiceService) {}
   sanitizeHtml(html: string): SafeHtml {
     // Utiliser DomSanitizer pour marquer le HTML comme sûr
     return this.sanitizer.bypassSecurityTrustHtml(html);
@@ -55,5 +57,9 @@ export class RoomsListComponent implements OnInit{
         );
       }
     );
+  }
+  navigateToPayments() {
+    // Assuming you have a route named 'payments' defined in your routing configuration
+    this.route.navigate(['/payments']);
   }
 }
