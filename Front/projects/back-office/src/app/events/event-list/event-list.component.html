@@ -1,68 +1,79 @@
-<div class="pagetitle">
-	<h1>Data Tables</h1>
-	<nav>
-		<!--  WE NEED TO FIX THESE PATH   -->
-		<!--  paladin   -->
-			<ol class="breadcrumb"> <li class="breadcrumb-item">
-				<a href="index.html">Home</a>
-			</li>
-			<li class="breadcrumb-item">Tables</li>
-			<li class="breadcrumb-item active">Data</li>
-		</ol>
-	</nav>
-</div>
-<!-- End Page Title -->
-
-<section class="section">
-	<div class="row">
-		<div class="col-lg-12">
-
-			<div class="card">
-				<h5 class="card-title">Event List</h5>
-				<div class="card-body">
-
+<div class="row">
+  <div class="col-xl-4">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="profile-blog">
+              <h5 class="text-primary d-inline">Upcoming Events</h5>
+              <img
+                src="../../../assets/images/profile/1.jpg"
+                alt=""
+                class="img-fluid mt-4 mb-4 w-100"
+              />
+              <h4>
+                <a href="post-details.html" class="text-black">Deluxe Veggie</a>
+              </h4>
+              <p class="mb-0">
+                For a vegetarian looking for a BIG treat that goes easy on the
+                spices, this one's got it all.. The onions, the capsicum, those
+                delectable mushrooms - with paneer and golden corn to top it
+                all.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-8">
+    <div class="card">
+      <div class="card-body">
+        <div class="profile-tab">
+          <div class="custom-tab-1">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a
+                  href="#my-posts"
+                  data-bs-toggle="tab"
+                  class="nav-link active show"
+                  >Events</a
+                >
+              </li>
+            </ul>
+            <div class="tab-content" *ngFor="let event of eventList">
+              <div id="my-posts" class="tab-pane fade active show" >
+                <div class="my-post-content pt-3 " >
+                  <div class="profile-uoloaded-post pb-3" >
+                    <img
+					src="{{event.imageUrl}}"
+                      alt=""
+                      class="img-fluid w-100 rounded"
+                    />
+                    <a class="post-title" href="post-details.html"
+                      ><h3 class="text-black">{{event.name}} </h3></a
+                    >
+					<ul class="mb-4 post-meta d-flex flex-wrap">
+						<li class="post-author me-3"> {{event.type}}</li>
+						<li class="post-date me-3"><i class="fas fa-calendar-check me-2"></i>{{event.date | date:"MMMM d , y" }}</li>
+						<li class="post-comment"><i class="fas fa-comment me-2"></i> {{event.viewsCounter}} views</li>
+						<li style="margin-left: 2%;"  class="post-comment"><i class="fas fa-comment me-2"></i> {{event.interestedCounter}} intrested</li>
+					</ul>
 				
-
-					<!-- Table with stripped rows -->
-					<table class="table datatable">
-
-
-						<thead>
-							<tr>
-								<th>Image</th>
-								<th>Name</th>
-								<th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-								<th>Event Type</th>
-								<th>View</th>
-								<th>Interest</th>
-								<th>Action</th>
-							</tr>
-						</thead>
-						<!--  add stuff here -->
-						<tbody>
-
-							<tr *ngFor="let event of eventList">
-								<td>				<img src="{{event.imageUrl}}" class="card-img-top" alt="Image 1" height="175px">
-</td>
-
-								<td>  {{event.name}} </td>
-								<td > {{event.date}} </td>
-								<td> {{event.type}} </td>
-								<td> {{event.viewsCounter}} </td>
-                                <td> {{event.interestedCounter}} </td>
-								<td> <a [routerLink]="['/create', event.id]">Update</a>
-								 <a [routerLink]="['/create', event.id]">Delete</a>
-								 <a [routerLink]="['/details', event.name]">View</a>
-								 </td>
-							</tr>
-
-						</tbody>
-						<!-- things -->
-					</table>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-</section>
+                    <p>
+						{{event.note}}
+                    </p>
+                    <button class="btn btn-primary me-2" 	[routerLink]="['/details', event.name]">
+                      <span class="me-2"><i class="fa fa-reply"></i></span>view details
+                    </button>
+                
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

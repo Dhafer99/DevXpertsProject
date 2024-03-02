@@ -1,59 +1,65 @@
-<div class="col-lg-6">
-	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">Line Chart</h5>
-			<div>
-
-				<!-- MY CHART -->
+<div class="row">
+	<div class="col-xl-6 col-lg-6">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Interaction post</h4>
+			</div>
+			<div class="card-body">
 				<div [chart]="linechart"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xl-6 col-lg-6">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Interaction day </h4>
+			</div>
+			<div class="card-body">
 				<div [chart]="barchart"></div>
 
 			</div>
 		</div>
 	</div>
+	</div>
 
+		<div class="card">
+			<div class="card-header border-0 pb-0">
+				<h4 class="card-title">Events</h4>
+			</div>
+			<div class="card-body pb-0">
+				<div class="widget-media">
+					<ul class="timeline">
+						<li *ngFor="let event of eventList">
+							<div class="form-check custom-checkbox" >
+							<input (change)="handleCheckboxChange(event)" 	type="checkbox" class="form-check-input" id="customCheckBox1" required>
 
-	<button (click)="linechartrecreate()"> chartrecreate
-	</button>
+							<div class="timeline-panel" style="margin-left: 5%; ">
+								<div class="media me-2">
+									<img alt="image" width="100" src="{{event.imageUrl}}">
+								</div>
+								<div class="media-body">
+									<h5 class="mb-1">{{event.name}}</h5>
+									<small class="d-block">{{event.date | date:"MMMM d,y"}}</small>
+								</div>
+								<div class="dropdown">
+									<button type="button" class="btn btn-primary light sharp" data-bs-toggle="dropdown">
+										<svg width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"/><circle fill="#000000" cx="5" cy="12" r="2"/><circle fill="#000000" cx="12" cy="12" r="2"/><circle fill="#000000" cx="19" cy="12" r="2"/></g></svg>
+									</button>
+									<div class="dropdown-menu dropdown-menu-end">
+										<a class="dropdown-item"> {{event.type}} </a>
+										<a class="dropdown-item">{{event.viewsCounter}} views</a>
+										<a class="dropdown-item"> {{event.interestedCounter}} intrested </a>
 
-
-</div>
-<div class="col-lg-6">
-	<div class="card">
-		<div class="card-body">
-<table class="table datatable">
-
-
-						<thead>
-							<tr><th>Track</th>
-								<th>Image</th>
-								<th>Name</th>
-								<th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-								<th>Event Type</th>
-								<th>View</th>
-								<th>Interest</th>
-							</tr>
-						</thead>
-						<!--  add stuff here -->
-						<tbody>
-
-							<tr *ngFor="let event of eventList">
-							<td>       <input type="checkbox"  (change)="handleCheckboxChange(event)" />
-</td>
-								<td>				<img src="{{event.imageUrl}}" class="card-img-top" alt="Image 1" height="175px">
-<a [routerLink]="['/create', event.id]">Navigate to /create/id</a>
-</td>
-								<td> {{event.name}} </td>
-								<td > {{event.date}} </td>
-								<td> {{event.type}} </td>
-								<td> {{event.viewsCounter}} </td>
-                                <td> {{event.interestedCounter}} </td>
-							</tr>
-
-						</tbody>
-						<!-- things -->
-					</table>
-
-		</div>
-		</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</li>
+					
+					</ul>	
+				</div>
+			</div>
+			<div class="chart-wrapper">
+				<canvas id="chart_widget_9"></canvas>
+			</div>
 		</div>

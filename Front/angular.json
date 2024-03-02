@@ -124,7 +124,7 @@
               "projects/back-office/src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              
               "projects/back-office/src/styles.css"
             ],
             "scripts": []
