@@ -23,6 +23,7 @@ public class Post {
     private String image;
     private String descriptionSubject;
     private int likesSubject;
+    private int commentsCount;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
     private Set<Comment> comment;

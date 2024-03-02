@@ -18,9 +18,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Base64;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+import java.util.function.Consumer;
 
 @Slf4j
 @Service
@@ -30,8 +29,12 @@ public class ForumServiceImp implements ForumService{
     private final PostRepository postRepo;
 
     private final CommentRepository commentRepo;
+    private final List<Consumer<Post>> listeners = new ArrayList<>();
+
 //    @Value("${image.upload.dir}")
 //    private String uploadDir;
+
+
 
     @Override
     public void savePost(String title,String descriptionSubject,MultipartFile file){
@@ -51,6 +54,7 @@ public class ForumServiceImp implements ForumService{
        p.setTitle(title);
 
         postRepo.save(p);
+      //  notifyNewPost(p);
     }
 
 //    @Override
@@ -71,6 +75,17 @@ public class ForumServiceImp implements ForumService{
 //        }
 //    }
 
+//    private void notifyNewPost(Post newPost) {
+//        listeners.forEach(listener -> listener.accept(newPost));
+//    }
+//
+//    public void addPostListener(Consumer<Post> listener) {
+//        listeners.add(listener);
+//    }
+//
+//    public void removePostListener(Consumer<Post> listener) {
+//        listeners.remove(listener);
+//    }
 
     @Override
     public List<Post> findAllPosts() {
@@ -90,12 +105,39 @@ public class ForumServiceImp implements ForumService{
     public Post modifyPost(Post post) {
         return postRepo.save(post);
     }
+//    public Comment addComment(long postId, String textComment) {
+//        Optional<Post> optionalPost = postRepo.findById(postId);
+//        if (optionalPost.isPresent()) {
+//            Post post = optionalPost.get();
+//
+//            // Create a new comment
+//            Comment comment = new Comment();
+//            comment.setTextComment(textComment);
+//            comment.setLikesComment(0); // Initialize likes count to 0
+//
+//            // Associate the comment with the post
+//            comment.setPost(post);
+//
+//            // Save the comment
+//            return commentRepo.save(comment);
+//        } else {
+//            throw new IllegalArgumentException("Post with ID " + postId + " not found");
+//        }
+//    }
 
-
-   @Override
-    public Comment saveComment(Comment comment) {
-        return commentRepo.save(comment);
+    @Override
+    public void addComment(Comment comment , long id) {
+        comment.setLikesComment(0);
+        comment.setMostPertinentComment(false);
+            Post post = retrievePost (id);
+            comment.setPost(post);
+            commentRepo.save(comment);
     }
+
+//   @Override
+//    public Comment saveComment(Comment comment) {
+//        return commentRepo.save(comment);
+//    }
     @Override
     public List<Comment> findAllComments() {
         return commentRepo.findAll();

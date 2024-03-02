@@ -1,5 +1,6 @@
 package com.example.forum.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,11 +14,13 @@ import lombok.*;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long IdComment ;
+    private long idComment ;
     private int likesComment;
     private boolean mostPertinentComment;
     private String textComment;
 
+
+    @JsonIgnore
     @ManyToOne
     Post post;
 }

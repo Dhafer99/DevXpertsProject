@@ -1,40 +1,29 @@
-<section id="contact" class="contact">
-
-  <div class="container">
-
-      
-
-      <div class="row mt-5 justify-content-center" data-aos="fade-up">
-        <div class="col-lg-10">
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form" enctype="multipart/form-data">
-          
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="title" id="title"
-              [(ngModel)]="post.title"  placeholder="Title" required >
-            </div>
-
-            <div class="custom-file mt-3">
-             <input type="file" class="custom-file-input" name="file" (change)="onFileSelected($event)" id="image" >
-            </div>
-
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="subject" rows="5"
-              [(ngModel)]="post.descriptionSubject"  placeholder="Subject" required></textarea>
-            </div>
-
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your post has been posted. Thank you!</div>
-            </div>
-            <div class="text-center"><button class = "btn btn-success" (click)="savePost()" type="submit">Add Post</button>
-            
-            </div>
-         
-          
-          </form>
-        </div>
-      </div>
+<button mat-icon-button style="float: right; margin: 5px;" matDialogClose>
+    <mat-icon aria-label="Close modal">close</mat-icon>
+  </button>
+  
+  <mat-dialog-content style="border-radius: 20px;">
+    <header>
+      <h1 mat-dialog-title class="dialog-title" style="font-family: 'Roboto', sans-serif; font-size: 25px;font-weight: 700!important; color: #052c65" >Add Post</h1>
+    </header>
+  
+    <mat-form-field appearance="fill" style="width: 100%">
+      <input matInput [(ngModel)]="post.title"  placeholder="Title..." style="width: 100%">
+      <mat-icon matSuffix>title</mat-icon>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" style="width: 100%">
+      <textarea matInput [(ngModel)]="post.descriptionSubject" placeholder="Description" rows="4" style="width: 100%"></textarea>
+      <mat-icon matSuffix>description</mat-icon>
+    </mat-form-field>
+  
+    <div appearance="fill" style="width: 80%">
+      <input  type="file" placeholder="Upload image "  (change)="onFileSelected($event)" style="width: 105%">
     </div>
-
-  </section><!-- End Contact Section -->
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end" style="gap: 10px;">
+    <button mat-raised-button color="primary" style="background-color: #052c65;" (click)="savePost()" >Save</button>
+    <button mat-raised-button color="warn" style="background-color: #B22222;" matDialogClose>Cancel</button>
+  </mat-dialog-actions>
+  

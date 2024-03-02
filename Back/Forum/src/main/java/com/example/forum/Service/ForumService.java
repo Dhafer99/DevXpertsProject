@@ -14,7 +14,8 @@ public interface ForumService {
      Post modifyPost(Post post);
 
 
-     Comment saveComment(Comment comment);
+     public void addComment(Comment comment , long id);
+   //  Comment saveComment(Comment comment);
      List<Comment> findAllComments();
      Comment retrieveComment(Long commentId);
      void removeComment(Long commentId);

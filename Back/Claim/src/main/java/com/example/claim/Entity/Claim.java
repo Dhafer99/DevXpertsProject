@@ -13,13 +13,12 @@ import lombok.*;
 public class Claim {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long IdClaim ;
+    private long idClaim ;
     private String decision;
     private String date;
-
     private String status;
-
+    private String subject;
     private String description;
-    private int Level;
+    private int level;
 
 }

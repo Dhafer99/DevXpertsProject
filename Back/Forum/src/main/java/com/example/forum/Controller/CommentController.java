@@ -18,9 +18,11 @@ public class CommentController {
 
 
     @PostMapping("/add-comment")
-    public Comment addComment(@RequestBody Comment comment) {
-        return service.saveComment(comment);
+    public void addComment(@RequestBody Comment comment,@RequestParam("id") long  id) {
+         service.addComment(comment,id);
     }
+
+
 
     @GetMapping("retrieve-all-comments")
     public ResponseEntity<List<Comment>> findAllComments(){

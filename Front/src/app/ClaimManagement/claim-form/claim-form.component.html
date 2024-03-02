@@ -1,0 +1,126 @@
+
+
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="71">
+
+    <!-- light-dark mode button -->
+    <a href="javascript: void(0);" id="mode" class="mode-btn text-white rounded-end">
+        <i class="uil uil-brightness mode-dark mx-auto"></i>
+        <i class="uil uil-moon bx-spin mode-light"></i>
+    </a>
+
+    <!-- start section -->
+    <section class="home section bg-light overflow-hidden">
+        <!-- start container -->
+        <div class="container">
+            <div class="row justify-content-xxl-end justify-content-center">
+                <div class="col-lg-8">
+                    <nav aria-label="breadcrumb">
+                       
+                    </nav>
+                </div>
+            </div>
+
+            
+            <div class="row justify-content-xxl-end justify-content-center">
+                <div class="container">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-lg-8">
+                            <div class="inner-heading text-center">
+                                <div class="mt-5">
+                                    <h1 class="fw-bold">Claim</h1>
+                                    <p class="text-muted">Submit your claims hassle-free and get swift resolutions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+
+
+            <style>
+                /* Style the input field */
+                input[type="date"] {
+                  padding: 10px;
+                  border: 1px solid #ccc;
+                  border-radius: 5px;
+                }
+                </style>
+
+            <form class="mt-2 ">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <form class="mt-2">
+                                <div class="info-box">
+                                    <h4 class="fw-bold">Account Info <i class="mdi mdi-information-outline f-30 align-middle"></i></h4>
+                                    <div class="mt-4">
+                                        <div class="mt-4">
+                                            <div class="Name">
+                                                <div class="d-flex">
+                                                    <label for="validationDefault03" class="form-label fw-semibold"> Date :</label>
+                                                </div>
+                                                <input type="date" id="datepicker"[(ngModel)]="claim.date" name="date" required>
+                                            </div>
+                                        </div>
+                
+                                        <div class="mt-4">
+                                            <div class="Name">
+                                                <label for="validationDefault001" class="form-label fw-semibold"> Subject :</label>
+                                                <input type="text" class="form-control" id="validationDefault001" placeholder="" value="" [(ngModel)]="claim.subject" name="subject" required>
+                                            </div>
+                                        </div>
+                
+                                        <div class="mt-4">
+                                            <div class="Name">
+                                                <label for="validationDefault03" class="form-label fw-semibold"> Description :</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="claim.description" name="description"required></textarea>
+                                            </div>
+                                        </div>
+                
+                                        
+                                    </div>
+                                </div>
+                
+                                <div class="submit-button mt-4">
+                                    <button class="btn btn-primary" type="submit"(click)="addClaim(claim)">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="request-image position-absolute top-0 start-0 p-0">
+                    <img src="images/inner-image/submit-req.png" alt="" class="img-fluid">
+                </div>
+
+            </form>
+
+        </div>
+        <!-- end container -->
+    </section>
+
+
+   
+
+
+
+
+
+    <!--Bootstrap Js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- Slider Js -->
+    <script src="js/tiny-slider.js"></script>
+    <script src="js/swiper.min.js"></script>
+
+    <!-- counter -->
+    <script src="js/counter.init.js"></script>
+
+    <!-- App Js -->
+    <script src="js/app.js"></script>
+
+
+</body>
+
+
+<!-- Mirrored from themesdesign.in/artlink/layout/submit-request.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 22 Feb 2024 15:25:11 GMT -->

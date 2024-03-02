@@ -2,14 +2,21 @@ package com.example.forum.Controller;
 
 import com.example.forum.Entity.Post;
 import com.example.forum.Service.ForumService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+
+import java.io.IOException;
 import java.util.List;
+import java.util.function.Consumer;
 
 @RestController
 @RequestMapping("/api/Posts")
@@ -27,6 +34,41 @@ public class PostController {
     {
         service.savePost(title,descriptionSubject,file);
     }
+
+//    @GetMapping("/posts/stream")
+//    public ResponseEntity<String> streamPosts() {
+//        MediaType mediaType = MediaType.TEXT_EVENT_STREAM;
+//        return ResponseEntity.ok().contentType(mediaType)
+//                .body(sseEmitter -> {
+//                    // Register client connection logic
+//                    sseEmitter.onCompletion(() -> System.out.println("Client disconnected"));
+//                    sseEmitter.onError(throwable -> System.out.println("Error occurred: " + throwable.getMessage()));
+//
+//                    // Listen for new posts from the service
+//                    Consumer<Post> listener = newPost -> {
+//                        try {
+//                            sseEmitter.send(convertPostToSseEvent(newPost));
+//                        } catch (IOException e) {
+//                            // Handle exception
+//                        }
+//                    };
+//                    service.addPostListener(listener);
+//
+//                    // Unregister listener on disconnect (optional)
+//                    sseEmitter.onTimeout(() -> service.removePostListener(listener));
+//                });
+//    }
+//
+//    private String convertPostToSseEvent(Post newPost) {
+//        // Convert post data to a suitable format for SSE event (e.g., JSON)
+//        ObjectMapper mapper = new ObjectMapper();
+//        try {
+//            String eventData = mapper.writeValueAsString(newPost);
+//            return "data: " + eventData + "\n\n"; // Format for SSE event
+//        } catch (JsonProcessingException e) {
+//            throw new RuntimeException("Error converting post to JSON", e);
+//        }
+//    }
 
     @GetMapping("/retrieve-all-posts")
     public List<Post> getListPosts(){

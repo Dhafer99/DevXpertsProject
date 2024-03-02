@@ -9,8 +9,7 @@ import {Comment} from '../models/comment';
 })
 export class ForumService {
 
- 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getPostsList(): Observable<Post[]>{
     return this.http.get<Post[]>('http://localhost:8040/api/Posts/retrieve-all-posts');
@@ -52,4 +51,7 @@ export class ForumService {
     return this.http.delete<void>(`http://localhost:8040/api/Comments/remove-comment/${idComment}`);
   }
 
+  public updatePost1(post: any) {
+    return this.http.put('http://localhost:8040/api/Posts/update-post', post);
+  }
 }

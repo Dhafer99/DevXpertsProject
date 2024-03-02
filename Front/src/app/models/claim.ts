@@ -1,8 +1,10 @@
+
 export class Claim{
     idClaim!: number;
     decision!: string;
     date!: string;
+    subject!:string;
     status!:string;
     description!:string;
-    Level!: number;
+    level!: number;
   }
