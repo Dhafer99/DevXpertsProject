@@ -37,10 +37,10 @@
                             </span></a>
 
                         <div class="icon d-flex ms-auto">
-                            <div class="like" *ngIf="role=='exibitor'">
+                            <div class="like" *ngIf="user.role=='exibitor'">
                                 <a><i class="mdi mdi-delete" (click)="supprimer()"></i></a>
                             </div>
-                            <div class="menu ms-3" *ngIf="role=='exibitor'">
+                            <div class="menu ms-3" *ngIf="user.role=='exibitor'">
                                 <div class="dropdown" >
                                         <a href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                             aria-expanded="false"><i class="mdi mdi-update" [routerLink]="['/modifier', offer.id]">
@@ -99,13 +99,16 @@
                     <hr class="my-4">
                     
                     <div class="d-flex">
-                        <div *ngIf="role=='student' && !applied || role=='alumni' && !applied">
+                        <div *ngIf="user.role=='student' && !applied && comparaisonDate   || user.role=='alumni' && !applied && comparaisonDate ">
                             <button class="btn btn-primary" (click)="openLg(content)">Apply</button>
                         </div>
-                        <div *ngIf="role=='student' && applied || role=='alumni' && applied">
+                        <div *ngIf="user.role=='student' && applied || user.role=='alumni' && applied">
                             <button class="btn btn-primary" disabled>Apply</button>
                         </div>
-                        <div *ngIf="role=='exibitor'">
+                        <div *ngIf="user.role=='student' && !comparaisonDate || user.role=='alumni' && !comparaisonDate">
+                            <button class="btn btn-primary" disabled>Date passé</button>
+                        </div>
+                        <div *ngIf="user.role=='exibitor'">
                             <button class="btn btn-outline-primary ms-2"[routerLink]="['/offer/applications', offer.id]">View Applications</button>
                         </div>
                     </div>

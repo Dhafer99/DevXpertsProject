@@ -6,6 +6,9 @@ import { OfferService } from 'src/app/services/offer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { saveAs } from 'file-saver';
+import { UserAnasService } from 'src/app/services/user-anas.service';
+import { User } from 'src/app/models/user';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-detail-offre',
@@ -19,29 +22,34 @@ export class DetailOffreComponent implements OnInit{
    blob !:any;
    fileUrl!:any;
    formData = new FormData();
-   idCandidat!:number;
    modalReference :any; 
    selectedFile!: File;
-   role!:string;
    listApplied:number[]=[]
-   idUser!:string;
    applied!:boolean;
-  constructor(private activateroute:ActivatedRoute,private offerService:OfferService,private route:Router,private candidatureService:CandidatureService,private modalService: NgbModal,private http: HttpClient){
+   user!:User;
+   currentDate!:Date;
+   comparaisonDate!:boolean;
+  constructor(private activateroute:ActivatedRoute,private offerService:OfferService,
+    private route:Router,private candidatureService:CandidatureService,
+    private modalService: NgbModal,private http: HttpClient,private userS:UserAnasService){
   }
   ngOnInit(): void {
-    this.role="exibitor";
-    //this.role="student";
-    this.idCandidat=2;
-    this.idUser="1"
+    this.currentDate=new Date()
+    this.user=this.userS.getUser();
     this.id=this.activateroute.snapshot.params['id'];
-    this.hasApplied(this.idUser,this.id.toString());
+    this.hasApplied(this.user.id.toString(),this.id.toString());
     this.offerService.getOfferById(this.id).subscribe((data)=>{
     this.offer=data
+    this.comparaisonDate=new Date(this.offer.lastDateApplication)>this.currentDate;
+    console.log("COMPARAISON"+this.comparaisonDate)
     //console.log("une offre:"+JSON.stringify(this.offer))
+    console.log("DATEOFFRE",this.offer.lastDateApplication)
+    console.log("NOTRE DATE"+this.currentDate)
     })
     this.data = 'some text';
     this.blob = new Blob([this.offer.file], { type: 'application/octet-stream' });
     this.fileUrl = window.URL.createObjectURL(this.blob);
+    
   }
 
   hasApplied(idUser:string,idOffer:string){
@@ -66,7 +74,7 @@ export class DetailOffreComponent implements OnInit{
   postuler(){
       this.formData.append('idOffer', this.id.toString());
       this.formData.append('file', this.selectedFile);
-      this.formData.append('idCandidat',this.idCandidat.toString());
+      this.formData.append('idCandidat',this.user.id.toString());
       /*if (this.description?.value=='' || this.lastDateApplication?.value=='' || this.nbrCandidature?.value=='' || this.file?.value==''){
         Swal.fire({
           icon: "error",

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Candidature } from 'src/app/models/candidature';
+import { User } from 'src/app/models/user';
 import { CandidatureService } from 'src/app/services/candidature.service';
+import { UserAnasService } from 'src/app/services/user-anas.service';
 
 @Component({
   selector: 'app-afficher-candidaturs-user',
@@ -8,14 +10,15 @@ import { CandidatureService } from 'src/app/services/candidature.service';
   styleUrls: ['./afficher-candidaturs-user.component.css']
 })
 export class AfficherCandidatursUserComponent implements OnInit{
-  idUser!:number;
-  listCandidatures:Candidature[]=[]
 
-  constructor(private candidatureService:CandidatureService){  }
+  listCandidatures:Candidature[]=[]
+  user!:User;
+
+  constructor(private candidatureService:CandidatureService,private userS:UserAnasService){  }
   
   ngOnInit(): void {
-  this.idUser=1;
-  this.candidatureService.getAllApplicationsByUser(this.idUser).subscribe((data:Candidature[])=>{
+    this.user=this.userS.getUser()
+  this.candidatureService.getAllApplicationsByUser(this.user.id).subscribe((data:Candidature[])=>{
   this.listCandidatures=data
   console.log("mylist:"+JSON.stringify(this.listCandidatures))
     })

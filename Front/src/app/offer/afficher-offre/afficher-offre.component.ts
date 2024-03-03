@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Offer, typeOffer } from 'src/app/models/offer';
+import { User } from 'src/app/models/user';
 import { CandidatureService } from 'src/app/services/candidature.service';
 import { OfferService } from 'src/app/services/offer.service';
+import { UserAnasService } from 'src/app/services/user-anas.service';
 
 @Component({
   selector: 'app-afficher-offre',
@@ -13,32 +15,27 @@ import { OfferService } from 'src/app/services/offer.service';
 
 export class AfficherOffreComponent implements OnInit{
 
-  constructor(private offerService:OfferService,private candidatureService:CandidatureService){  }
+  constructor(private offerService:OfferService,private candidatureService:CandidatureService,private userS:UserAnasService){  }
   
   exibitorId!:number;
   listOffers:any;
   listStages:any;
   listJobs:any;
   listRecommander:any;
-  role!:string;
-  idUser!:string;
-  idExibitor!:string;
+  user!:User;
   
   ngOnInit(): void {
-    this.role="student"
-    //this.role="exibitor"
-    this.idUser="1"
-    this.idExibitor="2"
-    if (this.role=="exibitor"){
-      this.getOffersByExibitor(this.idExibitor);
-      this.getOffersTypeJobByExibitor(this.idExibitor);
-      this.getOffersTypeStageByExibitor(this.idExibitor);
+    this.user=this.userS.getUser();
+    if (this.user.role=="exibitor"){
+      this.getOffersByExibitor(this.user.id.toString());
+      this.getOffersTypeJobByExibitor(this.user.id.toString());
+      this.getOffersTypeStageByExibitor(this.user.id.toString());
     }
     else {
       this.getOffersForUser();
       this.getJobsForUser();
       this.getStagesForUser();
-      this.getOffresRecommanderPourUser(this.idUser);
+      this.getOffresRecommanderPourUser(this.user.id.toString());
     }
   
   }

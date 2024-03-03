@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Offer, typeOffer } from 'src/app/models/offer';
+import { User } from 'src/app/models/user';
 import { OfferService } from 'src/app/services/offer.service';
+import { UserAnasService } from 'src/app/services/user-anas.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,8 +15,10 @@ import Swal from 'sweetalert2';
 })
 export class ModifierOfferComponent {
 
-  constructor(private offerService:OfferService, private route:Router,private activateroute:ActivatedRoute){  }
+  constructor(private offerService:OfferService, private route:Router,private activateroute:ActivatedRoute,
+    private userS:UserAnasService){  }
 
+    user!:User;
   selectedFile!: File;
   uploadProgress!: number;
   id!:number;
@@ -28,7 +32,7 @@ export class ModifierOfferComponent {
   typeClicked: boolean = false;
 
   ngOnInit(): void {
-
+    this.user=this.userS.getUser();
     this.id=this.activateroute.snapshot.params['id'];
     this.getOffer(this.id);
     //this.seletedValue=this.offer.typeOffer.toString();
@@ -83,7 +87,7 @@ export class ModifierOfferComponent {
       this.formData.append('description', this.description?.value);
       this.formData.append('lastDateApplication', this.lastDateApplication?.value);
       this.formData.append('nbrCandidature', this.nbrCandidature?.value);
-      this.formData.append('exibitorId',this.nbrCandidature?.value);
+      this.formData.append('exibitorId',this.user.id.toString());
       this.formData.append('titre',this.titre?.value);
       if (!this.fileClicked && !this.typeClicked){
         this.formData.append('file', this.offer.file);
@@ -96,7 +100,6 @@ export class ModifierOfferComponent {
       }
       else if (!this.typeClicked){//(this.offerType==null){
         this.formData.append('typeOffer',this.offer.offer.toString());
-        console.log("3")
       }
       else{
         this.formData.append('file', this.selectedFile);

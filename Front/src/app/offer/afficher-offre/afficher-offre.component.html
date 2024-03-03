@@ -10,7 +10,7 @@
             <!-- AAAAA-->
 
 
-            <div *ngIf="role=='exibitor'">
+            <div *ngIf="user.role=='exibitor'">
                 <button type="button" class="btn btn-danger" routerLink="/addoffer">
                     Add an offer
                     <i class="mdi mdi-plus-thick"></i>
@@ -30,7 +30,7 @@
                     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
                         data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
                         aria-selected="false"><i class="mdi mdi-cart me-2 f-18"></i>Job</button>
-                    <div *ngIf="role!='exibitor'">
+                    <div *ngIf="user.role!='exibitor'">
                         <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
                             aria-selected="false"><i class="mdi mdi-plus-circle me-2 f-18"></i>Recommanded</button>

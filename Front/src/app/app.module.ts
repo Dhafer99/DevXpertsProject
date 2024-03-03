@@ -14,6 +14,7 @@ import { AfficherCandidatureComponent } from './candidature/afficher-candidature
 import { DetailCandidatureComponent } from './candidature/detail-candidature/detail-candidature.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AfficherCandidatursUserComponent } from './candidature/afficher-candidaturs-user/afficher-candidaturs-user.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { AfficherCandidatursUserComponent } from './candidature/afficher-candida
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

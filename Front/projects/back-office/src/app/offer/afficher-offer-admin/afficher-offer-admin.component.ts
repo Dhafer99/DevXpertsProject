@@ -31,7 +31,7 @@ export class AfficherOfferAdminComponent {
       this.candidatureService.nbrApplicationOnOffer().subscribe(res=>{
         //this.nbrCandidature.push(res);
         this.newListOffers=res;
-        this.h=this.newListOffers[0].lastDateApplication>this.currentDate.toISOString();
+        //this.h=this.newListOffers[0].lastDateApplication>this.currentDate.toISOString();
         //console.log("AAAAA"+JSON.stringify(this.newListOffers))
         //console.log("GGG"+this.currentDate<this.newListOffers[0].lastDateApplication+"date"+this.currentDate)
       })
