@@ -20,6 +20,10 @@ public interface RoomInterface {
 
     List<Company> getCapaniesParticipants( Long roomId);
 
+    public double calculateTotalAmountFor50pt( int quantity);
+    public double calculateTotalAmountFor150pt( int quantity);
+    public double calculateTotalAmountFor100pt(int quantity);
+
 
 
 }

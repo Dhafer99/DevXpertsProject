@@ -28,7 +28,7 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
   public getDetailsPackById ( id: number ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }retrievePackage/${ id }`, {
-      withCredentials: true,
+      
     } );
  
   }
@@ -51,7 +51,7 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
   public findPacksByIdRoom ( id: number ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }findPacksByIdRoom/${ id }`, {
-      withCredentials: true,
+      
     } );
  
   }
@@ -59,7 +59,7 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
   public findByTypePack ( typePack: string ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }getpackBYType/${ typePack }`, {
-      withCredentials: true,
+      
     } );
  
   }
@@ -68,7 +68,7 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
   public RevenuePeTypePack ( typePack: string ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }RevenuePeTypePack/${ typePack }`, {
-      withCredentials: true,
+      
     } );
  
   }
@@ -77,14 +77,14 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
   public calculateReservationPercentageByType (  ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }calculateReservationPercentageByType`, {
-      withCredentials: true,
+   
     } );
  
   }
   public toployalcustomers (  ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }toployalcustomers`, {
-      withCredentials: true,
+ 
     } );
  
   }
@@ -98,7 +98,7 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
   public QuantitePeTypePack ( typePack: string ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }QuantitePeTypePack/${ typePack }`, {
-      withCredentials: true,
+      
     } );
  
   }
@@ -106,7 +106,7 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
   public revenueTotal (): Observable<any>
   {
     return this.http.get<any>( `${ this.url }revenueTotal`, {
-      withCredentials: true,
+      
     } );
  
   }

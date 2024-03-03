@@ -18,18 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+@CrossOrigin(origins = "*")
 @Slf4j
 @RestController
 @AllArgsConstructor
+
 @RequestMapping("/api/packs")
 public class PackageController {
 
     PackageInterface packageInterface;
 
-
-   /* @Autowired
-    private JavaMailSender mailSender;*/
     @PutMapping("/SendCodeRoom/{email}/{code}")
     public void SendCodeRoom(@PathVariable("email") String email, @PathVariable("code") String code) {
        packageInterface.sendCoderoom(email,code);

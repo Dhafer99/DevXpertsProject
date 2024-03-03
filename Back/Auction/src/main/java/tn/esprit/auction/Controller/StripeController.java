@@ -1,11 +1,13 @@
 package tn.esprit.auction.Controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stripe.Stripe;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,14 +22,16 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 import tn.esprit.auction.Entites.CheckoutPayment;
+import tn.esprit.auction.Repository.PaymentRepository;
 
 @RestController
 @RequestMapping(value = "/api/stripe")
+@AllArgsConstructor
 @CrossOrigin(origins = "*")
 public class StripeController {
     // create a Gson object
     private static Gson gson = new Gson();
-
+PaymentRepository paymentRepository;
     @PostMapping("/payment")
     /**
      * Payment with Stripe checkout page
@@ -55,13 +59,15 @@ public class StripeController {
 
                                 .build())
                 .setSuccessUrl("http://localhost:4201/payments")
-                .setCancelUrl("")
+
                 .build();
         // create a stripe session
         Session session = Session.create(params);
         Map<String, String> responseData = new HashMap<>();
         // We get the sessionId and we putted inside the response data you can get more info from the session object
         responseData.put("id", session.getId());
+        payment.setPaymentDay(new Date());
+        paymentRepository.save(payment);
         // We can return only the sessionId as a String
         return gson.toJson(responseData);
     }

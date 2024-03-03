@@ -100,4 +100,31 @@ PackgeRepository packgeRepository ;
 
         return room.getCompanies();
     }
+
+    @Override
+    public double calculateTotalAmountFor50pt( int quantity) {
+        double rate50Points = 30.0;
+
+        double totalAmount = rate50Points * quantity;
+
+        return totalAmount;
+    }
+
+    @Override
+    public double calculateTotalAmountFor150pt( int quantity) {
+        double rate50Points = 50.0;
+
+        double totalAmount = rate50Points * quantity;
+
+        return totalAmount;
+    }
+
+    @Override
+    public double calculateTotalAmountFor100pt( int quantity) {
+        double rate50Points = 100.0;
+
+        double totalAmount = rate50Points * quantity;
+
+        return totalAmount;
+    }
 }

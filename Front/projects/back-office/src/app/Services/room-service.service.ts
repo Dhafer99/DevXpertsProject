@@ -30,7 +30,7 @@ export class RoomServiceService {
   public getRoomById ( id: number ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }${ id }`, {
-      withCredentials: true,
+   
     } );
  
   }
@@ -53,4 +53,23 @@ export class RoomServiceService {
     this.auctionEndedSource.next();
   }
 
+
+  public calculateTotalAmountFor50pt ( quantiyy: number ): Observable<any>
+  {
+    return this.http.get<any>(`${this.url}calculateTotalAmountFor50pt/${quantiyy}`, {});
+
+ 
+  }
+  public calculateTotalAmountFor100pt ( quantiyy: number ): Observable<any>
+  {
+    return this.http.get<any>(`${this.url}calculateTotalAmountFor100pt/${quantiyy}`, {});
+
+ 
+  }
+  public calculateTotalAmountFor150pt ( quantiyy: number ): Observable<any>
+  {
+    return this.http.get<any>(`${this.url}calculateTotalAmountFor150pt/${quantiyy}`, {});
+
+ 
+  }
 }
