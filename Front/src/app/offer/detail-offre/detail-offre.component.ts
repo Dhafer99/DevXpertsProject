@@ -32,7 +32,7 @@ export class DetailOffreComponent implements OnInit{
     this.role="exibitor";
     //this.role="student";
     this.idCandidat=2;
-    this.idUser="2"
+    this.idUser="1"
     this.id=this.activateroute.snapshot.params['id'];
     this.hasApplied(this.idUser,this.id.toString());
     this.offerService.getOfferById(this.id).subscribe((data)=>{
@@ -52,8 +52,10 @@ export class DetailOffreComponent implements OnInit{
   }
 
   supprimer(){
-    this.offerService.deleteOffer(this.offer.id).subscribe(()=>{})
-    this.route.navigate(['/offers'])
+    this.offerService.deleteOffer(this.offer.id).subscribe(()=>{
+      this.route.navigate(['/offers'])
+    })
+    
   }
   onFileSelected(event: any): void {
     const fileList: FileList = event.target.files;

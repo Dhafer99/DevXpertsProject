@@ -25,10 +25,10 @@ export class AfficherOffreComponent implements OnInit{
   idExibitor!:string;
   
   ngOnInit(): void {
-    //this.role="student"
-    this.role="exibitor"
+    this.role="student"
+    //this.role="exibitor"
     this.idUser="1"
-    this.idExibitor="1"
+    this.idExibitor="2"
     if (this.role=="exibitor"){
       this.getOffersByExibitor(this.idExibitor);
       this.getOffersTypeJobByExibitor(this.idExibitor);
