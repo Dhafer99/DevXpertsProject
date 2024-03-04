@@ -12,6 +12,7 @@
         <module name="discovery" />
         <module name="Exhibitor" />
         <module name="gateway" />
+        <module name="Gestion_User" />
       </profile>
     </annotationProcessing>
   </component>
@@ -19,6 +20,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Booth" options="-parameters" />
       <module name="Exhibitor" options="-parameters" />
+      <module name="Gestion_User" options="-parameters" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
