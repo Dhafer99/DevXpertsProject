@@ -48,15 +48,16 @@ export class DisplayComponent implements OnInit{
         this.event= result;
        const rate= this.event.ratings?.find((rate)=>rate.userID==this.idUser) ||undefined
         
+       
         this.myform.setValue({
           userID:this.idUser,
-          eventID: this.event.id,
-          status:rate?.status,
-            comment:rate?.comment ||'',
-            rating:rate?.rating ||0,
-            id:rate?.id ||0
-
-        });
+          eventID:this.event.id,
+          status:rate?.status || 'Accepted',
+          comment:rate?.comment ||'',
+          rating:rate?.rating ||0,
+          id:rate?.id ||0
+        })
+        console.log(this.myform.value)
           if (rate?.status=="Declined")
           { 
             Swal.fire("Your Comments have been disabled for this Event");
@@ -75,10 +76,14 @@ export class DisplayComponent implements OnInit{
           });
         }
         console.log(this.event)
-     })
+        console.log(this.interested)
+      })
+  
     }
 
     add() {
+      this.myform.get('userID').setValue(this.idUser);
+      this.myform.get('eventID').setValue(this.event.id);
       console.log(this.myform.value)
         this.eventService
         .addRating(this.myform.value)
@@ -99,6 +104,7 @@ export class DisplayComponent implements OnInit{
 
     }
         );
+        console.log(this.event.interesteds)
    
    
     }

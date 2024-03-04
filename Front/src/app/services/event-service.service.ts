@@ -8,7 +8,7 @@ import { Interested } from "../models/Interested";
   providedIn: 'root'
 })
 export class EventServiceService {
-    __URL = 'http://localhost:8222/api/Event'
+    __URL = 'http://localhost:8091/api/Event'
     eventURL='/Events'
     interestURL='/Interest'
     ratingURL='/Rating'

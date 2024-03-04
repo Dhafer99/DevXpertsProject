@@ -18,7 +18,8 @@ export class EventsStatsComponent implements OnInit{
   interestCountMap = new Map<string, number>()
   interestDataCounter: (string |number )[][]=[[], []];
   totalsDataCounter:(string | number )[][]=[[],[]];
-  
+  myFilter: any = { name: '' };
+
   constructor(private eventService:EventService,private chartservice:ChartserviceService){}
   
   linechart = new highcharts.Chart({

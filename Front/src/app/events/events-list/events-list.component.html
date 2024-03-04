@@ -55,17 +55,17 @@
                       </div>
                       <div class="collection-like-icon ms-auto">
                         <p class="fw-semibold mb-0">
-                          <a>
+                          <a   *ngIf="isEventInList(event.id)">
                             <i
-                              *ngIf="isEventInList(event.id)"
+                            
                               (click)="removeInterest(event)"
                               class="mdi mdi-heart"
                             ></i
                           ></a>
 
-                          <a>
+                          <a *ngIf="!isEventInList(event.id)">
                             <i
-                              *ngIf="!isEventInList(event.id)"
+                              
                               (click)="addInterest(event)"
                               class="mdi mdi-heart-outline"
                             ></i

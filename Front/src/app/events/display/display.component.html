@@ -29,24 +29,24 @@
         <div class="backhome-content mt-4 mt-lg-0">
           <h2 class="fw-bold">View our upcomming event details</h2>
           <div class="d-flex mt-3 align-items-center">
-            <a *ngIf="interested" (click)="removeInterest()"
+            <div *ngIf="interested" (click)="removeInterest()"
               ><span
                 class="badge rounded-pill bg-white box-shadow text-dark f-16 fw-normal py-2 px-3"
               >
                 <i class="mdi mdi-heart text-danger f-18 me-2 align-middle"></i
                 >{{ event.interestedCounter }}
-              </span></a
+              </span></div
             >
 
-            <a *ngIf="!interested" (click)="addInterest()"
+            <div *ngIf="interested==false" (click)="addInterest()"
               ><span
                 class="badge rounded-pill bg-white box-shadow text-dark f-16 fw-normal py-2 px-3"
-              >
+              >  
                 <i
                   class="mdi mdi-heart-outline text-danger f-18 me-2 align-middle"
                 ></i
                 >{{ event.interestedCounter }}
-              </span></a
+              </span></div
             >
 
             <div class="icon d-flex ms-auto">
@@ -105,13 +105,14 @@
                 <div class="message my-4">
                   <form [formGroup]="myform">
                     <label
-                      formControlName="comment"
+                   
                       for="validationDefault03"
                       class="form-label fw-semibold"
                     >
                       Add comment :</label
                     >
                     <textarea
+                    formControlName="comment"
                       class="form-control"
                       id="exampleFormControlTextarea1"
                       rows="3"
@@ -157,7 +158,7 @@
     <div class="container">
       <div class="row mt-5">
         <div class="col-lg-8 order-2 order-lg-1">
-          <div class="forum-item">
+          <div class="forum-item" *ngFor="let rate of event.ratings">
            
   
             <div class="answer-process-details" >
@@ -165,6 +166,7 @@
                 <div class="d-flex align-items-center justify-content-start">
                   <div class="process-image">
                     <div class="avatar forum-profile">
+                      <!-- Photo profile de user   paladin -->
                       <img
                         src="../../../assets/images/inner-image/creator/img-1.png"
                         alt=""
@@ -174,12 +176,13 @@
                   </div>
                   <div class="profile-content ms-3">
                     <div class="side-content d-flex">
-                      <h6 class="fw-bold mb-0">@Mamie_Barnett</h6>
+                      <!-- user name    paladin-->
+                      <h6 class="fw-bold mb-0"> {{rate.userID}} </h6>
                       <p class="mb-0 ms-4 text-muted">
                         <i
                           class="mdi mdi-clock-outline f-18 me-2 align-middle"
                         ></i
-                        >6 day ago
+                        > 
                       </p>
                     </div>
                   </div>
@@ -187,16 +190,15 @@
   
                 <div class="process-content">
                   <p class="text-muted">
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                    accusantium doloremque laudantium, totam rem.Unit of data
-                    stored on a digital ledger, called a blockchain, that
-                    certifies a digital asset to be unique and therefore not
-                    interchangeable
+                    {{rate.comment}}
+
                   </p>
                   <div class="d-flex mb-4">
                     <div class="like d-flex align-items-center">
                       <i class="mdi mdi-thumb-up-outline f-20 text-blue"></i>
-                      <p class="mb-0 ms-2 fw-semibold text-muted">25 Like</p>
+                      <p class="mb-0 ms-2 fw-semibold text-muted">
+                        <ngb-rating [max]="5" [rate]="rate.rating" [readonly]="true"></ngb-rating> 
+                      </p>
                     </div>
                     <div class="dislike d-flex align-items-center ms-4">
                       <i class="mdi mdi-thumb-down-outline f-20 text-dark"></i>

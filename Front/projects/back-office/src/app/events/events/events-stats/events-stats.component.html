@@ -28,10 +28,22 @@
 			</div>
 			<div class="card-body pb-0">
 				<div class="widget-media">
+						
+						<fieldset><legend>FIlter</legend>
+							
+							<label>
+
+								By Name 
+							</label>
+							<input type="text" [(ngModel)]="myFilter.name"> 
+						</fieldset>
+						 <br><br><br>
+					<br>
 					<ul class="timeline">
 						<li *ngFor="let event of eventList">
+							<div *ngIf="event.name.includes( myFilter.name) || myFilter.name=='' "> 
 							<div class="form-check custom-checkbox" >
-							<input (change)="handleCheckboxChange(event)" 	type="checkbox" class="form-check-input" id="customCheckBox1" required>
+							<input (change)="handleCheckboxChange(event)" 	type="checkbox" class="form-check-input" id="customCheckBox1" [checked]="totalsDataCounter[0].indexOf(event.name)!=-1" required>
 
 							<div class="timeline-panel" style="margin-left: 5%; ">
 								<div class="media me-2">
@@ -54,6 +66,7 @@
 								</div>
 							</div>
 						</div>
+					</div>
 						</li>
 					
 					</ul>	
