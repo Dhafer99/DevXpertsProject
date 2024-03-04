@@ -15,7 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { PostFormComponent } from './post-form/post-form.component';
+import { PostFormComponent } from './ForumManagement/post-form/post-form.component';
 
 
 @NgModule({

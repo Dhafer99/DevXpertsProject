@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity
 @Getter
 @Setter
@@ -18,7 +20,8 @@ public class Comment {
     private int likesComment;
     private boolean mostPertinentComment;
     private String textComment;
-
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationComment;
 
     @JsonIgnore
     @ManyToOne

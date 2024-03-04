@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { ForumService } from 'src/app/services/forum.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { PostFormComponent } from 'src/app/post-form/post-form.component';
+import { PostFormComponent } from 'src/app/ForumManagement/post-form/post-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 

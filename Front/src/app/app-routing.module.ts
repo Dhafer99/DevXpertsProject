@@ -5,7 +5,7 @@ import { ListUsersComponent } from 'projects/back-office/src/app/list-users/list
 import { PostListComponent } from './ForumManagement/post-list/post-list.component';
 import { PostDetailComponent } from './ForumManagement/post-detail/post-detail.component';
 import { ClaimFormComponent } from './ClaimManagement/claim-form/claim-form.component';
-import { PostFormComponent } from './post-form/post-form.component';
+import { PostFormComponent } from './ForumManagement/post-form/post-form.component';
 
 
 const routes: Routes = [  

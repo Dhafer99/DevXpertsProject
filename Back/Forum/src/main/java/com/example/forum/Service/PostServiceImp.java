@@ -1,60 +1,47 @@
 package com.example.forum.Service;
 
-import com.example.forum.Entity.Comment;
 import com.example.forum.Entity.Post;
 import com.example.forum.Repository.CommentRepository;
 import com.example.forum.Repository.PostRepository;
 import lombok.RequiredArgsConstructor;
-
-
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
 import java.util.function.Consumer;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ForumServiceImp implements ForumService{
-
+public class PostServiceImp implements PostService {
     private final PostRepository postRepo;
 
     private final CommentRepository commentRepo;
     private final List<Consumer<Post>> listeners = new ArrayList<>();
-
-//    @Value("${image.upload.dir}")
-//    private String uploadDir;
-
-
-
     @Override
     public void savePost(String title,String descriptionSubject,MultipartFile file){
 
         Post p = new Post();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-       if(fileName.contains(".."))
-       {
+        if(fileName.contains(".."))
+        {
             log.error("not a valid file");
-       }
-       try {
-           p.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
-       } catch (IOException e) {
-          e.printStackTrace();
-       }
-       p.setDescriptionSubject(descriptionSubject);
-       p.setTitle(title);
+        }
+        try {
+            p.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        p.setDescriptionSubject(descriptionSubject);
+        p.setTitle(title);
 
         postRepo.save(p);
-      //  notifyNewPost(p);
+        //  notifyNewPost(p);
     }
 
 //    @Override
@@ -124,36 +111,4 @@ public class ForumServiceImp implements ForumService{
 //            throw new IllegalArgumentException("Post with ID " + postId + " not found");
 //        }
 //    }
-
-    @Override
-    public void addComment(Comment comment , long id) {
-        comment.setLikesComment(0);
-        comment.setMostPertinentComment(false);
-            Post post = retrievePost (id);
-            comment.setPost(post);
-            commentRepo.save(comment);
-    }
-
-//   @Override
-//    public Comment saveComment(Comment comment) {
-//        return commentRepo.save(comment);
-//    }
-    @Override
-    public List<Comment> findAllComments() {
-        return commentRepo.findAll();
-    }
-
-    @Override
-    public Comment retrieveComment(Long commentId) {
-        return commentRepo.findById(commentId).get();
-    }
-
-    @Override
-    public void removeComment(Long commentId) {
-        commentRepo.deleteById(commentId);
-    }
-    @Override
-    public Comment modifyComment(Comment comment) {
-        return commentRepo.save(comment);
-    }
 }

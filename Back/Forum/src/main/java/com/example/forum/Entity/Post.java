@@ -3,6 +3,7 @@ package com.example.forum.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,8 @@ public class Post {
     private String descriptionSubject;
     private int likesSubject;
     private int commentsCount;
+    @Temporal(TemporalType.DATE)
+    private Date dateCreationPost;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
     private Set<Comment> comment;

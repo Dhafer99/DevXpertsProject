@@ -1,22 +1,14 @@
 package com.example.forum.Controller;
 
 import com.example.forum.Entity.Post;
-import com.example.forum.Service.ForumService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.forum.Service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 
-import java.io.IOException;
 import java.util.List;
-import java.util.function.Consumer;
 
 @RestController
 @RequestMapping("/api/Posts")
@@ -24,7 +16,7 @@ import java.util.function.Consumer;
 @CrossOrigin(origins = "http://localhost:4201")
 public class PostController {
 
-    private final ForumService service;
+    private final PostService service;
 
     @PostMapping("/add-post")
     @ResponseStatus(HttpStatus.CREATED)

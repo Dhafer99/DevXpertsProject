@@ -1,9 +1,8 @@
 package com.example.forum.Controller;
 
 import com.example.forum.Entity.Comment;
-import com.example.forum.Service.ForumService;
+import com.example.forum.Service.CommentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = { "*" })
 public class CommentController {
-    private final ForumService service;
+    private final CommentService service;
 
 
     @PostMapping("/add-comment")

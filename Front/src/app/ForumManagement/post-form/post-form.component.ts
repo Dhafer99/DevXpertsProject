@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Post } from '../models/post';
-import { ForumService } from '../services/forum.service';
+import { Post } from '../../models/post';
+import { ForumService } from '../../services/forum.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
