@@ -6,6 +6,7 @@
     style="margin-left: 20%; margin-top: 20px"
   />
 </div>
+
 <div class="header">
   <div class="header-content">
     <nav class="navbar navbar-expand">
@@ -13,6 +14,12 @@
         <div class="header-left">
           <div class="nav-item">
             <div class="input-group search-area">
+              <div class="notifications-container">
+                <div *ngFor="let notification of notifications" class="notification">
+                  <h4>ssss</h4>
+                 
+                </div>
+              </div>
               <input
                 type="text"
                 class="form-control"
@@ -31,6 +38,8 @@
               >Recipe Guide</a
             >
           </li>
+          <li><button (click)="onPaymentConfirmed()">notif</button></li>
+         
           <li class="nav-item dropdown notification_dropdown">
             <a
               class="nav-link ai-icon"

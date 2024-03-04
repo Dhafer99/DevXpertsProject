@@ -1,12 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-
+import * as Stomp from 'stompjs';
+import * as SockJS from 'sockjs-client';
 @Injectable({
   providedIn: 'root'
 })
 export class RoomServiceService {
-
+  constructor(private http: HttpClient) {
+    this.initializeWebSocketConnection();
+  }
   url = "http://localhost:8083/api/rooms/";
    
   httpOptions = {
@@ -15,7 +18,6 @@ export class RoomServiceService {
       
     })
   };
-  constructor(private http: HttpClient ) { }
 
   addRoom ( data: any )
   {
@@ -53,23 +55,41 @@ export class RoomServiceService {
     this.auctionEndedSource.next();
   }
 
+  private stompClient!: Stomp.Client;
+  private notificationsSubject = new Subject<Notification>();
 
-  public calculateTotalAmountFor50pt ( quantiyy: number ): Observable<any>
-  {
-    return this.http.get<any>(`${this.url}calculateTotalAmountFor50pt/${quantiyy}`, {});
 
- 
+  initializeWebSocketConnection() {
+    const socket = new SockJS('http://localhost:8083/ws');
+    this.stompClient = Stomp.over(socket);
+    this.stompClient.connect({}, () => {
+      this.stompClient.subscribe('/api/rooms/topic/notifications', (message: any) => {
+        if (message.body) {
+          this.notificationsSubject.next(JSON.parse(message.body));
+        }
+      });
+    });
   }
-  public calculateTotalAmountFor100pt ( quantiyy: number ): Observable<any>
-  {
-    return this.http.get<any>(`${this.url}calculateTotalAmountFor100pt/${quantiyy}`, {});
-
- 
+  getNotifications() {
+    return this.notificationsSubject.asObservable();
   }
-  public calculateTotalAmountFor150pt ( quantiyy: number ): Observable<any>
-  {
-    return this.http.get<any>(`${this.url}calculateTotalAmountFor150pt/${quantiyy}`, {});
 
- 
+  connect(): Observable<any> {
+    const socket = new SockJS('http://localhost:8083/ws');
+    this.stompClient = Stomp.over(socket);
+
+    return new Observable(observer => {
+      this.stompClient.connect({}, frame => {
+        observer.next(frame);
+      });
+    });
+  }
+  
+  subscribeToPaymentNotifications(): Observable<any> {
+    return new Observable(observer => {
+      this.stompClient.subscribe('/api/rooms/topic/payment', message => {
+        observer.next(message);
+      });
+    });
   }
 }
