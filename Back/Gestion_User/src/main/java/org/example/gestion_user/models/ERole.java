@@ -6,4 +6,5 @@ public enum ERole {
   ADMIN,
   ENTERPRISE,
 
+  ALUMNI
 }
