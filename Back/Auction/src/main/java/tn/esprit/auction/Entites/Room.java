@@ -26,6 +26,7 @@ public class Room {
     private String codeRoom;
     private float price;
     private float priceAuction;
+    private int maxWinners;
 
     private TypePack typePack ;
     private Date dateDebut;
@@ -40,5 +41,9 @@ public class Room {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
     @JsonIgnore
     private List<Company> companies;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
+    @JsonIgnore
+    private List<Enchere> encheres;
 
 }

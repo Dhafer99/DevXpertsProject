@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
       // Handle notification display or any other logic
     });
   }
-  onPaymentConfirmed() {
+  /*onPaymentConfirmed() {
     // Connectez-vous au WebSocket
     this.webSocketService.connect().subscribe(() => {
       // Abonnez-vous aux notifications de paiement
@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
         console.log('Nouvelle notification de paiement:', notification);
       });
     });
-  }
+  }*/
 }
   
   

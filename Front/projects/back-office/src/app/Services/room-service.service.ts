@@ -36,6 +36,16 @@ export class RoomServiceService {
     } );
  
   }
+
+
+  public getRoomPackages ( id: number ): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }getRoomPackages/${ id }`, {
+   
+    } );
+ 
+  }
+
   UpdateRoom ( data: any  ): Observable<any> 
   {
     return this.http.put<any>( this.url + 'updateRoom', data );
@@ -46,6 +56,28 @@ export class RoomServiceService {
   UpdatePriceAuction ( points: number,id:number  ): Observable<any> {
     return this.http.put<any>(`${this.url}updatePrice/${points}/${id}`, {});
   }
+
+
+
+  addEnchere ( companyId: number,idroom:number  ): Observable<any> {
+    return this.http.post<any>(`${this.url}addEncherForUser/${companyId}/${idroom}`,{});
+  }
+
+
+  updatePricingEnchere ( companyId: number,idroom:number ,points:number ): Observable<any> {
+    return this.http.put<any>(`${this.url}updatePricing/${companyId}/${idroom}/${points}`,{});
+  }
+
+  getUserEnchere ( companyId: number,idroom:number): Observable<any> {
+    return this.http.get<any>(`${this.url}getUserEnchere/${companyId}/${idroom}`,{});
+  }
+
+
+  getTopEncheresByRoomId (idroom:number): Observable<any> {
+    return this.http.get<any>(`${this.url}getTopEncheresByRoomId/${idroom}`,{});
+  }
+
+
 
   private auctionEndedSource = new Subject<void>();
 

@@ -22,6 +22,9 @@ CompanyRepository companyRepository ;
 PackgeRepository packgeRepository ;
     @Override
     public void addRoom(Room room) {
+        List<Pack> listPacks = packgeRepository.findByTypePack(room.getTypePack()  );
+
+        room.setMaxWinners(listPacks.size());
         SecureRandom random = new SecureRandom();
         StringBuilder codeBuilder = new StringBuilder();
         String allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -99,6 +102,12 @@ PackgeRepository packgeRepository ;
         Room room = roomRepository.findById(roomId).get();
 
         return room.getCompanies();
+    }
+
+    @Override
+    public List<Pack> getRoomPacks(Long roomId) {
+        Room room = roomRepository.findById(roomId).get();
+        return  room.getPackages();
     }
 
     @Override

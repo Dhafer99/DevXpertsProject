@@ -6,9 +6,9 @@ import { DetailPackComponent } from './PackageManagementUser/detail-pack/detail-
 import { MyPacksComponent } from './PackageManagementUser/my-packs/my-packs.component';
 import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.component';
 import { AuctionRoomComponent } from './RoomManagementUser/auction-room/auction-room.component';
-import { CountdownComponentComponent } from './RoomManagementUser/countdown-component/countdown-component.component';
 import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.component';
 import { PaymentComponent } from './payment/payment.component';
+import { RouletteComponent } from './RoomManagementUser/roulette/roulette.component';
 
 
 const routes: Routes = [  
@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'ListPacks/ListRooms', component: RoomsListComponent },
   { path: 'auction/:id', component: AuctionRoomComponent },
   { path: 'auction/:id/roullette', component: RoomsListComponent },
-  { path: 'count', component: CountdownComponentComponent },
+  { path: 'roulette/:id', component: RouletteComponent },
   { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent },
   { path: 'payments', component: PaymentComponent },
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }

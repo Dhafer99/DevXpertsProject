@@ -1,0 +1,29 @@
+<h3>Press the wheel to land on a random prize</h3>
+<h3>Or press the button to land on the corresponding prize</h3>
+<ngx-wheel
+  #wheel
+  [width]='400'
+  [height]='400'
+  [spinDuration]='8'
+  [items]='items'
+  [innerRadius]='20'
+  [spinAmount]='10'
+  [textOrientation]='textOrientation'
+  [textAlignment]='textAlignment'
+  pointerStrokeColor='black'
+  pointerFillColor='gold'
+  [idToLandOn]='idToLandOn'
+  (onSpinStart)='before()'
+  (onSpinComplete)='after()'
+></ngx-wheel>
+<div class="reset">
+  <button (click)="reset()">Reset</button>
+</div>
+<div class="buttons">
+  <button (click)="spin(0)">Prize 0</button>
+  <button (click)="spin(1)">Prize 1</button>
+  
+  <button (click)="test()">test</button>
+
+
+</div>

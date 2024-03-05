@@ -1,6 +1,7 @@
 package tn.esprit.auction.Services;
 
 import tn.esprit.auction.Entites.Company;
+import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.Room;
 
 import java.util.List;
@@ -19,6 +20,9 @@ public interface RoomInterface {
     float UpdatePrice(int nbrpoint, Long idRoom);
 
     List<Company> getCapaniesParticipants( Long roomId);
+
+
+    List<Pack> getRoomPacks( Long roomId);
 
     public double calculateTotalAmountFor50pt( int quantity);
     public double calculateTotalAmountFor150pt( int quantity);

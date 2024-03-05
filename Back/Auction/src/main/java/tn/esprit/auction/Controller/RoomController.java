@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.auction.Entites.Enchere;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.Room;
+import tn.esprit.auction.Services.EnchereInterface;
 import tn.esprit.auction.Services.RoomInterface;
 
 import java.util.List;
@@ -17,6 +19,48 @@ import java.util.List;
 public class RoomController {
 
     RoomInterface roomInterface ;
+    EnchereInterface enchereInterface ;
+    /*********************************** Enchere methodes ****/
+    @PostMapping("/addEncherForUser/{companyId}/{roomId}")
+    public Enchere addEncherForUser(
+                                    @PathVariable("companyId") long companyId, @PathVariable("roomId") long roomId) {
+
+       return enchereInterface.addEncherForUser( companyId,roomId);
+    }
+
+
+    @PutMapping("/updatePricing/{companyId}/{roomId}/{points}")
+    public void updatePricing(@PathVariable("points") int points,
+            @PathVariable("companyId") long companyId, @PathVariable("roomId") long roomId) {
+
+         enchereInterface.updatePricing( companyId,roomId,points);
+    }
+
+    @GetMapping("/getUserEnchere/{companyId}/{roomId}")
+    public Boolean getUserEnchere(
+                              @PathVariable("companyId") long companyId, @PathVariable("roomId") long roomId) {
+
+      return   enchereInterface.getUserEnchere( companyId,roomId);
+    }
+
+
+    @GetMapping("/getTopEncheresByRoomId/{roomId}")
+    public List<Enchere> getTopEncheresByRoomId(
+            @PathVariable("roomId") long roomId) {
+
+        return   enchereInterface.getTopEncheresByRoomId(roomId);
+    }
+
+
+    @GetMapping("/getRoomPackages/{roomId}")
+    public List<Pack> getRoomPackages(
+            @PathVariable("roomId") long roomId) {
+
+        return   roomInterface.getRoomPacks(roomId);
+    }
+
+    /*********************************** Enchere methodes ****/
+
     @MessageMapping("/payment")
     @SendTo("/topic/payment")
     public String handlePaymentNotification(String message) {

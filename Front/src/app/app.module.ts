@@ -10,10 +10,11 @@ import { DetailPackComponent } from './PackageManagementUser/detail-pack/detail-
 import { MyPacksComponent } from './PackageManagementUser/my-packs/my-packs.component';
 import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.component';
 import { AuctionRoomComponent } from './RoomManagementUser/auction-room/auction-room.component';
-import { CountdownComponentComponent } from './RoomManagementUser/countdown-component/countdown-component.component';
 import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.component';
 import { PaymentComponent } from './payment/payment.component';
 import { StripeModule } from 'stripe-angular';
+import { RouletteComponent } from './RoomManagementUser/roulette/roulette.component';
+import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
 
 
 @NgModule({
@@ -25,11 +26,12 @@ import { StripeModule } from 'stripe-angular';
     MyPacksComponent,
     RoomsListComponent,
     AuctionRoomComponent,
-    CountdownComponentComponent,
     MyRoomsComponent,
     PaymentComponent,
+    RouletteComponent,
   ],
   imports: [
+    NgxWheelModule  ,
     BrowserModule,
     AppRoutingModule,HttpClientModule,
     StripeModule.forRoot("pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC")

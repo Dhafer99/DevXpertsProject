@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Enchere } from 'projects/back-office/src/app/Models/Enchere';
 import { Room } from 'projects/back-office/src/app/Models/Room';
 import { PackServiceService } from 'projects/back-office/src/app/Services/pack-service.service';
 import { RoomServiceService } from 'projects/back-office/src/app/Services/room-service.service';
@@ -24,9 +25,29 @@ export class MyRoomsComponent implements OnInit {
   seconds!: number;
   private countdownInterval!: Subscription;
   openAuction : Boolean = false
+  enchere: Enchere = new Enchere();
+  @ViewChild('exampleModalCenter') modal!: ElementRef; 
   sendButtonClick(codeInput: string) {
     if (codeInput === this.room.codeRoom) {
-      this.route.navigate(['/auction', this.idRoom]);
+      this.roomService.getUserEnchere(1 ,this.room.idRoom).subscribe(
+        (response: boolean) => {  
+          if (response === false) {
+          this.roomService.addEnchere(1 ,this.room.idRoom).subscribe(() => {
+            // Fermer la modal après l'ajout de l'enchère
+            this.modal.nativeElement.dismiss();
+          
+          });
+            this.route.navigate(['/auction', this.idRoom]);
+          
+        }
+        else 
+        {
+         
+            this.route.navigate(['/auction', this.idRoom]);
+        }
+          console.log(response)})
+   
+        
     } else {
       console.log("Code incorrect");
     }
@@ -62,6 +83,19 @@ export class MyRoomsComponent implements OnInit {
       this.countdownInterval.unsubscribe();
     }}
   ngOnInit() {
+    const now = new Date();
+    if (this.room.dateDebut instanceof Date || typeof this.room.dateDebut === 'string') {
+      const dateDebutAsDate = typeof this.room.dateDebut === 'string'
+        ? new Date(this.room.dateDebut)
+        : this.room.dateDebut;
+  
+      if (dateDebutAsDate instanceof Date && !isNaN(dateDebutAsDate.getTime())) {
+        const difference = dateDebutAsDate.getTime() - now.getTime();
+  
+        if (difference <= 0) {
+          this.openAuction = true; 
+                    this.countdownInterval.unsubscribe();}}}
+
     this.countdownInterval = interval(1000).subscribe(() => {
       this.updateCountdown();
     });
