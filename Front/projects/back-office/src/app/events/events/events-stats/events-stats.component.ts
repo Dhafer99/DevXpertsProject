@@ -11,6 +11,11 @@ import { ChartserviceService } from '../../../services/chartservice.service';
 })
 export class EventsStatsComponent implements OnInit{
   eventList:Event[]=[]
+  eventListFiltered:Event[]=[]
+  Viewshigher=0;
+  Interesthigher=0;
+  Viewslower=0;
+  Interestlower=0;
   createseries:any;
   interestedBys:Interested[]=[]
   interestnumbers:string[]=[]
@@ -68,6 +73,7 @@ export class EventsStatsComponent implements OnInit{
     this.eventService.getAllEvents().subscribe((data)=>
       {
         this.eventList=data;
+        this.eventListFiltered=this.eventList
         this.createseries={type:'bar'}
         console.log(this.eventList)
       }
@@ -229,5 +235,43 @@ export class EventsStatsComponent implements OnInit{
     this.updatebarchart();
     console.log(this.interestDataCounter);
     
+  }
+
+    filterRateChangeASC(){
+      this.eventListFiltered.sort((a,b)=> a.rating-b.rating)
+    }
+    
+    filterRateChangeDesc(){
+      this.eventListFiltered.sort((a,b)=> b.rating-a.rating)
+    }
+
+
+    filterViewsChangeASC(){
+      this.eventListFiltered.sort((a,b)=> a.viewsCounter-b.viewsCounter)
+    }
+    
+    filterViewsChangeDesc(){
+      this.eventListFiltered.sort((a,b)=> b.viewsCounter-a.viewsCounter)
+    }
+    filterInterestChangeASC(){
+      this.eventListFiltered.sort((a,b)=> a.interestedCounter-b.interestedCounter)
+    }
+    
+    filterInterestChangeDesc(){
+      this.eventListFiltered.sort((a,b)=> b.interestedCounter-a.interestedCounter)
+    }
+
+  resetFilter(){
+
+    this.myFilter.name=''
+    this.Interesthigher=0
+    this.Interestlower=0
+    this.Viewshigher=0
+    this.Viewslower=0
+    this.eventListFiltered=this.eventList;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

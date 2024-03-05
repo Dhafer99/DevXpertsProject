@@ -5,21 +5,25 @@
         <div class="card">
           <div class="card-body">
             <div class="profile-blog">
-              <h5 class="text-primary d-inline">Upcoming Events</h5>
+              <h5 class="text-primary d-inline">Todays Events</h5>
+              <div *ngFor="let event of eventList">
+                <div *ngIf="isSameDate(event.date)">
+
+     
               <img
-                src="../../../assets/images/profile/1.jpg"
+                src="{{event.imageUrl}}"
                 alt=""
                 class="img-fluid mt-4 mb-4 w-100"
               />
               <h4>
-                <a href="post-details.html" class="text-black">Deluxe Veggie</a>
+                <a (click)="navigateToPressene(event.id)" class="text-black">{{event.name}}</a>
               </h4>
               <p class="mb-0">
-                For a vegetarian looking for a BIG treat that goes easy on the
-                spices, this one's got it all.. The onions, the capsicum, those
-                delectable mushrooms - with paneer and golden corn to top it
-                all.
+               
+                  {{event.note}}
               </p>
+            </div>
+            </div>
             </div>
           </div>
         </div>

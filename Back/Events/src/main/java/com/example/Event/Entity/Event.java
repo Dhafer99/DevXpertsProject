@@ -65,5 +65,10 @@ public class Event {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Rating> ratings;
 
+    /// One to Many    UNIDIRECTIONNEL
+    // la liste des commentaire / ratings
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Presence> presences;
+
 
 }

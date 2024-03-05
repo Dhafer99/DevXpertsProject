@@ -36,7 +36,7 @@ export class EventCreateComponent implements OnInit {
       type: new FormControl('', [Validators.required]),
       name: new FormControl('', [Validators.required]),
       date:new FormControl('',[Validators.required]),
-
+      note:new FormControl('',[Validators.required]),
     });
     this.acr.params.subscribe(params => {
       this.event.id=params['id'];
@@ -51,7 +51,8 @@ export class EventCreateComponent implements OnInit {
         this.newForm.setValue({
           type: this.event.type,
           name: this.event.name,
-          date: this.event.date
+          date: this.event.date,
+          note:this.event.note
         });
         console.log(this.event.date)
         console.log(this.newForm.value.date)
@@ -83,8 +84,11 @@ export class EventCreateComponent implements OnInit {
       this.eventService
       .addEvent(this.newForm.value, this.images, this.mainImage)
       .subscribe((response) => {
-        console.log(response);
-       
+ 
+        Swal.fire({
+          title: "Created!",
+          icon: "success"
+        });
       });
     }
     else{
@@ -94,11 +98,13 @@ export class EventCreateComponent implements OnInit {
        
       .updateEvent(this.newForm.value, this.images, this.mainImage,this.id)
       .subscribe((response) => {
-        console.log(response);
-        console.log('classroom' + JSON.stringify(this.newForm.value));
+        Swal.fire({
+          title: "Updated!",
+          icon: "success"
+        });
       });
     }
-    this.swalSuces()
+   
   }
 
   swalSuces(){

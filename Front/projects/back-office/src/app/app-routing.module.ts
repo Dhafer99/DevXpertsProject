@@ -10,6 +10,7 @@ import { EventCreateComponent } from './events/event-create/event-create.compone
 import { EventListComponent } from './events/event-list/event-list.component';
 import { EventsStatsComponent } from './events/events/events-stats/events-stats.component';
 import { EventDisplayComponent } from './events/event-display/event-display.component';
+import { ScanPressenceComponent } from './events/scan-pressence/scan-pressence.component';
 const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 { path: 'classrooms', component: AfficherClassroomComponent },
 {path: 'addclassroom', component: AddClassroomComponent },
@@ -19,6 +20,8 @@ const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 {path: 'create', component: EventCreateComponent },
 {path: 'Eventlist', component: EventListComponent },
 {path: 'stats', component: EventsStatsComponent },
+{path: 'scan/:id',component:ScanPressenceComponent},
+
 {
   path: 'events',
   component: EventsComponent},
@@ -29,7 +32,6 @@ const routes: Routes = [  { path: 'list', component: ListUsersComponent },
     { path: 'events/stats', component: EventsStatsComponent },
     { path: 'events/""', pathMatch: 'full', redirectTo: '/events/create' },
     { path: 'events/**', component: EventCreateComponent },
-  
 
 ];
 

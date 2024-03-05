@@ -20,6 +20,8 @@ import { EventListComponent } from './events/event-list/event-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { EventDisplayComponent } from './events/event-display/event-display.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { ScanPressenceComponent } from './events/scan-pressence/scan-pressence.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { EventDisplayComponent } from './events/event-display/event-display.comp
     EventsStatsComponent,
     EventListComponent,
     EventDisplayComponent,
+    ScanPressenceComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +49,7 @@ import { EventDisplayComponent } from './events/event-display/event-display.comp
     ScheduleModule ,
     ChartModule,
     NgbModule,
+    ZXingScannerModule,
   ],
 
   bootstrap: [AppComponent]
