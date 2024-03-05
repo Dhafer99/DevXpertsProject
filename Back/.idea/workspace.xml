@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/PresenceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/PresenceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/display/display.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/display/display.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/display/display.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/display/display.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/events-list/events-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/events-list/events-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/events-list/events-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/events-list/events-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/services/event-service.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/services/event-service.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Entity/Presence.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Entity/Presence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/PresenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Service/PresenceService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +69,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.Event.Controller" />
       <recent name="com.example.supplier.Controller" />
       <recent name="com.example.supplier.Repository" />
       <recent name="com.example.supplier.Entity" />
@@ -224,6 +224,7 @@
       <workItem from="1709406295773" duration="410000" />
       <workItem from="1709465654839" duration="4262000" />
       <workItem from="1709486175089" duration="602000" />
+      <workItem from="1709642453373" duration="8760000" />
     </task>
     <servers />
   </component>

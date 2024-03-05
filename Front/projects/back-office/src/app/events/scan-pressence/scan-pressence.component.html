@@ -13,11 +13,25 @@
       </div>
     </div>
     <div class="col-xl-6 col-lg-6">
+        <div> total Count  == {{currentEvent.presences.length}}
+            Last Added 
+            {{lastaddedPresence?.date}}
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6">
       <div class="card">
         <div class="card-header">
             <h4 class="card-title">Local Camera</h4></div>
             <div class="card-body" >
-                
+                        <div *ngFor="let presense of currentEvent.presences"
+                            >
+                            <br><br>
+                            {{presense.date}}
+                        <br><br>
+                            {{presense.eventId}}
+                            <br><br>
+                            {{presense.userId}}
+                    </div>
 
 
             </div>

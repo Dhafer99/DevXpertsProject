@@ -12,7 +12,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Table
 @Builder
-
 public class Presence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Event } from '../models/event';
+import { Event, Presence } from '../models/event';
 import { Observable } from 'rxjs';
 import { Image } from '../models/image';
 
@@ -13,7 +13,7 @@ export class EventService {
   interestURL='/Interest'
   ratingURL='/Rating'
   imageURL='/cloudinary'
-  
+  presenceUrl='/Presence'
   constructor(private http:HttpClient) { }
 //-------------------------------ADD EVENT ------------------------------------------
   addEvent(Event:Event,images:Image[],mainImage:Image):Observable<Event>{
@@ -83,6 +83,9 @@ public upload(image: File): Observable<any> {
 
 public delete(id: any): Observable<any> {
   return this.http.delete<any>(this.__URL+this.imageURL + `/delete/${id}`);
+}
+public addPresense(id: number,presence: Presence): Observable<Presence> {
+  return this.http.post<Presence>(this.__URL+this.presenceUrl+'/addPresense/'+id,presence);
 }
 //-------------------------------------------------------------
 }

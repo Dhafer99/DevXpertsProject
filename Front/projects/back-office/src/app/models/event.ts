@@ -27,6 +27,7 @@ imageId?:number;
 interesteds?: Interested[]; // Assuming InterestedBy is another TypeScript interface
     images?: Image[];
     ratings?: Rating[];
+    presences?:Presence[];
   }
   
   // Assuming the following interfaces for related entities
@@ -55,3 +56,9 @@ export enum EventType {
     Association_Day = "Association Day",
   }
   
+  export class Presence {
+    id: number;
+    eventId: number;
+    userId: number;
+    date: Date;
+  }

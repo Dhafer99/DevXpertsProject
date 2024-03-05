@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BarcodeFormat } from '@zxing/library';
 import { EventService } from '../../services/event.service';
-import { Event } from '../../models/event';
+import { Event, Presence } from '../../models/event';
 
 @Component({
   selector: 'app-scan-pressence',
@@ -11,6 +11,8 @@ import { Event } from '../../models/event';
 })
 export class ScanPressenceComponent implements OnInit{
   currentEvent:Event
+  lastaddedPresence!:Presence
+  lastScannedid:number=0
   constructor(
     private acr:ActivatedRoute,
     private eventService:EventService
@@ -32,11 +34,33 @@ formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.QR_CODE,
   ];
   onScanSuccess(result: string): void {
-    console.log(result); // Handle the scanned QR code here
+    const jsonObject = JSON.parse(result);
+   
+    let presense :Presence=new Presence();
+    
+    if (this.lastScannedid!=jsonObject.id)
+    {
+      this.lastScannedid = jsonObject.id;
+    presense.userId=this.lastScannedid;
+    presense.date=new Date();
+    presense.eventId=this.currentEvent.id;
+      this.eventService.addPresense(this.currentEvent.id,presense).subscribe((data)=>
+      {
+        if (this.currentEvent.presences.indexOf(data) ==-1)
+        {
+          this.currentEvent.presences.push(data);
+        }
+        this.lastaddedPresence=data
+        console.log(data)
+      })
+    }
+    else{
+      //sameId()
+    }
   }
 
 
   fetchEvent(){
-    
+
   }
 }
