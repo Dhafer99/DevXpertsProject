@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Offer, typeOffer } from 'src/app/models/offer';
 import { User } from 'src/app/models/user';
 import { CandidatureService } from 'src/app/services/candidature.service';
@@ -21,8 +21,14 @@ export class AfficherOffreComponent implements OnInit{
   listOffers:any;
   listStages:any;
   listJobs:any;
-  listRecommander:any;
+  listRecommanderBack!:any;
+  //listRecommander!:Object;
+  listRecommander!:any;
+  lisRecFinal: any[] = [];
+  pourcentageOffre: number[] = [];
+  listRecherche!:any;
   user!:User;
+  titre!:string;
   
   ngOnInit(): void {
     this.user=this.userS.getUser();
@@ -40,10 +46,12 @@ export class AfficherOffreComponent implements OnInit{
   
   }
 
+
   getOffersForUser(){
     this.candidatureService.nbrApplicationOnOffer().subscribe(res=>{
         //this.nbrCandidature.push(res);
         this.listOffers=res;
+        this.listRecommander=res;
       })
   }
   getJobsForUser(){
@@ -59,8 +67,36 @@ export class AfficherOffreComponent implements OnInit{
       })
   }
   getOffresRecommanderPourUser(id:string){
-    this.candidatureService.getRecommendedOffersForUserApp(id).subscribe(res=>{
+    /*this.candidatureService.getRecommendedOffersForUserApp(id).subscribe(res=>{
       this.listRecommander=res
+      console.log("HHH"+this.listRecommander)
+    })*/
+    this.offerService.getRecommandedOffersForUser(id).subscribe(res => {
+      this.listRecommanderBack=res
+      //this.listRecommanderBack = res as Offer[];
+
+    for (let i = 0; i < this.listRecommanderBack.length; i++) {
+    let of = this.listRecommanderBack[i];
+
+    for (let i = 0; i < this.listRecommander.length; i++) {
+      let offre = this.listRecommander[i];
+      if (of.id==offre[0].id)
+      {
+        this.lisRecFinal.push(offre);
+        this.pourcentageOffre.push(of.pourcentage);
+        console.log(offre[0]);
+      }
+    }
+    for (let i=0; i< this.lisRecFinal.length ; i++) {
+      this.lisRecFinal[i][5] =  this.pourcentageOffre[i]// Remplacez "Valeur de o[5]" par la valeur souhaitée
+    }
+    console.log(this.lisRecFinal+"KKKK")
+
+    //console.log(offre.id);
+    }
+
+    //console.log(titres)
+      console.log(JSON.stringify(this.listOffers.length))
     })
   }
 
@@ -83,5 +119,13 @@ export class AfficherOffreComponent implements OnInit{
 
   detail(){
     alert('Your details are displayed'+this.listOffers[0]['file']) //
+  }
+
+
+
+  rechercheOffre(titre:string){
+    this.offerService.rechercheOffre(titre).subscribe(data=>{
+      this.listRecherche=data
+    })
   }
 }

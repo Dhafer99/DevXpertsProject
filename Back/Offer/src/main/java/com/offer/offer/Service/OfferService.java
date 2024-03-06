@@ -99,4 +99,9 @@ public class OfferService implements IOfferService{
         return offerRepository.hasApplied(idOffer, idCandidat);
     }
 
+    @Override
+    public List<Offer> rechercheOffer(String rech) {
+        return offerRepository.listeOfferRecherche(rech);
+    }
+
 }

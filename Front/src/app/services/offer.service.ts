@@ -46,14 +46,22 @@ export class OfferService {
   getCountOffersByType():Observable<any>{
     return this.http.get<any>(this.offerUrl+'/getCountOffersByType');
   }
-  getRecommandedOffersForUser(id:string):Observable<Offer[]>{
+  /*getRecommandedOffersForUser(id:string):Observable<Offer[]>{
     return this.http.get<Offer[]>(this.offerUrl+'/getRecommandedOffersForUser/'+id);
-  }
+  }*/
   hasApplied(idUser:string,idOffer:string):Observable<boolean>{
     return this.http.get<boolean>(this.offerUrl+'/hasApplied/'+idUser+'/'+idOffer);
   }
   getPdf(idOffer:string):Observable<any>{
     return this.http.get<any>(this.offerUrl+'/telecharger-pdf/'+idOffer)
+  }
+  //PYTHON
+  getRecommandedOffersForUser(id:string):Observable<Offer[]>{
+    //return this.http.get<Offer[]>(this.offerUrl+'/consumeFlaskEndpoint/'+id);
+    return this.http.get<Offer[]>("http://localhost:8000/donnees/"+id);
+  }
+  rechercheOffre(tritre:string):Observable<Offer[]>{
+    return this.http.get<Offer[]>(this.offerUrl+"/rechercherOffre/"+tritre);
   }
 
 }

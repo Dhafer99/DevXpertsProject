@@ -4,9 +4,8 @@ import com.offer.offer.Entity.Offer;
 import com.offer.offer.Entity.TypeOffer;
 import com.offer.offer.Service.IApplicationService;
 import com.offer.offer.Service.IOfferService;
-import com.offer.offer.Service.OfferService;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.*;
@@ -14,39 +13,33 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 
-
-
-import org.apache.poi.util.IOUtils;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 
 
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/Offer")
 @AllArgsConstructor
-@CrossOrigin
 public class OfferController {
     private IOfferService offerService;
     private IApplicationService applicationService;
+
 
     @GetMapping("/allOffers")
     public List<Offer> retrieveAllOffers() {
@@ -150,7 +143,7 @@ public class OfferController {
     @GetMapping("/telecharger-pdf/{idOffer}")
     public ResponseEntity<Resource> telechargerPDF(@PathVariable("idOffer") long idOffer) {
         // Récupérer le tableau de bytes depuis votre entité et stockez-le dans une variable byte[]
-        Offer offer= offerService.getOfferById(idOffer);
+        Offer offer = offerService.getOfferById(idOffer);
         ByteArrayResource resource = new ByteArrayResource(offer.getFile());
 
         HttpHeaders headers = new HttpHeaders();
@@ -162,4 +155,10 @@ public class OfferController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(resource);
     }
+
+    @GetMapping("/rechercherOffre/{titre}")
+    public List<Offer> rechercheOff(@PathVariable("titre") String titre){
+        return offerService.rechercheOffer(titre);
+    }
+
 }
