@@ -11,3 +11,9 @@ export class Appointement {
 
   
 }
+export class calenderEvent{
+    start!:Date;
+    end!:Date;
+    title:string="Available";
+    color:string="blue  "
+}

@@ -4,34 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/controllers/AppointementManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/controllers/AppointementManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/entities/Appointement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/entities/Appointement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/repositories/AppointementRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/repositories/AppointementRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/AppointementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/AppointementService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/ClassroomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/ClassroomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/IAppointementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/IAppointementService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/IClassroomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/IClassroomService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/add-classroom/add-classroom.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/add-classroom/add-classroom.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/add-classroom/add-classroom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/add-classroom/add-classroom.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/afficher-classroom/afficher-classroom.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/afficher-classroom/afficher-classroom.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/afficher-classroom/afficher-classroom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/afficher-classroom/afficher-classroom.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/classroom.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/classroom.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/tsconfig.json" afterDir="false" />
-    </list>
+    <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,13 +13,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/3.2.2/spring-data-commons-3.2.2.jar!/org/springframework/data/repository/CrudRepository.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -61,6 +41,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -69,7 +50,9 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;appoi&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/fares/OneDrive/Bureau/DevEpert project/DevXpertsProject/Back&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -77,6 +60,14 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\fares\OneDrive\Bureau\DevEpert project\DevXpertsProject\Back\Appointement\src\main\resources\static\js" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -141,7 +132,19 @@
       <workItem from="1707985784081" duration="6382000" />
       <workItem from="1708172711728" duration="4757000" />
       <workItem from="1708339749005" duration="11764000" />
-      <workItem from="1708530213541" duration="9885000" />
+      <workItem from="1708530213541" duration="13479000" />
+      <workItem from="1708678194279" duration="8382000" />
+      <workItem from="1708866020558" duration="938000" />
+      <workItem from="1708935493688" duration="3860000" />
+      <workItem from="1708979456578" duration="604000" />
+      <workItem from="1709057505587" duration="121000" />
+      <workItem from="1709058754492" duration="2088000" />
+      <workItem from="1709120956555" duration="9049000" />
+      <workItem from="1709167366465" duration="6825000" />
+      <workItem from="1709395233199" duration="29028000" />
+      <workItem from="1709635599896" duration="4750000" />
+      <workItem from="1709665779157" duration="4005000" />
+      <workItem from="1709715931553" duration="6313000" />
     </task>
     <servers />
   </component>

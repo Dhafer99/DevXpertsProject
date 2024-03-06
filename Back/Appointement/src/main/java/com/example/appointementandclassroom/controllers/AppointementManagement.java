@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -32,15 +33,25 @@ public class AppointementManagement {
    // @Operation(description = "Add appointement")
     @PostMapping("/add_Appointement")
     public Appointement addappointement(@RequestBody Appointement appointement){
+        System.out.println(appointement.toString());
         return  appointementService.addappointement(appointement);
     }
 
-
+    @Operation(description = "Retrieve all free appointements")
+    @GetMapping("/getFreeDatesPerClassroom/{classroomId}")
+    public List<Date> getFreeDates(@PathVariable("classroomId") Integer classroomId){
+        return classroomService.getFreeAppointementsByClassroom(classroomId);
+    }
 
     @Operation(description = "Retrieve all Appointement")
     @GetMapping("/all_Appointement")
     public List<Appointement> getAllAppointement(){
         return appointementService.retrieveAllAppointement();
+    }
+    @Operation(description = "Retrieve all Classrooms")
+    @GetMapping("/all_classrooms")
+    public List<Classroom> getAllclasses(){
+        return classroomService.showClassesToAdmin();
     }
 
     @Operation(description = "Update Appointement ")
@@ -61,6 +72,11 @@ public class AppointementManagement {
     {
         return appointementService.retrieveappointement(id,id);
 
+    }
+
+    @DeleteMapping("/deleteAppointement/{idAppointement}")
+   public void deleteAppointement(@PathVariable("idAppointement") int id){
+        appointementService.deleteappointement(id);
     }
 
 
@@ -104,10 +120,17 @@ public class AppointementManagement {
     public void deleteClassroom(@PathVariable("idClassroom") int id){
         classroomService.deleteClassroom(id);
     }
+//---------------------------------------------Affectation ClasseRoom to Appointment -----------------------
+@Operation(description = "Retrieve freeAppointements by classroomId")
+@GetMapping("/getFreeAppointements/{id-Classroom}")
+public List<Date> getFreeApointements(@PathVariable("id-Classroom") int numClassroom){
+    return classroomService.getFreeAppointementsByClassroom(numClassroom);
+}
 
-
-
-
+@GetMapping("/availableTime")
+public List<Date> getAvailableDate(){
+        return classroomService.getAllFree();
+}
 
 
 

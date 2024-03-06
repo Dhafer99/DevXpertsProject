@@ -15,6 +15,7 @@ public interface IAppointementService {
     Appointement retrieveappointement(int numAppointement);
 
     List<Appointement> retrieveappointement(int sender, int reciever);
+    void deleteappointement(int id);
 
 
 }

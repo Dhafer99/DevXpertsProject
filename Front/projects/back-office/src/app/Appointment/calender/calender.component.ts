@@ -224,8 +224,3 @@ constructor(private ngZone: NgZone, private router: Router, private calenderadd 
 
       
 } 
-
-
-
-
-

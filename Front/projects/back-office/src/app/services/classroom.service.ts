@@ -14,10 +14,16 @@ export class ClassroomService {
   getAllClassrooms():Observable<Classroom[]>{
     return this.http.get<Classroom[]>(this.classroomURL+'/all_Classroom')
   }
+  getFreeAppointements(clasroomid:number):Observable<any[]>{
+    return this.http.get<any[]>(this.classroomURL+'/getFreeDatesPerClassroom/'+clasroomid)
+  }
+
 
 
    addClassroom(Classroom:Classroom):Observable<Classroom[]>{
-    return this.http.post<Classroom[]>(this.classroomURL+'/add_Classroom',Classroom)
+    console.log("sending")
+    console.log(Classroom);
+    return this.http.post<Classroom[]>(this.classroomURL+'/add_Classroom ',Classroom)
   }
 
 
@@ -60,9 +66,21 @@ upadateAppointement(id:number,Appointement:Appointement):Observable<Appointement
   return this.http.put<Appointement[]>(this.classroomURL+'/update_Appointement',Appointement)
 }
 
+deleteAppointement(id:number)
+{
+   return this.http.delete<Appointement[]>(this.classroomURL+'/deleteAppointement/'+id)
+}
+
 
 /* -----------------Ziidha dealete ----------- */
 
 
+showAvailability():Observable<Date[]>{
+  return this.http.get<Date[]>(this.classroomURL+"/availableTime")
+}
+
+getMyAppoitement(iduser:number):Observable<Appointement[]>{
+  return this.http.get<Appointement[]>(this.classroomURL+"/all_Appointement_foryouser/"+iduser)
+}
 
 }

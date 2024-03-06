@@ -2,3 +2,7 @@
 ::ng-deep .e-schedule-toolbar .e-toolbar-item.e-next {
     display: none;
 }
+.pagedown{
+    position: relative;
+    top: 90%
+}

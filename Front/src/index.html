@@ -1,35 +1,133 @@
-
-<head>
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-scheme="light">
   
-  <!-- Favicons -->
-  <link href="./assets/img/favicon.png" rel="icon">
-  <link href="./assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Mirrored from deothemes.com/envato/xhibiter/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Feb 2024 15:43:45 GMT -->
+<head>
+    <title>ForumEsprit</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <meta charset="utf-8" />
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
 
-  <!-- Vendor CSS Files -->
-  <link href="./assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="./assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="./assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="./assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="./assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="./assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="./assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="./assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Css -->
+    <link rel="shortcut icon" href="./assets/images/logoEsprit.png">
 
-  <link href="./assets/css/style.css" rel="stylesheet">
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" type="text/css" id="bootstrap-style" />
 
+    <!-- Material Icon Css -->
+    <link rel="stylesheet" href="./assets/css/materialdesignicons.min.css" type="text/css" />
+
+    <!-- Unicon Css -->
+    <link rel="stylesheet" href="./assets/css/line.css" />
+
+    <!-- Swiper Css -->
+    <link rel="stylesheet" href="./assets/css/tiny-slider.css" type="text/css" />
+    <link rel="stylesheet" href="./assets/css/swiper.min.css" type="text/css" />
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="./assets/css/style.min.css" type="text/css" />
 
 </head>
-<app-root></app-root>
-<script src="./assets/vendor/aos/aos.js"></script>
-<script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="./assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="./assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="./assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="./assets/vendor/waypoints/noframework.waypoints.js"></script>
-<script src="./assets/vendor/php-email-form/validate.js"></script>
+<body>
+  <section class="inner-blog section bg-light">
+  <app-root></app-root>
+</section>
+   <!--Bootstrap Js-->
+   <script src="./assets/js/bootstrap.bundle.min.js"></script>
 
-<!-- Template Main JS File -->
-<script src="./assets/js/main.js"></script>
+   <!-- Slider Js -->
+   <script src="./assets/js/tiny-slider.js"></script>
+   <script src="./assets/js/bootstrap-toasts.init.js"></script>
+
+   <script src="./assets/js/swiper.min.js"></script>
+
+   <!-- counter -->
+   <script src="./assets/js/counter.init.js"></script>
+
+   <!-- App Js -->
+   <script src="./assets/js/app.js"></script>
+
+
+   <script>
+       var slider = tns({
+           container: '.client-slider',
+           loop: true,
+           autoplay: true,
+           mouseDrag: true,
+           controls: false,
+           navPosition: "bottom",
+           nav: true,
+           autoplayTimeout: 4000,
+           speed: 900,
+           animateIn: "fadeIn",
+           animateOut: "fadeOut",
+           controlsText: ['&#8592;', '&#8594;'],
+           autoplayButtonOutput: false,
+           gutter: 30,
+           responsive: {
+
+               992: {
+                   gutter: 30,
+                   items: 1.5
+               },
+
+           }
+       });
+
+   </script>
+
+   <script>
+       new Swiper('.swiper-container', {
+           loop: true,
+           slidesPerView: 1,
+           paginationClickable: true,
+           spaceBetween: 20,
+           pagination: '.swiper-pagination',
+           slidesPerView: 'auto',
+           paginationClickable: true,
+           spaceBetween: 0,
+           centeredSlides: true,
+           speed: 1500,
+           nextButton: '.swiper-button-next',
+           prevButton: '.swiper-button-prev',
+       });
+   </script>
+
+
+   <script>
+       var slider = tns({
+           container: '.testi-slider',
+           loop: true,
+           autoplay: true,
+           mouseDrag: true,
+           controls: true,
+           navPosition: "bottom",
+           nav: false,
+           autoplayTimeout: 4000,
+           speed: 900,
+           animateIn: "fadeIn",
+           animateOut: "fadeOut",
+           controlsText: ['&#8592;', '&#8594;'],
+           autoplayButtonOutput: false,
+           gutter: 30,
+           responsive: {
+
+               992: {
+                   gutter: 30,
+                   items: 3
+               },
+
+           }
+       });
+
+   </script>
+
+
+
+  </body>
+
+<!-- Mirrored from deothemes.com/envato/xhibiter/html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 20 Feb 2024 15:43:57 GMT -->
+</html>
+>
