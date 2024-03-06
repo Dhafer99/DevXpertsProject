@@ -4,6 +4,7 @@ export class Room{
 
     idRoom!:number;
     codeRoom!:string;
+    quantity!:number;
     price!:number;
     priceAuction!:number;
     typePack!:string;

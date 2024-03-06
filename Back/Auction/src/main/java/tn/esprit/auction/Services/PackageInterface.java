@@ -2,6 +2,7 @@ package tn.esprit.auction.Services;
 
 
 
+import tn.esprit.auction.Entites.CheckoutPayment;
 import tn.esprit.auction.Entites.Company;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.TypePack;
@@ -36,5 +37,7 @@ public interface PackageInterface {
 
     int QuantitePeTypePack(TypePack typePack);
     float revenueTotal();
+
+    List<CheckoutPayment> getPayments();
 
 }

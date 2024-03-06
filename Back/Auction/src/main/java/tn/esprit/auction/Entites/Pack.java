@@ -22,7 +22,7 @@ public class Pack {
     private Long idPack;
     @Enumerated(EnumType.STRING)
     private TypePack typePack ;
-    private int quantity ;
+
     private String description ;
     private boolean status ;
     private boolean reserved ;

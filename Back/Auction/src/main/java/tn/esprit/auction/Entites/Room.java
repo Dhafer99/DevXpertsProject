@@ -27,7 +27,7 @@ public class Room {
     private float price;
     private float priceAuction;
     private int maxWinners;
-
+private int quantity ;
     private TypePack typePack ;
     private Date dateDebut;
     private int duration ;

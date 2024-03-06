@@ -21,8 +21,7 @@ export class AddPackComponent {
     if (
       
       !this.pack.description ||
-      !this.pack.price ||
-      !this.pack.quantity
+      !this.pack.price
      
     ) {
       Swal.fire({

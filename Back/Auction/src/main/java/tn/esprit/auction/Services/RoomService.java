@@ -29,7 +29,7 @@ EnchereInterface enchereInterface ;
     @Override
     public void addRoom(Room room) {
         List<Pack> listPacks = packgeRepository.findByTypePack(room.getTypePack()  );
-
+        room.setQuantity(listPacks.size());
         room.setMaxWinners(listPacks.size());
         SecureRandom random = new SecureRandom();
         StringBuilder codeBuilder = new StringBuilder();
@@ -128,7 +128,7 @@ EnchereInterface enchereInterface ;
         Pack pack = packgeRepository.findById(idpack).get();
 
             pack.setCompany(encheres.get(0).getIdcompany());
-        encheres.get(0).setStatus(false);
+            encheres.get(0).setStatus(false);
             enchereRepository.save(encheres.get(0));
 
         pack.setReserved(true);

@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import tn.esprit.auction.Entites.Company;
-import tn.esprit.auction.Entites.Pack;
-import tn.esprit.auction.Entites.Room;
-import tn.esprit.auction.Entites.TypePack;
+import tn.esprit.auction.Entites.*;
 import tn.esprit.auction.Repository.CompanyRepository;
 import tn.esprit.auction.Repository.PackgeRepository;
+import tn.esprit.auction.Repository.PaymentRepository;
 import tn.esprit.auction.Repository.RoomRepository;
 
 
@@ -23,6 +21,7 @@ public class PackgeService implements PackageInterface {
     PackgeRepository packgeRepository ;
     RoomRepository roomRepository ;
     CompanyRepository companyRepository ;
+    PaymentRepository paymentRepository ;
  //  private final SimpMessagingTemplate messagingTemplate;
 
     @Override
@@ -260,6 +259,11 @@ packgeRepository.delete(idpack);
 
 
         return revenuTotal;
+    }
+
+    @Override
+    public List<CheckoutPayment> getPayments() {
+        return this.paymentRepository.findAll();
     }
 
     private boolean isCreationYear(Pack pack, int currentYear) {

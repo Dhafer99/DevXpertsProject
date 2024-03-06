@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.component';
 import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
+import { PaymentListComponent } from './payment-list/payment-list.component';
 
 const routes: Routes = [  
   
@@ -21,7 +22,7 @@ const routes: Routes = [
 { path: 'viewRooms', component: ViewRoomsComponent },
 { path: 'viewRooms/detailRoom/:id', component: DetailRoomComponent },
 { path: 'packSalesPerYear', component: PackSalesPerYearComponent },
-
+{ path: 'checkPayments', component: PaymentListComponent },
 
 
 ];

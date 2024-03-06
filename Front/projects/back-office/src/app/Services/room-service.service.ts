@@ -18,7 +18,11 @@ export class RoomServiceService {
       
     })
   };
+  private _refreshrequired = new Subject<void>();
 
+  get Refreshrequired() {
+    return this._refreshrequired;
+  }
   addRoom ( data: any )
   {
     return this.http.post<any>( this.url + "addRoom", data );
@@ -38,8 +42,9 @@ export class RoomServiceService {
   }
 
 
-  public getRoomPackages ( id: number ): Observable<any>
+  public getRoomPackages ( id: number ): Observable<object>
   {
+    
     return this.http.get<any>( `${ this.url }getRoomPackages/${ id }`, {
    
     } );

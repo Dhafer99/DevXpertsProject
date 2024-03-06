@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.auction.Entites.CheckoutPayment;
 import tn.esprit.auction.Entites.Company;
 
 import tn.esprit.auction.Entites.Pack;
@@ -27,7 +28,10 @@ import java.util.Map;
 public class PackageController {
 
     PackageInterface packageInterface;
-
+    @GetMapping("/getPayments")
+    public  List<CheckoutPayment> getPayments() {
+        return  packageInterface.getPayments();
+    }
     @PutMapping("/SendCodeRoom/{email}/{code}")
     public void SendCodeRoom(@PathVariable("email") String email, @PathVariable("code") String code) {
        packageInterface.sendCoderoom(email,code);

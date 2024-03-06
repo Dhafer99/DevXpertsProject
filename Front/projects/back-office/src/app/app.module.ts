@@ -16,6 +16,7 @@ import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.co
 import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
 import { AuctionComponent } from './auction/auction.component';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { PaymentListComponent } from './payment-list/payment-list.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
     DetailRoomComponent,
     PackSalesPerYearComponent,
     AuctionComponent,
+    PaymentListComponent,
    
    
   ],

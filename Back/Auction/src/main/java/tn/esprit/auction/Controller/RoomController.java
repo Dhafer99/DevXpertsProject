@@ -20,6 +20,7 @@ public class RoomController {
 
     RoomInterface roomInterface ;
     EnchereInterface enchereInterface ;
+
     /*********************************** Enchere methodes ****/
     @PostMapping("/addEncherForUser/{companyId}/{roomId}")
     public Enchere addEncherForUser(

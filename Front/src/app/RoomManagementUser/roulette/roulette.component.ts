@@ -17,6 +17,7 @@ import { Pack } from 'projects/back-office/src/app/Models/Pack';
 import { Room } from 'projects/back-office/src/app/Models/Room';
 import { PackServiceService } from 'projects/back-office/src/app/Services/pack-service.service';
 import { RoomServiceService } from 'projects/back-office/src/app/Services/room-service.service';
+import Swal from 'sweetalert2';
 // Déclarez jQuery comme variable externe
 
 @Component({
@@ -46,6 +47,7 @@ export class RouletteComponent implements OnInit {
   seed: any[] = [];
   ngOnInit(): void {
     this.getPack();
+   
   }
 
   getPack() {
@@ -58,10 +60,10 @@ export class RouletteComponent implements OnInit {
         this.idToLandOn =
           this.seed[Math.floor(Math.random() * this.seed.length)];
 
-        const colors = ['#B31312', '#000000'];
+        const colors = ['#B31312','#141A3D', '#545D91','#00353F'];
 
         this.items = this.seed.map((value) => ({
-          fillStyle: colors[value % 2],
+          fillStyle: colors[value % 3],
           text: `Pack ${value}`,
           id: value,
           textFillStyle: 'white',
@@ -111,7 +113,7 @@ export class RouletteComponent implements OnInit {
   }
 
   after() {
-    console.log("La roulette s'est arrêtée sur la position:", this.stoppedAt);
+    console.log("La roulette s'est arrêtée sur la position:",this.wheel.idToLandOn);
 
     // Vous pouvez également utiliser la position pour accéder à l'élément correspondant
     const landedItem = this.items.find((item) => item.id === this.stoppedAt);
@@ -123,6 +125,13 @@ export class RouletteComponent implements OnInit {
     }
 
     this.getPack();
-    alert("La roulette s'est arrêtée");
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "campany x with id win pack "+this.wheel.idToLandOn,
+      showConfirmButton: false,
+      timer: 2500,
+    });
+   
   }
 }

@@ -9,7 +9,6 @@
         <option value="2">standards</option>
       </select>
 
-       <input type="number" class="form-control" placeholder="Quantity" id="quantity" [(ngModel)]="pack.quantity" name="quantity" />
 
        <input type="number" class="form-control" placeholder="Price"  id="price" [(ngModel)]="pack.price" name="price" />
 
@@ -40,7 +39,7 @@
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">{{pack.price | currency:"DT"}}</li>
-      <li class="list-group-item">Quantity : {{pack.quantity}}</li>
+    
       <li class="list-group-item">{{pack.typePack}}</li>
     </ul>
   </div>
