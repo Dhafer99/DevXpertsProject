@@ -23,6 +23,12 @@ public getPackStatisticsByYearAndStatus (  ): Observable<any>
   return this.http.get<any>( this.url + "getPackStatisticsByYearAndStatus" );
 }
 
+public getPayments (  ): Observable<any>
+{
+  return this.http.get<any>( this.url + "getPayments" );
+}
+
+
 /********************* stat  */
 
   public getDetailsPackById ( id: number ): Observable<any>
