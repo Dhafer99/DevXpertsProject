@@ -22,12 +22,16 @@ export class EventsStatsComponent implements OnInit{
   interestdata:number[][]=[]
   interestCountMap = new Map<string, number>()
   interestDataCounter: (string |number )[][]=[[], []];
+  pressenceDataCounter: (string |number )[][]=[[], [],[]];
   totalsDataCounter:(string | number )[][]=[[],[]];
   myFilter: any = { name: '' };
 
   constructor(private eventService:EventService,private chartservice:ChartserviceService){}
   
   linechart = new highcharts.Chart({
+    
+  });
+  piechart = new highcharts.Chart({
     
   });
   barchart=new highcharts.Chart({
@@ -45,6 +49,10 @@ export class EventsStatsComponent implements OnInit{
       ) 
     
   }
+  updatepiechart(){
+    this.piechart= this.chartservice.ChartRecreatePie(this.piechart,'pie',this.pressenceDataCounter,"mypiechart") 
+   
+ }
   updatebarchart(){
     this.barchart= this.chartservice.ChartRecreateBar(this.barchart,'bar',this.totalsDataCounter[1],"Total Data",
      this.totalsDataCounter
@@ -68,6 +76,28 @@ export class EventsStatsComponent implements OnInit{
       series: []
     });
   }
+  piechartrecreate(){
+    this.linechart = new highcharts.Chart({
+      chart: {
+        type: 'pie'
+      },
+      title: {
+        text: 'Data'
+      },
+      plotOptions: {
+        pie: {
+            shadow: false,
+            center: ['50%', '50%']
+        }
+    },
+
+      credits: {
+        enabled: false
+      },
+      series: []
+    });
+  }
+
 
   fetchEvents(){
     this.eventService.getAllEvents().subscribe((data)=>
@@ -81,16 +111,13 @@ export class EventsStatsComponent implements OnInit{
   }
 
   populateEmptyfield(){
-    console.log("populateEmptyfield")
     for (let i = 0; i < this.interestDataCounter.length; i++) {
       for (let j = 0; j < this.interestDataCounter[i].length; j++) {
         const value= this.interestDataCounter[i][j]
-        console.log("Indexes I =="+i+" J=="+j)
-        console.log(this.interestDataCounter[i][j])
+
         if (value === undefined || value === null || value === '' || (typeof value==='number' && isNaN(value)) ) {
           this.interestDataCounter[i][j] = 0;
         }
-        console.log( "Result ==> "+this.interestDataCounter[i][j])
       }
     }
   }
@@ -107,14 +134,8 @@ export class EventsStatsComponent implements OnInit{
       // Check each row in the current column
       for (let i = 2; i < this.interestDataCounter.length; i++)
         {
-          console.log("Compârring")
-          
-          console.log(this.interestDataCounter[i])
-          console.log("J == >" ,j)
-          console.log(this.interestDataCounter[i][j])
-          
+
         if (this.interestDataCounter[i][j] != 0 ) {
-          console.log("CHanging Value")
           allZeros = false;
 
         }
@@ -233,6 +254,7 @@ export class EventsStatsComponent implements OnInit{
     }
     this.updatelinechart()
     this.updatebarchart();
+    this.updatepiechart();
     console.log(this.interestDataCounter);
     
   }

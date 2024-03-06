@@ -70,5 +70,47 @@ export class ChartserviceService {
    return this.ChartCreate(type,xAxis,title,seriesofchart)
     
   }
+  
+  ChartRecreatePie(mychart:highcharts.Chart,type:any,series:any,title:any):highcharts.Chart{
+    let xAxis=series[0];
+    this.ChartDestroy(mychart)
+ 
+    const chart=new highcharts.Chart({
+      chart: {
+        type: type
+      },
+      title: {
+        text: "data"
+      },
+      xAxis: {
+        categories: xAxis
+    },
+    yAxis: {
+      min: 0,
+      title: {
+          text: 'Presence'
+      },
+      stackLabels: {
+          enabled: true
+      }
+  },
+      credits: {
+        enabled: false
+      },
+      plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+      series: series
+    });
+    
+    return chart;
+  }
+
+  
 
 }
