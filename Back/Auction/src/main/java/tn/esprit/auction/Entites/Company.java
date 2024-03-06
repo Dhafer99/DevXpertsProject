@@ -24,9 +24,7 @@ public class Company {
     private String name;
     @ManyToOne
     Room room;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.LAZY)
-    @JsonBackReference
-    private List<Pack> packages;
+
 
 
 }

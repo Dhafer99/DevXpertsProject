@@ -4,13 +4,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import tn.esprit.auction.Entites.Company;
+import tn.esprit.auction.Entites.Enchere;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.Room;
 import tn.esprit.auction.Repository.CompanyRepository;
+import tn.esprit.auction.Repository.EnchereRepository;
 import tn.esprit.auction.Repository.PackgeRepository;
 import tn.esprit.auction.Repository.RoomRepository;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +23,9 @@ public class RoomService implements RoomInterface{
 RoomRepository roomRepository;
 CompanyRepository companyRepository ;
 PackgeRepository packgeRepository ;
+    EnchereRepository enchereRepository ;
+
+EnchereInterface enchereInterface ;
     @Override
     public void addRoom(Room room) {
         List<Pack> listPacks = packgeRepository.findByTypePack(room.getTypePack()  );
@@ -107,7 +113,26 @@ PackgeRepository packgeRepository ;
     @Override
     public List<Pack> getRoomPacks(Long roomId) {
         Room room = roomRepository.findById(roomId).get();
-        return  room.getPackages();
+        List<Pack> packs = new ArrayList<>();
+        for (Pack p : room.getPackages()) {
+            if(p.isReserved()==false)
+            {
+                packs.add(p);
+        }}
+        return packs;
+    }
+
+    @Override
+    public void ReservePack(Long idpack , Long idRoom ) {
+        List < Enchere> encheres = enchereInterface.getTopEncheresByRoomId(idRoom);
+        Pack pack = packgeRepository.findById(idpack).get();
+
+            pack.setCompany(encheres.get(0).getIdcompany());
+        encheres.get(0).setStatus(false);
+            enchereRepository.save(encheres.get(0));
+
+        pack.setReserved(true);
+        packgeRepository.save(pack);
     }
 
     @Override

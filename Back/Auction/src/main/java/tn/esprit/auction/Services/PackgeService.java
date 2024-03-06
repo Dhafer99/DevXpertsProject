@@ -195,7 +195,7 @@ packgeRepository.delete(idpack);
 
         for (Pack pack : reservedPacks) {
             if(pack.getCompany()!=null) {
-                Long companyId = pack.getCompany().getId();
+                Long companyId = pack.getCompany();
                 reservationsByCompany.put(companyId, reservationsByCompany.getOrDefault(companyId, 0) + 1);
             }  }
 

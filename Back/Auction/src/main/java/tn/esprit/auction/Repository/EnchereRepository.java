@@ -11,6 +11,6 @@ public interface EnchereRepository extends JpaRepository<Enchere,Long> {
 
 
 
-    @Query("SELECT e FROM Enchere e WHERE e.room.idRoom = :roomId ORDER BY e.pricing DESC")
+    @Query("SELECT e FROM Enchere e WHERE e.room.idRoom = :roomId AND e.status = true ORDER BY e.pricing DESC")
     List<Enchere> findTopEncheresByRoomId(Long roomId);
 }

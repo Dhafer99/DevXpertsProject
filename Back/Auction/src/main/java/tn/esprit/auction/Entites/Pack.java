@@ -27,9 +27,8 @@ public class Pack {
     private boolean status ;
     private boolean reserved ;
     private Date creationDate ;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
-    private Company company;
+
+    private Long company;
     // supplier
     // company
     private float price ;

@@ -53,6 +53,11 @@ export class RoomServiceService {
   }
 
 
+  ReservePack ( id: number, idRoom:number  ): Observable<any> 
+  {
+    return this.http.put<any>(`${this.url}ReservePack/${id}/${idRoom}`, {} );
+  
+  }
   UpdatePriceAuction ( points: number,id:number  ): Observable<any> {
     return this.http.put<any>(`${this.url}updatePrice/${points}/${id}`, {});
   }

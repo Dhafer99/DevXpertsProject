@@ -24,6 +24,8 @@ public interface RoomInterface {
 
     List<Pack> getRoomPacks( Long roomId);
 
+    void ReservePack(Long idpack, Long idRoom);
+
     public double calculateTotalAmountFor50pt( int quantity);
     public double calculateTotalAmountFor150pt( int quantity);
     public double calculateTotalAmountFor100pt(int quantity);
