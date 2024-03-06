@@ -7,7 +7,8 @@ import { Comment } from 'src/app/models/comment';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
-import { formatDate } from '@angular/common';
+import { formatDate } from '@angular/common'
+import { DatePipe } from '@angular/common';;
 
 @Component({
   selector: 'app-post-detail',
@@ -24,12 +25,13 @@ export class PostDetailComponent implements OnInit {
   postId: number;
   textComment!:string;
   commentaire:string=''
-  
+  P!: Post;
   commentToUpdate!: Comment;
 
   constructor(
     private router: ActivatedRoute,
-    private service: ForumService
+    private service: ForumService,
+    private datePipe: DatePipe
   ){this.postId = this.router.snapshot.params['id'];}
 
   ngOnInit() {
@@ -78,7 +80,7 @@ export class PostDetailComponent implements OnInit {
       this.comment.textComment=this.commentaire
       
       // Set the dateCreationComment property to the current date
-      this.comment.dateCreationComment = formatDate(new Date(), 'yyyy-MM-dd', 'en-US'); // Format the date as needed
+   // this.comment.dateCreationComment = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!; // Format the date as needed
 
 
       this.service.addComment(this.comment, this.postId)
@@ -91,9 +93,10 @@ export class PostDetailComponent implements OnInit {
             icon: "success",
             title: "Comment added successfully",
             showConfirmButton: false,
-            timer: 1500
+            timer: 500
           });
           this.commentaire=''
+        
         },
         error => console.log(error)
         );
@@ -221,6 +224,50 @@ edit(comment: Comment, postId: number): void {
     );
     }
   });
+}
+
+public onLike(idPost: number): void {
+  this.service.like(idPost, this.P).subscribe(
+    (response: void) => {
+      console.log(response);
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  );
+}
+
+public onLikeComment(idComment: number): void {
+  this.service.likeComment(idComment, this.P).subscribe(
+    (response: void) => {
+      console.log(response);
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  );
+}
+
+public onDislikeComment(idComment: number): void {
+  this.service.dislikeComment(idComment, this.P).subscribe(
+    (response: void) => {
+      console.log(response);
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  );
+}
+
+public onDislike(subjectId: number): void {
+  this.service.dislike(subjectId, this.P).subscribe(
+    (response: void) => {
+      console.log(response);
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+  );
 }
 
 }

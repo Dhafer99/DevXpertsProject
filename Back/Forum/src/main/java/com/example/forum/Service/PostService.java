@@ -12,5 +12,8 @@ public interface PostService {
     Post retrievePost(Long postId);
     void removePost(Long postId);
     Post modifyPost(Post post);
+
+    int addLike(long id) ;
+     int dislike(long id);
 }
 

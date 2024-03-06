@@ -20,9 +20,7 @@ public class CommentController {
     public Comment addComment(@RequestBody Comment comment,@PathVariable("id") long  id) {
        return  service.addComment(comment,id);
     }
-
-
-
+    
     @GetMapping("retrieve-all-comments")
     public ResponseEntity<List<Comment>> findAllComments(){
         return ResponseEntity.ok(service.findAllComments());
@@ -42,5 +40,9 @@ public class CommentController {
     public Comment retrieveComment(@PathVariable("comment-id") Long commentId) {
         return service.retrieveComment(commentId);
     }
+    @PutMapping("/likeSubject-id")
+    public void addLike(@RequestParam("id") long id){service.addLike(id);}
 
+    @PutMapping("/dilikeSubject-id")
+    public void dislike(@RequestParam("id") long id){service.dislike(id);}
 }

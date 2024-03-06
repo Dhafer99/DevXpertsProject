@@ -95,8 +95,7 @@
                                     </div>
                                     <div class="message ms-3">
                                         <h6 class="f-14 fw-semibold"><i
-                                                class="mdi mdi-clock-outline text-muted f-18 align-middle me-2"></i>8
-                                            day ago
+                                                class="mdi mdi-clock-outline text-muted f-18 align-middle me-2"></i>{{post.dateCreationPost}}
                                         </h6>
                                     </div>
                                 </div>
@@ -174,7 +173,7 @@
                                     <div class="d-flex mb-4">
                                         <div class="like d-flex align-items-center">
                                             <i class="mdi mdi-thumb-up-outline f-20 text-blue "></i>
-                                            <p class="mb-0 ms-2 fw-semibold text-muted">25 Like</p>
+                                            <p class="mb-0 ms-2 fw-semibold text-muted" (click)="onLikeComment(post.idPost)">{{c.likesComment}} Like</p>
                                         </div>
                                         <div class="dislike d-flex align-items-center ms-4">
                                             <i class="mdi mdi-thumb-down-outline f-20 text-dark "></i>

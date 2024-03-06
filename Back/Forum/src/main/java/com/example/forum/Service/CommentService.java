@@ -14,4 +14,8 @@ public interface CommentService {
      Comment retrieveComment(Long commentId);
      void removeComment(Long commentId);
      Comment modifyComment(Comment comment, long id);
+
+    int addLike(long id);
+     int dislike(long id);
+
 }

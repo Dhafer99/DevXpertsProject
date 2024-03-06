@@ -4,6 +4,7 @@ import { ForumService } from '../../services/forum.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-post-form',
@@ -19,7 +20,8 @@ export class PostFormComponent implements OnInit{
     private service:ForumService,
     private router :Router,
     private http: HttpClient,
-    private dialogRef: MatDialogRef<PostFormComponent>
+    private dialogRef: MatDialogRef<PostFormComponent>,
+    private datePipe: DatePipe
     ){}
 
     ngOnInit(): void {
@@ -49,7 +51,7 @@ export class PostFormComponent implements OnInit{
       formData.append('file', this.selectedFile);
       formData.append('title', this.post.title);
       formData.append('descriptionSubject', this.post.descriptionSubject);
-  
+     
       this.http.post('http://localhost:8040/api/Posts/add-post', formData)
         .subscribe(response => {
           console.log('Post saved successfully:', response);

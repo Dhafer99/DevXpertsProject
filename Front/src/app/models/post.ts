@@ -6,6 +6,7 @@ export class Post{
     image!:string;
     descriptionSubject!: string;
     likesSubject!: number;
+    dateCreationPost!: string;
     comment!: Comment[];
   }
 

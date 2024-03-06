@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PostFormComponent } from './ForumManagement/post-form/post-form.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
 
 
@@ -44,7 +44,9 @@ import Swal from 'sweetalert2';
     MatInputModule,
     
   ],
-  providers: [],
+  providers: [ 
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

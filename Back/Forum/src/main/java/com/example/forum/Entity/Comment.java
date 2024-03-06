@@ -23,6 +23,7 @@ public class Comment {
     @Temporal(TemporalType.DATE)
     private Date dateCreationComment;
 
+
     @JsonIgnore
     @ManyToOne
     Post post;

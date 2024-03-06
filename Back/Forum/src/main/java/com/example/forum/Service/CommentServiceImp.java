@@ -16,7 +16,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
 @Slf4j
@@ -91,7 +90,7 @@ public class CommentServiceImp implements CommentService {
                 }
             }
 
-
+            comment.setLikesComment(0);
             comment.setPost(post);
             comment.setDateCreationComment(new Date());
             System.out.println("this my comment " + comment);
@@ -154,6 +153,17 @@ public class CommentServiceImp implements CommentService {
         // Save the updated comment to the database
         return commentRepo.save(comment);
     }
+    @Override
+    public int addLike(long id) {
+        Comment a = commentRepo.findById(id).orElse(new Comment());
+        int nb = a.getLikesComment() + 1;
+        return commentRepo.addLike(nb , id) ; }
+
+    @Override
+    public int dislike(long id) {
+        Comment a = commentRepo.findById(id).orElse(new Comment());
+        int nb = a.getLikesComment() -1 ;
+        return commentRepo.addLike(nb , id) ; }
 
 
 //    @Override

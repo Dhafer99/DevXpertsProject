@@ -81,4 +81,10 @@ public class PostController {
     public Post retrievePost(@PathVariable("post-id") Long postId) {
         return service.retrievePost(postId);
     }
+
+    @PutMapping("/likeSubject-id")
+    public void addLike(@RequestParam("id") long id){service.addLike(id);}
+
+    @PutMapping("/dilikeSubject-id")
+    public void dislike(@RequestParam("id") long id){service.dislike(id);}
 }

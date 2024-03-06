@@ -68,4 +68,20 @@ export class ForumService {
   public updatePost1(post: any) {
     return this.http.put('http://localhost:8040/api/Posts/update-post', post);
   }
+
+  public dislike(idPost: number, P: Post): any {
+    return this.http.put(`http://localhost:8040/api/Posts/dislikeSubject-id/${idPost}`, P);
+  }
+
+  public dislikeComment(idComment: number, P: Post): any {
+    return this.http.put(`http://localhost:8040/api/Comments/dislikeComment-id/${idComment}`, P);
+  }
+
+  public like(idPost: number, P: Post): any {
+    return this.http.put(`http://localhost:8040/api/Posts/likeSubject-id/${idPost}`, P);
+  }
+
+  public likeComment(idComment: number, P: Post): any {
+    return this.http.put(`http://localhost:8040/api/Comments/likeComment-id/${idComment}`, P);
+  }
 }

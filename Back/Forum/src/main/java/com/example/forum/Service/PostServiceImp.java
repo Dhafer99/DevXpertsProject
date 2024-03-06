@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -39,6 +40,8 @@ public class PostServiceImp implements PostService {
         }
         p.setDescriptionSubject(descriptionSubject);
         p.setTitle(title);
+        p.setLikesSubject(0);
+        p.setDateCreationPost(new Date());
 
         postRepo.save(p);
         //  notifyNewPost(p);
@@ -92,6 +95,19 @@ public class PostServiceImp implements PostService {
     public Post modifyPost(Post post) {
         return postRepo.save(post);
     }
+
+    @Override
+    public int addLike(long id) {
+        Post a = postRepo.findById(id).orElse(new Post());
+        int nb = a.getLikesSubject() + 1;
+        return postRepo.addLike(nb , id) ; }
+
+    @Override
+    public int dislike(long id) {
+        Post a = postRepo.findById(id).orElse(new Post());
+        int nb = a.getLikesSubject() -1 ;
+        return postRepo.addLike(nb , id) ; }
+
 //    public Comment addComment(long postId, String textComment) {
 //        Optional<Post> optionalPost = postRepo.findById(postId);
 //        if (optionalPost.isPresent()) {

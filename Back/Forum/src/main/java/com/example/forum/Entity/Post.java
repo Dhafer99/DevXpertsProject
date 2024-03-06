@@ -27,6 +27,7 @@ public class Post {
     private int commentsCount;
     @Temporal(TemporalType.DATE)
     private Date dateCreationPost;
+    private int numberOfComments;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
     private Set<Comment> comment;
