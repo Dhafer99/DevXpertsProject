@@ -11,14 +11,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/Comments")
 @RequiredArgsConstructor
-@CrossOrigin(origins = { "*" })
+@CrossOrigin(origins ="*")
 public class CommentController {
     private final CommentService service;
 
 
-    @PostMapping("/add-comment")
-    public void addComment(@RequestBody Comment comment,@RequestParam("id") long  id) {
-         service.addComment(comment,id);
+    @PostMapping("/add-comment/{id}")
+    public Comment addComment(@RequestBody Comment comment,@PathVariable("id") long  id) {
+       return  service.addComment(comment,id);
     }
 
 
@@ -28,9 +28,9 @@ public class CommentController {
         return ResponseEntity.ok(service.findAllComments());
     }
 
-    @PutMapping("/update-comment")
-    public Comment updateComment(@RequestBody Comment comment){
-        return  service.modifyComment( comment);
+    @PutMapping("/update-comment/{id}")
+    public Comment updateComment(@RequestBody Comment comment,@PathVariable("id") long id){
+        return  service.modifyComment( comment,id);
     }
 
     @DeleteMapping("/remove-comment/{comment-id}")

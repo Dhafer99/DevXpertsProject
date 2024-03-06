@@ -126,8 +126,38 @@ public class CommentServiceImp implements CommentService {
     public void removeComment(Long commentId) {
         commentRepo.deleteById(commentId);
     }
+
     @Override
-    public Comment modifyComment(Comment comment) {
+    public Comment modifyComment(Comment comment, long id) {
+        // Find the post by its ID
+        Post post = postRepo.findById(id).orElse(null);
+
+        // Check if the post exists and the comment has text
+        if (post != null && comment.getTextComment() != null) {
+            // Perform any necessary operations on the comment text (e.g., replacing bad words, converting emoticons)
+            String commentTextWithEmoji = convertEmoticonsToEmoji(comment.getTextComment());
+            comment.setTextComment(commentTextWithEmoji);
+            List<String> badWords = fetchBadWords();
+
+            for (String badWord : badWords) {
+                if (comment.getTextComment().toLowerCase().contains(badWord.toLowerCase())) {
+                    String asterisks = String.join("", Collections.nCopies(badWord.length(), "*"));
+                    comment.setTextComment(comment.getTextComment().toLowerCase().replace(badWord.toLowerCase(), asterisks));
+                }
+            }
+
+            // Set the post and creation date for the comment
+            comment.setPost(post);
+            comment.setDateCreationComment(new Date());
+        }
+
+        // Save the updated comment to the database
         return commentRepo.save(comment);
     }
+
+
+//    @Override
+//    public Comment modifyComment(Comment comment) {
+//        return commentRepo.save(comment);
+//    }
 }

@@ -29,7 +29,7 @@ export class PostFormComponent implements OnInit{
       this.selectedFile = event.target.files[0];
     }
   
-    savePost(){
+   /* savePost(){
       const formData = new FormData();
       formData.append('file',this.selectedFile);
       formData.append('title',this.post.title);
@@ -42,6 +42,22 @@ export class PostFormComponent implements OnInit{
         this.dialogRef.close();
       },
       error => console.log('Error saving post:', error));
+    }*/
+ 
+    savePost() {
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+      formData.append('title', this.post.title);
+      formData.append('descriptionSubject', this.post.descriptionSubject);
+  
+      this.http.post('http://localhost:8040/api/Posts/add-post', formData)
+        .subscribe(response => {
+          console.log('Post saved successfully:', response);
+          // Navigate to the same route to reload the page
+          window.location.reload();
+          this.dialogRef.close();
+        },
+        error => console.log('Error saving post:', error));
     }
-      
+
 }

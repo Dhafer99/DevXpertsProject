@@ -13,5 +13,5 @@ public interface CommentService {
      List<Comment> findAllComments();
      Comment retrieveComment(Long commentId);
      void removeComment(Long commentId);
-     Comment modifyComment(Comment comment);
+     Comment modifyComment(Comment comment, long id);
 }

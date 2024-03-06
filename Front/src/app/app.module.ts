@@ -16,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PostFormComponent } from './ForumManagement/post-form/post-form.component';
+import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 
 @NgModule({
@@ -29,6 +31,7 @@ import { PostFormComponent } from './ForumManagement/post-form/post-form.compone
 
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -38,7 +41,8 @@ import { PostFormComponent } from './ForumManagement/post-form/post-form.compone
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

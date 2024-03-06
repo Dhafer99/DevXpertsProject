@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Post} from '../models/post';
 import {Comment} from '../models/comment';
@@ -8,11 +8,16 @@ import {Comment} from '../models/comment';
   providedIn: 'root'
 })
 export class ForumService {
+  
 
   constructor(private http: HttpClient) { }
 
-  public getPostsList(): Observable<Post[]>{
-    return this.http.get<Post[]>('http://localhost:8040/api/Posts/retrieve-all-posts');
+  public getPostsList(page: number, size: number): Observable<Post[]>{
+    const params = new HttpParams()
+    .set('page',page.toString())
+    .set('size', size.toString());
+    console.log("Getting ALL")
+    return this.http.get<Post[]>('http://localhost:8040/api/Posts/retrieve-all-posts',{params});
   }
  
   public addPost(post: Post): Observable<Object> {
@@ -39,18 +44,27 @@ export class ForumService {
     return this.http.get<Comment[]> (`http://localhost:8040/api/Comments/retrieve-comment/${IdPost}`);
   }
 
-  public addComment(comment: Comment, idComment: number): Observable<Comment> {
+  /*public addComment(comment: Comment, idComment: number): Observable<Comment> {
     return this.http.put<Comment>(`http://localhost:8040/api/Comments/add-comment/${idComment}`, comment);
+  }*/
+  addComment(c: Comment, idPost: number): Observable<Comment> {
+    const url = `http://localhost:8040/api/Comments/add-comment/${idPost}`;
+    console.log("current message =="+c.textComment)
+    return this.http.post<Comment>(url, c);
   }
 
-  public updateComment(comment: Comment): Observable<Comment> {
+ /* public updateComment(comment: Comment): Observable<Comment> {
     return this.http.put<Comment>(`http://localhost:8040/api/Comments/update-comment`, comment);
+  }*/
+  public updateComment(comment: Comment, postId: number): Observable<Comment> {
+    return this.http.put<Comment>(`http://localhost:8040/api/Comments/update-comment/${postId}`, comment);
   }
 
   public deleteComment(idComment: number): Observable<void> {
     return this.http.delete<void>(`http://localhost:8040/api/Comments/remove-comment/${idComment}`);
   }
 
+  
   public updatePost1(post: any) {
     return this.http.put('http://localhost:8040/api/Posts/update-post', post);
   }

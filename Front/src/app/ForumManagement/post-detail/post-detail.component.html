@@ -42,7 +42,7 @@
             <div class="row mt-5">
                 <div class="col-lg-8 order-2 order-lg-1">
                     <div class="forum-item">
-                        <div class="forum-box"*ngIf = "post$ | async as post">
+                        <div class="forum-box">
                             <div class="d-flex align-items-center justify-content-start">
                                 <div class="avatar forum-profile">
                                     <img src="images/inner-image/user/img-1.jpg" alt=""
@@ -112,15 +112,16 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <form class="row align-items-center">
+                                    <div class="row align-items-center">
                                         <div class="col">
                                             <input type="text" class="form-control me-2" id="exampleFormControlInput1"
-                                                  [(ngModel)]="comment.textComment" placeholder="Add Your Comment">
+                                            [(ngModel)]="commentaire" placeholder="Add Your Comment">
+                                     
                                         </div>
                                         <div class="col-auto">
                                             <button class="btn btn-dark"(click)="addComment()">Comment</button>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -139,9 +140,9 @@
                         </div>
 
 
-                        <div class="answer-process-details" *ngIf = "post$ | async as post">
-                            <div class="process-box" *ngFor="for let c of post.comment">
-                                <div class="d-flex align-items-center justify-content-start">
+                        <div class="answer-process-details">
+                            <div class="process-box" *ngFor="let c of post.comment">
+                                <div class="d-flex align-items-center justify-content-between">
                                     <div class="process-image">
                                         <div class="avatar forum-profile">
                                             <img src="images/inner-image/creator/img-1.png" alt=""
@@ -152,15 +153,24 @@
                                         <div class="side-content d-flex">
                                             <h6 class="fw-bold mb-0">@Mamie_Barnett</h6>
                                             <p class="mb-0 ms-4 text-muted"><i
-                                                    class="mdi mdi-clock-outline f-18 me-2 align-middle"></i>6 day ago
+                                                    class="mdi mdi-clock-outline f-18 me-2 align-middle"></i>{{c.dateCreationComment}}
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="actions">
+                                        <!-- Edit icon -->
+                                        <button mat-icon-button aria-label="Edit comment"(click)="edit(c,postId)" class="edit-icon-container">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <!-- Delete icon -->
+                                        <button mat-icon-button aria-label="Delete comment" (click)="deleteComment(c.idComment)" class="delete-icon-container">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </div>
                                 </div>
-
+                        
                                 <div class="process-content">
-                                    <p class="text-muted"> {{c.textComment}}
-                                    </p>
+                                    <p class="text-muted">{{c.textComment}}</p>
                                     <div class="d-flex mb-4">
                                         <div class="like d-flex align-items-center">
                                             <i class="mdi mdi-thumb-up-outline f-20 text-blue "></i>
@@ -174,8 +184,8 @@
                                     <hr>
                                 </div>
                             </div>
-                           
                         </div>
+                        
                     </div>
 
                 </div>

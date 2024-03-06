@@ -5,6 +5,8 @@ export class Comment{
   likesComment!: number;
   mostPertinentComment!: boolean;
   textComment!: string;
+  dateCreationComment!: string ;
   post!: Post;
+ 
 
 }
