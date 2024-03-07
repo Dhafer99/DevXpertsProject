@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -38,6 +39,7 @@ public class PostServiceImp implements PostService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         p.setDescriptionSubject(descriptionSubject);
         p.setTitle(title);
         p.setLikesSubject(0);
@@ -97,10 +99,23 @@ public class PostServiceImp implements PostService {
     }
 
     @Override
-    public int addLike(long id) {
-        Post a = postRepo.findById(id).orElse(new Post());
-        int nb = a.getLikesSubject() + 1;
-        return postRepo.addLike(nb , id) ; }
+    public Post likePost(long postId) {
+        Post post = postRepo.findById(postId).orElse(null);
+        if (post != null) {
+            post.setLikesSubject(post.getLikesSubject() + 1);
+            return postRepo.save(post);
+        }
+        return null;
+    }
+
+
+
+
+//    @Override
+//    public int addLike(long id) {
+//        Post a = postRepo.findById(id).orElse(new Post());
+//        int nb = a.getLikesSubject() + 1;
+//        return postRepo.addLike(nb , id) ; }
 
     @Override
     public int dislike(long id) {

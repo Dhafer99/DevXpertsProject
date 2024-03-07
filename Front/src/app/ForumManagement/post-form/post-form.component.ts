@@ -15,6 +15,7 @@ export class PostFormComponent implements OnInit{
 
   post: Post = new Post();
   selectedFile! : File;
+  //selectedVideo!: Video;
 
   constructor(
     private service:ForumService,
@@ -49,6 +50,7 @@ export class PostFormComponent implements OnInit{
     savePost() {
       const formData = new FormData();
       formData.append('file', this.selectedFile);
+      
       formData.append('title', this.post.title);
       formData.append('descriptionSubject', this.post.descriptionSubject);
      

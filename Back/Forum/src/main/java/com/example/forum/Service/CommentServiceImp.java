@@ -36,6 +36,8 @@ public class CommentServiceImp implements CommentService {
         List<String> badWords = new ArrayList<>();
         try {
             URL url = new URL("https://docs.google.com/spreadsheets/d/1hIEi2YG3ydav1E06Bzf2mQbGZ12kh2fe4ISgLg_UBuM/export?format=csv");
+          //   URL url = new URL("https://docs.google.com/spreadsheets/d/1iFLrk8x-RLYgPACcHVnAUPw6Yf1DdF_ZxSb65QzK0FQ/export?format=csv");
+
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             InputStream inputStream = connection.getInputStream();
@@ -153,12 +155,20 @@ public class CommentServiceImp implements CommentService {
         // Save the updated comment to the database
         return commentRepo.save(comment);
     }
-    @Override
-    public int addLike(long id) {
-        Comment a = commentRepo.findById(id).orElse(new Comment());
-        int nb = a.getLikesComment() + 1;
-        return commentRepo.addLike(nb , id) ; }
-
+//    @Override
+//    public int addLike(long id) {
+//        Comment a = commentRepo.findById(id).orElse(new Comment());
+//        int nb = a.getLikesComment() + 1;
+//        return commentRepo.addLike(nb , id) ; }
+@Override
+public Comment likeComment(long commentId) {
+    Comment comment = commentRepo.findById(commentId).orElse(null);
+    if (comment != null) {
+        comment.setLikesComment(comment.getLikesComment()+ 1);
+        return commentRepo.save(comment);
+    }
+    return null;
+}
     @Override
     public int dislike(long id) {
         Comment a = commentRepo.findById(id).orElse(new Comment());

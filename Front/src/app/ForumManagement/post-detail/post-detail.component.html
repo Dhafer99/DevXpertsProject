@@ -85,7 +85,7 @@
                                 <div class="d-flex">
                                     <div class="like">
                                         <h6 class="f-14 fw-semibold"><i
-                                                class="mdi mdi-heart text-danger f-18 align-middle me-2"></i>2.4K</h6>
+                                                class="mdi mdi-heart text-danger f-18 align-middle me-2" (click)="onLike(post.idPost)"></i>2.4K</h6>
                                     </div>
                                     <div class="message ms-3">
                                         <h6 class="f-14 fw-semibold"><i
@@ -173,7 +173,7 @@
                                     <div class="d-flex mb-4">
                                         <div class="like d-flex align-items-center">
                                             <i class="mdi mdi-thumb-up-outline f-20 text-blue "></i>
-                                            <p class="mb-0 ms-2 fw-semibold text-muted" (click)="onLikeComment(post.idPost)">{{c.likesComment}} Like</p>
+                                            <p class="mb-0 ms-2 fw-semibold text-muted" >{{c.likesComment}} Like</p>
                                         </div>
                                         <div class="dislike d-flex align-items-center ms-4">
                                             <i class="mdi mdi-thumb-down-outline f-20 text-dark "></i>

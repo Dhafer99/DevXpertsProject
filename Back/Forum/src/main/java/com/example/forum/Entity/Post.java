@@ -28,6 +28,9 @@ public class Post {
     @Temporal(TemporalType.DATE)
     private Date dateCreationPost;
     private int numberOfComments;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String video;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
     private Set<Comment> comment;

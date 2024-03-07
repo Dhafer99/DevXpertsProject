@@ -22,7 +22,8 @@ public class PostController {
     @ResponseStatus(HttpStatus.CREATED)
     public void save(@RequestParam ("title") String title,
                      @RequestParam ("descriptionSubject") String descriptionSubject,
-                     @RequestParam("file") MultipartFile file)
+                     @RequestParam("file") MultipartFile file
+                     )
     {
         service.savePost(title,descriptionSubject,file);
     }
@@ -82,8 +83,10 @@ public class PostController {
         return service.retrievePost(postId);
     }
 
-    @PutMapping("/likeSubject-id")
-    public void addLike(@RequestParam("id") long id){service.addLike(id);}
+    @PutMapping("/{postId}/like")
+    public Post likePost(@PathVariable long postId){
+        return service.likePost(postId);
+    }
 
     @PutMapping("/dilikeSubject-id")
     public void dislike(@RequestParam("id") long id){service.dislike(id);}

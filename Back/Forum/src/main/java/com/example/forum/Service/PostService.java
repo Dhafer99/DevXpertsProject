@@ -13,7 +13,7 @@ public interface PostService {
     void removePost(Long postId);
     Post modifyPost(Post post);
 
-    int addLike(long id) ;
+    Post likePost(long id) ;
      int dislike(long id);
 }
 

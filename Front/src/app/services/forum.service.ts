@@ -69,7 +69,14 @@ export class ForumService {
     return this.http.put('http://localhost:8040/api/Posts/update-post', post);
   }
 
-  public dislike(idPost: number, P: Post): any {
+  likePost(postId: number): Observable<void> {
+    return this.http.put<void>(`http://localhost:8040/api/Posts/${postId}/like`, {});
+  }
+
+  dislikePost(postId: number): Observable<void> {
+    return this.http.put<void>(`http://localhost:8040/api/posts/${postId}/dislike`, {});
+  }
+ /* public dislike(idPost: number, P: Post): any {
     return this.http.put(`http://localhost:8040/api/Posts/dislikeSubject-id/${idPost}`, P);
   }
 
@@ -83,5 +90,5 @@ export class ForumService {
 
   public likeComment(idComment: number, P: Post): any {
     return this.http.put(`http://localhost:8040/api/Comments/likeComment-id/${idComment}`, P);
-  }
+  }*/
 }

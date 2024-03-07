@@ -1,6 +1,7 @@
 package com.example.forum.Controller;
 
 import com.example.forum.Entity.Comment;
+import com.example.forum.Entity.Post;
 import com.example.forum.Service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class CommentController {
     public Comment addComment(@RequestBody Comment comment,@PathVariable("id") long  id) {
        return  service.addComment(comment,id);
     }
-    
+
     @GetMapping("retrieve-all-comments")
     public ResponseEntity<List<Comment>> findAllComments(){
         return ResponseEntity.ok(service.findAllComments());
@@ -40,9 +41,13 @@ public class CommentController {
     public Comment retrieveComment(@PathVariable("comment-id") Long commentId) {
         return service.retrieveComment(commentId);
     }
-    @PutMapping("/likeSubject-id")
-    public void addLike(@RequestParam("id") long id){service.addLike(id);}
+//    @PutMapping("/{postId}/like")
+//    public Post likePost(@PathVariable long id){service.(id);}
 
+    @PutMapping("/{commentId}/like")
+    public Comment likeComment(@PathVariable long commentId){
+        return service.likeComment(commentId);
+    }
     @PutMapping("/dilikeSubject-id")
     public void dislike(@RequestParam("id") long id){service.dislike(id);}
 }

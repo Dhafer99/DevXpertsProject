@@ -7,6 +7,7 @@ export class Post{
     descriptionSubject!: string;
     likesSubject!: number;
     dateCreationPost!: string;
+    video!:string;
     comment!: Comment[];
   }
 

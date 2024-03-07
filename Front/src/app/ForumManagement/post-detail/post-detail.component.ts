@@ -166,7 +166,7 @@ deleteComment(commentId: number) {
             icon: "success"
           }).then(() => {
             this.loadComments(); 
-            window.location.reload();// Reload posts after successful deletion
+            location.reload();// Reload posts after successful deletion
           });
         },
         (error) => {
@@ -227,7 +227,7 @@ edit(comment: Comment, postId: number): void {
 }
 
 public onLike(idPost: number): void {
-  this.service.like(idPost, this.P).subscribe(
+  this.service.likePost(idPost).subscribe(
     (response: void) => {
       console.log(response);
     },
@@ -237,7 +237,7 @@ public onLike(idPost: number): void {
   );
 }
 
-public onLikeComment(idComment: number): void {
+/*public onLikeComment(idComment: number): void {
   this.service.likeComment(idComment, this.P).subscribe(
     (response: void) => {
       console.log(response);
@@ -269,5 +269,5 @@ public onDislike(subjectId: number): void {
     }
   );
 }
-
+*/
 }
