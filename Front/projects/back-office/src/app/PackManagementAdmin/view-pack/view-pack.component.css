@@ -111,8 +111,24 @@
   cursor: pointer;
   transition: all .2s linear;
 }
+.list-boxs .card .btna {
+  margin-top: 2rem;
+  padding: .6rem 1rem;
+  outline: none;
+  font-size: .85rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  min-width: 160px;
+  border: 1px solid #555;
+  cursor: pointer;
+  transition: all .2s linear;
+}
 
 .list-boxs .card .btn:hover {
+  box-shadow: 0 5px 10px 1px rgba(0, 0, 0, .15);
+}
+
+.list-boxs .card .btna:hover {
   box-shadow: 0 5px 10px 1px rgba(0, 0, 0, .15);
 }
 
@@ -120,6 +136,11 @@
   background: blue;
   
 }
+.list-boxs .starter .btna {
+  background: #B22222;
+  
+}
+
 
 
 @media screen and (max-width: 750px) {

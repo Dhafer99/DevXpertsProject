@@ -169,9 +169,17 @@
         >
           View Details
         </button>
-        <button type="button" (click)="deletePack(pack.idPack)"  class="btn btn-danger">Remove <span class="btn-icon-end"><i class="fas fa-times"></i></span>
-        </button>
+        <br>
+        <hr>
+<a><span
+  class="badge"
+  (click)="deletePack(pack.idPack)"
+  [ngClass]="'bg-danger'"
+>
+remove
+</span></a>
         
+       
       </div>
     </div>
   </div>

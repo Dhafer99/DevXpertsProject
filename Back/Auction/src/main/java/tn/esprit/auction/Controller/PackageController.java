@@ -114,7 +114,7 @@ public class PackageController {
     }
 
 
-    @GetMapping("/deletePack/{id}")
+    @DeleteMapping("/deletePack/{id}")
     public void deletePack(@PathVariable("id") Long id) {
           packageInterface.delete(id);
     }
