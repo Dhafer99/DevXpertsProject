@@ -15,6 +15,7 @@ import { DetailCandidatureComponent } from './candidature/detail-candidature/det
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AfficherCandidatursUserComponent } from './candidature/afficher-candidaturs-user/afficher-candidaturs-user.component';
 import { DatePipe } from '@angular/common';
+//import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    //ZXingScannerModule 
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

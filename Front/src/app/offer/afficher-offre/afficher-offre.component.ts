@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user';
 import { CandidatureService } from 'src/app/services/candidature.service';
 import { OfferService } from 'src/app/services/offer.service';
 import { UserAnasService } from 'src/app/services/user-anas.service';
+import { LowerCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-afficher-offre',
@@ -28,7 +29,7 @@ export class AfficherOffreComponent implements OnInit{
   pourcentageOffre: number[] = [];
   listRecherche!:any;
   user!:User;
-  titre!:string;
+  titre:string='';
   
   ngOnInit(): void {
     this.user=this.userS.getUser();
@@ -46,6 +47,23 @@ export class AfficherOffreComponent implements OnInit{
   
   }
 
+  onInputChange() {
+    // Logique de votre méthode ici
+    console.log('Une lettre a été ajoutée:', this.titre);
+    /*if(this.titre != ""){
+      console.log("mehech null") 
+      this.candidatureService.rechercheOffre(this.titre).subscribe(data=>{
+      this.listOffers=data
+      console.log(data);
+    })  
+    }
+      else{
+        console.log("null")
+        this.getOffersForUser();
+      }*/
+    /**/
+
+  }
 
   getOffersForUser(){
     this.candidatureService.nbrApplicationOnOffer().subscribe(res=>{
@@ -122,10 +140,4 @@ export class AfficherOffreComponent implements OnInit{
   }
 
 
-
-  rechercheOffre(titre:string){
-    this.offerService.rechercheOffre(titre).subscribe(data=>{
-      this.listRecherche=data
-    })
-  }
 }

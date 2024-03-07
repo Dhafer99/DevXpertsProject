@@ -156,9 +156,5 @@ public class OfferController {
                 .body(resource);
     }
 
-    @GetMapping("/rechercherOffre/{titre}")
-    public List<Offer> rechercheOff(@PathVariable("titre") String titre){
-        return offerService.rechercheOffer(titre);
-    }
 
 }

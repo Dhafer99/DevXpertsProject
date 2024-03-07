@@ -22,6 +22,5 @@ public interface IOfferService {
 
     boolean hasApplied(long idOffer, long idCandidat);
 
-    List<Offer> rechercheOffer(String rech);
 
 }

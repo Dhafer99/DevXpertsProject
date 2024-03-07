@@ -60,8 +60,5 @@ export class OfferService {
     //return this.http.get<Offer[]>(this.offerUrl+'/consumeFlaskEndpoint/'+id);
     return this.http.get<Offer[]>("http://localhost:8000/donnees/"+id);
   }
-  rechercheOffre(tritre:string):Observable<Offer[]>{
-    return this.http.get<Offer[]>(this.offerUrl+"/rechercherOffre/"+tritre);
-  }
 
 }

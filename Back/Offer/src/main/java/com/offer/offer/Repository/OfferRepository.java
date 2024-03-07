@@ -22,7 +22,4 @@ public interface OfferRepository extends JpaRepository<Offer,Long> {
             "AND a.idCandidat = :idCandidat")
     boolean hasApplied(@Param("idOffer") long idOffer, @Param("idCandidat") long idCandidat);
 
-    @Query("SELECT o FROM Offer o WHERE o.titre LIKE %:rech%")
-    List<Offer> listeOfferRecherche(@Param("rech") String rech);
-
 }

@@ -23,6 +23,7 @@
     "@kurkle/color": "^0.3.2",
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@popperjs/core": "^2.11.6",
+    "@zxing/ngx-scanner": "^17.0.1",
     "angular-chart.js": "^1.1.0",
     "angular-font-awesome": "^3.1.2",
     "apexcharts": "^3.46.0",

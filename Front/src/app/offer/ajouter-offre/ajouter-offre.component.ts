@@ -25,6 +25,7 @@ export class AjouterOffreComponent implements OnInit{
   offer!:Offer;
   formData = new FormData();
   user!:User;
+  fileExtension!:any;
   //params = new HttpParams();
 
   ngOnInit(): void {
@@ -48,12 +49,22 @@ export class AjouterOffreComponent implements OnInit{
 
     //FILE
 
-    onFileSelected(event: any): void {
-    const fileList: FileList = event.target.files;
-    if (fileList && fileList.length > 0) {
-      this.selectedFile = fileList[0];
+  onFileSelected(event: any): void {
+  const fileList: FileList = event.target.files;
+  if (fileList && fileList.length > 0) {
+    if (fileList[0].name.split('.').pop() == "pdf"){
+
+    this.selectedFile = fileList[0];
+    }
+    else {
+      Swal.fire({
+            icon: 'warning',
+            title: 'Erreur',
+            text: "Le fichier doit etre pdf"
+        });
     }
   }
+}
 
   selectType(event : any):void{
     const selectedValue = (event.target as HTMLSelectElement).value;

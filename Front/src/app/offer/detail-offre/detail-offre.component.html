@@ -20,7 +20,6 @@
 
 
 
-
 <section class="item-detail section bg-light">
 
 <div class="row mt-5 align-items-center">
@@ -105,7 +104,7 @@
                         <div *ngIf="user.role=='student' && !applied && comparaisonDate   || user.role=='alumni' && !applied && comparaisonDate ">
                             <button class="btn btn-primary" (click)="openLg(content)">Apply</button>
                         </div>
-                        <div *ngIf="user.role=='student' && applied || user.role=='alumni' && applied">
+                        <div *ngIf="user.role=='student' && applied && comparaisonDate || user.role=='alumni' && applied && comparaisonDate">
                             <button class="btn btn-primary" disabled>Apply</button>
                         </div>
                         <div *ngIf="user.role=='student' && !comparaisonDate || user.role=='alumni' && !comparaisonDate">

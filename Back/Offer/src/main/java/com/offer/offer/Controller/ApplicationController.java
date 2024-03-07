@@ -120,4 +120,10 @@ public class ApplicationController {
                 .body(resource);
     }
 
+    @GetMapping("/rechercheOffre/{titre}")
+    public List<Object[]> nbrStatusApplication(@PathVariable("titre") String titre)
+    {
+        return applicationService.rechercheOffre(titre);
+    }
+
 }

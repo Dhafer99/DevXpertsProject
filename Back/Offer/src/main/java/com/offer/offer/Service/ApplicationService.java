@@ -138,4 +138,9 @@ public class ApplicationService implements IApplicationService{
         return applicationRepository.findRecommendedOffersForUserApp(id);
     }
 
+    @Override
+    public List<Object[]> rechercheOffre(String titre) {
+        return applicationRepository.listeOfferRecherche(titre);
+    }
+
 }

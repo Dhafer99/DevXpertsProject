@@ -74,4 +74,8 @@ export class CandidatureService {
   {
     return this.http.get<any>(this.offerUrl+"/getRecommendedOffersForUserApp/"+idUser)
   }
+  //rechercheOffre/{titre}
+  rechercheOffre(tritre:string):Observable<any>{
+    return this.http.get<any>(this.offerUrl+"/rechercheOffre/"+tritre);
+  }
 }

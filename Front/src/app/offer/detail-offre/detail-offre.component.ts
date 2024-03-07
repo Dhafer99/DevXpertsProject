@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NO_ERRORS_SCHEMA  } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Offer } from 'src/app/models/offer';
 import { CandidatureService } from 'src/app/services/candidature.service';
@@ -9,6 +9,8 @@ import { saveAs } from 'file-saver';
 import { UserAnasService } from 'src/app/services/user-anas.service';
 import { User } from 'src/app/models/user';
 import { DatePipe } from '@angular/common';
+//import { BarcodeFormat } from '@zxing/library';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detail-offre',
@@ -29,6 +31,7 @@ export class DetailOffreComponent implements OnInit{
    user!:User;
    currentDate!:Date;
    comparaisonDate!:boolean;
+  currentDevice: MediaDeviceInfo|undefined;
   constructor(private activateroute:ActivatedRoute,private offerService:OfferService,
     private route:Router,private candidatureService:CandidatureService,
     private modalService: NgbModal,private http: HttpClient,private userS:UserAnasService){
@@ -65,12 +68,30 @@ export class DetailOffreComponent implements OnInit{
     })
     
   }
-  onFileSelected(event: any): void {
+  /*onFileSelected(event: any): void {
     const fileList: FileList = event.target.files;
     if (fileList && fileList.length > 0) {
       this.selectedFile = fileList[0];
     }
+  }*/
+
+  onFileSelected(event: any): void {
+  const fileList: FileList = event.target.files;
+  if (fileList && fileList.length > 0) {
+    if (fileList[0].name.split('.').pop() == "pdf"){
+
+    this.selectedFile = fileList[0];
+    }
+    else {
+      Swal.fire({
+            icon: 'warning',
+            title: 'Erreur',
+            text: "Le fichier doit etre pdf"
+        });
+    }
   }
+}
+
   postuler(){
       this.formData.append('idOffer', this.id.toString());
       this.formData.append('file', this.selectedFile);
@@ -115,6 +136,18 @@ export class DetailOffreComponent implements OnInit{
   }
 }
 
+//currentDevice: MediaDeviceInfo = null;
+/*formatsEnabled: BarcodeFormat[] = [
+    BarcodeFormat.CODE_128,
+    BarcodeFormat.DATA_MATRIX,
+    BarcodeFormat.EAN_13,
+    BarcodeFormat.QR_CODE,
+  ];
+
+onScanSuccess(result: string): void {
+    const jsonObject = JSON.parse(result);
+  }
+*/
 
   /////ENDFILE
 }

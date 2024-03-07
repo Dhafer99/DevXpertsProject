@@ -72,4 +72,13 @@ public interface ApplicationRepository extends JpaRepository<Application,Long> {
             "AND o.Id NOT IN (SELECT DISTINCT a.offer.Id FROM Application a WHERE a.idCandidat = :userId) " +
             "GROUP BY o")
     List<Object[]> findRecommendedOffersForUserApp(@Param("userId") long userId);
+
+    @Query("SELECT o, COUNT(a)," +
+            "(SELECT COUNT(a1) FROM Application a1 WHERE a1.offer = o AND a1.status = 'accépté'), " +
+            "(SELECT COUNT(a2) FROM Application a2 WHERE a2.offer = o AND a2.status = 'refusé'), " +
+            "(SELECT COUNT(a3) FROM Application a3 WHERE a3.offer = o AND a3.status = 'en_cours') " +
+            " FROM Offer o LEFT JOIN o.applications a "+
+            " WHERE o.titre LIKE %:rech% "+
+            " GROUP BY o")
+    List<Object[]> listeOfferRecherche(@Param("rech") String rech);
 }

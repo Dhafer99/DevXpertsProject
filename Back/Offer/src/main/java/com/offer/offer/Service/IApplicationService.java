@@ -33,4 +33,6 @@ public interface IApplicationService {
     List<Object[]> countApplicationsByOfferANdTypeOffer(TypeOffer typeOffer);
 
     List<Object[]> getRecommendedOffersForUserApp(long id);
+
+    List<Object[]> rechercheOffre(String titre );
 }
