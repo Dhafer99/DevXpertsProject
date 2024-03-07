@@ -9,6 +9,7 @@ import { Event } from '../../models/event';
   styleUrls: ['./event-list.component.css']
 })
 export class EventListComponent implements OnInit{
+  myFilter: any = { name: '' };
 
   constructor(
     private router: Router,
@@ -43,5 +44,12 @@ export class EventListComponent implements OnInit{
 
   navigateToPressene(id:number): void {
     this.router.navigate(['scan',id]);
+  }
+
+  navigateToUpdate(id:number): void {
+    this.router.navigate(['create',id]);
+  }
+  navigateToDetail(id:string): void {
+    this.router.navigate(['details',id]);
   }
 }

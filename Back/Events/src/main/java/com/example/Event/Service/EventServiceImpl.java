@@ -32,6 +32,7 @@ public class EventServiceImpl implements EventService{
             event.setLastModified_at(new Date());
             event.setCreated_at(updateEvent.get().getCreated_at());
             event.setImages(eventTosaveInfo.getImages());
+            event.setNote(eventTosaveInfo.getNote());
         }
        Set<Image> list=event.getImages();
        if (event.getId()<1) {
@@ -82,16 +83,31 @@ public class EventServiceImpl implements EventService{
 
         return eventRepository.findAll();
     }
-
     @Override
+
     public List<Event> closestEvent() {
         List<Event> allEvents = eventRepository.findAll();
         Date currentDate = new Date();
-        List<Event> sortedEvents = allEvents.stream()
-                .sorted(Comparator.comparingLong(event -> Math.abs(event.getDate().getTime() - currentDate.getTime())))
+
+        // Get upcoming events
+        List<Event> upcomingEvents = allEvents.stream()
+                .filter(event -> event.getDate().after(currentDate) || (event.getDate().getDay()==currentDate.getDay() && event.getDate().getMonth()==currentDate.getMonth()))
+                .sorted(Comparator.comparing(Event::getDate))
+                .limit(3)
                 .collect(Collectors.toList());
-        return sortedEvents.stream().limit(3).collect(Collectors.toList());
+
+        // If there are no upcoming events, retrieve the last event that has passed
+        if (upcomingEvents.isEmpty()) {
+            upcomingEvents = allEvents.stream()
+                    .filter(event -> event.getDate().before(currentDate))
+                    .sorted(Comparator.comparing(Event::getDate).reversed())
+                    .limit(1)
+                    .collect(Collectors.toList());
+        }
+
+        return upcomingEvents;
     }
+
 
     @Override
     public Event findbyId(int id) {

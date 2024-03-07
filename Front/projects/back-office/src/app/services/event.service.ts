@@ -24,6 +24,7 @@ export class EventService {
     Event.imageIdCloudinary=mainImage.imageId
     Event.createdAt=new Date();
     Event.lastModifiedAt=new Date();
+    
     // paladin the user who created it
     //Event.setLastModified_by(event.getCreated_by());
     Event.viewsCounter=0;

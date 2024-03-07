@@ -11,6 +11,7 @@ import { EventsComponent } from './events/events.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CarouselModule } from '@coreui/angular';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       BrowserAnimationsModule,
       HttpClientModule,
       NgbModule,
-      
+      CarouselModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

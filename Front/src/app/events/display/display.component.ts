@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Interested } from 'src/app/models/Interested';
 import { Event } from 'src/app/models/event';
+import { Image } from 'src/app/models/image';
 import { EventServiceService } from 'src/app/services/event-service.service';
 import Swal from 'sweetalert2';
 
@@ -18,6 +19,7 @@ export class DisplayComponent implements OnInit{
   myform!:FormGroup;
   interested:boolean=false;
   interestedBy!:Interested
+  localImage:Image[]=[]
   constructor( 
     private router: Router,
     private acr: ActivatedRoute,
@@ -36,10 +38,9 @@ export class DisplayComponent implements OnInit{
     })
     this.acr.params.subscribe(params => {
       this.fetchEvent(params['name']);
-   
     })
    
-   
+    
   }
 
     fetchEvent(name:string){
@@ -47,8 +48,7 @@ export class DisplayComponent implements OnInit{
       this.eventService.fetchEventByName(this.event.name).subscribe((result)=> {
         this.event= result;
        const rate= this.event.ratings?.find((rate)=>rate.userID==this.idUser) ||undefined
-        
-       
+         
         this.myform.setValue({
           userID:this.idUser,
           eventID:this.event.id,

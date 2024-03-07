@@ -8,12 +8,15 @@ import { EventsListComponent } from './events-list/events-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InitialListEventComponent } from './initial-list-event/initial-list-event.component';
+import { CarouselModule } from '@coreui/angular';
 
 
 @NgModule({
   declarations: [
     DisplayComponent,
-    EventsListComponent
+    EventsListComponent,
+    InitialListEventComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
+    CarouselModule,
   ]
 })
 export class EventsModule { }

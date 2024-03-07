@@ -22,7 +22,25 @@
     <div class="row mt-5 align-items-center">
       <div class="col-lg-6">
         <div class="back-home-image pe-4">
-          <img src="{{ event.imageUrl }}" alt="" class="image-fill" />
+          <!-- <img src="{{ event.imageUrl }}" alt="" class="image-fill" /> -->
+          <div *ngIf="event.images">
+
+            <c-carousel [interval]="0">
+              <c-carousel-inner>
+                <c-carousel-item *ngFor="let slide of event.images">
+                  <img
+                  [src]="slide.imageUrl"
+                  alt="{{slide.name}}"
+                  class="d-block w-100"
+                  loading="lazy"
+                  />
+                </c-carousel-item>
+              </c-carousel-inner>
+              <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+              <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+            </c-carousel>
+          </div>
+          <img src="{{ event.imageUrl }}" alt="" class="image-fill"  *ngIf="event.images.length==0"/>
         </div>
       </div>
       <div class="col-lg-6">

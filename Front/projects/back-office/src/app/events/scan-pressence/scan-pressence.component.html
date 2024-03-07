@@ -22,14 +22,14 @@
       </div>
       <div class="card-body">
         <div class="card text-white bg-primary" style="height: 150px;">
-          <div class="card-header">
+          <div class="card-header" [class.blink]="isBlinking">
             <h5 class="card-title text-white">Last scaned</h5>
           </div>
           <div class="card-body mb-0">
             <div>
               total Count == {{ currentEvent.presences.length }}
               Last Added
-              {{ lastaddedPresence?.date }}
+              {{ lastaddedPresence?.date  | date:'HH:mm:ss'}}
             </div>
           </div>
         </div>
@@ -53,11 +53,9 @@
                 <table class="table table-responsive-md">
                     <thead>
                         <tr>
-                           
-                            <th><strong>eventId.</strong></th>
-                           
+                     
                             <th><strong>User</strong></th>
-                            <th></th>
+                        
                             <th><strong>Date</strong></th>
 
                         </tr>
@@ -65,10 +63,10 @@
                     <tbody>
                         <tr *ngFor="let presense of currentEvent.presences">
                           
-                            <td><strong>  {{ presense.eventId }}</strong></td>
+                
                             <td><div class="d-flex align-items-center"><img src="../../../assets/images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt=""/> <span class="w-space-no">Dr. Jackson</span></div></td>
-                            <td>    {{ presense.userId }}	</td>
-                            <td>  {{ presense.date }}0</td>
+                   
+                            <td>{{ presense.date | date:'HH:mm:ss' }}</td>
                            
                         </tr>
                        

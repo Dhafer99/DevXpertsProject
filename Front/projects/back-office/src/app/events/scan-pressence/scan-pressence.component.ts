@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BarcodeFormat } from '@zxing/library';
 import { EventService } from '../../services/event.service';
@@ -15,8 +15,11 @@ export class ScanPressenceComponent implements OnInit{
   lastScannedid:number=0
   constructor(
     private acr:ActivatedRoute,
-    private eventService:EventService
+    private eventService:EventService,
+    private renderer: Renderer2,
+     private el: ElementRef,
     ){}
+    isBlinking = false;
   ngOnInit(): void {
     this.acr.params.subscribe((params)=>{
 
@@ -34,12 +37,14 @@ formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.QR_CODE,
   ];
   onScanSuccess(result: string): void {
+    // paladin to update with user USERNAME
     const jsonObject = JSON.parse(result);
    
     let presense :Presence=new Presence();
     
     if (this.lastScannedid!=jsonObject.id)
     {
+      this.startBlinking()
       this.lastScannedid = jsonObject.id;
     presense.userId=this.lastScannedid;
     presense.date=new Date();
@@ -63,4 +68,17 @@ formatsEnabled: BarcodeFormat[] = [
   fetchEvent(){
 
   }
+  //************************************BLINKING EFFECT*******************************************  */
+  startBlinking() {
+    this.isBlinking = true;
+    this.renderer.addClass(this.el.nativeElement, 'blink');
+    setTimeout(() => {
+      this.stopBlinking();
+    }, 2000);
+  }
+  stopBlinking() {
+    this.isBlinking = false;
+    this.renderer.removeClass(this.el.nativeElement, 'blink');
+  }
+  ///***************************************************************************** */
 }

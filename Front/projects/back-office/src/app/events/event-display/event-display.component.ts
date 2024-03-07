@@ -5,6 +5,7 @@ import { EventService } from '../../services/event.service';
 import { EventServiceService } from 'src/app/services/event-service.service';
 import { Event, Rating } from 'src/app/models/event';
 import { Interested } from 'src/app/models/Interested';
+import { Image } from '../../models/image';
 
 @Component({
   selector: 'app-event-display',
@@ -15,7 +16,7 @@ export class EventDisplayComponent implements OnInit{
   rate:any
   event: Event = new Event;
   idUser:any=1
-  
+  localImage:Image[]=[]
   interested:boolean=false;
   interestedBy!:Interested
   constructor( 
@@ -39,6 +40,7 @@ export class EventDisplayComponent implements OnInit{
       this.event.name=name 
       this.eventService.fetchEventByName(this.event.name).subscribe((result)=> {
         this.event= result;
+        this.localImage=this.event.images;
      })
     }
 
