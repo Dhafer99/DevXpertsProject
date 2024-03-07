@@ -21,4 +21,6 @@ public class Claim {
     private String description;
     private int level;
 
+    @OneToOne(mappedBy = "claim", cascade = CascadeType.ALL)
+    private Response response;
 }

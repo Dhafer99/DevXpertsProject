@@ -3,7 +3,9 @@ package com.example.forum.Entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,6 +37,13 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
     private Set<Comment> comment;
 
+    @ManyToMany
+    @JoinTable(
+            name = "post_tags",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Tag> postTags = new ArrayList<>();
 
     public void setImage(String image) {
         this.image = image;

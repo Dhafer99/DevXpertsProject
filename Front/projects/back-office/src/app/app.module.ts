@@ -13,12 +13,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ResponseComponent } from './claim-backoffice/response/response.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListUsersComponent,
     ClaimBackofficeComponent,
+    ResponseComponent,
+
    
   ],
   imports: [

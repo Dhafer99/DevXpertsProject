@@ -1,4 +1,5 @@
 import { Comment } from "./comment";
+import { Tag } from "./tag";
 export class Post{
     idPost!: number;
     featuredSubject!: boolean;
@@ -9,6 +10,7 @@ export class Post{
     dateCreationPost!: string;
     video!:string;
     comment!: Comment[];
+    postTags!: Tag[];
   }
 
  

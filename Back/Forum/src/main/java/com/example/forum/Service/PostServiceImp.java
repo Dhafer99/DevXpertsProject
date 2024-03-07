@@ -1,10 +1,16 @@
 package com.example.forum.Service;
 
+import com.example.forum.Dto.TagDto;
 import com.example.forum.Entity.Post;
+import com.example.forum.Entity.Tag;
+import com.example.forum.Exception.TagNotFoundException;
 import com.example.forum.Repository.CommentRepository;
 import com.example.forum.Repository.PostRepository;
+import com.example.forum.Response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +21,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 
 @Slf4j
@@ -22,11 +29,12 @@ import java.util.function.Consumer;
 @RequiredArgsConstructor
 public class PostServiceImp implements PostService {
     private final PostRepository postRepo;
+    private final TagService tagService;
 
     private final CommentRepository commentRepo;
     private final List<Consumer<Post>> listeners = new ArrayList<>();
     @Override
-    public void savePost(String title,String descriptionSubject,MultipartFile file){
+    public void savePost(String title,String descriptionSubject,MultipartFile file,List<TagDto> postTags){
 
         Post p = new Post();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -44,6 +52,21 @@ public class PostServiceImp implements PostService {
         p.setTitle(title);
         p.setLikesSubject(0);
         p.setDateCreationPost(new Date());
+
+        if (postTags != null && postTags.size() > 0) {
+            postTags.forEach(tagDto -> {
+                Tag tagToAdd = null;
+                try {
+                    Tag existingTag = tagService.getTagByName(tagDto.getTagName());
+                    if (existingTag != null) {
+                        tagToAdd = tagService.increaseTagUseCounter(tagDto.getTagName());
+                    }
+                } catch (TagNotFoundException e) {
+                    tagToAdd = tagService.createNewTag(tagDto.getTagName());
+                }
+                p.getPostTags().add(tagToAdd);
+            });
+        }
 
         postRepo.save(p);
         //  notifyNewPost(p);
@@ -122,6 +145,29 @@ public class PostServiceImp implements PostService {
         Post a = postRepo.findById(id).orElse(new Post());
         int nb = a.getLikesSubject() -1 ;
         return postRepo.addLike(nb , id) ; }
+
+    @Override
+    public PostResponse getPostResponseById(Long postId) {
+
+        Post foundPost = retrievePost(postId);
+        return PostResponse.builder()
+                .post(foundPost)
+                .build();
+    }
+    @Override
+    public List<PostResponse> getPostByTagPaginate(Tag tag, Integer page, Integer size) {
+        return postRepo.findPostsByPostTags(
+                        tag,
+                        PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "dateCreated")))
+                .stream().map(this::postToPostResponse).collect(Collectors.toList());
+    }
+    private PostResponse postToPostResponse(Post post) {
+
+
+        return PostResponse.builder()
+                .post(post)
+                .build();
+    }
 
 //    public Comment addComment(long postId, String textComment) {
 //        Optional<Post> optionalPost = postRepo.findById(postId);

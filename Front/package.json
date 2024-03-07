@@ -23,6 +23,7 @@
     "@kurkle/color": "^0.3.2",
     "@ng-bootstrap/ng-bootstrap": "^14.2.0",
     "@popperjs/core": "^2.11.6",
+    "@sweetalert2/ngx-sweetalert2": "^12.3.0",
     "bootstrap": "^5.2.3",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.10.6",
