@@ -53,11 +53,12 @@
                           >Start date</label
                         >
                         <div class="col-sm-10">
+                          
                           <input
                             id="dateDebut"
                             [(ngModel)]="room.dateDebut"
                             name="dateDebut"
-                            type="date"
+                            type="datetime-local"
                             class="form-control"
                           />
                         </div>
@@ -168,6 +169,9 @@
         >
           View Details
         </button>
+        <button type="button" (click)="deletePack(pack.idPack)"  class="btn btn-danger">Remove <span class="btn-icon-end"><i class="fas fa-times"></i></span>
+        </button>
+        
       </div>
     </div>
   </div>

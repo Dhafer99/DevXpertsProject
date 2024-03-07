@@ -70,7 +70,14 @@ public getPayments (  ): Observable<any>
  
   }
 
-
+  deletePack ( id: number ): Observable<any>
+  {
+   
+    return this.http.delete(`${ this.url }deletePack/${ id }` , {
+      
+    } );
+ 
+  }
   public RevenuePeTypePack ( typePack: string ): Observable<any>
   {
     return this.http.get<any>( `${ this.url }RevenuePeTypePack/${ typePack }`, {

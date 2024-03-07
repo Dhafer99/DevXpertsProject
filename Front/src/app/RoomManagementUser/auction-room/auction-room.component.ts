@@ -42,7 +42,7 @@ export class AuctionRoomComponent {
         .getTopEncheresByRoomId(this.room.idRoom)
         .subscribe((response) => {
           response.forEach((element: Enchere) => {
-            const companyIdToCheck = 3;
+            const companyIdToCheck = 1;
             const isCompanyIdPresent = response.some((element: Enchere) => {
               return element.idcompany === companyIdToCheck;
             });

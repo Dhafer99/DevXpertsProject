@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Room } from 'projects/back-office/src/app/Models/Room';
@@ -13,7 +13,7 @@ import { RoomServiceService } from 'projects/back-office/src/app/Services/room-s
 export class RoomsListComponent implements OnInit{
   rooms: Room[] = [];
   test:boolean=false;
-
+  @ViewChild('exampleModalCenter') modal!: ElementRef; 
   constructor( private sanitizer: DomSanitizer,
     private packService: PackServiceService,
      private route: Router,private roomService: RoomServiceService) {}
@@ -44,7 +44,7 @@ export class RoomsListComponent implements OnInit{
 
 
       room!: Room ;
- Participate(id:number){
+      Participate(id:number){
     this.roomService.getRoomById(id).subscribe(
       (r) => {
         this.room = r;
@@ -58,8 +58,10 @@ export class RoomsListComponent implements OnInit{
       }
     );
   }
-  navigateToPayments() {
+  navigateToPayments(id:number) {
     // Assuming you have a route named 'payments' defined in your routing configuration
-    this.route.navigate(['/payments']);
+   
+    this.route.navigate(['/payments',id]);
+    this.modal.nativeElement.dismiss();
   }
 }

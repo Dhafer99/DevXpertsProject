@@ -28,14 +28,14 @@ PackgeRepository packgeRepository ;
 EnchereInterface enchereInterface ;
     @Override
     public void addRoom(Room room) {
-        List<Pack> listPacks = packgeRepository.findByTypePack(room.getTypePack()  );
-        room.setQuantity(listPacks.size());
-        room.setMaxWinners(listPacks.size());
+        List<Pack> packs = packgeRepository.findByTypePack(room.getTypePack());
+        room.setQuantity(packs.size());
+        room.setMaxWinners(packs.size());
+        room.setPriceAuction(room.getPrice());
         SecureRandom random = new SecureRandom();
         StringBuilder codeBuilder = new StringBuilder();
         String allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         int maxLength = 4;
-        List<Pack> packs = packgeRepository.findByTypePack(room.getTypePack());
 
         room.setPackages(packs);
         room.setStatus(false);
@@ -55,7 +55,7 @@ EnchereInterface enchereInterface ;
 
     @Override
     public Room findRoom(Long idroom) {
-        return roomRepository.findById(idroom).get();
+        return roomRepository.findById(idroom).orElse(null);
     }
 
     @Override
@@ -75,10 +75,12 @@ EnchereInterface enchereInterface ;
 
     @Override
     public void ParticipateToRoom(Long idroom , Long idCompany) {
-        Company company = companyRepository.findById(idCompany).get();
-        Room room = roomRepository.findById(idroom).get();
-        company.setRoom(room);
-        companyRepository.save(company);
+        Company company = companyRepository.findById(idCompany).orElse(null);
+        Room room = roomRepository.findById(idroom).orElse(null);
+        if(room != null ){
+            company.setRoom(room);
+            companyRepository.save(company);}
+
 
     }
 
@@ -112,8 +114,9 @@ EnchereInterface enchereInterface ;
 
     @Override
     public List<Pack> getRoomPacks(Long roomId) {
-        Room room = roomRepository.findById(roomId).get();
+        Room room = roomRepository.findById(roomId).orElse(null);
         List<Pack> packs = new ArrayList<>();
+        System.out.println(room.getPackages());
         for (Pack p : room.getPackages()) {
             if(p.isReserved()==false)
             {

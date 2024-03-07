@@ -19,10 +19,10 @@ const routes: Routes = [
   { path: 'MyPacks', component: MyPacksComponent },
   { path: 'ListPacks/ListRooms', component: RoomsListComponent },
   { path: 'auction/:id', component: AuctionRoomComponent },
-  { path: 'auction/:id/roullette', component: RoomsListComponent },
-  { path: 'roulette/:id', component: RouletteComponent },
+  { path: 'auction/:id/roulette', component: RouletteComponent },
+  
   { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent },
-  { path: 'payments', component: PaymentComponent },
+  { path: 'payments/:id', component: PaymentComponent },
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }
   
   

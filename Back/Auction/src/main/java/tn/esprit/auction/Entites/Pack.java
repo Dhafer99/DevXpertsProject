@@ -34,10 +34,8 @@ public class Pack {
     private float price ;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+
     private Room room;
 
 
-    public Pack(TypePack typePack, int i, double v) {
-    }
 }

@@ -1,9 +1,7 @@
 package tn.esprit.auction.Controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.stripe.Stripe;
 
@@ -11,8 +9,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +18,9 @@ import com.stripe.exception.StripeException;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
 import tn.esprit.auction.Entites.CheckoutPayment;
+import tn.esprit.auction.Entites.Room;
 import tn.esprit.auction.Repository.PaymentRepository;
+import tn.esprit.auction.Repository.RoomRepository;
 
 @RestController
 @RequestMapping(value = "/api/stripe")
@@ -32,13 +30,14 @@ public class StripeController {
     // create a Gson object
     private static Gson gson = new Gson();
 PaymentRepository paymentRepository;
-    @PostMapping("/payment")
+RoomRepository roomRepository ;
+    @PostMapping("/payment/{roomId}")
     /**
      * Payment with Stripe checkout page
      *
      * @throws StripeException
      */
-    public String paymentWithCheckoutPage(@RequestBody CheckoutPayment payment) throws StripeException {
+    public String paymentWithCheckoutPage(@PathVariable("roomId") Long roomId,@RequestBody CheckoutPayment payment) throws StripeException {
         // We initilize stripe object with the api key
         init();
         // We create a  stripe session parameters
@@ -58,7 +57,7 @@ PaymentRepository paymentRepository;
                                                 .build())
 
                                 .build())
-                .setSuccessUrl("http://localhost:4201/payments")
+                .setSuccessUrl("http://localhost:4201/ListPacks/ListRooms")
 
                 .build();
         // create a stripe session
@@ -67,7 +66,11 @@ PaymentRepository paymentRepository;
         // We get the sessionId and we putted inside the response data you can get more info from the session object
         responseData.put("id", session.getId());
         payment.setPaymentDay(new Date());
+        Room room = roomRepository.findById(roomId).orElse(null);
+        room.setConfirmedParticipant(room.getConfirmedParticipant()+1);
+        roomRepository.save(room);
         paymentRepository.save(payment);
+
         // We can return only the sessionId as a String
         return gson.toJson(responseData);
     }

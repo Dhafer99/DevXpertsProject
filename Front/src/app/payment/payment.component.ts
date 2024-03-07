@@ -20,6 +20,7 @@ export class PaymentComponent implements OnInit{
     points150: number = 0;
    totalAmount: number = 0;
    totalPoints: number = 0;
+   id = 0;
   calculateTotalAmount() {
     this.totalAmount = (this.points50 * 30) + (this.points100 * 50) + (this.points150 * 100);
     this.totalPoints = (this.points50 * 50) + (this.points100 * 100) + (this.points150 * 150);
@@ -42,6 +43,7 @@ export class PaymentComponent implements OnInit{
   }
 
   async pay(): Promise<void> {
+    this.id = this.activate.snapshot.params['id'];
    this.payment.amount===this.totalAmount;
    this.payment.quantity===this.totalPoints;
 
@@ -60,7 +62,7 @@ export class PaymentComponent implements OnInit{
 
     // this is a normal http calls for a backend api
     this.http
-      .post(`${environment.serverUrl}/payment`, payment)
+      .post(`${environment.serverUrl}/payment/${ this.id }`, payment)
       .subscribe((data: any) => {
         // I use stripe to redirect To Checkout page of Stripe platform
         stripe!.redirectToCheckout({

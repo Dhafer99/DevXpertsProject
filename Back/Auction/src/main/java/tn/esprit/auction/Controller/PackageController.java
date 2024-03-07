@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*, http://localhost:4203")
 @Slf4j
 @RestController
 @AllArgsConstructor
@@ -111,6 +111,12 @@ public class PackageController {
     @GetMapping("/findPacksByIdRoom/{idroom}")
     public List<Pack> findPacksByIdRoom(@PathVariable("idroom") Long idroom) {
         return  packageInterface.findPacksByIdRoom(idroom);
+    }
+
+
+    @GetMapping("/deletePack/{id}")
+    public void deletePack(@PathVariable("id") Long id) {
+          packageInterface.delete(id);
     }
 
 

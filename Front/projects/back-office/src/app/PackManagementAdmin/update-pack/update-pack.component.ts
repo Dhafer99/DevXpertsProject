@@ -13,23 +13,7 @@ import { RoomServiceService } from '../../Services/room-service.service';
 })
 export class UpdatePackComponent implements OnInit {
   constructor( private roomService :RoomServiceService, private elementRef: ElementRef,private packService: PackServiceService, private activate: ActivatedRoute) { this.container = null;}
-  pack!: Pack;
-  rooms!: Room;
-  id = 0;
-  private container: HTMLElement | null;
-  signUp(): void {
-    if (this.container) {
-      this.container.classList.add('right-panel-active');
-    }
-  }
-
-  onSignInClick(): void {
-    if (this.container) {
-      this.container.classList.remove('right-panel-active');
-    }
-  }
   ngOnInit(): void {
-  
     this.container = this.elementRef.nativeElement.querySelector('#container');
 
     this.id = this.activate.snapshot.params['id'];  
@@ -38,9 +22,10 @@ export class UpdatePackComponent implements OnInit {
     this.packService.getDetailsPackById(this.id).subscribe(
       (packs) => {
         this.pack = packs;
-        console.log(this.pack.room.idRoom);
+        console.log(this.pack);
         this.roomService.getRoomById(this.pack.room.idRoom).subscribe(
           (roomse) => {
+            console.log(roomse)
             this.rooms = roomse;
           },
           (error) => {
@@ -59,12 +44,29 @@ export class UpdatePackComponent implements OnInit {
       }
     );
    
-  };
+  }
+  pack!: Pack;
+  rooms!: Room;
+  id = 0;
+  private container: HTMLElement | null;
+  signUp(): void {
+    if (this.container) {
+      this.container.classList.add('right-panel-active');
+    }
+  }
+
+  onSignInClick(): void {
+    if (this.container) {
+      this.container.classList.remove('right-panel-active');
+    }
+  }
+  
 
 
   updatePack():void { 
+    console.log(this.rooms)
     this.pack.idPack= this.id ; 
-    //console.log(this.rooms);
+    this.pack.room = this.rooms;    //console.log(this.rooms);
     //console.log(this.pack.room);
    // this.pack.room = this.rooms;
    // console.log(this.pack);

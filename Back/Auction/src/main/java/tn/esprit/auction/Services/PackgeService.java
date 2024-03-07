@@ -39,9 +39,9 @@ public class PackgeService implements PackageInterface {
 
 
         Pack pack = packgeRepository.findById(packid).get();
-
+Room  room = roomRepository.findById(roomId).orElse(null);
         pack.setStatus(false);
-        //pack.setReserved(false);
+        pack.setRoom(room);
         System.out.println(roomId);
         packgeRepository.save(pack);
         return pack;
@@ -60,11 +60,8 @@ public class PackgeService implements PackageInterface {
     public Pack updatePackage(Pack pack) {
 
 
-        if( pack.getRoom()!=null && pack.getTypePack() != pack.getRoom().getTypePack())
-        {
-            Room room = roomRepository.findByTypePack(pack.getTypePack());
-            pack.setRoom(room);
-        }
+
+
 
         return packgeRepository.save(pack);
     }
@@ -120,8 +117,11 @@ public class PackgeService implements PackageInterface {
     }
 
     @Override
-    public void delete(Pack idpack) {
-packgeRepository.delete(idpack);
+    public void delete(Long idpack) {
+
+        Pack p = packgeRepository.findById(idpack).get();
+
+        packgeRepository.delete(p);
     }
 
     @Override
