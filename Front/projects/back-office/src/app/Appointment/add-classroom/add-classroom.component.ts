@@ -3,6 +3,7 @@ import { ClassroomService } from '../../services/classroom.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Classroom } from '../../models/classroom';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-add-classroom',
   templateUrl: './add-classroom.component.html',
@@ -23,7 +24,7 @@ export class AddClassroomComponent implements OnInit {
     this.classroomForm=new FormGroup({
       block:new FormControl('',Validators.required),
       level:new FormControl('',Validators.required),
-      classRoomNumber:new FormControl('',Validators.required),
+      classRoomNumber:new FormControl(0,Validators.required),
       /* --------------------------------------- */
 
       year:new FormControl(0, [Validators.required, Validators.min(new Date().getFullYear())]),
@@ -59,7 +60,7 @@ export class AddClassroomComponent implements OnInit {
     const selectedDate = new Date(year, month - 1, days);
     const currentDate = new Date();
   
-    if (selectedDate < currentDate) {
+    if (selectedDate <= currentDate) {
       return { 'pastDate': true };
     }
   
@@ -81,17 +82,27 @@ export class AddClassroomComponent implements OnInit {
     const selectedDate = new Date(selectedYear, selectedMonth - 1, selectedDay);
     const today = new Date();
   // comparii date louma walla le 
-    if (selectedDate < today) {
+    if (selectedDate <= today) {
       this.errorMessage = "Selected date cannot be before today's date";
       return;
     }
   // affectation
+  this.localclassroom.block=this.classroomForm.get('block').value
+  this.localclassroom.level=this.classroomForm.get('level').value
+  this.localclassroom.classRoomNumber=this.classroomForm.get('classRoomNumber').value
     this.localclassroom.start = new Date(
       selectedYear,
       selectedMonth - 1,
       selectedDay,
       this.classroomForm.get('startHours').value,
       this.classroomForm.get('startMinutes').value
+    );
+    this.localclassroom.end = new Date(
+      selectedYear,
+      selectedMonth - 1,
+      selectedDay,
+      this.classroomForm.get('endHours').value,
+      this.classroomForm.get('endMinutes').value
     );
   
     // ... (similar block for 'end' date)
@@ -100,6 +111,13 @@ export class AddClassroomComponent implements OnInit {
   // subscribe heya elii bech t ajoutii
     this.Classroomadd.addClassroom(this.localclassroom).subscribe((data) => {
       console.log("classroom added");
+    });
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "ClassRoom Added",
+      showConfirmButton: false,
+      timer: 1500
     });
   
     this.goToClassroomList();

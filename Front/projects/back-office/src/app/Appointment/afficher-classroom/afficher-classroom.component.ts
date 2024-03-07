@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ClassroomService } from '../../services/classroom.service';
 import { Classroom } from '../../models/classroom';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-afficher-classroom',
@@ -25,7 +26,14 @@ this.router.navigate(['/addclassroom',id]);
 
 }
 deleateClassroom(id :number){
-  this.classRoomS.deleteClassroom(id).subscribe(()  => this.classroomList = this.classroomList.filter((c: Classroom) => c.id !== id))
+  this.classRoomS.deleteClassroom(id).subscribe(()  => {
+    this.classroomList = this.classroomList.filter((c: Classroom) => c.id !== id)
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Delete Succesfull!",
+    });
+  })
   
 }
 

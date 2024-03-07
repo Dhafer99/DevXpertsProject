@@ -1,18 +1,18 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { CalendarOptions, EventClickArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { calenderEvent } from 'projects/back-office/src/app/models/appointement';
 import { ClassroomService } from 'projects/back-office/src/app/services/classroom.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
   styleUrls: ['./calender.component.css']
 })
 export class CalenderComponent implements OnInit,AfterViewInit {
- 
+
   public value: Date;
   public format = 'MM/dd/yyyy HH:mm';
 
@@ -212,12 +212,11 @@ randomfucnc(){
   const year = control.get('year')?.value;
   const month = control.get('month')?.value;
   const days = control.get('days')?.value;
-  const hours = control.get('startHours')?.value || 0; // Assuming default is 0 if not provided
-  const minutes = control.get('startMinutes')?.value || 0;
-  const selectedDate = new Date(year, month - 1, days, hours, minutes);
+
+  const selectedDate = new Date(year, month - 1, days);
   const currentDate = new Date();
 
-  if (selectedDate <= currentDate) {
+  if (selectedDate < currentDate) {
     return { 'pastDate': true };
   }
 
@@ -258,9 +257,32 @@ randomfucnc(){
         this.addEvent()
         console.log(this.appointement)
         console.log(response);
+
+        // Assuming response.start is a Date object
+        const startDate = new Date(response.start);
+
+        // Extracting date and time parts
+        const year = startDate.getFullYear();
+        const month = String(startDate.getMonth() + 1).padStart(2, '0'); // Adding 1 because months are zero-based
+        const day = String(startDate.getDate()).padStart(2, '0');
+        const hours = String(startDate.getHours()).padStart(2, '0');
+        const minutes = String(startDate.getMinutes()).padStart(2, '0');
+        const seconds = String(startDate.getSeconds()).padStart(2, '0');
         
+        // Creating date and time strings
+        const datePart = `${year}-${month}-${day}`;
+        const timePart = `${hours}:${minutes}:${seconds}`;
+        
+        // Using the extracted parts in Swal.fire
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Appointment Added\nDate: ${datePart}\nTime: ${timePart}`,
+          showConfirmButton: false,
+          timer: 4000
+                });
          
-      },(error)=>{
+      },(error:any)=>{
         console.log(error)
       }
       )
@@ -396,5 +418,13 @@ randomfucnc(){
 
 
 
+
+
+
+
+
+
+
+  
 
 }

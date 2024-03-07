@@ -14,6 +14,8 @@ export class ChatbotComponent {
     message: new FormControl('')
   });
   chatbotResponse: string;
+  //  la fonctionnalité de reconnaissance vocale
+  // api fill les navigateurs web
   recognition = new webkitSpeechRecognition();
   finalTranscript = '';
 
@@ -22,16 +24,19 @@ export class ChatbotComponent {
   }
 
   setupSpeechRecognition() {
+    // reconnaissance continue 
+    //la récupération des donnee 
+    // tout en spécifiant la langue
     this.recognition.continuous = true;
     this.recognition.interimResults = true;
     this.recognition.lang = 'en-US';
 
-    this.recognition.onresult = (event : any) => {
+    this.recognition.onresult = (event: any) => {
       let interimTranscript = '';
       for (let i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           this.finalTranscript += event.results[i][0].transcript + ' ';
-        } 
+        }
         if (this.finalTranscript.toLowerCase().includes('calendar')) {
           // Redirige vers la page http://localhost:4203/calendar
           window.location.href = 'http://localhost:4203/calander2';
@@ -75,7 +80,7 @@ export class ChatbotComponent {
       },
       (error) => {
         console.error('Error communicating with the chatbot API', error);
-        
+
       }
     );
   }

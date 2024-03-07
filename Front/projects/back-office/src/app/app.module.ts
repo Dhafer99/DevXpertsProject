@@ -39,7 +39,6 @@ import { ImportFileComponent } from './Appointment/import-file/import-file.compo
     ListUsersComponent,
     ClassroomComponent,
     AfficherClassroomComponent,
-   
     AddClassroomComponent,
     CalenderComponent,
     UpdateClassroomComponent,

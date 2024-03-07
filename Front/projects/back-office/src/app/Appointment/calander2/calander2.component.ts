@@ -7,6 +7,7 @@ import { Appointement, calenderEvent } from "../../models/appointement";
 import { Appointement2 } from "../../models/appointement2";
 import { AbstractControl, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ClassroomService } from "../../services/classroom.service";
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -265,7 +266,30 @@ randomfucnc(){
         this.addEvent()
         console.log(this.appointement)
         console.log(response);
+
+        // Assuming response.start is a Date object
+        const startDate = new Date(response.start);
+
+        // Extracting date and time parts
+        const year = startDate.getFullYear();
+        const month = String(startDate.getMonth() + 1).padStart(2, '0'); // Adding 1 because months are zero-based
+        const day = String(startDate.getDate()).padStart(2, '0');
+        const hours = String(startDate.getHours()).padStart(2, '0');
+        const minutes = String(startDate.getMinutes()).padStart(2, '0');
+        const seconds = String(startDate.getSeconds()).padStart(2, '0');
         
+        // Creating date and time strings
+        const datePart = `${year}-${month}-${day}`;
+        const timePart = `${hours}:${minutes}:${seconds}`;
+        
+        // Using the extracted parts in Swal.fire
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `Appointment Added\nDate: ${datePart}\nTime: ${timePart}`,
+          showConfirmButton: false,
+          timer: 4000
+                });
          
       },(error)=>{
         console.log(error)
