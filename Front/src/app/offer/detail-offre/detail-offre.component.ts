@@ -1,4 +1,4 @@
-import { Component, OnInit, NO_ERRORS_SCHEMA  } from '@angular/core';
+import { Component, OnInit, NO_ERRORS_SCHEMA, ElementRef, ViewChild  } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Offer } from 'src/app/models/offer';
 import { CandidatureService } from 'src/app/services/candidature.service';
@@ -9,7 +9,7 @@ import { saveAs } from 'file-saver';
 import { UserAnasService } from 'src/app/services/user-anas.service';
 import { User } from 'src/app/models/user';
 import { DatePipe } from '@angular/common';
-//import { BarcodeFormat } from '@zxing/library';
+import { BarcodeFormat } from '@zxing/library';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -31,7 +31,12 @@ export class DetailOffreComponent implements OnInit{
    user!:User;
    currentDate!:Date;
    comparaisonDate!:boolean;
-  currentDevice: MediaDeviceInfo|undefined;
+     @ViewChild('fileInput') fileInput!: ElementRef;
+
+  //currentDevice: MediaDeviceInfo |undefined ;
+  //currentDevice: MediaDeviceInfo | null = new MediaDeviceInfo();
+   currentDevice!: MediaDeviceInfo;
+
   constructor(private activateroute:ActivatedRoute,private offerService:OfferService,
     private route:Router,private candidatureService:CandidatureService,
     private modalService: NgbModal,private http: HttpClient,private userS:UserAnasService){
@@ -54,6 +59,7 @@ export class DetailOffreComponent implements OnInit{
     this.fileUrl = window.URL.createObjectURL(this.blob);
     
   }
+
 
   hasApplied(idUser:string,idOffer:string){
   this.offerService.hasApplied(idUser,idOffer).subscribe((data:any)=>{
@@ -88,6 +94,7 @@ export class DetailOffreComponent implements OnInit{
             title: 'Erreur',
             text: "Le fichier doit etre pdf"
         });
+        this.fileInput.nativeElement.value = null;
     }
   }
 }
@@ -136,8 +143,9 @@ export class DetailOffreComponent implements OnInit{
   }
 }
 
-//currentDevice: MediaDeviceInfo = null;
-/*formatsEnabled: BarcodeFormat[] = [
+//currentDevice: MediaDeviceInfo | null = null;
+
+formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.CODE_128,
     BarcodeFormat.DATA_MATRIX,
     BarcodeFormat.EAN_13,
@@ -147,7 +155,7 @@ export class DetailOffreComponent implements OnInit{
 onScanSuccess(result: string): void {
     const jsonObject = JSON.parse(result);
   }
-*/
+
 
   /////ENDFILE
 }

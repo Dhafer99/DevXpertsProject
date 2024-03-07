@@ -37,9 +37,21 @@
             <a href="index-2.html" class="nav-link">Events</a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item dropdown dropdown-hover">
             <a routerLink="/offers" class="nav-link">Offers</a>
+            <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+              <li class="nav-item">
+                <a class="dropdown-item" routerLink="/offers" class="nav-link"><i
+                    class="mdi mdi-offer f-20 me-2 align-middle"></i>Offers</a>
+              </li>
+              <li class="nav-item">
+                <a class="dropdown-item" routerLink="/myapplications" class="nav-link"><i
+                    class="mdi mdi-application-import f-20 me-2 align-middle"></i>My Applications</a>
+              </li> 
+            </ul>
           </li>
+
+          
           <!--end dropdown-->
 
           <li class="nav-item dropdown dropdown-hover">

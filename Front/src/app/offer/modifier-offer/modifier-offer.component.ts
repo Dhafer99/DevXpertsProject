@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Offer, typeOffer } from 'src/app/models/offer';
@@ -30,6 +30,7 @@ export class ModifierOfferComponent {
   seletedValue!:string;
   fileClicked: boolean = false;
   typeClicked: boolean = false;
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   ngOnInit(): void {
     this.user=this.userS.getUser();
@@ -64,12 +65,22 @@ export class ModifierOfferComponent {
     //FILE
 
     onFileSelected(event: any): void {
-    const fileList: FileList = event.target.files;
-    if (fileList && fileList.length > 0) {
-      this.selectedFile = fileList[0];
+  const fileList: FileList = event.target.files;
+  if (fileList && fileList.length > 0) {
+    if (fileList[0].name.split('.').pop() == "pdf"){
+
+    this.selectedFile = fileList[0];
     }
-    this.fileClicked=true;
+    else {
+      Swal.fire({
+            icon: 'warning',
+            title: 'Erreur',
+            text: "Le fichier doit etre pdf"
+        });
+        this.fileInput.nativeElement.value = null;
+    }
   }
+}
   selectType(event : any):void{
     const selectedValue = (event.target as HTMLSelectElement).value;
     console.log(selectedValue);
@@ -116,11 +127,20 @@ export class ModifierOfferComponent {
       this.formData.forEach((value, key) => {
       console.log(`${key}: ${value}`);
     });
+      if (!this.fileClicked && !this.typeClicked){
+        this.offerService.updateOfferWithout(this.formData).subscribe(()=>{
+        console.log( "l'offre a été ajoutée")
+        console.log("notre form"+JSON.stringify(this.offerForm.value))
+        this.route.navigate(['/offers']);
+      })
+      }
+      else {
         this.offerService.updateOffer(this.formData).subscribe(()=>{
         console.log( "l'offre a été ajoutée")
         console.log("notre form"+JSON.stringify(this.offerForm.value))
         this.route.navigate(['/offers']);
       })
+    }
         
 }
 

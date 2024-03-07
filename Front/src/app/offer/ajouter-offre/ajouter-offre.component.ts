@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { Offer } from 'src/app/models/offer';
@@ -27,6 +27,7 @@ export class AjouterOffreComponent implements OnInit{
   user!:User;
   fileExtension!:any;
   //params = new HttpParams();
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   ngOnInit(): void {
     //this.id=this.acr.snapshot.params['id']
@@ -62,6 +63,7 @@ export class AjouterOffreComponent implements OnInit{
             title: 'Erreur',
             text: "Le fichier doit etre pdf"
         });
+        this.fileInput.nativeElement.value = null;
     }
   }
 }

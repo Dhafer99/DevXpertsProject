@@ -29,6 +29,10 @@ export class OfferService {
   {
     return this.http.put<Offer[]>(this.offerUrl+'/update',formData)
   }
+  updateOfferWithout(formData:FormData):Observable<Offer[]>
+  {
+    return this.http.put<Offer[]>(this.offerUrl+'/updateWithout',formData)
+  }
 
   getOfferById(id:number):Observable<Offer>
   {

@@ -7,8 +7,8 @@
             <form #fo="ngForm">
                 <p>Veillez doposer votre lettre de motivation</p>
                 <div class="txt_field">
-                    <input type="file" id="mail" class="form-control" multiple="multiple" name="file" id="file" id="file" placeholder="file" formControlName="file" (change)="onFileSelected($event)" 
-                            required>
+                    <input type="file"  class="form-control" multiple="multiple" name="file" id="file"  formControlName="file" (change)="onFileSelected($event)" 
+                           #fileInput required>
                 </div>
                 <br>
                 <button class="btn btn-light" (click)="postuler()" type="submit">Valider</button>
@@ -18,6 +18,8 @@
 </div>
 
 
+
+<div class="card-body">
 
 
 <section class="item-detail section bg-light">
@@ -32,6 +34,7 @@
             <div class="col-lg-6">
                 <div class="backhome-content mt-4 mt-lg-0">
                     <h2 class="fw-bold">Detail of the offer</h2>
+                    
                     <div class="d-flex mt-3 align-items-center">
                         <a href="#"><span
                                 class="badge rounded-pill bg-white box-shadow text-dark f-16 fw-normal py-2 px-3">

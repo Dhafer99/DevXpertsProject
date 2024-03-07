@@ -96,6 +96,19 @@ public class OfferController {
         Offer savedOffer =  offerService.updateOffer(id,titre,description,lastDateApplication,nbrCandidature,exibitorId,typeOffer,file);
         return ResponseEntity.ok(savedOffer);
     }
+
+    @PutMapping("/updateWithout")
+    public ResponseEntity<?> updateOfferWithout(@RequestParam("idOffer") long id,
+                                         @RequestParam("titre") String titre,
+                                         @RequestParam("description")String description,
+                                         @RequestParam("lastDateApplication") LocalDate lastDateApplication,
+                                         @RequestParam("nbrCandidature")int nbrCandidature,
+                                         @RequestParam("exibitorId")long exibitorId) throws IOException {
+
+        Offer savedOffer =  offerService.updateOfferWithout(id,titre,description,lastDateApplication,nbrCandidature,exibitorId);
+        return ResponseEntity.ok(savedOffer);
+    }
+
     @GetMapping("/OffersByTypeOffer/{exibitorId}/{typeOffer}")
     public List<Offer> retrieveOffersByTypeOffer(@PathVariable("typeOffer") TypeOffer typeOffer,
                                                  @PathVariable("exibitorId") long id) {

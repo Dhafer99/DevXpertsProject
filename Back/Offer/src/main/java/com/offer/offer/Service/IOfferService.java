@@ -14,6 +14,8 @@ public interface IOfferService {
     Offer getOfferById(long id);
     Offer addOffer(Offer offer,String titre ,String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId, TypeOffer typeOffer , MultipartFile file) throws IOException;
     Offer updateOffer(Long idOffer,String titre ,String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId,TypeOffer typeOffer ,MultipartFile file) throws IOException;
+    Offer updateOfferWithout(Long idOffer,String titre ,String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId);
+
     void deleteOffer(long id);
     List<Offer> getOfferByexibitorId(long id);
     List<Offer> getOfferByDomaineEntreprise(long idExibitor);

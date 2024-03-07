@@ -69,6 +69,17 @@ public class OfferService implements IOfferService{
     }
 
     @Override
+    public Offer updateOfferWithout(Long idOffer, String titre, String description, LocalDate lastDateApplication, int nbrCandidature, long exibitorId) {
+        Offer offer = offerRepository.findById(idOffer).orElse(null);
+        offer.setTitre(titre);
+        offer.setDescription(description);
+        offer.setLastDateApplication(lastDateApplication);
+        offer.setNbrCandidature(nbrCandidature);
+        offer.setExibitorId(exibitorId);
+        return offerRepository.save(offer);
+    }
+
+    @Override
     public void deleteOffer(long id) {
         offerRepository.deleteById(id);
     }
