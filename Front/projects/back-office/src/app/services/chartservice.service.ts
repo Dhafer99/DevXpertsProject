@@ -71,8 +71,13 @@ export class ChartserviceService {
     
   }
   
-  ChartRecreatePie(mychart:highcharts.Chart,type:any,series:any,title:any):highcharts.Chart{
-    let xAxis=series[0];
+  ChartRecreateColumn(mychart:highcharts.Chart,type:any,xAxis:any,title:any,series:any):highcharts.Chart{
+   
+
+    
+
+    
+    console.log(series)
     this.ChartDestroy(mychart)
  
     const chart=new highcharts.Chart({
@@ -83,7 +88,7 @@ export class ChartserviceService {
         text: "data"
       },
       xAxis: {
-        categories: xAxis
+        categories: xAxis[0]
     },
     yAxis: {
       min: 0,

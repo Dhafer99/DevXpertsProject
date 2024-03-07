@@ -22,7 +22,7 @@ export class EventsStatsComponent implements OnInit{
   interestdata:number[][]=[]
   interestCountMap = new Map<string, number>()
   interestDataCounter: (string |number )[][]=[[], []];
-  pressenceDataCounter: (string |number )[][]=[[], [],[]];
+  pressenceDataCounter: (string |number )[][]=[[],[],[],[]];
   totalsDataCounter:(string | number )[][]=[[],[]];
   myFilter: any = { name: '' };
 
@@ -31,7 +31,7 @@ export class EventsStatsComponent implements OnInit{
   linechart = new highcharts.Chart({
     
   });
-  piechart = new highcharts.Chart({
+  columnchart = new highcharts.Chart({
     
   });
   barchart=new highcharts.Chart({
@@ -49,8 +49,8 @@ export class EventsStatsComponent implements OnInit{
       ) 
     
   }
-  updatepiechart(){
-    this.piechart= this.chartservice.ChartRecreatePie(this.piechart,'pie',this.pressenceDataCounter,"mypiechart") 
+  updatecolumnchart(series:any){
+    this.columnchart= this.chartservice.ChartRecreateColumn(this.columnchart,'column',this.pressenceDataCounter,"mycolumnchart",series) 
    
  }
   updatebarchart(){
@@ -76,24 +76,37 @@ export class EventsStatsComponent implements OnInit{
       series: []
     });
   }
-  piechartrecreate(){
-    this.linechart = new highcharts.Chart({
+  columnchartrecreate(){
+    this.columnchart = new highcharts.Chart({
       chart: {
-        type: 'pie'
+        type: "column"
       },
       title: {
-        text: 'Data'
+        text: "data"
       },
-      plotOptions: {
-        pie: {
-            shadow: false,
-            center: ['50%', '50%']
-        }
+      xAxis: {
+        categories:  ['Arsenal', 'Chelsea', 'Liverpool', 'Manchester United']
     },
-
+    yAxis: {
+      min: 0,
+      title: {
+          text: 'Presence'
+      },
+      stackLabels: {
+          enabled: true
+      }
+  },
       credits: {
         enabled: false
       },
+      plotOptions: {
+        column: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
       series: []
     });
   }
@@ -222,6 +235,29 @@ export class EventsStatsComponent implements OnInit{
     this.totalsDataCounter[eventIndex+2]=[event.interestedCounter,event.viewsCounter];
 
   }
+  affectPressence(event:Event){
+ 
+    let count:number=this.countPresenceNotInterested(event);
+    const eventIndex=this.pressenceDataCounter[0].indexOf(event.name);
+    this.pressenceDataCounter[1]=["Present Not Interested","Present Interested"]
+    this.pressenceDataCounter[2][eventIndex]=count;
+    this.pressenceDataCounter[3][eventIndex]=event.presences.length-count;
+           
+ 
+    
+  }
+  countPresenceNotInterested(event:Event):number{
+    const presenceUserIds: number[] = event.presences?.map((presence) => presence.userId) || [];
+const interestedUserIds: number[] = event.interesteds?.map((interested) => interested.userID) || [];
+
+// Combine and find unique user IDs
+const commonUserIds: number[] = presenceUserIds.filter((userId) => interestedUserIds.includes(userId));
+
+// Output the result
+console.log("Number of unique user IDs:", commonUserIds.length);
+console.log("Unique User IDs:", commonUserIds);
+return commonUserIds.length;
+  }
   handleCheckboxChange(event:Event ): void {
     const index = this.interestDataCounter[0].indexOf(event.name);
     const eventId=event.name;
@@ -235,8 +271,9 @@ export class EventsStatsComponent implements OnInit{
         this.totalsDataCounter[0].push(eventId);
         console.log("Initial PUSH == " +this.totalsDataCounter)
         this.affectTotalsDataCounter(event);
-      
-      
+        //   column bar things
+        this.pressenceDataCounter[0].push(eventId)
+        this.affectPressence(event)
     } else {
       // If unchecked, remove event ID and all numbers to the right
       if (index !== -1) {
@@ -249,12 +286,24 @@ export class EventsStatsComponent implements OnInit{
           // bar total things
           this.totalsDataCounter[0].splice(index, 1);
           this.totalsDataCounter.splice(index+2,1);
-
+          this.pressenceDataCounter[0].splice(index, 1);
+          this.pressenceDataCounter[2].splice(index, 1);
+          this.pressenceDataCounter[3].splice(index, 1);
       }
     }
     this.updatelinechart()
     this.updatebarchart();
-    this.updatepiechart();
+    console.log(this.pressenceDataCounter)
+    let myobject:any[]=[]
+    let notInterested:any={name:"Not Interested",data:[]}
+    let semiInterested:any={name:"Interested",data:[]}
+      for (let index = 0; index < this.pressenceDataCounter[0].length; index++) {
+        notInterested.data.push(this.pressenceDataCounter[2][index])
+        semiInterested.data.push(this.pressenceDataCounter[3][index])
+      }
+      myobject.push(notInterested)
+      myobject.push(semiInterested)
+    this.updatecolumnchart(myobject);
     console.log(this.interestDataCounter);
     
   }

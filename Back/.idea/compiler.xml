@@ -23,9 +23,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="AppointementAndClassroom" options="" />
+      <module name="AppointementAndClassroom" options="-parameters" />
       <module name="Booth" options="-parameters" />
-      <module name="Events" options="" />
+      <module name="Events" options="-parameters" />
       <module name="Exhibitor" options="-parameters" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
