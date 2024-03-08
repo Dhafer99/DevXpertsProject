@@ -9,10 +9,24 @@ export class Supplier{
     servicename: String ;
     type : String ;
     status :String ;
+    image!:Image;
+    supplier : User ;
 }
 export enum typerequirement {
     isProduct,isService,isProductAndService
 }
 export enum status {
     NotApproved,Pending,Approved
+}
+export class Image {
+    id?: number;
+    name?: string;
+    imageUrl?: string;
+    imageId?: string;
+}
+export class User{
+    id !: number ;
+    nom  : String ;
+    numeroTelephone : String;
+
 }

@@ -117,7 +117,12 @@
             </select>
           </div>
         </div>
-
+        <div>
+          <input id="file" type="file" class="add-button" (change)="onFileChange($event)" accept="image/*" >
+          <label for="file" class="btn-1">
+            <span>Choose an image for your Product or Service</span>
+          </label>
+        </div>
 
         <div class="row mb-3">
           <div class="col-sm-3">
@@ -133,7 +138,14 @@
 
 </div>
 
-
+<button (click)="testSocket()" class="btn btn-danger">TEST SOCKET</button>
+<!-- <input type="file" class="add-button" (change)="onFileChange($event)" />
+<button
+(click)="onUploadImages()"
+type="submit"
+class="btn btn-outline-dark"
+[disabled]="!image"
+> -->
 
 
 <!-- Recent Sales -->

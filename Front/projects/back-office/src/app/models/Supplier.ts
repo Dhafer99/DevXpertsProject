@@ -1,3 +1,4 @@
+import { Image } from "./SupplyRequest";
 import { User } from "./User";
 
 export class Supplier{
@@ -11,7 +12,7 @@ export class Supplier{
     type : String ;
     status :String ;
     supplier : User ;
-   
+   image!:Image;
 }
 export enum typerequirement {
     isProduct,isService

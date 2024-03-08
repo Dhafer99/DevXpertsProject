@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormControlName, FormGroup, FormGroupDirectiv
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { status, Supplier, typerequirement } from '../models/Supplier';
-import { SupplyRequest } from '../models/SupplyRequest';
+import { SupplyRequest, Image } from '../models/SupplyRequest';
 import { User } from '../models/User';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -11,6 +11,8 @@ import { ServicebackService } from '../services/serviceback.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Booth } from '../models/Booth';
 
+import { Message } from '@stomp/stompjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-supplier',
@@ -20,6 +22,33 @@ import { Booth } from '../models/Booth';
 export class SupplierComponent implements OnInit{
   @ViewChild('controlDir', { read: FormControlName }) controlDir: FormControlName;
   @ViewChild('formDir') formDir: FormGroupDirective;
+  /* imagefunction(){
+    this.supplierService.addsupplier(this.supplier)
+    .subscribe((response: SupplyRequest []) => {
+      console.log("sent :",this.supplier)
+      console.log(response);
+      // Reset form after successful submission
+      this.supplierService.getsupplier().subscribe((data:Supplier[])=>{
+        this.SupplyRequestList= data
+        console.log(data);
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'supplier added successfuly.',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
+        });
+    })
+     
+      // Optionally, you can perform other actions after submission
+    });
+  } */
+  // image things *****************************
+  image: File | null = null;
+  imageMin: File | null = null;
+  uploadingFile:boolean=false;
+  //***************************************** */
+  messages: string[] = [];
 
   supplierCheck : Supplier ={
     id :0,
@@ -32,6 +61,7 @@ export class SupplierComponent implements OnInit{
     type : 'String' ,
     status :'String' ,
     supplier : new User,
+    image:null
   }
   setStatusAccepted(requestid:number) { 
     this.supplierService.setRequestStatus(requestid, 'Approved').subscribe((data: any[]) => {
@@ -85,7 +115,7 @@ export class SupplierComponent implements OnInit{
     servicename: 'String' ,
    type : typerequirement[typerequirement.isProduct] ,
    status : status[status.NotApproved],
-   
+   image:null
    
   }
 
@@ -100,6 +130,7 @@ export class SupplierComponent implements OnInit{
     return null;
 }
   constructor(private supplierService: ServicebackService,private builder: FormBuilder,private router: Router,private acr:ActivatedRoute){
+  
     this.supplierForm=this.builder.group({
    
       requirement:new FormControl('',Validators.required),
@@ -121,7 +152,13 @@ get price(){return this.supplierForm.get('price')}
   statusString : String ;
 
   boothList : Booth[] = []
+
+  testSocket(){
+
+  }
   ngOnInit(): void {
+
+
     this.supplierService.getBooths().subscribe((data:Booth[])=>{
       this.boothList= data
     });
@@ -139,7 +176,9 @@ get price(){return this.supplierForm.get('price')}
       productname:data.productname,
       servicename:data.servicename,
       productorservice:data.productname?'product':'service',
+
         })
+       this.supplier.image= data.image
         console.log(this.supplierForm.value)
       })
     })
@@ -231,7 +270,22 @@ get price(){return this.supplierForm.get('price')}
           this.supplier.servicename=this.supplierForm.value.servicename
           this.supplier.status= status[status.Pending]
           
+          if(this.image==null){
+            Swal.fire({
+              icon: 'warning',
+              title: 'Warning!',
+              text: 'Image and other fields are required',
+              showCancelButton: true,
+              confirmButtonText: 'OK',
+             
+            })
+          }
 
+          this.supplierService.upload(this.image).subscribe((data)=>
+          {
+            
+            
+            this.supplier.image=data
        // Call the service to add the supplier
     this.supplierService.addsupplier(this.supplier)
     .subscribe((response: SupplyRequest []) => {
@@ -241,15 +295,56 @@ get price(){return this.supplierForm.get('price')}
       this.supplierService.getsupplier().subscribe((data:Supplier[])=>{
         this.SupplyRequestList= data
         console.log(data);
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'supplier added successfuly.',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
+        });
     })
      
       // Optionally, you can perform other actions after submission
     });
+  })
       
 }
 
+
 fetchSupplier(id:number){
 
+}
+
+
+
+onFileChange(event: any) {
+  this.image = event.target.files[0];
+  this.imageMin = null;
+  const fr = new FileReader();
+  fr.onload = (evento: any) => {
+    this.imageMin = evento.target.result;
+  };
+  if (this.image) {
+    fr.readAsDataURL(this.image);
+  }
+}
+
+onUploadImages() {
+  this.uploadingFile=true;
+  if (this.image) {
+    this.supplierService.upload(this.image).subscribe(
+      (data) => {
+        this.supplier.image=data
+        console.log(data);
+        this.uploadingFile=false;
+  
+      },
+      (err) => {
+        console.log(err);
+        this.uploadingFile=false;
+      }
+    );
+  }
 }
     }
     

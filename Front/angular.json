@@ -30,6 +30,7 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/jquery.easing/jquery.easing.min.js"
+              
             ]
           },
           "configurations": {

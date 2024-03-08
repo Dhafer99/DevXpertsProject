@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChangeDetectorRef } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
@@ -18,6 +18,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { SupplyRequestsDashboardComponent } from './supply-requests-dashboard/supply-requests-dashboard.component';
 
+import { TranslateModule } from '@ngx-translate/core';
+
+import { MessagestestComponent } from './messagestest/messagestest.component';
+import { NewsupplyrequestsdashboardComponent } from './newsupplyrequestsdashboard/newsupplyrequestsdashboard.component';
+import { MatTableModule } from '@angular/material/table';
+import { SupplierDetailComponent } from './supplier-detail/supplier-detail.component';
+
+
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,8 +38,11 @@ import { SupplyRequestsDashboardComponent } from './supply-requests-dashboard/su
     NotificationComponent,
     BoothplacementComponent,
     DialogboxComponent,
-    SupplyRequestsDashboardComponent
-   
+    SupplyRequestsDashboardComponent,
+    MessagestestComponent,
+    NewsupplyrequestsdashboardComponent,
+    SupplierDetailComponent,
+  
    
   ],
   imports: [
@@ -41,12 +56,17 @@ import { SupplyRequestsDashboardComponent } from './supply-requests-dashboard/su
     MatDialogModule,
     DialogModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   
 
    
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+  
+
+  ],
+  bootstrap: [AppComponent],
+  schemas : [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

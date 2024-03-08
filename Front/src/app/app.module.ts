@@ -12,8 +12,13 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { MessagestestComponent } from './messagestest/messagestest.component';
+import { NewsupplierfrontComponent } from './newsupplierfront/newsupplierfront.component';
+import { ExhibitorReservationComponent } from './exhibitor-reservation/exhibitor-reservation.component';
+import { DragDropModule, CdkDrag } from '@angular/cdk/drag-drop';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SupplierDetailComponent } from './supplier-detail/supplier-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     SupplierFrontComponent,
          HeaderComponent,
          FooterComponent,
+         MessagestestComponent,
+         NewsupplierfrontComponent,
+         ExhibitorReservationComponent,
+         SupplierDetailComponent,
  
   ],
   imports: [
@@ -29,7 +38,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule ,
     ReactiveFormsModule,
-   HttpClientModule
+   HttpClientModule,
+   DragDropModule,
+   MatTooltipModule,
+   BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

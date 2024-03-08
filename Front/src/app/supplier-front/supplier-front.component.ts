@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Supplier } from '../models/Supplier';
 import { ServicefrontService } from '../services/servicefront.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-supplier-front',
   templateUrl: './supplier-front.component.html',
@@ -40,9 +40,16 @@ export class SupplierFrontComponent implements OnInit {
  
   RequestSent(requestId: number){
     this.servicesupplier.affectsupplierTorequest(2,requestId).subscribe(()=> {
-      alert("your request have been sent")
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Request sent successfuly.',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+      });
       location.reload();
     }) ;
+  
   }
 
 }

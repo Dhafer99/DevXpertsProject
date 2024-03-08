@@ -3,6 +3,9 @@ import { Supplier } from '../models/Supplier';
 import { ServicebackService } from '../services/serviceback.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Message } from '@stomp/stompjs';
+
 
 @Component({
   selector: 'app-supply-requests-dashboard',
@@ -10,7 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./supply-requests-dashboard.component.css']
 })
 export class SupplyRequestsDashboardComponent implements OnInit{
-
+  messages: string[] = [];
+message : string = '';
   getType(type: String){
     if (type === 'isProduct')
     {
@@ -38,14 +42,24 @@ export class SupplyRequestsDashboardComponent implements OnInit{
   }
 
   SupplyRequestList: Supplier[] =[];
-  constructor(private supplierService: ServicebackService,private router:Router){
+  constructor(private supplierService: ServicebackService,private router:Router,private sanitizer: DomSanitizer){
 
   }
+  sanitizeImageUrl(imageUrl: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+}
   ngOnInit(): void {
+   
+   
+
+
     this.supplierService.getsupplier().subscribe((data:Supplier[])=>{
       this.SupplyRequestList= data
       console.log(data);
   })
+
+ 
+
   }
   deleteSupplier(supplier:Supplier){
     this.supplierService.deletesupplier(supplier.id).subscribe((data)=>

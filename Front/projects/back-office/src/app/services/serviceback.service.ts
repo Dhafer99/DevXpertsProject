@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { status, Supplier } from '../models/Supplier';
 import { User } from '../models/User';
-import { SupplyRequest } from '../models/SupplyRequest';
+import { Image, SupplyRequest } from '../models/SupplyRequest';
 import { map } from 'rxjs';
 import { Booth } from '../models/Booth';
 import { BoothRepresentation } from '../models/BoothRepresentation';
@@ -12,15 +12,16 @@ import { BoothRepresentation } from '../models/BoothRepresentation';
 })
 export class ServicebackService {
 
-  SupplierUrl ='http://localhost:8763/BoothAndSupplier/api/Supplier'
+  SupplierUrl ='http://localhost:8763'
 
-  BoothUrl ='http://localhost:8763/BoothAndSupplier/api/BoothAndSupplier'
+  BoothUrl ='http://localhost:8763/api/BoothAndSupplier'
 
-  userUrl ='http://localhost:8763/BoothAndSupplier/api/Users'
+  userUrl ='http://localhost:8763/api/Users'
 
-  sequenceUrl ='http://localhost:8763/BoothAndSupplier/api/sequence'
+  sequenceUrl ='http://localhost:8763/api/sequence'
   
-  
+  __URL = 'http://localhost:8763/api/Event/cloudinary'
+
   constructor(private http:HttpClient) { }
 /* 
   getSommeValueOf(list:any[], critiria:string, value:any){
@@ -100,4 +101,37 @@ getBoothSequence(boothName: string):Observable<number>{
 incrementBoothSequence(boothName: string):Observable<number>{
   return this.http.post<number>(this.sequenceUrl+'/IncrementBoothSequence/'+boothName,{})
 }
+
+//-------------------------------- ------------------------------
+  //--------------------------------Image related URLS ------------------------------
+  public list(): Observable<Image[]> {
+    return this.http.get<Image[]>(this.__URL + '/list');
+  }
+  public imagesForEvent(eventId : number): Observable<Image[]> {
+    return this.http.get<Image[]>(this.__URL + '/list/'+eventId);
+  }
+  
+  public uploadForEvent(image: File,eventId:number): Observable<any> {
+    const formData = new FormData();
+    formData.append('multipartFile', image);
+    return this.http.post<any>(this.__URL + "/upload/"+eventId, formData);
+  }
+  public upload(image: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('multipartFile', image);
+    return this.http.post<any>(this.__URL + "/upload", formData);
+  }
+  
+  public delete(id: any): Observable<any> {
+    return this.http.delete<any>(this.__URL + `/delete/${id}`);
+  }
+  //-------------------------------------------------------------
+
+
+  //////////////////ADMIN SETTING STATUS
+
+  removeSupplierFromSupplyRequest(supplierid:number): Observable<string>
+  {
+    return this.http.post<string>(`${this.SupplierUrl}/RefuseSupplierRequest/${supplierid}`, {});
+  }
 }

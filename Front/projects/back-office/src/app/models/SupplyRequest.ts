@@ -8,5 +8,12 @@ export class SupplyRequest{
     servicename: String ;
     type : String ;
     status :String ;
+    image!:Image
+}
 
+export class Image {
+    id?: number;
+    name?: string;
+    imageUrl?: string;
+    imageId?: string;
 }

@@ -1,81 +1,11 @@
-<div class="card recent-sales overflow-auto">
 
-    <div class="filter">
-      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-        <li class="dropdown-header text-start">
-          <h6>Filter</h6>
-        </li>
 
-        <li><a class="dropdown-item" href="#">Today</a></li>
-        <li><a class="dropdown-item" href="#">This Month</a></li>
-        <li><a class="dropdown-item" href="#">This Year</a></li>
-      </ul>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">Recent Request Products And Services<span>| Today</span></h4>
-        </div>
-    <div class="card-body" style="margin:30px">
-      <table class="table table-borderless datatable">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col"><strong>Admin</strong></th>
-            <th scope="col"><strong>Product/Service description</strong></th>
-            <th scope="col"><strong>quantity</strong></th>
-            <th scope="col"><strong>price</strong></th>
-            <th scope="col"><strong>boothPosition</strong></th>
-            <th scope="col"><strong>product name</strong></th>
-            <th scope="col"><strong>service name</strong></th>
-            <th scope="col"><strong>Status</strong></th>
-            <th scope="col"><strong>Type</strong></th>
-            <th scope="col"><strong>Action</strong></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let r of SupplyRequestList">
-            <th scope="row"><a href="#"></a></th>
-            <td>admin</td>
-            <td><a href="#" class="text-primary">{{r.requirement}}</a></td>
-            <td>{{r.quantity}}</td>
-            <td>{{r.price}}</td>
-            <td>{{r.boothPosition}}</td>
-            <td>{{r.productname}}</td>
-            <td>{{r.servicename}}</td>
-            <td><span class="badge "[ngClass]="{
-              'bg-success': r.status === 'Approved',
-              'bg-warning': r.status === 'NotApproved',
-              'bg-danger': r.status === 'Pending'
-            }">{{r.status}}</span></td>
-            <td>{{getType(r.type)}}</td>
-            <td>
-                <button type="button" class="btn btn-info" (click)="updateSupplier(r)">Update</button>
-                <button type="button" class="btn btn-danger" (click)="deleteSupplier(r)">Delete</button>
-            </td>
-          </tr>
-        
-        </tbody>
-      </table>
-
-    </div>
-</div>
+ 
   
  
 
-    <div class="filter">
-      <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-        <li class="dropdown-header text-start">
-          <h6>Filter</h6>
-        </li>
-
-        <li><a class="dropdown-item" href="#">Today</a></li>
-        <li><a class="dropdown-item" href="#">This Month</a></li>
-        <li><a class="dropdown-item" href="#">This Year</a></li>
-      </ul>
-    </div>
-
+  
+<div class="row">
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">Service Requests <span>| Today</span></h4>
@@ -85,8 +15,8 @@
                 <thead>
                     <tr>
                         
-                        <th scope="col"><strong>Admin</strong></th>
-                        <th scope="col"><strong>Product/Service Description</strong></th>
+                        <th scope="col"><strong>Product Image</strong></th>
+                        <th scope="col"><strong>Service Description</strong></th>
                         <th scope="col"><strong>Quantity</strong></th>
                         <th scope="col"><strong>Price</strong></th>
                         <th scope="col"><strong>Booth Position</strong></th>
@@ -98,9 +28,9 @@
                 </thead>
                 <tbody>
                     <ng-container *ngFor="let r of SupplyRequestList">
-                        <tr *ngIf="r.servicename">
+                        <tr *ngIf="r.type == 'isService'">
                            
-                            <td>admin</td> <!-- If you want to display the admin, replace 'admin' with '{{ r.admin }}' -->
+                            <td><img [src]="r.image.imageUrl" width="100px" height="100px"></td> <!-- If you want to display the admin, replace 'admin' with '{{ r.admin }}' -->
                             <td><a href="#" class="text-primary">{{ r.requirement }}</a></td>
                             <td>{{ r.quantity }}</td>
                             <td>{{ r.price }}</td>
@@ -126,8 +56,9 @@
     </div>
     
     
-</div>
 
+</div>
+<div class="row">
 <div class="card">
     <div class="card-header">
         <h4 class="card-title">Product  Requests <span>| Today</span></h4>
@@ -137,8 +68,8 @@
             <thead>
                 <tr>
                     
-                    <th scope="col"><strong>Admin</strong></th>
-                    <th scope="col"><strong>Product/Service Description</strong></th>
+                    <th scope="col"><strong>Product image</strong></th>
+                    <th scope="col"><strong>Product Description</strong></th>
                     <th scope="col"><strong>Quantity</strong></th>
                     <th scope="col"><strong>Price</strong></th>
                     <th scope="col"><strong>Booth Position</strong></th>
@@ -150,9 +81,9 @@
             </thead>
             <tbody>
                 <ng-container *ngFor="let r of SupplyRequestList">
-                    <tr *ngIf="r.productname">
+                    <tr *ngIf="r.type == 'isProduct'">
                        
-                        <td>admin</td> <!-- If you want to display the admin, replace 'admin' with '{{ r.admin }}' -->
+                        <td><img [src]="r.image.imageUrl" width="100px" height="100px"></td> <!-- If you want to display the admin, replace 'admin' with '{{ r.admin }}' -->
                         <td><a href="#" class="text-primary">{{ r.requirement }}</a></td>
                         <td>{{ r.quantity }}</td>
                         <td>{{ r.price }}</td>
@@ -176,4 +107,5 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>
