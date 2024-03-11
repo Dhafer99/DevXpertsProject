@@ -10,6 +10,8 @@ import { UserAnasService } from 'src/app/services/user-anas.service';
 import { User } from 'src/app/models/user';
 import { DatePipe } from '@angular/common';
 import { BarcodeFormat } from '@zxing/library';
+import { Result } from '@zxing/library';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -32,6 +34,19 @@ export class DetailOffreComponent implements OnInit{
    currentDate!:Date;
    comparaisonDate!:boolean;
      @ViewChild('fileInput') fileInput!: ElementRef;
+     @ViewChild('scanner', { static: false })
+  scanner!: ZXingScannerComponent;
+  
+
+  onScanSuccess(scanResult: string): void {
+    console.log('Scan result:', scanResult);
+    // Handle the scan result here
+  }
+
+  onScanError(error: Error): void {
+    console.error('Scan error:', error);
+    // Handle the scan error here
+  }
 
   //currentDevice: MediaDeviceInfo |undefined ;
   //currentDevice: MediaDeviceInfo | null = new MediaDeviceInfo();
@@ -84,6 +99,7 @@ export class DetailOffreComponent implements OnInit{
   onFileSelected(event: any): void {
   const fileList: FileList = event.target.files;
   if (fileList && fileList.length > 0) {
+    console.log(fileList[0].name.split('.').pop())
     if (fileList[0].name.split('.').pop() == "pdf"){
 
     this.selectedFile = fileList[0];
@@ -94,7 +110,7 @@ export class DetailOffreComponent implements OnInit{
             title: 'Erreur',
             text: "Le fichier doit etre pdf"
         });
-        this.fileInput.nativeElement.value = null;
+      this.fileInput.nativeElement.value = null;
     }
   }
 }
@@ -113,6 +129,11 @@ export class DetailOffreComponent implements OnInit{
       //else{
         this.candidatureService.addApplication(this.formData).subscribe(()=>{
         console.log( "l'offre a été ajoutée")
+        Swal.fire({
+            icon: 'success',
+            title: 'ok',
+            text: "Un mail de confirmation vous a été envoyé"
+        });
         this.modalReference.close();
         //console.log("notre form"+JSON.stringify(this.offerForm.value))})
         this.route.navigate(['/offers']);
@@ -152,10 +173,10 @@ formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.QR_CODE,
   ];
 
-onScanSuccess(result: string): void {
+/*onScanSuccess(result: string): void {
     const jsonObject = JSON.parse(result);
   }
-
+*/
 
   /////ENDFILE
 }

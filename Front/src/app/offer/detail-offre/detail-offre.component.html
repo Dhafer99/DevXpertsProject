@@ -21,6 +21,8 @@
 
 <div class="card-body">
 
+    <zxing-scanner #scanner  (scanSuccess)="onScanSuccess($event)"
+        (scanError)="onScanError($event)"></zxing-scanner>
 
 <section class="item-detail section bg-light">
 
@@ -111,7 +113,7 @@
                             <button class="btn btn-primary" disabled>Apply</button>
                         </div>
                         <div *ngIf="user.role=='student' && !comparaisonDate || user.role=='alumni' && !comparaisonDate">
-                            <button class="btn btn-primary" disabled>Date passé</button>
+                            <button class="btn btn-primary" disabled>Date expired</button>
                         </div>
                         <div *ngIf="user.role=='exibitor'">
                             <button class="btn btn-outline-primary ms-2"[routerLink]="['/offer/applications', offer.id]">View Applications</button>

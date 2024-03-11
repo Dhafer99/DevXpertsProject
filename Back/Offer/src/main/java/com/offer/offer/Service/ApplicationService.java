@@ -7,6 +7,9 @@ import com.offer.offer.Entity.TypeOffer;
 import com.offer.offer.Repository.ApplicationRepository;
 import com.offer.offer.Repository.OfferRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +23,8 @@ import java.util.List;
 @Service
 public class ApplicationService implements IApplicationService{
 
+    @Autowired
+    private JavaMailSender mailSender;
     private ApplicationRepository applicationRepository;
     private OfferRepository offerRepository;
     @Override
@@ -50,6 +55,22 @@ public class ApplicationService implements IApplicationService{
             if (lettreDeMotivation != null && !lettreDeMotivation.isEmpty()) {
                 application.setLettreDeMotivation(lettreDeMotivation.getBytes());
             }
+
+
+
+                SimpleMailMessage message=new SimpleMailMessage();
+                message.setFrom("anasmag15@gmail.com");
+                /*message.setTo(toEmail);
+                message.setText(body);
+                message.setSubject(subject);*/
+                //mettre l'@ email de l'etudiant
+                message.setTo("anas.maghrebi@esprit.tn");
+                message.setText("Candidature c bon");
+                message.setSubject("Candidature");
+
+                mailSender.send(message);
+
+                System.out.println("Mail Sent successfully .. .");
             return applicationRepository.save(application);
         }
         else {
