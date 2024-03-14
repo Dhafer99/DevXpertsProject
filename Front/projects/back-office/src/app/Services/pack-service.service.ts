@@ -123,5 +123,10 @@ public getPayments (  ): Observable<any>
     } );
  
   }
-  
+  sendcodeMail (email: string, code: string )
+  {
+    return this.http.post<any>( `${ this.url }sendMail/${email}/${code}`, {
+      
+    } );
+  }
 }

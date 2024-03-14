@@ -20,7 +20,6 @@ const routes: Routes = [
   { path: 'ListPacks/ListRooms', component: RoomsListComponent },
   { path: 'auction/:id', component: AuctionRoomComponent },
   { path: 'auction/:id/roulette', component: RouletteComponent },
-  
   { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent },
   { path: 'payments/:id', component: PaymentComponent },
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }

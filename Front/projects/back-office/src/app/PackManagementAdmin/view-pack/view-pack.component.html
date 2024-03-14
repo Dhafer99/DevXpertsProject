@@ -60,6 +60,8 @@
                             name="dateDebut"
                             type="datetime-local"
                             class="form-control"
+                            required
+                            [min]="getCurrentDateTime()"
                           />
                         </div>
                       </div>
@@ -74,6 +76,8 @@
                             name="duration"
                             type="number"
                             class="form-control"
+                            required
+                            min="0"
                           />
                         </div>
                       </div>
@@ -89,6 +93,8 @@
                             name="maxParticipants"
                             type="number"
                             class="form-control"
+                            required
+                            min="0"
                           />
                         </div>
                       </div>
@@ -104,6 +110,8 @@
                             name="price"
                             type="number"
                             class="form-control"
+                            required
+                            min="0"
                           />
                         </div>
                       </div>

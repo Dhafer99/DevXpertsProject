@@ -15,22 +15,37 @@ export class AddPackComponent {
   constructor(private packService: PackServiceService , private route:Router ) {}
 
   pack: Pack = new Pack();
- 
-  addPack(): void {
-   
-    if (
-      
-      !this.pack.description ||
-      !this.pack.price
-     
-    ) {
+  validateForm(): boolean {
+    if (!this.pack.typePack ||!this.pack.price ||!this.pack.description  ) {
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "You Need To Fill all the inputs !",
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Fill all the inputs!'
       });
+      return false;
+    }
+   
+    if (!this.pack.price || isNaN(this.pack.price) || this.pack.price < 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Price must be a non-negative number!'
+      });
+      return false;
+    }
+  
+   
+      
+  
+  
+    return true;
+  }
+  addPack(): void {
+    if (!this.validateForm()) {
       return;
     }
+  
+    
 
   
     this.packService.addPack(this.pack).subscribe(

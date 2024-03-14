@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.core.io.Resource;
+
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.auction.Entites.CheckoutPayment;
 import tn.esprit.auction.Entites.Company;
@@ -13,8 +16,13 @@ import tn.esprit.auction.Entites.Company;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.TypePack;
 import tn.esprit.auction.Services.PackageInterface;
+import org.springframework.core.io.ClassPathResource;
+import java.nio.charset.StandardCharsets;
+import org.apache.commons.io.IOUtils;
 
-
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,11 +31,27 @@ import java.util.Map;
 @Slf4j
 @RestController
 @AllArgsConstructor
-
 @RequestMapping("/api/packs")
 public class PackageController {
 
     PackageInterface packageInterface;
+    private JavaMailSender mailSender;
+    @PostMapping("/sendMail/{userEmail}/{resetCode}")
+    private void sendResetCodeByEmail(@PathVariable("userEmail") String userEmail, @PathVariable("resetCode") String resetCode) throws IOException, MessagingException {
+        MimeMessage mg = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mg, true);
+        helper.setTo(userEmail);
+        helper.setSubject("Get your Auction room code");
+        String htmlContent = loadHtmlFromResource("templates/emailTemplate.html");
+        String cssContent = loadCssFromResource("static/styles/emailStyles.css");
+
+        htmlContent = htmlContent.replace("{{resetCode}}", resetCode);
+        htmlContent = htmlContent.replace("</head>", "<style>" + cssContent + "</style></head>");
+
+        helper.setText(htmlContent, true);
+
+        mailSender.send(mg);
+    }
     @GetMapping("/getPayments")
     public  List<CheckoutPayment> getPayments() {
         return  packageInterface.getPayments();
@@ -36,8 +60,14 @@ public class PackageController {
     public void SendCodeRoom(@PathVariable("email") String email, @PathVariable("code") String code) {
        packageInterface.sendCoderoom(email,code);
     }
-
-
+    private String loadCssFromResource(String filePath) throws IOException {
+        Resource resource = new ClassPathResource(filePath);
+        return IOUtils.toString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
+    private String loadHtmlFromResource(String filePath) throws IOException {
+        Resource resource = new ClassPathResource(filePath);
+        return IOUtils.toString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
     @GetMapping("/getPackStatisticsByYearAndStatus")
     public  Map<Integer, Map<Long, Long>> getPackStatisticsByYearAndStatus() {
         return  packageInterface.getPackStatisticsByYear();

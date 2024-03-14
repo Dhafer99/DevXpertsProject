@@ -1,10 +1,17 @@
 package tn.esprit.auction.Controller;
 
 import lombok.AllArgsConstructor;
+import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 
 import com.stripe.Stripe;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,22 +29,49 @@ import tn.esprit.auction.Entites.Room;
 import tn.esprit.auction.Repository.PaymentRepository;
 import tn.esprit.auction.Repository.RoomRepository;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 @RestController
 @RequestMapping(value = "/api/stripe")
 @AllArgsConstructor
 @CrossOrigin(origins = "*")
 public class StripeController {
+    private JavaMailSender mailSender;
+    private void sendResetCodeByEmail(String userEmail,String resetCode) throws IOException, MessagingException {
+        MimeMessage mg = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mg, true);
+        helper.setTo(userEmail);
+        helper.setSubject("Get your Auction room code");
+        String htmlContent = loadHtmlFromResource("templates/emailTemplate.html");
+        String cssContent = loadCssFromResource("static/styles/emailStyles.css");
+
+        htmlContent = htmlContent.replace("{{resetCode}}", resetCode);
+        htmlContent = htmlContent.replace("</head>", "<style>" + cssContent + "</style></head>");
+
+        helper.setText(htmlContent, true);
+
+        mailSender.send(mg);
+    }
     // create a Gson object
     private static Gson gson = new Gson();
 PaymentRepository paymentRepository;
 RoomRepository roomRepository ;
+    private String loadCssFromResource(String filePath) throws IOException {
+        Resource resource = new ClassPathResource(filePath);
+        return IOUtils.toString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
+    private String loadHtmlFromResource(String filePath) throws IOException {
+        Resource resource = new ClassPathResource(filePath);
+        return IOUtils.toString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
     @PostMapping("/payment/{roomId}")
     /**
      * Payment with Stripe checkout page
      *
      * @throws StripeException
      */
-    public String paymentWithCheckoutPage(@PathVariable("roomId") Long roomId,@RequestBody CheckoutPayment payment) throws StripeException {
+    public String paymentWithCheckoutPage(@PathVariable("roomId") Long roomId,@RequestBody CheckoutPayment payment) throws StripeException, MessagingException, IOException {
         // We initilize stripe object with the api key
         init();
         // We create a  stripe session parameters
@@ -62,16 +96,22 @@ RoomRepository roomRepository ;
                 .build();
         // create a stripe session
         Session session = Session.create(params);
-        Map<String, String> responseData = new HashMap<>();
-        // We get the sessionId and we putted inside the response data you can get more info from the session object
-        responseData.put("id", session.getId());
+
+        // Mise à jour de la base de données ou autres actions après le succès du paiement
         payment.setPaymentDay(new Date());
         Room room = roomRepository.findById(roomId).orElse(null);
-        room.setConfirmedParticipant(room.getConfirmedParticipant()+1);
+        room.setConfirmedParticipant(room.getConfirmedParticipant() + 1);
         roomRepository.save(room);
+
+        // Envoi du code par email
+        sendResetCodeByEmail("eya.somai@esprit.tn", room.getCodeRoom());
+
+        // Sauvegarde du paiement dans la base de données
         paymentRepository.save(payment);
 
-        // We can return only the sessionId as a String
+        // Retour de l'ID de la session
+        Map<String, String> responseData = new HashMap<>();
+        responseData.put("id", session.getId());
         return gson.toJson(responseData);
     }
     @PostMapping("/sucess")

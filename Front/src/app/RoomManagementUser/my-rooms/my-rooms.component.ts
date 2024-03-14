@@ -6,6 +6,7 @@ import { Room } from 'projects/back-office/src/app/Models/Room';
 import { PackServiceService } from 'projects/back-office/src/app/Services/pack-service.service';
 import { RoomServiceService } from 'projects/back-office/src/app/Services/room-service.service';
 import { Subscription, interval } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-my-rooms',
@@ -33,7 +34,6 @@ export class MyRoomsComponent implements OnInit {
         (response: boolean) => {  
           if (response === false) {
           this.roomService.addEnchere(1 ,this.room.idRoom).subscribe(() => {
-            // Fermer la modal après l'ajout de l'enchère
             this.modal.nativeElement.dismiss();
           
           });
@@ -49,7 +49,11 @@ export class MyRoomsComponent implements OnInit {
    
         
     } else {
-      console.log("Code incorrect");
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Incorrect code !'
+      });
     }
   }
   updateCountdown() {

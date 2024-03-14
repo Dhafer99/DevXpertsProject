@@ -59,8 +59,60 @@ export class ViewPackComponent implements OnInit {
     });
   }
   room: Room = new Room();
+  getCurrentDateTime(): string {
+    return new Date().toISOString().split('.')[0];
+  }
+  validateForm(): boolean {
+    if (!this.room.duration ||!this.room.price ||!this.room.maxParticipants ||!this.room.dateDebut ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Fill all the inputs!'
+      });
+      return false;
+    }
+    if (!this.room.dateDebut || new Date(this.room.dateDebut) < new Date()) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Start date must be greater than or equal to current date!'
+      });
+      return false;
+    }
   
+    if (!this.room.price || isNaN(this.room.price) || this.room.price < 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Price must be a non-negative number!'
+      });
+      return false;
+    }
+    if (!this.room.duration || isNaN(this.room.duration) || this.room.duration < 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'duration must be a non-negative number!'
+      });
+      return false;
+    }
+    if (!this.room.maxParticipants || isNaN(this.room.maxParticipants) || this.room.maxParticipants < 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'max Participants must be a non-negative number!'
+      });
+      return false;
+    }
+  
+    // Ajoutez d'autres validations si nécessaire
+  
+    return true;
+  }
   addRooms():void { 
+    if (!this.validateForm()) {
+      return;
+    }
   
    
   this.roomService.addRoom(this.room).subscribe(

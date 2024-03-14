@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
   notifications: any[] = [];
  
 
-
   ngOnInit() {
     this.notifications.push("eee");
     this.webSocketService.getNotifications().subscribe((notification) => {
