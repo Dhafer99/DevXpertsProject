@@ -78,4 +78,9 @@ export class CandidatureService {
   rechercheOffre(tritre:string):Observable<any>{
     return this.http.get<any>(this.offerUrl+"/rechercheOffre/"+tritre);
   }
+  //PYTHON
+  searchInCV(id:string,mot_cle:string):Observable<any>{
+    //return this.http.get<Offer[]>(this.offerUrl+'/consumeFlaskEndpoint/'+id);
+    return this.http.get<any>("http://localhost:8000/recherche/"+id+"/"+mot_cle);
+  }
 }
