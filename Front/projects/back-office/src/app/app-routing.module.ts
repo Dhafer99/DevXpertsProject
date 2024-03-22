@@ -9,6 +9,7 @@ import { ChatbotComponent } from './Appointment/chatbot/chatbot.component';
 import { Calander2Component } from './Appointment/calander2/calander2.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ImportFileComponent } from './Appointment/import-file/import-file.component';
+import { OnlineMeetingComponent } from './Appointment/online-meeting/online-meeting.component';
 
 const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 { path: 'classrooms', component: AfficherClassroomComponent },
@@ -18,7 +19,7 @@ const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 {path: 'chatBot', component:ChatbotComponent  },
 {path: 'calander2', component:Calander2Component  },
 {path: 'importfile', component:ImportFileComponent  },
-
+{path: 'OnlineMeeting/:idroom', component:OnlineMeetingComponent  },
 ];
 
 @NgModule({

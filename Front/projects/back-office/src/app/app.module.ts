@@ -32,6 +32,9 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { IconsModule } from '@progress/kendo-angular-icons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImportFileComponent } from './Appointment/import-file/import-file.component';
+import { OnlineMeetingComponent } from './Appointment/online-meeting/online-meeting.component';
+import { RouterModule } from "@angular/router";
+
 
 @NgModule({
   declarations: [
@@ -45,6 +48,7 @@ import { ImportFileComponent } from './Appointment/import-file/import-file.compo
     ChatbotComponent,
     Calander2Component,
     ImportFileComponent,
+    OnlineMeetingComponent,
    
    
    
@@ -67,7 +71,8 @@ import { ImportFileComponent } from './Appointment/import-file/import-file.compo
     ReactiveFormsModule,
     FormsModule,
     IconsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule
 
     
   ],

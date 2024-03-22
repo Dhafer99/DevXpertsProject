@@ -8,7 +8,7 @@ import { Appointement2 } from "../../models/appointement2";
 import { AbstractControl, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ClassroomService } from "../../services/classroom.service";
 import Swal from "sweetalert2";
-
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-calander2',
@@ -156,6 +156,17 @@ getMinutes(): number[] {
     })
   }
 
+/* --------------------Test meeting ------------------------- */
+
+  OnlineMeeting(){
+
+   
+      this.router.navigate(['/OnlineMeeting',21]);
+  
+ 
+
+  }
+/* ----------------------------------------------- */
 
   handleClick(event:EventClickArg){
     console.log(event)
@@ -307,7 +318,7 @@ randomfucnc(){
     console.log('Selected date:', selectedDate);
     // Perform further actions with the selected date
   }
-  constructor(private calendarservice :ClassroomService ){}
+  constructor(private calendarservice :ClassroomService, private router: Router ){}
   ngAfterViewInit(): void {
     const dateContainers = document.querySelectorAll('.input-container');
 
