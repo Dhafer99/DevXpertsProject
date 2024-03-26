@@ -17,5 +17,5 @@ public interface IAppointementService {
     List<Appointement> retrieveappointement(int sender, int reciever);
     void deleteappointement(int id);
 
-
+    public void sendEmail(String recipient,Appointement user);
 }

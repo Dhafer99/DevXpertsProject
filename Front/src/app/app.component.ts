@@ -30,5 +30,15 @@ export class AppComponent {
 
   }
 
+  goToallquiz(){
+    this.router.navigate(['/allquiz']);
+
+  }
+
+  goToonequiz(){
+    this.router.navigate(['/onequiz']);
+
+  }
+
   /*********************************** */
 }

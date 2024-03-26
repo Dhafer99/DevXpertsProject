@@ -13,6 +13,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DetailsComponent } from './details/details.component';
+import { ALLquizComponent } from './allquiz/allquiz.component';
+import { OnequizComponent } from './onequiz/onequiz.component';
+
 
 
 @NgModule({
@@ -20,6 +24,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     ProfileComponent,
     CalenderComponent,
+    DetailsComponent,
+    ALLquizComponent,
+    OnequizComponent,
+   
     
   ],
   imports: [

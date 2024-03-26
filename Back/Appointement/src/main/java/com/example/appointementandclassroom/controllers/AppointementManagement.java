@@ -1,10 +1,12 @@
 package com.example.appointementandclassroom.controllers;
 
+import com.example.appointementandclassroom.entities.ApiOpenquizzdb;
 import com.example.appointementandclassroom.entities.Appointement;
 import com.example.appointementandclassroom.entities.Classroom;
+import com.example.appointementandclassroom.entities.QuizApi;
 import com.example.appointementandclassroom.services.AppointementService;
 import com.example.appointementandclassroom.services.ClassroomService;
-import com.example.appointementandclassroom.services.IAppointementService;
+import com.example.appointementandclassroom.services.IQuizService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class AppointementManagement {
     private  final AppointementService appointementService ;
     @Autowired
     private  final ClassroomService classroomService ;
+
+    @Autowired
+    private  final IQuizService testService;
     //----------------------Swager -------------------------------
     //  http://localhost:8095/swagger-ui/index.html#/
     //-----------------------------------------------------------
@@ -134,5 +139,34 @@ public List<Date> getAvailableDate(){
 
 
 
-//----------------------------------------------------------
+   //----------------------------------------------------------
+    // -------------- Quiz-------------------------
+
+
+
+    @GetMapping("/retrieve-all-quizs")
+    public List<QuizApi> retrieveAllTests() {
+        return testService.retrieveAllQuizs();
+    }
+
+    @GetMapping("/retrieve-quiz/{id}")
+    public QuizApi retrieveTest(@PathVariable("id") Long id) {
+        return testService.retrieveQuiz(id);
+    }
+
+    @PostMapping("/add-quiz")
+    public String addTest(@RequestBody QuizApi test) {
+        return testService.addTest(test);
+    }
+
+
+
+
+    @PostMapping("/add-quiz-api")
+    public void addtestwithapi(@RequestBody List<ApiOpenquizzdb> apiOpenquizzdbs) {
+        testService.addtestwithapi(apiOpenquizzdbs);
+    }
+
+
+    
 }

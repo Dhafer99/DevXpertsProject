@@ -6,12 +6,14 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { calenderEvent } from 'projects/back-office/src/app/models/appointement';
 import { ClassroomService } from 'projects/back-office/src/app/services/classroom.service';
 import Swal from 'sweetalert2';
+import {  Router } from '@angular/router';
 @Component({
   selector: 'app-calender',
   templateUrl: './calender.component.html',
   styleUrls: ['./calender.component.css']
 })
 export class CalenderComponent implements OnInit,AfterViewInit {
+
 
   public value: Date;
   public format = 'MM/dd/yyyy HH:mm';
@@ -298,7 +300,7 @@ randomfucnc(){
     console.log('Selected date:', selectedDate);
     // Perform further actions with the selected date
   }
-  constructor(private calendarservice :ClassroomService ){}
+  constructor(private calendarservice :ClassroomService , private router: Router){}
   ngAfterViewInit(): void {
     const dateContainers = document.querySelectorAll('.input-container');
 
@@ -359,6 +361,25 @@ randomfucnc(){
       };
      
     })
+
+
+
+ 
+
+   
+    
+  
+ 
+
+  }
+    moreDetails(){
+
+
+      this.router.navigate(['Details']);
+
+
+    }
+
   }
 
 
@@ -427,4 +448,4 @@ randomfucnc(){
 
   
 
-}
+

@@ -3,11 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Classroom } from '../models/classroom';
 import { Appointement } from '../models/appointement';
+import { Quiz, Test } from '../models/quiz';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClassroomService {
+ 
+  
  classroomURL = 'http://localhost:8095/api/AppointementAndClassrooms'
   constructor(private http:HttpClient) { }
 
@@ -82,5 +85,52 @@ showAvailability():Observable<Date[]>{
 getMyAppoitement(iduser:number):Observable<Appointement[]>{
   return this.http.get<Appointement[]>(this.classroomURL+"/all_Appointement_foryouser/"+iduser)
 }
+
+
+
+
+
+
+
+/*
+-------------------------------------Quiz
+*/
+public getTests():Observable<Test[]>{
+  return this.http.get<any>(`${this.classroomURL}/retrieve-all-quizs`);
+} 
+
+public getatest(id: number):Observable<Test>{
+  return this.http.get<Test>(`${this.classroomURL}/retrieve-quiz/${id}`);
+} 
+
+addQuiz(quiz: Quiz,img:string): Observable<void> {
+  return this.http.post<void>(`${this.classroomURL}/add-quiz/${img}`, quiz);
+}
+
+ public activateanactivate(userId: number):Observable<void>{
+  return this.http.put<void>(`${this.classroomURL}/activateanactivate/${userId}`, {});
+}
+
+public getaquestion(link: any):Observable<any>{
+  return this.http.get<any>(`${link}`);
+} 
+ 
+
+
+public addQuizApi(quizs: any[]): Observable<void> {
+  return this.http.post<void>(`${this.classroomURL}/add-quiz-api`, quizs);
+}
+
+
+
+/* public activateanactivate(userId: number):Observable<void>{
+  return this.http.put<void>(${this.classroomURL}/activateanactivate/${userId}, {});
+}
+
+public getaquestion(link: any):Observable<any>{
+  return this.http.get<any>(${link});
+}  */
+
+
 
 }

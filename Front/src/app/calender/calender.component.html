@@ -6,6 +6,12 @@
     <div *ngIf="showDelete">
         <button class="btn btn-primary" (click)="deleteAppointment()">Delete Appointement</button>
     </div>
+
+    <div *ngIf="showDelete">
+        <button class="btn btn-primary" (click)="moreDetails()">more Details</button>
+    </div>
+
+
     <div class="card" *ngIf="showForms === true">
         <div class="card-body">
             <!-- <h5 class="card-title" >Add New Appointment</h5> -->

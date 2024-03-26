@@ -34,6 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImportFileComponent } from './Appointment/import-file/import-file.component';
 import { OnlineMeetingComponent } from './Appointment/online-meeting/online-meeting.component';
 import { RouterModule } from "@angular/router";
+import { QuizListComponent } from './Appointment/quiz-list/quiz-list.component';
+import { AddquizComponent } from './Appointment/addquiz/addquiz.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { RouterModule } from "@angular/router";
     Calander2Component,
     ImportFileComponent,
     OnlineMeetingComponent,
+    QuizListComponent,
+    AddquizComponent,
    
    
    

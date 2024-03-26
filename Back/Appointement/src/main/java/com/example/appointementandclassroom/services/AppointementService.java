@@ -4,8 +4,12 @@ import com.example.appointementandclassroom.entities.Appointement;
 import com.example.appointementandclassroom.entities.Classroom;
 import com.example.appointementandclassroom.repositories.AppointementRepo;
 import com.example.appointementandclassroom.repositories.ClassroomRepo;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
@@ -16,7 +20,7 @@ import java.util.Random;
 @Service
 @RequiredArgsConstructor
 public class AppointementService implements  IAppointementService {
-@Autowired
+    @Autowired
     private AppointementRepo appointementRepo;
     @Autowired
     private ClassroomRepo classroomRepo;
@@ -45,7 +49,10 @@ public class AppointementService implements  IAppointementService {
 
               appointement.setEnd(ending);
               appointement.setClassroom(myclass);
+
+              sendEmail("chakroun.fares2020@gmail.com", appointement);
               return appointementRepo.save(appointement);
+
           }
       }
       System.out.println("test1");
@@ -107,6 +114,25 @@ public class AppointementService implements  IAppointementService {
         classroomRepo.save(randomClassroom);
     }
 
+
+
+
+    @Autowired
+    private JavaMailSender emailSender;
+
+    public void sendEmail(String recipient,Appointement user) {
+        MimeMessage message = emailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        try {
+            helper.setTo(recipient);
+            helper.setSubject("Test email");
+            helper.setText("Good Morning ,"+user.getReceiver() +"You have an  Appointement with Mr "+user.getSender()+" This Appointement  Started  " +user.getStart());
+            emailSender.send(message);
+            System.out.println("Message envoye");
+        } catch (MessagingException e) {
+            System.out.println("Error: " + e.toString());
+        }
+    }
 
 
 }
