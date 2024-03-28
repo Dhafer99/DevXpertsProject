@@ -72,7 +72,14 @@ export class DetailOffreComponent implements OnInit{
     this.data = 'some text';
     this.blob = new Blob([this.offer.file], { type: 'application/octet-stream' });
     this.fileUrl = window.URL.createObjectURL(this.blob);
-    
+  }
+
+  getPourcentageMatch(id:string){
+      console.log("aaa")
+    this.offerService.getPourcentageMatch(id).subscribe((data:any)=>{
+      console.log(data)
+      console.log("aaa")
+    })
   }
 
 
@@ -142,6 +149,7 @@ export class DetailOffreComponent implements OnInit{
   }
   openLg(content: any) {
         this.modalReference=this.modalService.open(content, { size: 'md'});
+        this.getPourcentageMatch(this.offer.id.toString());
       }
 
 

@@ -58,8 +58,8 @@ export class AfficherCandidatureComponent implements OnInit{
         this.tab=data
         console.log(data[0])
         this.listOccurence.push(data[0].occ);
-        if(data[0].occ==0){
-          this.listCandidatures.splice(i,1)
+        if(data[0].occ==0 || data[0].occ==undefined){
+          //this.listCandidatures.splice(i,1)
         }
         /*else if (this.tab!=0){
           //this.listOccurence=[]
