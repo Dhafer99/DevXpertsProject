@@ -10,6 +10,8 @@ import { EventServiceService } from 'src/app/services/event-service.service';
   styleUrls: ['./events-list.component.css']
 })
 export class EventsListComponent implements OnInit{
+
+  
   userId=1
   myInteresetList:Interested[]=[]
   constructor(

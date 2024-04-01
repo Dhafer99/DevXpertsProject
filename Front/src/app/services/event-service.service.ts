@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Image } from '../models/image';
-import { Event, Rating } from '../models/event';
+import { Comment, Comments, Event, Like, Rating } from '../models/event';
 import { Interested } from "../models/Interested";
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class EventServiceService {
     interestURL='/Interest'
     ratingURL='/Rating'
     imageURL='/cloudinary'
-    
+    commentURL='/Comment'
     constructor(private http:HttpClient) { }
   //-------------------------------ADD EVENT ------------------------------------------
     addEvent(Event:Event,images:Image[],mainImage:Image):Observable<Event>{
@@ -52,13 +52,77 @@ export class EventServiceService {
     return this.http.get<Event>(this.__URL+this.eventURL+'/fetchEventByName/'+name)
   }
   //------------------------------------------------------------------------------------------
-    //-----------------------------------Rating related URLS-------------------------------------
+    //-----------------------------------Rating / Comment / LIKES related URLS-------------------------------------
     // this does add / update on a rating nothing to change here
     addRating(Rating:Rating):Observable<Event>{
       //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
    
       return  this.http.post<Event>(this.__URL+this.ratingURL+'/addRating',Rating)
   
+    }
+    addComment(Comment:Comment):Observable<Comment>{
+      //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+      return  this.http.post<Comment>(this.__URL+this.commentURL+'/addComment',Comment)
+    }
+    addCommentFirst(Comment:Comment):Observable<Comment[]>{
+      //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+      return  this.http.post<Comment[]>(this.__URL+this.commentURL+'/addCommentFirst',Comment)
+    }
+    getEventComment(int:number):Observable<Comment[]>{
+      return this.http.get<Comment[]>(this.__URL+this.commentURL+'/EventComment/'+int);
+    }
+    orderComments(comments: Comment[]): Comments[] {
+      let mycomments: Comments[] = [];
+      let maxniveau: number = 0;
+  
+      // Find the maximum level of comments
+      for (let index = 0; index < comments.length; index++) {
+        const element: Comment = comments[index];
+        if (maxniveau < element.level)
+          maxniveau = element.level;
+      }
+  
+      // Helper function to recursively process comments at each level
+      function processCommentsAtLevel(level: number, parentComments: Comments): void {
+        let commentsAtLevel: Comments[] = [];
+  
+        for (let index = 0; index < comments.length; index++) {
+          const element: Comment = comments[index];
+          if (element.level === level && element.thread === parentComments.comment.id) {
+            let subcomments: Comments = {
+              level: level,
+              comment: element,
+              list: []
+            };
+            parentComments.list.push(subcomments);
+            commentsAtLevel.push(subcomments);
+          }
+        }
+  
+        for (let i = 0; i < commentsAtLevel.length; i++) {
+          processCommentsAtLevel(level + 1, commentsAtLevel[i]);
+        }
+      }
+  
+      // Process comments at level 0
+      for (let index = 0; index < comments.length; index++) {
+        const element: Comment = comments[index];
+        if (element.thread === 0 && element.level === 0) {
+          let trialcomments: Comments = {
+            level: 0,
+            comment: element,
+            list: []
+          };
+          mycomments.push(trialcomments);
+          processCommentsAtLevel(1, trialcomments);
+        }
+      }
+  
+      return mycomments;
+    }
+    addLike(Like:Like):Observable<Comment[]>{
+      //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+      return  this.http.post<Comment[]>(this.__URL+this.commentURL+'/addLike',Like)
     }
   //-------------------------------- ------------------------------
      //----------------------------------Interested related URLS-------------------------------------

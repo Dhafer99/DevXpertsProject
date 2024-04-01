@@ -27,7 +27,7 @@
 
             <c-carousel [interval]="0">
               <c-carousel-inner>
-                <c-carousel-item *ngFor="let slide of event.images">
+                <c-carousel-item *ngFor="let slide of eventImages.images">
                   <img
                   [src]="slide.imageUrl"
                   alt="{{slide.name}}"
@@ -122,20 +122,8 @@
               >
                 <div class="message my-4">
                   <form [formGroup]="myform">
-                    <label
-                   
-                      for="validationDefault03"
-                      class="form-label fw-semibold"
-                    >
-                      Add comment :</label
-                    >
-                    <textarea
-                    formControlName="comment"
-                      class="form-control"
-                      id="exampleFormControlTextarea1"
-                      rows="3"
-                      required
-                    ></textarea>
+                  
+                 
                     <ngb-rating [max]="5" formControlName="rating"></ngb-rating>
                     <div class="submit-button mt-4">
                       <button
@@ -143,7 +131,7 @@
                         class="btn btn-primary"
                         type="submit"
                       >
-                        Add
+                        Confirm
                       </button>
                     </div>
                   </form>
@@ -176,63 +164,33 @@
     <div class="container">
       <div class="row mt-5">
         <div class="col-lg-8 order-2 order-lg-1">
-          <div class="forum-item" *ngFor="let rate of event.ratings">
-           
-  
+          <div class="forum-item">
+              <div class="row d-flex align-items-center justify-content-start">
+                  <div class="col-sm-2 col-3">
+                      <div class="avatar forum-profile">
+                          <img src="images/inner-image/user/img-2.jpg" alt=""
+                              class="img-fluid rounded-circle avatar-md">
+                      </div>
+                  </div>
+                  <div class="col-xl-8 col-md-6 col-5 my-2">
+                      <form [formGroup]="commentForm">
+                          <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="comment"
+                              placeholder="Add Your Answer" name="comment" required="true">
+                      </form>
+                  </div>
+                  <div class="col-2">
+                      <button class="btn btn-dark" (click)="firstComment()">Answer</button>
+              </div>
+          </div>
             <div class="answer-process-details" >
-              <div class="process-box">
-                <div class="d-flex align-items-center justify-content-start">
-                  <div class="process-image">
-                    <div class="avatar forum-profile">
-                      <!-- Photo profile de user   paladin -->
-                      <img
-                        src="../../../assets/images/inner-image/creator/img-1.png"
-                        alt=""
-                        class="img-fluid rounded-circle avatar-md"
-                      />
-                    </div>
-                  </div>
-                  <div class="profile-content ms-3">
-                    <div class="side-content d-flex">
-                      <!-- user name    paladin-->
-                      <h6 class="fw-bold mb-0"> {{rate.userID}} </h6>
-                      <p class="mb-0 ms-4 text-muted">
-                        <i
-                          class="mdi mdi-clock-outline f-18 me-2 align-middle"
-                        ></i
-                        > 
-                      </p>
-                    </div>
-                  </div>
-                </div>
-  
-                <div class="process-content">
-                  <p class="text-muted">
-                    {{rate.comment}}
-
-                  </p>
-                  <div class="d-flex mb-4">
-                    <div class="like d-flex align-items-center">
-                      <i class="mdi mdi-thumb-up-outline f-20 text-blue"></i>
-                      <p class="mb-0 ms-2 fw-semibold text-muted">
-                        <ngb-rating [max]="5" [rate]="rate.rating" [readonly]="true"></ngb-rating> 
-                      </p>
-                    </div>
-                    <div class="dislike d-flex align-items-center ms-4">
-                      <i class="mdi mdi-thumb-down-outline f-20 text-dark"></i>
-                      <p class="mb-0 ms-2 fw-semibold text-muted">1 Dislike</p>
-                    </div>
-                  </div>
-                  <hr />
+              <div *ngIf="comments.length!=0 || !comments">
+                  <app-comment [comments]="comments" [previousComment]="comments[0].comment"></app-comment>
                 </div>
               </div>
-  
-             
             </div>
           </div>
         </div>
       </div>
-    </div>
   </section>
   </section>
 

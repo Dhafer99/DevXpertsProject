@@ -13,14 +13,14 @@ import java.util.Date;
 @NoArgsConstructor
 @Table
 @Builder
-public class Rating {
+public class Dislike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id ;
     private int userID;
     private int eventID;
-    private double rating;
-    private String comment;
+    private int CommentID;
+
     private String status;
     private Date datetime;
 }

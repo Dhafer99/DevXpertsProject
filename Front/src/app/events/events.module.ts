@@ -10,13 +10,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InitialListEventComponent } from './initial-list-event/initial-list-event.component';
 import { CarouselModule } from '@coreui/angular';
+import { CommentComponent } from './comment/comment.component';
 
 
 @NgModule({
   declarations: [
     DisplayComponent,
     EventsListComponent,
-    InitialListEventComponent
+    InitialListEventComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,

@@ -38,7 +38,33 @@ interesteds?: Interested[]; // Assuming InterestedBy is another TypeScript inter
     comment!: string;
     status!: string;
   }
-  
+  export class Comment {
+    id: number;
+    userID: number;
+    eventID: number;
+    likesCount: number;
+    dislikesCount: number;
+    thread: number;
+    comment: string;
+    status: string;
+    datetime: Date;
+    level:number;
+    likes: Like[]; // Assuming Like class is defined
+  }
+  export class Comments {
+    level:number;
+   comment: Comment;
+    list:Comments[]
+  }
+
+  export class Like {
+    id: number;
+    userId: number;
+    eventId: number;
+    commentId: number;
+    status: string;
+    datetime: Date;
+  }
 // event-type.enum.ts
 
 export enum EventType {
