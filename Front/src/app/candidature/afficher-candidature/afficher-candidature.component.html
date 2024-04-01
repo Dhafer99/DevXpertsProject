@@ -26,6 +26,7 @@
                             <p class="card-text">{{c.offer.description}}</p>
                             <p class="card-text">Covering letter : <i class="mdi mdi-arrow-down-bold-circle mdi-24px" (click)="telechargerDocument(c.id)"></i></p>
                             <p class="card-text">curriculum vitae : <i class="mdi mdi-arrow-down-bold-circle mdi-24px" (click)="telechargerDocument(c.id)"></i></p>
+                            <p class="card-text">CV Matching : <i class="mdi mdi-reload" (click)="getMatchCVE(c.id)"></i></p>
                             <p *ngIf="titre!=''">L'occurrence du mot {{titre}} : {{c.occ}}</p>
                             <div class="d-flex justify-content-between"> 
                                 <button type="button" class="btn btn-success ml-auto" (click)="accepterCandidature(c.id.toString())">Accept</button>
@@ -41,6 +42,7 @@
                                     (click)="telechargerDocument(c.id)"></i></p>
                             <p class="card-text">curriculum vitae : <i class="mdi mdi-arrow-down-bold-circle mdi-24px"
                                     (click)="telechargerDocument(c.id)"></i></p>
+                            <p class="card-text">CV Matching : <i class="mdi mdi-reload" (click)="getMatchCVE(c.id)"></i></p>
                             <p *ngIf="titre!=''">L'occurrence du mot {{titre}} : {{c.occ}}</p>
                             <div class="d-flex justify-content-center">
                                 <button type="button" class="btn btn-success">{{c.status}}</button>
@@ -55,6 +57,7 @@
                                     (click)="telechargerDocument(c.id)"></i></p>
                             <p class="card-text">curriculum vitae : <i class="mdi mdi-arrow-down-bold-circle mdi-24px"
                                     (click)="telechargerDocument(c.id)"></i></p>
+                            <p class="card-text">CV Matching : <i class="mdi mdi-reload" (click)="getMatchCVE(c.id)"></i></p>
                             <p *ngIf="titre!=''">L'occurrence du mot {{titre}} : {{c.occ}}</p>
                             <div class="d-flex justify-content-center">
                                 <button type="button" class="btn btn-danger">{{c.status}}</button>

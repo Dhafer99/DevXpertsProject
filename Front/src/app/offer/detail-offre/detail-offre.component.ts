@@ -1,4 +1,4 @@
-import { Component, OnInit, NO_ERRORS_SCHEMA, ElementRef, ViewChild  } from '@angular/core';
+import { Component, OnInit, NO_ERRORS_SCHEMA, ElementRef, ViewChild, TemplateRef  } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Offer } from 'src/app/models/offer';
 import { CandidatureService } from 'src/app/services/candidature.service';
@@ -22,6 +22,7 @@ import Swal from 'sweetalert2';
 export class DetailOffreComponent implements OnInit{
   offer!:Offer;
    id=0
+   titre:string='';
    data!:any;
    blob !:any;
    fileUrl!:any;
@@ -36,7 +37,7 @@ export class DetailOffreComponent implements OnInit{
      @ViewChild('fileInput') fileInput!: ElementRef;
      @ViewChild('scanner', { static: false })
   scanner!: ZXingScannerComponent;
-  
+  @ViewChild('content', { static: true }) contentRef!: TemplateRef<any>;
 
   onScanSuccess(scanResult: string): void {
     console.log('Scan result:', scanResult);
@@ -79,7 +80,31 @@ export class DetailOffreComponent implements OnInit{
     this.offerService.getPourcentageMatch(id).subscribe((data:any)=>{
       console.log(data)
       console.log("aaa")
+      this.titre=data;
     })
+    let timerInterval:any;
+        Swal.fire({
+          title: "Checking the CV.!",
+          html: "Data processing.",
+          timer: 13000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            /*const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+              timer.textContent = `${Swal.getTimerLeft()}`;
+            }, 100);*/
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("I was closed by the timer");
+          }
+          this.openLg(this.contentRef);
+        });
   }
 
 
@@ -145,11 +170,12 @@ export class DetailOffreComponent implements OnInit{
         //console.log("notre form"+JSON.stringify(this.offerForm.value))})
         this.route.navigate(['/offers']);
         
+        
     })
   }
-  openLg(content: any) {
+  openLg(content: TemplateRef<any>) {
         this.modalReference=this.modalService.open(content, { size: 'md'});
-        this.getPourcentageMatch(this.offer.id.toString());
+        //this.getPourcentageMatch(this.offer.id.toString());
       }
 
 

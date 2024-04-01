@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Candidature, Status } from 'src/app/models/candidature';
 import { CandidatureService } from 'src/app/services/candidature.service';
 import { saveAs } from 'file-saver';
+import { OfferService } from 'src/app/services/offer.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-afficher-candidature',
@@ -12,7 +14,7 @@ import { saveAs } from 'file-saver';
 })
 export class AfficherCandidatureComponent implements OnInit{
 
-  constructor(private activateroute:ActivatedRoute,private candidatureService:CandidatureService,private http: HttpClient){  }
+  constructor(private activateroute:ActivatedRoute,private candidatureService:CandidatureService,private http: HttpClient , private offerService:OfferService){  }
   
   //listCandidatures:Candidature[]=[]
   listCandidatures:any;
@@ -24,6 +26,7 @@ export class AfficherCandidatureComponent implements OnInit{
   accepter!:Status;
   formData = new FormData();
   titre:string='';
+  pourcentage:any;
   
   ngOnInit(): void {
     this.encours=Status.en_cours;
@@ -31,6 +34,7 @@ export class AfficherCandidatureComponent implements OnInit{
     this.accepter=Status.accépté;
     this.id=this.activateroute.snapshot.params['id'];
     this.getAllAppByOffer();
+    //this.getMatchCVE();
   }
 
   getAllAppByOffer(){
@@ -39,6 +43,59 @@ export class AfficherCandidatureComponent implements OnInit{
     //console.log("mylist:"+JSON.stringify(this.listCandidatures))
     })
   }
+
+  getMatchCVE(idC: string){
+    this.offerService.getPourcentageMatchE(idC).subscribe((data:any)=>{
+    this.pourcentage=data;
+    console.log(data)
+    })
+    this.openAlerts();
+  }
+
+
+  openAlerts(): void {
+    this.openFirstAlert()
+      .then(() => this.openSecondAlert())
+      .then(() => console.log('Alerts completed'))
+      .catch((error) => console.error(error));
+  }
+
+  openFirstAlert(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      let timerInterval:any;
+        Swal.fire({
+          title: "Checking the CV.!",
+          html: "Data processing.",
+          timer: 13000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            /*const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+              timer.textContent = `${Swal.getTimerLeft()}`;
+            }, 100);*/
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("I was closed by the timer");
+          }
+        }).then(() => resolve());
+    });
+  }
+
+  openSecondAlert(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      Swal.fire({
+        title: "The CV matchs " +this.pourcentage+ "% with the offer ",
+      }).then(() => resolve());
+    });
+  }
+
+
 
   afficherRech(){
     console.log(this.titre)

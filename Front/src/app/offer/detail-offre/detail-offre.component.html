@@ -7,9 +7,11 @@
             <form #fo="ngForm">
                 <p>Veillez doposer votre lettre de motivation</p>
                 <div class="txt_field">
-                    <input type="file"  class="form-control" multiple="multiple" name="file" id="file"  formControlName="file" (change)="onFileSelected($event)" 
+                    <input type="file" [(ngModel)]="titre"  class="form-control" multiple="multiple" name="file" id="file"  formControlName="file" (change)="onFileSelected($event)" 
                            #fileInput required>
                 </div>
+                <br>
+                <p>Your cv matching : <b>{{titre}} %</b></p>
                 <br>
                 <button class="btn btn-light" (click)="postuler()" type="submit">Valider</button>
             </form>
@@ -107,7 +109,8 @@
                     
                     <div class="d-flex">
                         <div *ngIf="user.role=='student' && !applied && comparaisonDate   || user.role=='alumni' && !applied && comparaisonDate ">
-                            <button class="btn btn-primary" (click)="openLg(content)">Apply</button>
+                            <!--<button class="btn btn-primary" (click)="openLg(content)">Apply</button>-->
+                            <button class="btn btn-primary" (click)="getPourcentageMatch(offer.id.toString())">Apply</button>
                         </div>
                         <div *ngIf="user.role=='student' && applied && comparaisonDate || user.role=='alumni' && applied && comparaisonDate">
                             <button class="btn btn-primary" disabled>Apply</button>

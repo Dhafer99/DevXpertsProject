@@ -69,5 +69,9 @@ export class OfferService {
     //return this.http.get<Offer[]>(this.offerUrl+'/consumeFlaskEndpoint/'+id);
     return this.http.get<any>("http://localhost:8000/match/"+id);
   }
+  getPourcentageMatchE(id:string):Observable<any>{
+    //return this.http.get<Offer[]>(this.offerUrl+'/consumeFlaskEndpoint/'+id);
+    return this.http.get<any>("http://localhost:8000/matchE/"+id);
+  }
 
 }
