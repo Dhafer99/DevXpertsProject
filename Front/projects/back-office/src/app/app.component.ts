@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { PackServiceService } from './Services/pack-service.service';
 import { RoomServiceService } from './Services/room-service.service';
 import { Subject } from 'rxjs';
@@ -13,7 +13,15 @@ export class AppComponent implements OnInit {
   title = 'backOffice';
   notifications: any[] = [];
  
-
+  @ViewChild('notificationIcon') notificationIcon!: ElementRef;
+  
+  handleNotificationClick() {
+    console.log("Notification icon clicked");
+  }
+notif()
+{
+  console.log("kk");
+}
   ngOnInit() {
     this.notifications.push("eee");
     this.webSocketService.getNotifications().subscribe((notification) => {
