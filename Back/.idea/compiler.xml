@@ -11,17 +11,29 @@
         <module name="configServer" />
         <module name="discovery" />
         <module name="Exhibitor" />
+        <module name="Auction" />
         <module name="gateway" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AuctionPackage" target="17" />
+      <module name="Pack" target="17" />
+      <module name="PackMangement" target="17" />
+      <module name="test" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Auction" options="-parameters" />
+      <module name="AuctionPackage" options="-parameters" />
       <module name="Booth" options="-parameters" />
       <module name="Exhibitor" options="-parameters" />
+      <module name="Pack" options="-parameters" />
+      <module name="PackMangement" options="-parameters" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="test" options="-parameters" />
     </option>
   </component>
 </project>
