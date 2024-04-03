@@ -1,7 +1,0 @@
-
-spring:
-  application:
-    name: Booth
-  config:
-    import: optional:configserver:http://localhost:8888
-

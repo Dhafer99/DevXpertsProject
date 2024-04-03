@@ -6,19 +6,40 @@ spring:
     name: gateway
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-      mvc:
         routes:
           - id: booths
-            uri: http://localhost:8090
+            uri: http://localhost:8763
             predicates:
-              - Path=/api/Booths/**
+              - Path=/api/BoothAndSupplier/**
+            filters:
+              - AuthenticationFilter
+          - id: suppliers
+            uri: http://localhost:8763
+            predicates:
+              - Path=/api/supplyrequest/**
+            metadata:
+              cors:
+                allowedOrigins: '*'
+                allowedMethods:
+                  - GET
+                  - POST
+                allowedHeaders: '*'
+                maxAge: 30
+            filters:
+              - AuthenticationFilter
           - id: exhibitors
             uri: http://localhost:8070
             predicates:
-              - Path=/exhibitor/api/Exhibitors/**
+              - Path=/exhibitor/api/BoothAndSupplier/**
+          - id: AuthenticationService
+            uri: http://localhost:8080
+            predicates:
+              - Path=/auth/**
+
+    discovery:
+        locator:
+          enabled: true
+
 
 
 
