@@ -1,16 +1,19 @@
 package com.example.exhibitor.Service;
 
 import com.example.exhibitor.Entity.ChatMessage;
-import com.example.exhibitor.Entity.Supplier;
 import com.example.exhibitor.Repository.ChatRoomRepository;
 import com.example.exhibitor.Repository.MessageRepository;
 import com.example.exhibitor.Repository.SupplierRepository;
 import com.example.exhibitor.entity.ChatRoom;
-import org.apache.logging.log4j.message.Message;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
-public class MessageServiceImpl  {
+@AllArgsConstructor
+public class MessageServiceImpl  implements MessageService{
 
     MessageRepository messageRepository;
 
@@ -19,14 +22,20 @@ public class MessageServiceImpl  {
     SupplierRepository supplierRepository ;
 
 
-   /* @Override
-    public ChatMessage addMessage(ChatMessage chatMessage, Long ChatRoomId, Long senderId, Long ReceiverId) throws Exception {
+    @Override
+    public ChatMessage addMessage(ChatMessage chatMessage, Long ChatRoomId) throws Exception {
        ChatRoom chatRoom = chatRoomRepository.findById(ChatRoomId).orElseThrow(()-> new Exception("chat room not found"));
-       Supplier sender =supplierRepository.findSupplierById(senderId);
-       Supplier receiver = supplierRepository.findSupplierById(ReceiverId);
+        chatMessage.setChatRoom(chatRoom);
+        messageRepository.save(chatMessage);
+       if(chatRoom.getMessages()== null){
+           List<ChatMessage> messages = new ArrayList<>();
 
-       if(chatRoom.getMessages()!= null){
+           messages.add(chatMessage);
+        chatRoom.setMessages( messages);
+           chatRoomRepository.save(chatRoom);
 
        }
-    }*/
+        chatRoomRepository.save(chatRoom);
+         return chatMessage;
+    }
 }

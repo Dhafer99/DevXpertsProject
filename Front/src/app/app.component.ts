@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ProjetPi';
+
   
 /******************** **********************/
 dark(){
@@ -24,5 +25,6 @@ light(){
 }
 
 /*********************************** */
+
 
 }

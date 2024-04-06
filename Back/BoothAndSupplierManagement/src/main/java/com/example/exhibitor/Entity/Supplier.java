@@ -29,7 +29,7 @@ public class Supplier {
     private String nom ;
 
     private String numeroTelephone;
-    @JsonIgnore
+
     @OneToMany(mappedBy = "supplier",cascade = CascadeType.ALL)
     List<SupplierRequest> supplierRequests = new ArrayList<>();
 
@@ -40,6 +40,11 @@ public class Supplier {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "supplier")
     List<Notifications> notifications ;
+
+    @OneToMany(mappedBy = "user1")
+    List<com.example.exhibitor.entity.ChatRoom> chatRoomsasuser1 ;
+    @OneToMany(mappedBy = "user2")
+    List<com.example.exhibitor.entity.ChatRoom> chatRoomsasuser2 ;
 
 
 

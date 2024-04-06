@@ -27,19 +27,46 @@ spring:
                 maxAge: 30
             filters:
               - AuthenticationFilter
-          - id: exhibitors
-            uri: http://localhost:8070
+          - id: supplyoffer
+            uri: http://localhost:8763
             predicates:
-              - Path=/exhibitor/api/BoothAndSupplier/**
-          - id: AuthenticationService
+              - Path=/api/SupplyOffer/**
+            metadata:
+              cors:
+                allowedOrigins: '*'
+                allowedMethods:
+                  - GET
+                  - POST
+                allowedHeaders: '*'
+                maxAge: 30
+            filters:
+              - AuthenticationFilter
+          - id: authservice
             uri: http://localhost:8080
             predicates:
               - Path=/auth/**
-
-    discovery:
-        locator:
-          enabled: true
-
+            metadata:
+              cors:
+                allowedOrigins: '*'
+                allowedMethods:
+                  - GET
+                  - POST
+                allowedHeaders: '*'
+                maxAge: 30
+            filters:
+              - AuthenticationFilter
+          - id: exhibitors
+            uri: http://localhost:8070
+            predicates:
+              - Path=/exhibitor/api/Exhibitors/**
+          - id: rooms
+            uri: http://localhost:8083
+            predicates:
+              - Path=/api/rooms/**
+          - id: packs
+            uri: http://localhost:8083
+            predicates:
+              - Path=/api/packs/**
 
 
 

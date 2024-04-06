@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import $ from 'jquery';
+/* import $ from 'jquery'; */
 
 @Component({
   selector: 'app-messagestest',
@@ -8,11 +8,11 @@ import $ from 'jquery';
 })
 export class MessagestestComponent implements OnInit{
   ngOnInit(): void {
-    $( '.friend-drawer--onhover' ).on( 'click',  function() {
+   /*  $( '.friend-drawer--onhover' ).on( 'click',  function() {
   
       $( '.chat-bubble' ).hide('slow').show('slow');
       
-    });
+    }); */
   }
 
 }

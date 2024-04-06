@@ -20,9 +20,9 @@ public class SupplyRequestOfferImpl implements SupplyRequestOfferService {
     SupplierRepository supplierRepository ;
 
     @Override
-    public SupplyRequestOffer addSupplyOffer(SupplyRequestOffer supplyRequestOffer, Long supplierId, Long supplyRequestId) {
+    public SupplyRequestOffer addSupplyOffer(SupplyRequestOffer supplyRequestOffer, Long supplierId, Long supplyRequestId) throws Exception {
 
-        Supplier supplier = supplierRepository.findById(supplierId).get();
+        Supplier supplier = supplierRepository.findById(supplierId).orElseThrow(() -> new Exception("supplier not found"));
         SupplierRequest supplierRequest = supplierRequestRepository.findById(supplyRequestId).get();
 
         supplyRequestOffer.setSupplierRequest(supplierRequest);

@@ -9,8 +9,8 @@ import { ServicebackService } from '../services/serviceback.service';
   styleUrls: ['./authentification.component.css']
 })
 export class AuthentificationComponent implements OnInit {
-  authForm: FormGroup;
-  userID : number ;
+  authForm!: FormGroup;
+  userID !: number ;
   request ={
     username: "",
     password: ""

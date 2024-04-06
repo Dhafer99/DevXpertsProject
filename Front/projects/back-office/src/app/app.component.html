@@ -1,3 +1,4 @@
+
  <div class="container-fluid">
   <div class="row">
     
@@ -182,7 +183,25 @@
                 <span class="nav-text">{{message}}</span>
               </a>
               <ul aria-expanded="false">
-               
+                <li>
+                  <a
+                    class="has-arrow ai-icon"
+                    href="javascript:void()"
+                    aria-expanded="false"
+                  >
+                    <i class="flaticon-025-dashboard"></i>
+                    <span class="nav-text">Dashboard</span>
+                  </a>
+                  <ul aria-expanded="false">
+                    <li><a href="http://localhost:4203/packSalesPerYear">Statistic </a></li>
+                    <li><a href="http://localhost:4203/viewRooms">Rooms </a></li>
+                    <li><a href="http://localhost:4203/checkPayments">Checkout Payments </a></li>
+          
+          
+                    <li><a href="http://localhost:4203/viewPack">Packs</a></li>
+                 
+                  </ul>
+                </li>
                 <li><a routerLink="/booth">Adjust booth placement</a></li>
                 <li><a routerLink="/supplier">Add a supplier request</a></li>
                 <li><a routerLink="/boothDashboard">Supply Requests Table </a></li>
@@ -339,7 +358,7 @@
     
     
     
-   <div class="col-9" style="margin-top: 120px; margin-left: -50px; background-color: #eaeaea;">>
+   <div class="col-9" style="margin-top: 120px; margin-left: -50px;">
 
     <router-outlet ></router-outlet>
 </div>
@@ -348,4 +367,3 @@
       
 
   </div> 
-

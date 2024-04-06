@@ -1,0 +1,25 @@
+<div class="wrapper">
+    <br>
+    <br>
+    <h1>Available packs</h1>
+    <div class="grid-container" >
+              <div class="grid-item" *ngFor="let p of packs" ontouchstart="this.classList.toggle('hover');">
+                  <div class="container">
+                      <div class="front" style="background-image: url(https://unsplash.it/500/500/)">
+                          <div class="inner">
+                              <p>{{p.price | currency:"DT"}}</p>
+                                   
+                          </div>
+                      </div>
+                      <div class="back">
+                          <div class="inner">
+                            <p class="line-break">{{p.description}}</p>
+                            <button class="btn btn-primary">view on Simulateur</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+             
+           
+    </div>
+</div>

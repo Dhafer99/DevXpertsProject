@@ -110,6 +110,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+           
             "outputPath": "dist/back-office",
             "index": "projects/back-office/src/index.html",
             "main": "projects/back-office/src/main.ts",

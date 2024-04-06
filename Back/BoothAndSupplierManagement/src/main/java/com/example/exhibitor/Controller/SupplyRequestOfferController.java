@@ -27,7 +27,7 @@ public class SupplyRequestOfferController {
             @RequestBody SupplyRequestOffer supplierRequest,
              @PathVariable("SupplierId") Long supplierId,
             @PathVariable("SupplyRequestId") Long supplyRequestId
-    ){
+    ) throws Exception {
         return supplyRequestOfferService.addSupplyOffer(supplierRequest,supplierId,supplyRequestId);
     }
     @GetMapping("/getSupplierOfferById/{SupplyRequestId}")

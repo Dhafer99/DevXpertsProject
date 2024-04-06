@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 
 import { SupplierComponent } from './supplier/supplier.component';
 import { BoothplacementComponent } from './boothplacement/boothplacement.component';
@@ -11,7 +12,16 @@ import { NewsupplyrequestsdashboardComponent } from './newsupplyrequestsdashboar
 import { SupplierDetailComponent } from './supplier-detail/supplier-detail.component';
 import { SupplyRequestDetailsComponent } from './supply-request-details/supply-request-details.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
-
+import { ListUsersComponent } from './list-users/list-users.component';
+import { AddPackComponent } from './PackManagementAdmin/add-pack/add-pack.component';
+import { ViewPackComponent } from './PackManagementAdmin/view-pack/view-pack.component';
+import { UpdatePackComponent } from './PackManagementAdmin/update-pack/update-pack.component';
+import { HistoriquePacksComponent } from './PackManagementAdmin/historique-packs/historique-packs.component';
+import { CommonModule } from '@angular/common';
+import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.component';
+import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
+import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
+import { PaymentListComponent } from './payment-list/payment-list.component';
 const routes: Routes = [ 
       {path : 'supplier/:id',component: SupplierComponent},
       {path : 'supplier',component: SupplierComponent},
@@ -37,7 +47,16 @@ const routes: Routes = [
   {path: 'auth',
     component: AuthentificationComponent,
   }
-     
+    ,  
+    { path: 'list', component: ListUsersComponent },
+    { path: 'addPack', component: AddPackComponent },
+    { path: 'viewPack', component: ViewPackComponent },
+    { path: 'viewPack/detail/:id', component: UpdatePackComponent },
+    { path: 'HistoriquePacks', component: HistoriquePacksComponent },
+    { path: 'viewRooms', component: ViewRoomsComponent },
+    { path: 'viewRooms/detailRoom/:id', component: DetailRoomComponent },
+    { path: 'packSalesPerYear', component: PackSalesPerYearComponent },
+    { path: 'checkPayments', component: PaymentListComponent }, 
      
 ];
 
@@ -46,6 +65,7 @@ const routes: Routes = [
     CommonModule
   ],
   
+
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

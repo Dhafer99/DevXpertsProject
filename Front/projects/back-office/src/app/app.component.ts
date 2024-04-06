@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicebackService } from './services/serviceback.service';
-import $ from 'jquery';
+/* import $ from 'jquery'; */
+
+import { ElementRef, ViewChild } from '@angular/core';
+
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -8,6 +12,7 @@ import $ from 'jquery';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent implements OnInit{
 
 
@@ -23,7 +28,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     
 
-    $(document).on("click", "notificationReadJava", function() {
+   /*  $(document).on("click", "notificationReadJava", function() {
       alert("Test");
     }); 
 
@@ -31,7 +36,7 @@ export class AppComponent implements OnInit{
       this.notifications= data ;
       console.log("NOTIFICATIONSSSSss")
       console.log(data);
-    })
+    }) */
    
     
       
@@ -67,4 +72,5 @@ export class AppComponent implements OnInit{
     
 
   
+
 

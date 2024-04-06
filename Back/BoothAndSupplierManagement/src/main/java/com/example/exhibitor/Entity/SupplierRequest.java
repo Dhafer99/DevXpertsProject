@@ -1,5 +1,6 @@
 package com.example.exhibitor.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,6 +27,7 @@ public class SupplierRequest {
     Type type ;
     @Enumerated(EnumType.STRING)
     Status status ;
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     Supplier supplier ;
     @OneToOne

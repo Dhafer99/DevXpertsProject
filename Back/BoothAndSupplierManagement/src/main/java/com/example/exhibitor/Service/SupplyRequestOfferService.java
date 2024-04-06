@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface SupplyRequestOfferService {
 
-    public SupplyRequestOffer addSupplyOffer(SupplyRequestOffer supplyRequestOffer,Long supplierId,Long supplyRequestId);
+    public SupplyRequestOffer addSupplyOffer(SupplyRequestOffer supplyRequestOffer,Long supplierId,Long supplyRequestId) throws Exception;
     List<SupplyRequestOffer> supplyRequestOffers(Long supplyRequestId);
 }
