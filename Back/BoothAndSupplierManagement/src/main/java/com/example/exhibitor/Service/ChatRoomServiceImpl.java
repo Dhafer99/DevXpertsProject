@@ -16,7 +16,7 @@ import java.util.List;
 public class ChatRoomServiceImpl implements ChatRoomService{
 
 
-    ChatRoomRepository chatRoomRepository ;
+    /*ChatRoomRepository chatRoomRepository ;
 
     SupplierRepository supplierRepository;
 
@@ -51,6 +51,6 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         Supplier user2 = supplierRepository.findSupplierById(User2);
        return chatRoomRepository.findChatRoomByUser1AndUser2(user1,user2);
     }
-
+*/
 
 }

@@ -1,9 +1,10 @@
 package com.example.exhibitor.Service;
 
 import com.example.exhibitor.Entity.ChatMessage;
+import com.example.exhibitor.dto.ChatMessageDTO;
 
 public interface MessageService {
 
-    public ChatMessage addMessage(ChatMessage chatMessage,Long ChatRoomId) throws Exception;
+    public ChatMessageDTO addMessage(ChatMessage chatMessage, Long senderId, Long receiverId) throws Exception;
 
 }

@@ -6,10 +6,13 @@ import com.example.exhibitor.Entity.Exhibitor;
 import com.example.exhibitor.Repository.ChatRoomRepository;
 import com.example.exhibitor.Service.ChatRoomService;
 import com.example.exhibitor.Service.MessageService;
+import com.example.exhibitor.dto.ChatMessageDTO;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.messaging.core.MessageSendingOperations;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -27,6 +30,8 @@ public class ChatController {
 
     @Autowired
     private MessageService messageService ;
+    @Autowired
+    private final MessageSendingOperations<String> messagingTemplate;
 
 
     @PostMapping("/addChatRoom/{userId}/{user2Id}")
@@ -38,21 +43,26 @@ public class ChatController {
 
     )
     {
-        return  chatRoomService.addChatRoom(chatRoom,user1Id,user2Id);
+        //return  chatRoomService.addChatRoom(chatRoom,user1Id,user2Id);
+        return null ;
     }
-    @PostMapping("/addChatMessage/{chatRoomId}")
+    @PostMapping("/addChatMessage/{senderId}/{receiverId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ChatMessage addChatMessage(
+    public ChatMessageDTO addChatMessage(
             @RequestBody ChatMessage chatMessage,
-            @PathVariable("chatRoomId") Long chatRoomId
+            @PathVariable("senderId") Long senderId,
+            @PathVariable("receiverId") Long receiverId
+
 
     ) throws Exception {
-        return  messageService.addMessage(chatMessage,chatRoomId);
+        return  messageService.addMessage(chatMessage,senderId,receiverId);
     }
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(
-            @Payload ChatMessage chatMessage
+            @Payload ChatMessage chatMessage,
+            @DestinationVariable String variable1,
+            @DestinationVariable String variable2
     ) {
 
         return chatMessage;

@@ -18,7 +18,7 @@ public class ChatRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+/*
     @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ChatMessage> messages;
 
@@ -28,6 +28,6 @@ public class ChatRoom {
 
     @ManyToOne
     @JoinColumn(name = "user2_id")
-    private Supplier user2;
+    private Supplier user2;*/
 
 }

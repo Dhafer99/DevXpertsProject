@@ -1,15 +1,15 @@
 package com.example.exhibitor.Service;
 
 import com.example.exhibitor.Entity.ChatMessage;
+import com.example.exhibitor.Entity.Supplier;
 import com.example.exhibitor.Repository.ChatRoomRepository;
 import com.example.exhibitor.Repository.MessageRepository;
 import com.example.exhibitor.Repository.SupplierRepository;
-import com.example.exhibitor.entity.ChatRoom;
+import com.example.exhibitor.dto.ChatMessageDTO;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -17,25 +17,25 @@ public class MessageServiceImpl  implements MessageService{
 
     MessageRepository messageRepository;
 
-    ChatRoomRepository chatRoomRepository ;
+
+    private final MessageSendingOperations<String> messagingTemplate;
 
     SupplierRepository supplierRepository ;
 
 
     @Override
-    public ChatMessage addMessage(ChatMessage chatMessage, Long ChatRoomId) throws Exception {
-       ChatRoom chatRoom = chatRoomRepository.findById(ChatRoomId).orElseThrow(()-> new Exception("chat room not found"));
-        chatMessage.setChatRoom(chatRoom);
+    public ChatMessageDTO addMessage(ChatMessage chatMessage,Long senderId,Long receiverId) throws Exception {
+
+        ChatMessageDTO message = new ChatMessageDTO();
+
+        Supplier sender = supplierRepository.findSupplierById(senderId);
+        Supplier receiver = supplierRepository.findSupplierById(receiverId);
+
         messageRepository.save(chatMessage);
-       if(chatRoom.getMessages()== null){
-           List<ChatMessage> messages = new ArrayList<>();
 
-           messages.add(chatMessage);
-        chatRoom.setMessages( messages);
-           chatRoomRepository.save(chatRoom);
-
-       }
-        chatRoomRepository.save(chatRoom);
-         return chatMessage;
+       message.setContent(chatMessage.getContent());
+       message.setSender(sender);
+       message.setReceiver(receiver);
+         return message;
     }
 }

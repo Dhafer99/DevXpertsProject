@@ -65,5 +65,7 @@ export class ServicefrontService {
   public addSupplierOffer(supplyRequestOffer:SupplierOffer,SupplierId:number,SupplyRequestId:number): Observable<SupplierOffer> {
     return this.http.post<SupplierOffer>(`${this.SupplierOfferSuggestion_URL}/addSupplyRequestOffer/${SupplierId}/${SupplyRequestId}`,supplyRequestOffer)
   }
- 
+
+
+
 }

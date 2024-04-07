@@ -38,12 +38,12 @@ public class Supplier {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "supplier")
     List<Notifications> notifications ;
-    @JsonIgnore
+   /* @JsonIgnore
     @OneToMany(mappedBy = "user1")
     List<com.example.exhibitor.entity.ChatRoom> chatRoomsasuser1 ;
     @JsonIgnore
     @OneToMany(mappedBy = "user2")
-    List<com.example.exhibitor.entity.ChatRoom> chatRoomsasuser2 ;
+    List<com.example.exhibitor.entity.ChatRoom> chatRoomsasuser2 ;*/
 
 
 

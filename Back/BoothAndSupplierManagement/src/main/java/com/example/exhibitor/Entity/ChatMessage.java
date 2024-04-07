@@ -15,15 +15,10 @@ public class ChatMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long senderId ;
-
-    private Long receiverId ;
 
     private String Content ;
 
-    @JsonIgnore
-    @ManyToOne
-    com.example.exhibitor.entity.ChatRoom chatRoom ;
+
 
 
 }

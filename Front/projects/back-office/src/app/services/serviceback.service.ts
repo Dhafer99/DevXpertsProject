@@ -8,6 +8,7 @@ import { map } from 'rxjs';
 import { Booth } from '../models/Booth';
 import { BoothRepresentation } from '../models/BoothRepresentation';
 import { SupplierOffer } from '../models/SupplierOffer';
+import { message } from '../models/Message';
 @Injectable({
   providedIn: 'root'
 })
@@ -167,5 +168,8 @@ public getAllOfferForSupplyRequest(supplyRequestId:number):Observable<SupplierOf
 getUserId(username:string):Observable<number>{
   return this.http.post<number>(`${this.authUserUrl}/currentUserId/${username}`,{})
 }
+
+/////Messaging
+
 
 }
