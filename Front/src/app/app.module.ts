@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ListPacksComponent } from './PackageManagementUser/list-packs/list-packs.component';
 import { DetailPackComponent } from './PackageManagementUser/detail-pack/detail-pack.component';
 import { MyPacksComponent } from './PackageManagementUser/my-packs/my-packs.component';
@@ -33,6 +33,7 @@ import { MatDialog } from '@angular/material/dialog';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
+import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,14 @@ import { AuthenticationinterfaceComponent } from './authenticationinterface/auth
     StripeModule.forRoot("pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC"),
 
   ],
-  providers: [ ],
+  providers: [ 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorInterceptor,
+      multi: true
+    }
+    
+  ],
   bootstrap: [AppComponent],
   schemas : [
     NO_ERRORS_SCHEMA]

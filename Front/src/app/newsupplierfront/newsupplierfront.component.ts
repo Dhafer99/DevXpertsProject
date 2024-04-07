@@ -25,7 +25,7 @@ export class NewsupplierfrontComponent implements OnInit{
       console.log(result.price)
       this.supplierOffer.description=result.description ;
       this.supplierOffer.price=result.price ;
-      this.servicefront.addSupplierOffer(this.supplierOffer,1,itemId).subscribe((data:any)=>{
+      this.servicefront.addSupplierOffer(this.supplierOffer,3,itemId).subscribe((data:any)=>{
         console.log("returned data after supplier suggestion :")
         console.log(data);
       })

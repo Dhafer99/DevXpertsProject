@@ -19,11 +19,11 @@ public class SupplyRequestOffer {
 
     private Long price ;
 
-    @ManyToOne
-    private SupplierRequest supplierRequest ;
 
-    @ManyToOne
-    private Supplier supplier ;
+    private Long supplierRequestFK ;
+
+
+    private Long supplierFk ;
 
 
 

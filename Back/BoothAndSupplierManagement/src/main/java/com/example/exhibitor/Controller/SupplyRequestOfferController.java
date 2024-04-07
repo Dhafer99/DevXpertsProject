@@ -4,6 +4,7 @@ package com.example.exhibitor.Controller;
 import com.example.exhibitor.Entity.SupplierRequest;
 import com.example.exhibitor.Entity.SupplyRequestOffer;
 import com.example.exhibitor.Service.SupplyRequestOfferService;
+import com.example.exhibitor.dto.SupplierListDTO;
 import jakarta.ws.rs.Path;
 import jdk.jfr.Description;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public class SupplyRequestOfferController {
         return supplyRequestOfferService.addSupplyOffer(supplierRequest,supplierId,supplyRequestId);
     }
     @GetMapping("/getSupplierOfferById/{SupplyRequestId}")
-    public List<SupplyRequestOffer> getSupplierOfferById(
+    public List<SupplierListDTO> getSupplierOfferById(
             @PathVariable("SupplyRequestId") Long supplyRequestId
     ){
         return supplyRequestOfferService.supplyRequestOffers(supplyRequestId);

@@ -18,9 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table
 @Builder
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id")
+
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +27,10 @@ public class Supplier {
     private String nom ;
 
     private String numeroTelephone;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "supplier",cascade = CascadeType.ALL)
     List<SupplierRequest> supplierRequests = new ArrayList<>();
-
+    @JsonIgnore
     @OneToMany(mappedBy = "supplier",cascade = CascadeType.ALL)
     List<Booth> booths ;
     @OneToOne
@@ -40,9 +38,10 @@ public class Supplier {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "supplier")
     List<Notifications> notifications ;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "user1")
     List<com.example.exhibitor.entity.ChatRoom> chatRoomsasuser1 ;
+    @JsonIgnore
     @OneToMany(mappedBy = "user2")
     List<com.example.exhibitor.entity.ChatRoom> chatRoomsasuser2 ;
 

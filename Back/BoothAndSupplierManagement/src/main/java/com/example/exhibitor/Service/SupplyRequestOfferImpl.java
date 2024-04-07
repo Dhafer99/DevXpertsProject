@@ -6,9 +6,11 @@ import com.example.exhibitor.Entity.SupplyRequestOffer;
 import com.example.exhibitor.Repository.SupplierRepository;
 import com.example.exhibitor.Repository.SupplierRequestRepository;
 import com.example.exhibitor.Repository.SupplyRequestOfferRepository;
+import com.example.exhibitor.dto.SupplierListDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,19 +24,31 @@ public class SupplyRequestOfferImpl implements SupplyRequestOfferService {
     @Override
     public SupplyRequestOffer addSupplyOffer(SupplyRequestOffer supplyRequestOffer, Long supplierId, Long supplyRequestId) throws Exception {
 
-        Supplier supplier = supplierRepository.findById(supplierId).orElseThrow(() -> new Exception("supplier not found"));
-        SupplierRequest supplierRequest = supplierRequestRepository.findById(supplyRequestId).get();
+       // Supplier supplier = supplierRepository.findById(supplierId).orElseThrow(() -> new Exception("supplier not found"));
+       // SupplierRequest supplierRequest = supplierRequestRepository.findById(supplyRequestId).get();
 
-        supplyRequestOffer.setSupplierRequest(supplierRequest);
-        supplyRequestOffer.setSupplier(supplier);
+        supplyRequestOffer.setSupplierRequestFK(supplyRequestId);
+        supplyRequestOffer.setSupplierFk(supplierId);
 
          return supplyRequestOfferRepository.save(supplyRequestOffer);
     }
 
     @Override
-    public List<SupplyRequestOffer> supplyRequestOffers(Long supplyRequestId) {
-        SupplierRequest supplierRequest = supplierRequestRepository.findById(supplyRequestId).get();
-       List<SupplyRequestOffer> supplierRequestOffers = supplyRequestOfferRepository.findBySupplierRequest(supplierRequest);
-       return supplierRequestOffers ;
+    public List<SupplierListDTO> supplyRequestOffers(Long supplyRequestId) {
+       // SupplierRequest supplierRequest = supplierRequestRepository.findById(supplyRequestId).get();
+       List<SupplyRequestOffer> supplierRequestOffers = supplyRequestOfferRepository.findBySupplierRequestFK(supplyRequestId);
+
+       List<SupplierListDTO> supplierListDTOS = new ArrayList<>();
+
+        for (SupplyRequestOffer supp: supplierRequestOffers
+             ) {
+            SupplierListDTO supplierOfferInfo = new SupplierListDTO();
+            supplierOfferInfo.setId(supp.getId());
+            supplierOfferInfo.setPrice(supp.getPrice());
+            supplierOfferInfo.setDescription(supp.getDescription());
+            supplierOfferInfo.setSupplier( supplierRepository.findSupplierById(supp.getSupplierFk()));
+            supplierListDTOS.add(supplierOfferInfo);
+        }
+       return supplierListDTOS ;
     }
 }

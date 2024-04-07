@@ -24,7 +24,7 @@ export class ServicebackService {
   __URL = 'http://localhost:8763/api/Event/cloudinary'
 
   Notification_URL='http://localhost:8763/api/notifications'
-  SupplierOfferSuggestion_URL = 'http://localhost:8763/api/SupplyOffer'
+  SupplierOfferSuggestion_URL = 'http://localhost:8222/api/SupplyOffer'
 
   authUserUrl ='http://localhost:8222/auth'
 

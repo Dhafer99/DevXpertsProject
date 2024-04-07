@@ -176,17 +176,17 @@
                                         <h3 class="subtitle"> Supplier Offer Price:</h3> 
                                         <h4 class="data">{{ item.price }}</h4>
                                         <h3 class="subtitle"> Original Offer Price:</h3> 
-                                        <h4 class="data">{{ item.supplierRequest.price }}</h4>
+                                        <h4 class="data">{{ supplyRequest.price }}</h4>
                                         
-                                        <ng-container *ngIf="((item.price - item.supplierRequest.price) / item.supplierRequest.price * 100) > 0">
+                                        <ng-container *ngIf="((item.price - supplyRequest.price) / supplyRequest.price * 100) > 0">
                                             <!-- Your content goes here -->
                                             <h3 class="subtitle"> Increase Percentage:</h3> 
-                                            <h4 class="data">{{ (( item.price- item.supplierRequest.price) / item.supplierRequest.price * 100).toFixed(2) }}%</h4>
+                                            <h4 class="data">{{ (( item.price- supplyRequest.price) / supplyRequest.price * 100).toFixed(2) }}%</h4>
                                           </ng-container>
-                                          <ng-container *ngIf="((item.price - item.supplierRequest.price) / item.supplierRequest.price * 100) < 0">
+                                          <ng-container *ngIf="((item.price - supplyRequest.price) / supplyRequest.price * 100) < 0">
                                             <!-- Your content goes here -->
                                             <h3 class="subtitle"> Decrease Percentage:</h3> 
-                                            <h4 class="data">{{ (( item.price- item.supplierRequest.price) / item.supplierRequest.price * 100).toFixed(2) }}%</h4>
+                                            <h4 class="data">{{ (( item.price- supplyRequest.price) / supplyRequest.price * 100).toFixed(2) }}%</h4>
                                           </ng-container>
                                         </div>
                                     </div>
