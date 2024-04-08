@@ -22,6 +22,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
         Authorization: `Bearer ${authToken}`
       }
     });
+    
 
     // Passez la requête modifiée au gestionnaire HTTP
     return next.handle(authRequest);

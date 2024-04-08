@@ -50,9 +50,10 @@ public class NotificationsService {
 
 
 
+
     public void sendNotification() {
         count++;
-        messagingTemplate.convertAndSend("/socket/notification", count);
+        messagingTemplate.convertAndSend("/socket/notification/test", count);
         log.info("working");
     }
 }

@@ -7,6 +7,7 @@ import { User } from '../models/User';
 import { SupplierOffer } from '../models/SupplierOffer';
 import $ from 'jquery';
 import { message } from '../models/Message';
+import { WebSocketService } from '../services/websocketservice';
 @Component({
   selector: 'app-supply-request-details',
   templateUrl: './supply-request-details.component.html',
@@ -42,11 +43,32 @@ UsersList : User[]=[
     nom : "hamma",
     numeroTelephone : "9999999"
   }
+
   sendMessage() {
     if (this.newMessage.trim() !== '') {
-      this.messages.push({ content: this.newMessage, sender: this.CurrentUser ,receiver: this.secondUser});
+    this.messages.push({ content: this.newMessage, sender: this.CurrentUser ,receiver: this.secondUser});
       this.messages.push({ content: this.newMessage, sender: this.secondUser ,receiver: this.CurrentUser});
-     
+      const sentmessage={ content: this.newMessage, sender: this.CurrentUser ,receiver: this.secondUser}
+    this.chatSocket.sendMessage(sentmessage);
+
+    this.chatSocket.stompClient.subscribe('/topic/public', (message :any) => {
+      console.log('SENDER: ' + message.body);
+      const messageObject = JSON.parse(message.body);
+      const senderId = messageObject.sender.id;
+  const senderName = messageObject.sender.nom;
+  const senderPhoneNumber = messageObject.sender.numeroTelephone;
+
+  const receiverId = messageObject.receiver.id;
+  const receiverName = messageObject.receiver.nom;
+  const receiverPhonenumber = messageObject.receiver.numeroTelephone;
+  console.log('Sender ID:', senderId);
+  console.log('Sender Name:', senderName);
+  console.log('Sender Phone Number:', senderPhoneNumber);
+  console.log('receiver ID:', receiverId);
+  console.log('receiver Name:', receiverName);
+  console.log('receiver Phone Number:', receiverPhonenumber);
+     // console.log(message.body.sender.id)
+    });
       // Code to send message to the backend or perform any other actions
       this.newMessage = '';
     }
@@ -123,8 +145,22 @@ UsersList : User[]=[
 }
 Suppliers : User[]=[];
 SupplyOffer : SupplierOffer[]=[];
-  constructor(private serviceback:ServicebackService ,private acr:ActivatedRoute,private renderer: Renderer2){}
+  constructor(private serviceback:ServicebackService ,private acr:ActivatedRoute,private renderer: Renderer2,private chatSocket:WebSocketService){}
   ngOnInit(): void {
+
+
+      /////Socket 
+      this.chatSocket.connectToChat();
+     
+
+
+
+
+
+
+
+
+
     $( '.friend-drawer--onhover' ).on( 'click',  function() {
   
       $( '.chat-bubble' ).hide('slow').show('slow');

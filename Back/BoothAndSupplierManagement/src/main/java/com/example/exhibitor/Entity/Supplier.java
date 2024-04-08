@@ -44,6 +44,12 @@ public class Supplier {
     @JsonIgnore
     @OneToMany(mappedBy = "user2")
     List<com.example.exhibitor.entity.ChatRoom> chatRoomsasuser2 ;*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "sender",cascade = CascadeType.ALL)
+    List<ChatMessage> senderMessages ;
+    @JsonIgnore
+    @OneToMany(mappedBy = "receiver",cascade = CascadeType.ALL)
+    List<ChatMessage> receiverMessages ;
 
 
 

@@ -7,12 +7,14 @@ import com.example.exhibitor.Repository.MessageRepository;
 import com.example.exhibitor.Repository.SupplierRepository;
 import com.example.exhibitor.dto.ChatMessageDTO;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class MessageServiceImpl  implements MessageService{
 
     MessageRepository messageRepository;
@@ -37,5 +39,20 @@ public class MessageServiceImpl  implements MessageService{
        message.setSender(sender);
        message.setReceiver(receiver);
          return message;
+    }
+
+    @Override
+    public void sendMessage(String chatMessage,String Mapping) {
+        //log.info(Mapping+"/"+senderId+"/"+receiverId);
+        messagingTemplate.convertAndSend(Mapping,chatMessage);
+    }
+
+    @Override
+    public void saveMessage(String chatMessage, Supplier sender, Supplier receiver) {
+        ChatMessage chatMessage1 = new ChatMessage();
+        chatMessage1.setContent(chatMessage);
+        chatMessage1.setSender(sender);
+        chatMessage1.setReceiver(receiver);
+        messageRepository.save(chatMessage1);
     }
 }

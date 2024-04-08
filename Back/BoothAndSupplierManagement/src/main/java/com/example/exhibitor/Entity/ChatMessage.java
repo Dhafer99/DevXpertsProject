@@ -15,8 +15,16 @@ public class ChatMessage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id ;
 
-    private String Content ;
+    private String content ;
+
+    @ManyToOne
+    private Supplier sender ;
+
+    @ManyToOne
+    private Supplier receiver ;
+
 
 
 

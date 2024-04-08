@@ -1,14 +1,19 @@
 package com.example.exhibitor.Controller;
 
-
+import com.example.exhibitor.Entity.Supplier;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Controller;
 import com.example.exhibitor.Entity.ChatMessage;
 import com.example.exhibitor.Entity.Exhibitor;
 import com.example.exhibitor.Repository.ChatRoomRepository;
+import com.example.exhibitor.Repository.SupplierRepository;
 import com.example.exhibitor.Service.ChatRoomService;
 import com.example.exhibitor.Service.MessageService;
 import com.example.exhibitor.dto.ChatMessageDTO;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.messaging.core.MessageSendingOperations;
@@ -18,20 +23,30 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@CrossOrigin
-@RequestMapping("/api/Chat")
-@RequiredArgsConstructor
+@Controller
+
+
+
 @AllArgsConstructor
+@Slf4j
+@RequiredArgsConstructor
 public class ChatController {
 
-    @Autowired
+
     private ChatRoomService chatRoomService ;
 
     @Autowired
-    private MessageService messageService ;
+    private SupplierRepository supplierRepository ;
+
+
     @Autowired
-    private final MessageSendingOperations<String> messagingTemplate;
+    private MessageService messageService ;
+
+
+
+
+
+
 
 
     @PostMapping("/addChatRoom/{userId}/{user2Id}")
@@ -57,15 +72,31 @@ public class ChatController {
     ) throws Exception {
         return  messageService.addMessage(chatMessage,senderId,receiverId);
     }
-    @MessageMapping("/chat.sendMessage")
+    @MessageMapping("/chat/sendMessage/{senderID}/{receiverID}")
     @SendTo("/topic/public")
-    public ChatMessage sendMessage(
-            @Payload ChatMessage chatMessage,
-            @DestinationVariable String variable1,
-            @DestinationVariable String variable2
-    ) {
+    public void sendMessage(
+            @Payload String chatMessage,
+            @DestinationVariable Long senderID ,
+            @DestinationVariable Long receiverID
 
-        return chatMessage;
+    ) throws JsonProcessingException {
+        log.info("payload : {}",chatMessage);
+
+        ChatMessageDTO messageDTO = new ChatMessageDTO();
+
+        Supplier sender = supplierRepository.findSupplierById(senderID);
+        Supplier receiver = supplierRepository.findSupplierById(receiverID);
+        messageService.saveMessage(chatMessage,sender,receiver);
+        messageDTO.setContent(chatMessage);
+         messageDTO.setSender(sender);
+        messageDTO.setReceiver(receiver);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String MessageDTOJSON = objectMapper.writeValueAsString(messageDTO);
+
+        messageService.sendMessage(MessageDTOJSON,"/topic/public");
+
+
+
     }
 
    /* @MessageMapping("/chat.addUser")

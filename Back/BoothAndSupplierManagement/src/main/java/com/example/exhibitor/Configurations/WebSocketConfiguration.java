@@ -12,13 +12,13 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.setApplicationDestinationPrefixes("/app")
-                .enableSimpleBroker("/socket");
+        //config.setApplicationDestinationPrefixes("/app")
+             //   .enableSimpleBroker("/socket");
     }
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/socket")
-                .setAllowedOrigins("http://localhost:4205")
+                .setAllowedOrigins("http://localhost:4203")
 
                 .withSockJS();
     }

@@ -10,4 +10,6 @@ public class ChatMessageDTO {
     private String Content ;
     private Supplier sender ;
     private Supplier receiver ;
+
+
 }

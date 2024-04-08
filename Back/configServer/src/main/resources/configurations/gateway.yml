@@ -41,6 +41,21 @@ spring:
                 maxAge: 30
             filters:
               - AuthenticationFilter
+          - id: chat
+            uri: http://localhost:8763
+            predicates:
+              - Path=/socket/**
+            metadata:
+              cors:
+                allowedOrigins: 'http://localhost:4203'
+                allowedMethods:
+                  - GET
+                  - POST
+                allowedHeaders: '*'
+                maxAge: 30
+
+            filters:
+              - AuthenticationFilter
           - id: authservice
             uri: http://localhost:8080
             predicates:
