@@ -19,8 +19,7 @@ public class Dislike {
     private int Id ;
     private int userID;
     private int eventID;
-    private int CommentID;
-
+    private int commentID;
     private String status;
     private Date datetime;
 }

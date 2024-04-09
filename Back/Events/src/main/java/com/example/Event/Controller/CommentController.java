@@ -2,9 +2,11 @@ package com.example.Event.Controller;
 
 
 import com.example.Event.Entity.Comment;
+import com.example.Event.Entity.Comments;
 import com.example.Event.Entity.Dislike;
 import com.example.Event.Service.CommentService;
 import com.example.Event.Service.EventService;
+import jakarta.ws.rs.Path;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,17 +37,17 @@ public class CommentController {
     }
     @PostMapping("/addLike")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Comment> addLike(@RequestBody Dislike dislike)
+    public Comment addLike(@RequestBody Dislike dislike)
     {
-        service.addLike(dislike);
-        return service.findEventComments(dislike.getEventID());
+      return   service.addLike(dislike);
+        // service.findEventComments(dislike.getEventID());
     }
     @DeleteMapping("/removeLike")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Comment> removeLike(@RequestBody Dislike dislike)
+    public Comment removeLike(@RequestBody Dislike dislike)
     {
-        service.removeLike(dislike);
-        return service.findEventComments(dislike.getEventID());
+       return service.removeLike(dislike);
+       // return service.findEventComments(dislike.getEventID());
     }
     @PutMapping("/updateComment")
     @ResponseStatus(HttpStatus.CREATED)
@@ -67,5 +69,10 @@ public class CommentController {
         return ResponseEntity.ok(service.findEventComments(event));
     }
 
+    @GetMapping("/orderedEvent/{event}")
+    public ResponseEntity<List<Comments>> findOrderedComment(@PathVariable("event") int event){
+        return ResponseEntity.ok(service.getMyFullList(event));
+
+    }
 
 }

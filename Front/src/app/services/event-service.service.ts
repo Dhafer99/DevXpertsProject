@@ -71,6 +71,9 @@ export class EventServiceService {
     getEventComment(int:number):Observable<Comment[]>{
       return this.http.get<Comment[]>(this.__URL+this.commentURL+'/EventComment/'+int);
     }
+    getFullComment(int:number):Observable<Comments[]>{
+      return this.http.get<Comments[]>(this.__URL+this.commentURL+'/orderedEvent/'+int);
+    }
     orderComments(comments: Comment[]): Comments[] {
       let mycomments: Comments[] = [];
       let maxniveau: number = 0;
@@ -92,7 +95,8 @@ export class EventServiceService {
             let subcomments: Comments = {
               level: level,
               comment: element,
-              list: []
+              list: [],
+              replying:false,
             };
             parentComments.list.push(subcomments);
             commentsAtLevel.push(subcomments);
@@ -111,18 +115,25 @@ export class EventServiceService {
           let trialcomments: Comments = {
             level: 0,
             comment: element,
-            list: []
+            list: [],
+            replying:false
           };
           mycomments.push(trialcomments);
           processCommentsAtLevel(1, trialcomments);
         }
       }
   
-      return mycomments;
+      mycomments.sort((a, b) => {
+        if (b.comment.likesCount === a.comment.likesCount) {
+          return a.comment.dislikesCount - b.comment.dislikesCount;
+        }
+        return b.comment.likesCount - a.comment.likesCount;
+      });      return mycomments;
     }
-    addLike(Like:Like):Observable<Comment[]>{
+    
+    addLike(Like:Like):Observable<Comment>{
       //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
-      return  this.http.post<Comment[]>(this.__URL+this.commentURL+'/addLike',Like)
+      return  this.http.post<Comment>(this.__URL+this.commentURL+'/addLike',Like)
     }
   //-------------------------------- ------------------------------
      //----------------------------------Interested related URLS-------------------------------------

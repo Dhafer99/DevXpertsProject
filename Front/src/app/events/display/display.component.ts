@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Interested } from 'src/app/models/Interested';
-import { Comment, Comments, Event } from 'src/app/models/event';
+import { Comment, Comments, Event, Like } from 'src/app/models/event';
 import { Image } from 'src/app/models/image';
 import { EventServiceService } from 'src/app/services/event-service.service';
 import Swal from 'sweetalert2';
@@ -18,7 +18,7 @@ export class DisplayComponent implements OnInit{
   event: Event = new Event;
   eventImages: Event = new Event;
 
-  idUser:any=1
+  userID=1
   myform!:FormGroup;
   commentForm!:FormGroup;
   interested:boolean=false;
@@ -60,12 +60,12 @@ export class DisplayComponent implements OnInit{
         this.event= result;
         this.eventImages=result;
         this.commentForm.get('eventID').setValue(this.event.id);
-        this.commentForm.get('userID').setValue(this.idUser);
+        this.commentForm.get('userID').setValue(this.userID);
         this.fetchComment();
-       const rate= this.event.ratings?.find((rate)=>rate.userID==this.idUser) ||undefined
+       const rate= this.event.ratings?.find((rate)=>rate.userID==this.userID) ||undefined
 
         this.myform.setValue({
-          userID:this.idUser,
+          userID:this.userID,
           eventID:this.event.id,
           status:rate?.status || 'Accepted',
           rating:rate?.rating ||0,
@@ -75,7 +75,7 @@ export class DisplayComponent implements OnInit{
         
         if (this.event.interesteds){
           this.event.interesteds.forEach(intreted => {
-            if (intreted.userID==this.idUser)
+            if (intreted.userID==this.userID)
             {
             
               this.interested=true;
@@ -93,9 +93,12 @@ export class DisplayComponent implements OnInit{
       this.eventService.getEventComment(this.event.id).subscribe((data)=>{
         this.comments= this.eventService.orderComments(data);
       })
+      // this.eventService.getFullComment(this.event.id).subscribe((data)=>{
+      //   this.comments=data;
+      // })
     }
     add() {
-      this.myform.get('userID').setValue(this.idUser);
+      this.myform.get('userID').setValue(this.userID);
       this.myform.get('eventID').setValue(this.event.id);
       console.log(this.myform.value)
         this.eventService
@@ -107,7 +110,7 @@ export class DisplayComponent implements OnInit{
       
     addInterest(){
       console.log("")
-      this.eventService.addInterest(this.idUser,this.event.id).subscribe((data)=>
+      this.eventService.addInterest(this.userID,this.event.id).subscribe((data)=>
     {
       this.event.interestedCounter+=1
       this.interestedBy=data;
@@ -137,12 +140,39 @@ export class DisplayComponent implements OnInit{
 
     firstComment(){
       console.log("answer cliked")
-      console.log(this.commentForm.value)
-      this.eventService.addCommentFirst(this.commentForm.value).subscribe((data)=>{
+ 
+      this.eventService.addComment(this.commentForm.value).subscribe((data)=>{
+      //   console.log(data)
+      // //  data.forEach(comment=>comment=this.findActiveLike(comment))
         console.log(data)
-        this.comments=this.eventService.orderComments(data);
+
+      let newComment=new Comments()
+      data.likes=[]
+      newComment.comment=data
+      newComment.level=0
+      newComment.list=[]
+      newComment.replying=false
+      newComment.comment.ActiveLike=new Like()
+              this.comments.push(newComment);
       })
     }
-
+    findActiveLike(comment:Comment):Comment{
+      let like=new Like();
+   
+      like.userID=this.userID
+      like.status=" ";
+        if (comment.likes) {
+          comment.ActiveLike = comment.likes.find((rate) => rate.userID == this.userID) || like;
+        } else {
+          comment.ActiveLike = like;
+        }
+        comment.ActiveLike.commentID = comment.id;
+        comment.eventID = comment.eventID;
+        console.log("with Active " )
+        console.log(comment)
+        return comment;
+      }
+     
     }
+
 

@@ -49,19 +49,21 @@ interesteds?: Interested[]; // Assuming InterestedBy is another TypeScript inter
     status: string;
     datetime: Date;
     level:number;
-    likes: Like[]; // Assuming Like class is defined
+    likes!: Like[]; // Assuming Like class is defined
+    ActiveLike:Like;
   }
   export class Comments {
     level:number;
    comment: Comment;
+   replying:boolean;
     list:Comments[]
   }
 
   export class Like {
     id: number;
-    userId: number;
-    eventId: number;
-    commentId: number;
+    userID: number;
+    eventID: number;
+    commentID: number;
     status: string;
     datetime: Date;
   }

@@ -168,23 +168,30 @@
               <div class="row d-flex align-items-center justify-content-start">
                   <div class="col-sm-2 col-3">
                       <div class="avatar forum-profile">
-                          <img src="images/inner-image/user/img-2.jpg" alt=""
-                              class="img-fluid rounded-circle avatar-md">
+                        <img
+                src="../../../assets/images/inner-image/creator/img-1.png"
+                alt=""
+                class="img-fluid rounded-circle avatar-md"
+              />
+                         
                       </div>
                   </div>
                   <div class="col-xl-8 col-md-6 col-5 my-2">
                       <form [formGroup]="commentForm">
                           <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="comment"
-                              placeholder="Add Your Answer" name="comment" required="true">
+                              placeholder="Add Your Comment" name="comment" required="true">
                       </form>
                   </div>
                   <div class="col-2">
-                      <button class="btn btn-dark" (click)="firstComment()">Answer</button>
+                      <button class="btn btn-dark" (click)="firstComment()">Comment</button>
               </div>
           </div>
             <div class="answer-process-details" >
               <div *ngIf="comments.length!=0 || !comments">
                   <app-comment [comments]="comments" [previousComment]="comments[0].comment"></app-comment>
+                </div>
+                <div *ngIf="comments.length==0 " >
+                  <p> Be the First to Comment </p>
                 </div>
               </div>
             </div>
