@@ -7,17 +7,24 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ProjetPi';
-  dark(){
-    const body = document.querySelector('body');
-    if (body) {
-      body.setAttribute('data-bs-theme',"dark");
-    }
-  }
-  light(){
-    const body = document.querySelector('body');
-    if (body) {
-      body.setAttribute('data-bs-theme',"light");
-    }
+
   
+/******************** **********************/
+dark(){
+  const body = document.querySelector('body');
+  if (body) {
+    body.setAttribute('data-bs-theme',"dark");
   }
+}
+light(){
+  const body = document.querySelector('body');
+  if (body) {
+    body.setAttribute('data-bs-theme',"light");
+  }
+
+}
+
+/*********************************** */
+
+
 }
