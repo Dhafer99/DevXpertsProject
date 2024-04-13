@@ -33,6 +33,8 @@ import base64
 import os
 import paddleocr
 from paddleocr import PaddleOCR
+from django.db import connections
+from django.http import HttpResponse
 
 @csrf_exempt
 @require_http_methods(['GET'])
@@ -108,37 +110,41 @@ def perform_ocr(images):
 #SCRAP CV POUR ETUDIANT
 @csrf_exempt
 @require_http_methods(['GET'])
-def getCV(request, id_user):
+def getCV(request, id_offer,id_user):
     content=""
     # load pre-trained model
     nlp = spacy.load('en_core_web_sm')
     #noun_chunks = nlp.noun_chunks
-    with connection.cursor() as cursor:
+    with connections['default'].cursor() as cursor:
+        query="SELECT description FROM offer WHERE id = %s"
+        cursor.execute(query, [id_offer])
+        description=cursor.fetchall()
+        print(description)
+        # Traiter le résultat de la requête
         
-        #query = "SELECT lettre_de_motivation,offer_id FROM application WHERE id = %s"
-        query = "SELECT file,description FROM offer WHERE id = %s"
+        # Exécution de la deuxième requête sur la deuxième base de données
+    with connections['user'].cursor() as cursor:
+        query="SELECT cv FROM user_credential WHERE id = %s"
         cursor.execute(query, [id_user])
-        result = cursor.fetchone()
-        nlp = spacy.load('fr_core_news_sm')
-        #queryy = "SELECT description FROM offer WHERE id = %s"
-        #cursor.execute(queryy, [result[1]]) 
-        #description = cursor.fetchone()
-        description = result[1]
-        # Supposons que vous ayez déjà récupéré le contenu du blob dans la variable 'blob_content'
-        blob_content = result[0]
+        blob_content=cursor.fetchall()
+            # Traiter le résultat de la requête
+    print(description)
+    #print(blob_content)
+        
 
         #traduction de la description
-        translation_description = []
-        translator = Translator()
-        translation_description = translator.translate(str(description), src="fr", dest="en")
+    translation_description = []
+    translator = Translator()
+    translation_description = translator.translate(str(description), src="fr", dest="en")
         #output_path = 'D:/Anas INFO/Esprit/4SAE10/SEM2/PI/CVPDF/output.pdf'  # Spécifiez le chemin d'enregistrement souhaité
 
         # Appeler la fonction pour convertir le BLOB PDF en PDF et spécifier le chemin d'enregistrement
         #convert_blob_to_pdf(blob_content, output_path)
         # 2. Enregistrer le blob en tant que fichier PDF temporaire
-        temp_pdf_path = 'temp.pdf'  # Chemin du fichier temporaire PDF
-        with open(temp_pdf_path, 'wb') as file:
-            file.write(blob_content)
+    temp_pdf_path = 'temp.pdf'  # Chemin du fichier temporaire PDF
+    with open(temp_pdf_path, 'wb') as file:
+        file.write(blob_content[0][0])
+
 
         #pdf_bytesio = BytesIO(blob_content)
 
@@ -148,21 +154,21 @@ def getCV(request, id_user):
         # Effectuer la reconnaissance de texte
         
         # Specify the path to the Poppler binaries
-        poppler_path = r'D:\Anas INFO\Esprit\4SAE10\SEM2\PI\poppler-24.02.0\Library\bin'
+    poppler_path = r'D:\Anas INFO\Esprit\4SAE10\SEM2\PI\poppler-24.02.0\Library\bin'
         # 3. Convertir le fichier PDF en image
         # Set the environment variable for Poppler
-        os.environ["PATH"] += os.pathsep + poppler_path
+    os.environ["PATH"] += os.pathsep + poppler_path
 
         # Convert PDF to images
-        images = convert_from_path(temp_pdf_path, dpi=200, poppler_path=poppler_path)
+    images = convert_from_path(temp_pdf_path, dpi=200, poppler_path=poppler_path)
 
         #perform_ocr(images)
         # Sélectionnez la première page pour convertir en image
-        res = perform_ocr(images)
+    res = perform_ocr(images)
         # Extraire uniquement le texte en minuscules
-        text_extracted_lower = [item.split(',')[0].strip("('\"").lower() for item in res]
+    text_extracted_lower = [item.split(',')[0].strip("('\"").lower() for item in res]
 
-        texte_interessant = []
+    texte_interessant = []
         #start_index = text_extracted_lower.index("experiences professionnelles") + 1
         #end_index = text_extracted_lower.index("competences")
         #start_index = text_extracted_lower.index("work experience") + 1
@@ -170,7 +176,7 @@ def getCV(request, id_user):
         #texte_interessant = text_extracted_lower[start_index:end_index]
 
         # reading the csv file
-        skills = [
+    skills = [
             'python',
             'javascript',
             'java',
@@ -199,52 +205,52 @@ def getCV(request, id_user):
             'spring boot'
         ] 
 
-        translation_cv = []
-        translator = Translator()
-        translation_cv = translator.translate(str(text_extracted_lower), src="fr", dest="en")
+    translation_cv = []
+    translator = Translator()
+    translation_cv = translator.translate(str(text_extracted_lower), src="fr", dest="en")
 
-        nlp_text = nlp(translation_cv.text)
-
-        # removing stop words and implementing word tokenization
-        tokens = [token.text for token in nlp_text if not token.is_stop]
-
-        skillset = []
-        skillsOffer = []
-
-        nlp_description = nlp(translation_description.text)
+    nlp_text = nlp(translation_cv.text)
 
         # removing stop words and implementing word tokenization
-        tokenss = [token.text for token in nlp_description if not token.is_stop]
+    tokens = [token.text for token in nlp_text if not token.is_stop]
 
-        for token in tokenss:
-            if token.lower() in skills:
-                skillsOffer.append(token.lower())
+    skillset = []
+    skillsOffer = []
+
+    nlp_description = nlp(translation_description.text)
+
+        # removing stop words and implementing word tokenization
+    tokenss = [token.text for token in nlp_description if not token.is_stop]
+
+    for token in tokenss:
+        if token.lower() in skills:
+            skillsOffer.append(token.lower())
 
         
         # check for one-grams (example: python)
-        for token in tokens:
-            if token.lower() in skills:
-                skillset.append(token.lower())
+    for token in tokens:
+        if token.lower() in skills:
+            skillset.append(token.lower())
     
-        skillset = list(set(skillset))
+    skillset = list(set(skillset))
     #return [i.capitalize() for i in set([i.lower() for i in skillset])]
-        print("Skillset",skillset)
-        print(skillsOffer)
+    print("Skillset",skillset)
+    print("skillsOffer",skillsOffer)
 
-        communs = []
-        res = 0 
+    communs = []
+    res = 0 
 
-        for mot in skillset:
-            if mot.lower() in skillsOffer:
-                communs.append(mot.lower())
-        if (len(skillsOffer)==0):
-            res = 0
-        else:    
-            res = len(communs)/len(skillsOffer)*100
+    for mot in skillset:
+        if mot.lower() in skillsOffer:
+            communs.append(mot.lower())
+    if (len(skillsOffer)==0):
+        res = 0
+    else:    
+        res = len(communs)/len(skillsOffer)*100
 
-        print(res)
+    print(res)
         # Afficher le texte récupéré
-        print(texte_interessant)
+    print(texte_interessant)
 
         
     #return JsonResponse(text_extracted_lower , safe=False)

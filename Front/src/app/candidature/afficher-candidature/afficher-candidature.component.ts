@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Candidature, Status } from 'src/app/models/candidature';
 import { CandidatureService } from 'src/app/services/candidature.service';
-import { saveAs } from 'file-saver';
+//import { saveAs } from 'file-saver';
 import { OfferService } from 'src/app/services/offer.service';
 import Swal from 'sweetalert2';
 
@@ -63,13 +63,14 @@ export class AfficherCandidatureComponent implements OnInit{
   openFirstAlert(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       let timerInterval:any;
+      const buttonElement = document.createElement('button');
         Swal.fire({
           title: "Checking the CV.!",
           html: "Data processing.",
           timer: 13000,
           timerProgressBar: true,
           didOpen: () => {
-            Swal.showLoading();
+            Swal.showLoading(buttonElement);
             /*const timer = Swal.getPopup().querySelector("b");
             timerInterval = setInterval(() => {
               timer.textContent = `${Swal.getTimerLeft()}`;
@@ -186,7 +187,7 @@ export class AfficherCandidatureComponent implements OnInit{
   telechargerFichier(data: Blob | null) {
   if (data !== null) {
     const nomFichier = 'Motivation.pdf';
-    saveAs(data, nomFichier);
+    //saveAs(data, nomFichier);
   }
 
 }

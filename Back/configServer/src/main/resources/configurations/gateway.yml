@@ -63,6 +63,30 @@ spring:
           uri: http://localhost:8899
           predicates:
             - Path=/api/Offer/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
+        - id: applications
+          uri: http://localhost:8899
+          predicates:
+            - Path=/api/Application/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
         - id: rooms
           uri: http://localhost:8083
           predicates:

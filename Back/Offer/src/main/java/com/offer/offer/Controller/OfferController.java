@@ -32,7 +32,7 @@ import java.io.ByteArrayOutputStream;
 
 
 
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/Offer")
 @AllArgsConstructor

@@ -51,7 +51,7 @@ import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.compo
 import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
 import { AuctionComponent } from './auction/auction.component';
-//import { CKEditorModule } from 'ckeditor4-angular';
+import { CKEditorModule } from 'ckeditor4-angular';
 import { PaymentListComponent } from './payment-list/payment-list.component';
 
 
@@ -91,7 +91,7 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
    
   ],
   imports: [
-    //CKEditorModule,
+    CKEditorModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

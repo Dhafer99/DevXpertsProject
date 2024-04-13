@@ -16,8 +16,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AfficherCandidatursUserComponent } from './candidature/afficher-candidaturs-user/afficher-candidaturs-user.component';
 import { DatePipe } from '@angular/common';
 //import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { QRCodeModule } from 'angularx-qrcode';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
+//import { QRCodeModule } from 'angularx-qrcode';
+//import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ListPacksComponent } from './PackageManagementUser/list-packs/list-packs.component';
 import { DetailPackComponent } from './PackageManagementUser/detail-pack/detail-pack.component';
@@ -47,6 +47,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-
     MyRoomsComponent,
     PaymentComponent,
     RouletteComponent,
+    SignUpComponent,
 
   ],
   imports: [
@@ -84,17 +86,12 @@ import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    
     NgbModule,
-    QRCodeModule,
-    ZXingScannerModule,
+    //QRCodeModule,
+    //ZXingScannerModule,
     //ZXingScannerModule 
-  
-
-    AppRoutingModule,
-    FormsModule ,
-    ReactiveFormsModule,
-   HttpClientModule,
-   DragDropModule,
+   //DragDropModule,
    MatTooltipModule,
    BrowserAnimationsModule,
    MatNativeDateModule,

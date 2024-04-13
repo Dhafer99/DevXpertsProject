@@ -29,7 +29,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8899'
+    'http://localhost:8899',
+    'http://localhost:8222'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -45,6 +46,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'anasmanagement',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',  # Leave it as an empty string for localhost
+        'PORT': '',  # Leave it as an empty string for default port
+    },
+    'user': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'boothandsupplier',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',  # Leave it as an empty string for localhost

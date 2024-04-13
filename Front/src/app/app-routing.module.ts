@@ -23,10 +23,14 @@ import { NewsupplierfrontComponent } from './newsupplierfront/newsupplierfront.c
 import { ExhibitorReservationComponent } from './exhibitor-reservation/exhibitor-reservation.component';
 import { SupplierDetailComponent } from './supplier-detail/supplier-detail.component';
 import { MessagestestComponent } from './messagestest/messagestest.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 export * from '../../projects/back-office/src/app/app.module'; // <==== THAT WAS MISSING
 export * from '../../projects/back-office/src/app/supplier/supplier.component';
 const routes: Routes = [  
 
+  { path: 'signup', component: SignUpComponent },
+  { path: 'auth', component: AuthenticationinterfaceComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'offers', component:AfficherOffreComponent},
   { path: 'addoffer', component:AjouterOffreComponent},

@@ -31,7 +31,8 @@ export class AjouterOffreComponent implements OnInit{
 
   ngOnInit(): void {
     //this.id=this.acr.snapshot.params['id']
-    this.user=this.userS.getUser();
+    this.user=JSON.parse(localStorage.getItem("user"))
+    //this.user=this.userS.getUser();
     this.offerForm=new FormGroup({
       description:new FormControl('',[Validators.required,Validators.minLength(10)]),
       lastDateApplication:new FormControl('',Validators.required),

@@ -5,6 +5,7 @@ import { CandidatureService } from 'src/app/services/candidature.service';
 import { OfferService } from 'src/app/services/offer.service';
 import { UserAnasService } from 'src/app/services/user-anas.service';
 import { LowerCasePipe } from '@angular/common';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-afficher-offre',
@@ -16,7 +17,7 @@ import { LowerCasePipe } from '@angular/common';
 
 export class AfficherOffreComponent implements OnInit{
 
-  constructor(private offerService:OfferService,private candidatureService:CandidatureService,private userS:UserAnasService){  }
+  constructor(private offerService:OfferService,private candidatureService:CandidatureService,private userS:UserAnasService,private userService:UserService){  }
   
   exibitorId!:number;
   listOffers:any;
@@ -28,17 +29,21 @@ export class AfficherOffreComponent implements OnInit{
   lisRecFinal: any[] = [];
   pourcentageOffre: number[] = [];
   listRecherche!:any;
-  user!:User;
+  user!:any;
   titre:string='';
   
   ngOnInit(): void {
-    this.user=this.userS.getUser();
-    if (this.user.role=="exibitor"){
+    console.log(localStorage.getItem("userID"))
+     //this.getUser(localStorage.getItem("userID"))
+     this.user=JSON.parse(localStorage.getItem("user"))
+    if (this.user.role=="exhibitor"){
+      console.log(this.user.password)
       this.getOffersByExibitor(this.user.id.toString());
       this.getOffersTypeJobByExibitor(this.user.id.toString());
       this.getOffersTypeStageByExibitor(this.user.id.toString());
     }
     else {
+      console.log(this.user.password)
       this.getOffersForUser();
       this.getJobsForUser();
       this.getStagesForUser();
@@ -46,6 +51,7 @@ export class AfficherOffreComponent implements OnInit{
     }
   
   }
+
 
   onInputChange() {
     // Logique de votre méthode ici

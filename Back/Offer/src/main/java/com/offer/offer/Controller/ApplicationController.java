@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/Application")
 @AllArgsConstructor
-@CrossOrigin
+//@CrossOrigin
 public class ApplicationController {
 
     private final IApplicationService applicationService;

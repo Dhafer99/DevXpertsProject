@@ -33,7 +33,8 @@ export class ModifierOfferComponent {
   @ViewChild('fileInput') fileInput!: ElementRef;
 
   ngOnInit(): void {
-    this.user=this.userS.getUser();
+    //this.user=this.userS.getUser();
+    this.user=JSON.parse(localStorage.getItem("user"))
     this.id=this.activateroute.snapshot.params['id'];
     this.getOffer(this.id);
     //this.seletedValue=this.offer.typeOffer.toString();

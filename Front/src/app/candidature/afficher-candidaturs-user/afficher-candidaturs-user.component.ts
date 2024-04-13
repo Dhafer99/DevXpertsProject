@@ -17,7 +17,8 @@ export class AfficherCandidatursUserComponent implements OnInit{
   constructor(private candidatureService:CandidatureService,private userS:UserAnasService){  }
   
   ngOnInit(): void {
-    this.user=this.userS.getUser()
+    //this.user=this.userS.getUser()
+  this.user=JSON.parse(localStorage.getItem("user"))
   this.candidatureService.getAllApplicationsByUser(this.user.id).subscribe((data:Candidature[])=>{
   this.listCandidatures=data
   console.log("mylist:"+JSON.stringify(this.listCandidatures))

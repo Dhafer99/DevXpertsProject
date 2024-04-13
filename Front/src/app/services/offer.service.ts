@@ -8,7 +8,7 @@ import { Offer, typeOffer } from '../models/offer';
 })
 export class OfferService {
 
-  offerUrl ='http://localhost:8899/api/Offer';
+  offerUrl ='http://localhost:8222/api/Offer';
 
   constructor(private http:HttpClient) { }
 

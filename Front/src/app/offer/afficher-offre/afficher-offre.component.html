@@ -10,7 +10,7 @@
             <!-- AAAAA-->
 
 
-            <div class="input-group d-flex justify-content-center" *ngIf="user.role=='exibitor'">
+            <div class="input-group d-flex justify-content-center" *ngIf="user.role=='exhibitor'">
                 <button type="button" class="btn btn-danger" routerLink="/addoffer">
                     Add an offer
                     <i class="mdi mdi-plus-thick"></i>
@@ -18,7 +18,7 @@
 
             </div>
 
-            <div class="input-group d-flex justify-content-center" *ngIf="user.role!='exibitor'">
+            <div class="input-group d-flex justify-content-center" *ngIf="user.role!='exhibitor'">
                 <div class="form-outline" data-mdb-input-init>
                     <input type="search" id="form1" class="form-control" [(ngModel)]="titre" (input)="onInputChange()"/>
                 </div>
@@ -42,7 +42,7 @@
                     <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill"
                         data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages"
                         aria-selected="false"><i class="mdi mdi-cart me-2 f-18"></i>Job</button>
-                    <div *ngIf="user.role!='exibitor'">
+                    <div *ngIf="user.role!='exhibitor'">
                         <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
                             data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings"
                             aria-selected="false"><i class="mdi mdi-plus-circle me-2 f-18"></i>Recommanded</button>

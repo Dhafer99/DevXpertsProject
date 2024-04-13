@@ -5,13 +5,13 @@ import { CandidatureService } from 'src/app/services/candidature.service';
 import { OfferService } from 'src/app/services/offer.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { saveAs } from 'file-saver';
+//import { saveAs } from 'file-saver';
 import { UserAnasService } from 'src/app/services/user-anas.service';
 import { User } from 'src/app/models/user';
 import { DatePipe } from '@angular/common';
-import { BarcodeFormat } from '@zxing/library';
-import { Result } from '@zxing/library';
-import { ZXingScannerComponent } from '@zxing/ngx-scanner';
+//import { BarcodeFormat } from '@zxing/library';
+//import { Result } from '@zxing/library';
+//import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -35,8 +35,7 @@ export class DetailOffreComponent implements OnInit{
    currentDate!:Date;
    comparaisonDate!:boolean;
      @ViewChild('fileInput') fileInput!: ElementRef;
-     @ViewChild('scanner', { static: false })
-  scanner!: ZXingScannerComponent;
+
   @ViewChild('content', { static: true }) contentRef!: TemplateRef<any>;
 
   onScanSuccess(scanResult: string): void {
@@ -83,13 +82,14 @@ export class DetailOffreComponent implements OnInit{
       this.titre=data;
     })
     let timerInterval:any;
+    const buttonElement = document.createElement('button');
         Swal.fire({
           title: "Checking the CV.!",
           html: "Data processing.",
           timer: 13000,
           timerProgressBar: true,
           didOpen: () => {
-            Swal.showLoading();
+            Swal.showLoading(buttonElement);
             /*const timer = Swal.getPopup().querySelector("b");
             timerInterval = setInterval(() => {
               timer.textContent = `${Swal.getTimerLeft()}`;
@@ -194,18 +194,11 @@ export class DetailOffreComponent implements OnInit{
   telechargerFichier(data: Blob | null) {
   if (data !== null) {
     const nomFichier = this.offer.exibitorId+'.pdf';
-    saveAs(data, nomFichier);
+    //saveAs(data, nomFichier);
   }
 }
 
 //currentDevice: MediaDeviceInfo | null = null;
-
-formatsEnabled: BarcodeFormat[] = [
-    BarcodeFormat.CODE_128,
-    BarcodeFormat.DATA_MATRIX,
-    BarcodeFormat.EAN_13,
-    BarcodeFormat.QR_CODE,
-  ];
 
 /*onScanSuccess(result: string): void {
     const jsonObject = JSON.parse(result);
