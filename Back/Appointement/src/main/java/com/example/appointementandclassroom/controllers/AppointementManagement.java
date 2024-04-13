@@ -1,15 +1,12 @@
 package com.example.appointementandclassroom.controllers;
 
-import com.example.appointementandclassroom.entities.ApiOpenquizzdb;
-import com.example.appointementandclassroom.entities.Appointement;
-import com.example.appointementandclassroom.entities.Classroom;
-import com.example.appointementandclassroom.entities.QuizApi;
-import com.example.appointementandclassroom.services.AppointementService;
-import com.example.appointementandclassroom.services.ClassroomService;
-import com.example.appointementandclassroom.services.IQuizService;
+import com.example.appointementandclassroom.entities.*;
+import com.example.appointementandclassroom.services.*;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -26,8 +23,7 @@ public class AppointementManagement {
     @Autowired
     private  final ClassroomService classroomService ;
 
-    @Autowired
-    private  final IQuizService testService;
+
     //----------------------Swager -------------------------------
     //  http://localhost:8095/swagger-ui/index.html#/
     //-----------------------------------------------------------
@@ -139,34 +135,125 @@ public List<Date> getAvailableDate(){
 
 
 
-   //----------------------------------------------------------
+    //----------------------------------------------------------
     // -------------- Quiz-------------------------
+    // -------------- Question-------------------------
 
 
 
-    @GetMapping("/retrieve-all-quizs")
-    public List<QuizApi> retrieveAllTests() {
-        return testService.retrieveAllQuizs();
+
+    @Autowired
+    QuestionService questionService;
+
+    @GetMapping("allquestions")
+    public  List<Question> getAllquestion(){
+
+        return  questionService.getAllQuestion();
     }
 
-    @GetMapping("/retrieve-quiz/{id}")
-    public QuizApi retrieveTest(@PathVariable("id") Long id) {
-        return testService.retrieveQuiz(id);
+    @GetMapping("AllQuiz")
+    public  List<Quiz> getAllQuiz(){
+
+        return quizService.getAllquiz();
     }
 
-    @PostMapping("/add-quiz")
-    public String addTest(@RequestBody QuizApi test) {
-        return testService.addTest(test);
+    @GetMapping("category/{category}")
+    public  List<Question> getQuestionByCategory(@PathVariable String category ){
+        return  questionService.getQuestionByCategory(category);
+
+
+    }
+
+  //  @GetMapping("getQuizbyCategorie/{category}")
+ //public Quiz getQuizBycategorie(@PathVariable String category){
+
+   //     return  quizService.QuizBycateg(category);
+    //}
+
+    @PostMapping("add questions")
+    public Question addQuestions(@RequestBody Question question){
+
+        return  questionService.addQuestion(question);
     }
 
 
 
 
-    @PostMapping("/add-quiz-api")
-    public void addtestwithapi(@RequestBody List<ApiOpenquizzdb> apiOpenquizzdbs) {
-        testService.addtestwithapi(apiOpenquizzdbs);
+    @Autowired
+    QuizService quizService;
+
+
+    @PostMapping("createQuiz")
+        public ResponseEntity<Quiz> createQuiz(@RequestBody QuizCreate quizCreate){
+
+        return new ResponseEntity<>(quizService.createQuiz(quizCreate), HttpStatus.CREATED);
     }
 
 
-    
+
+    @GetMapping("Get Quiz Question/{id}")
+    public ResponseEntity<List<QuestionWrapper>> getquizQuestions(@PathVariable Integer id){
+       return quizService.getQuizQuestion(id);
+
+    }
+
+
+
+
+
+    @PostMapping("Submit/{id}")
+    public ResponseEntity<Integer> SubmitQuiz(@PathVariable Integer id , @RequestBody List<Response>  responses){
+
+    return quizService.CalculateResult(id,responses);
+
+
+    }
+
+
+    @GetMapping("/quizzes/{category}")
+    public List<Quiz> getQuizzesByCategory(@PathVariable String category) {
+        return quizService.getQuizzesByCategory(category);
+    }
+
+
+
+//-------------- category Service
+
+    @Autowired
+    CategoryService categoryService;
+
+    @Operation(description = "Retrieve all category")
+    @GetMapping("/all_category")
+    public List<category> getAllAcategory(){
+        return categoryService.retrieveAllcategory();
+    }
+
+
+
+
+    //----------------------------- 5edma  quiz -------------------------------
+
+    @PostMapping("/ajoutnewQuiz")
+    public void addQuiz(@RequestBody  Quiz quiz) {
+        quizService.addQuiz(quiz);
+    }
+    @GetMapping("/afficher-tous-les-quiz")
+    public List<Quiz> afficheAllQuiz() {
+        return quizService.afficheAllQuiz();
+    }
+
+    @PostMapping("/afficher-une-quiz/{id}")
+    public Quiz AfficheuneQuiz(@PathVariable ("id") Integer id) {
+        return quizService.AfficheuneQuiz(id);
+    }
+
+@DeleteMapping("/deleteByID/{id}")
+
+    public  void  deletequie(@PathVariable ("id") Integer id){
+        quizService.deleateQuiz(id);
+
+}
+
+
+
 }

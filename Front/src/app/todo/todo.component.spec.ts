@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ALLquizComponent } from './allquiz.component';
+import { TodoComponent } from './todo.component';
 
-describe('ALLquizComponent', () => {
-  let component: ALLquizComponent;
-  let fixture: ComponentFixture<ALLquizComponent>;
+describe('TodoComponent', () => {
+  let component: TodoComponent;
+  let fixture: ComponentFixture<TodoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ALLquizComponent ]
+      declarations: [ TodoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ALLquizComponent);
+    fixture = TestBed.createComponent(TodoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

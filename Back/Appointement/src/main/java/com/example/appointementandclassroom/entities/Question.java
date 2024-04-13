@@ -1,26 +1,36 @@
 package com.example.appointementandclassroom.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-@Entity
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
 @AllArgsConstructor
-@FieldDefaults(level=AccessLevel.PRIVATE)
+@NoArgsConstructor
+@Entity
 public class Question {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String question;
-    String image;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Set<QuestionOption> questionOptions;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private  int id ;
+      private  String question ;
+   @ElementCollection
+  @CollectionTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"))
+       @Column(name = "option")
+      private List<String> options;
+      private String category ;
+      private  String answer ;
+     private  String difficultylevel ;
+
 }

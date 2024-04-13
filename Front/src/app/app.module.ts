@@ -14,10 +14,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetailsComponent } from './details/details.component';
-import { ALLquizComponent } from './allquiz/allquiz.component';
-import { OnequizComponent } from './onequiz/onequiz.component';
-
-
+import { QuizinterfaceComponent } from './quizinterface/quizinterface.component';
+import { GeneralquizinterfaceComponent } from './generalquizinterface/generalquizinterface.component';
+import { AddQuizComponent } from './add-quiz/add-quiz.component';
+import { TodoComponent } from './todo/todo.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { QuizDetailsComponent } from './quiz-details/quiz-details.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +29,12 @@ import { OnequizComponent } from './onequiz/onequiz.component';
     ProfileComponent,
     CalenderComponent,
     DetailsComponent,
-    ALLquizComponent,
-    OnequizComponent,
+    QuizinterfaceComponent,
+    GeneralquizinterfaceComponent,
+    AddQuizComponent,
+    TodoComponent,
+    QuizDetailsComponent,
+
    
     
   ],
@@ -44,7 +52,10 @@ import { OnequizComponent } from './onequiz/onequiz.component';
     ButtonsModule,
     ReactiveFormsModule,
     FormsModule,
-    BrowserAnimationsModule  
+    BrowserAnimationsModule ,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

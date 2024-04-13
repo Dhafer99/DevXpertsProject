@@ -1,0 +1,10 @@
+<h1>add quiz</h1>
+
+<!-- category-form.component.html -->
+
+<form (ngSubmit)="onAddCategory()">
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" [(ngModel)]="newCategory">
+    <button type="submit" >Add</button>
+  </form>
+  

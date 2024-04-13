@@ -1,81 +1,100 @@
 package com.example.appointementandclassroom.services;
 
-import com.example.appointementandclassroom.entities.ApiOpenquizzdb;
-import com.example.appointementandclassroom.entities.Question;
-import com.example.appointementandclassroom.entities.QuestionOption;
-import com.example.appointementandclassroom.entities.QuizApi;
+import com.example.appointementandclassroom.entities.*;
+import com.example.appointementandclassroom.repositories.QuestionRepo;
 import com.example.appointementandclassroom.repositories.QuizRepo;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
-@AllArgsConstructor
 @Service
-public class QuizService implements IQuizService{
- QuizRepo quizRepo;
+@RequiredArgsConstructor
+public class QuizService implements  IQuizService{
+    @Autowired
+    private QuizRepo quizRepo;
+    @Autowired
+    private QuestionRepo questionRepo ;
+
     @Override
-    public List<QuizApi> retrieveAllQuizs() {
+    public Quiz createQuiz(QuizCreate quizCreate) {
+        // A3tiinii les qustions bill categorie ou 9adeeh men question
+        List<Question> questions = questionRepo.findRandomQuestionsByCategory(quizCreate.getCategory(), quizCreate.getNumQ());
+
+        Quiz quiz = new Quiz();
+        quiz.setTitle(quizCreate.getTitle());
+        quiz.setQuestions(questions);
+
+        return     quizRepo.save(quiz);
+
+    }
+
+
+    @Override
+    public ResponseEntity<List<QuestionWrapper>> getQuizQuestion(Integer id) {
+        Optional<Quiz> quiz = quizRepo.findById(id);
+        List<Question> questionsFromDB = quiz.get().getQuestions();
+        List<QuestionWrapper> questionsForUser = new ArrayList<>();
+    for(Question q: questionsFromDB)
+    {
+        QuestionWrapper qw = new QuestionWrapper(q.getId() , q.getQuestion() , q.getOptions());
+        questionsForUser.add(qw);
+    }
+
+
+        return  new ResponseEntity<>(questionsForUser,HttpStatus.OK );
+    }
+
+    @Override
+    public ResponseEntity<Integer> CalculateResult(Integer id, List<Response> responses) {
+        Quiz  quiz = quizRepo.findById(id).get();
+        List<Question> questions = quiz.getQuestions();
+        int right =0 ;
+        int i =0 ;
+        for(Response response : responses){
+
+            if(response.getResponses().equals(questions.get(i).getAnswer()))
+                right ++ ;
+            i++ ;
+        }
+        return  new ResponseEntity<>(right,HttpStatus.OK );
+    }
+
+    @Override
+    public List<Quiz> getAllquiz() {
         return quizRepo.findAll();
     }
 
     @Override
-    public QuizApi retrieveQuiz(Long quizId) {
-        return quizRepo.findById(quizId).orElse(null);
+    public List<Quiz> getQuizzesByCategory(String category) {
+        //return quizRepo.findByCategory(category);
+        return null;
+    }
+// tesstt
+    @Override
+    public void addQuiz(Quiz quiz) {
+         quizRepo.save(quiz);
     }
 
     @Override
-    public String addTest(QuizApi test) {
-        Set<Question> questions=new HashSet<>();
-        for (Question q:test.getQuestions()) {
-            questions.add(q);
-            Set<QuestionOption> options=new HashSet<>();
-            for (QuestionOption o:q.getQuestionOptions())
-                options.add(o);
-            q.setQuestionOptions(options);
-        }
-        test.setActive(true);
-        test.setQuestions(questions);
-        quizRepo.save(test);
-
-        return "test added succesfuly";
+    public List<Quiz> afficheAllQuiz() {
+        return quizRepo.findAll();
     }
-
 
     @Override
-    public void addtestwithapi(List<ApiOpenquizzdb> apiOpenquizzdbs) {
-        QuizApi test=new QuizApi();
-        ApiOpenquizzdb anyone =apiOpenquizzdbs.get(0);
-        test.setTitle(anyone.getCategorie());
-        test.setDescription("a simple test about "+anyone.getCategorie()+" in"+anyone.getLangue()+" and the difficulti is : "+anyone.getDifficulte());
-        test.setImage("assets/img/quiz/"+anyone.getCategorie()+".png");
-        Set<Question> questions=new HashSet<>();
-        for (ApiOpenquizzdb q : apiOpenquizzdbs) {
-            Question question = new Question();
-            question.setQuestion(q.getQuestion());
-            question.setImage(q.getTheme());
-            Set<QuestionOption> options = new HashSet<>();
-            String[] propositions = q.getAutres_choix();
-            String ans = q.getReponse_correcte();
-            for (String proposition : propositions) {
-                QuestionOption option = new QuestionOption();
-                option.setAnswer(proposition);
-                if (option.getAnswer().equals(ans)) {
-                    option.setIscorrect(true);
-                } else {
-                    option.setIscorrect(false);
-                }
-                options.add(option);
-            }
-
-            question.setQuestionOptions(options);
-            questions.add(question);
-        }
-        test.setActive(true);
-        test.setQuestions(questions);
-        quizRepo.save(test);
-
+    public Quiz AfficheuneQuiz(int id) {
+        return quizRepo.findById(id).orElse(null);
     }
+
+    @Override
+    public void deleateQuiz(int id) {
+        quizRepo.deleteById(id);
+    }
+
+
 }
