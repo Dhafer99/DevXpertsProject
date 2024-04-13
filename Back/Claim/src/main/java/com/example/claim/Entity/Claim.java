@@ -20,6 +20,16 @@ public class Claim {
     private String subject;
     private String description;
     private int level;
+    @Enumerated(EnumType.STRING)
+    private ClaimType title;
+
+    @Enumerated(EnumType.STRING)
+    private SystemProb systemProblem ;
+
+    @Enumerated(EnumType.STRING)
+    private ServiceProb serviceProblem ;
+
+
 
     @OneToOne(mappedBy = "claim", cascade = CascadeType.ALL)
     private Response response;
