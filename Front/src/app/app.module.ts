@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { PostFormComponent } from './ForumManagement/post-form/post-form.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import Swal from 'sweetalert2';
+import { ClaimListComponent } from './ClaimManagement/claim-list/claim-list.component';
 
 
 
@@ -28,7 +29,8 @@ import Swal from 'sweetalert2';
     PostListComponent,
     PostDetailComponent,
     PostFormComponent,
-    ClaimFormComponent
+    ClaimFormComponent,
+    ClaimListComponent
 
   ],
   imports: [

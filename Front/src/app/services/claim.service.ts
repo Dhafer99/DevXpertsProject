@@ -10,7 +10,7 @@ export class ClaimService {
 
   constructor(private http: HttpClient) { }
 
-  public getClaimsList(): Observable<Claim[]>{
+  public getClaimsList(): Observable<Claim[]> {
     return this.http.get<Claim[]>('http://localhost:8050/api/Claims');
   }
 
@@ -22,6 +22,37 @@ export class ClaimService {
     return this.http.delete<void>(`http://localhost:8050/api/Claims/remove-claim/${idClaim}`);
   }
 
+  public updateClaim(claim: Claim): Observable<Claim> {
+    return this.http.put<Claim>(`http://localhost:8050/api/Claims`, claim);
+  }
+
   public getClaim(idClaim: number): Observable<Claim> {
-    return this.http.get<Claim>(`http://localhost:8050/api/Claims/retrieve-claim/${idClaim}`);}
+    return this.http.get<Claim>(`http://localhost:8050/api/Claims/retrieve-claim/${idClaim}`);
+  }
+
+  public findCBySubject(subject: string): Observable<Claim[]> {
+    return this.http.get<Claim[]>(`http://localhost:8050/api/Claims/find/${subject}`);
+  }
+
+  public findCByStatus(status: string): Observable<Claim[]> {
+    return this.http.get<Claim[]>(`http://localhost:8050/api/Claims/find2/${status}`);
+  }
+
+  public findCByStatus2(status: string): Observable<Claim[]> {
+    return this.http.get<Claim[]>(`http://localhost:8050/api/Claims/find3/${status}`);
+  }
+
+  public findCBylevelAsc(): Observable<Claim[]> {
+    return this.http.get<Claim[]>(`http://localhost:8050/api/Claims/levelAsc`);
+  }
+
+  public findCBylevelDesc(): Observable<Claim[]> {
+    return this.http.get<Claim[]>(`http://localhost:8050/api/Claims/levelDesc`);
+  }
+
+  // Method to update claim decision and status
+  public updateClaimDecision(claimId: number): Observable<any> {
+    return this.http.put<any>(`http://localhost:8050/api/Claims/decision/${claimId}`, {});
+  }
+  
 }

@@ -73,6 +73,7 @@ export class PostDetailComponent implements OnInit {
         error => console.log(error)
       );
   }*/
+  
   addComment(): void {
     if (this.commentaire!='')
     {

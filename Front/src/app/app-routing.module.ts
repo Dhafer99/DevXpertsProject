@@ -6,6 +6,7 @@ import { PostListComponent } from './ForumManagement/post-list/post-list.compone
 import { PostDetailComponent } from './ForumManagement/post-detail/post-detail.component';
 import { ClaimFormComponent } from './ClaimManagement/claim-form/claim-form.component';
 import { PostFormComponent } from './ForumManagement/post-form/post-form.component';
+import { ClaimListComponent } from './ClaimManagement/claim-list/claim-list.component';
 
 
 const routes: Routes = [  
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'post-detail/:id', component: PostDetailComponent},
   { path: 'post-detail/:id', component: PostDetailComponent},
   { path: 'post-form', component: PostFormComponent},
-  { path: 'claim-form', component: ClaimFormComponent}
+  { path: 'claim-form', component: ClaimFormComponent},
+  { path: 'claim-list', component: ClaimListComponent}
 
 
 
