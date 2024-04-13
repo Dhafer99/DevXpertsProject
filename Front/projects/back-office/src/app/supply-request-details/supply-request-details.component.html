@@ -225,15 +225,15 @@
                 <input placeholder="Search here" type="text">
               </div>
             </div>
-            <ng-container *ngFor="let user of UsersList" >
-            <div class="friend-drawer friend-drawer--onhover" (click)="loadConversation(2,4)">
+            <ng-container *ngFor="let receiver of UsersList" >
+            <div class="friend-drawer friend-drawer--onhover" (click)="loadConversation(userID,receiver.id)">
               <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="">
               <div class="text">"omar"
-                <h6>{{user.nom}}</h6>
+                <h6>{{receiver.nom}}</h6>
                  <p class="text-muted">Hey, you're arrested!</p>  <!-- this should contain getLastMessage() function -->
               </div>
               <span class="time text-muted small">13:21</span> <!-- this should contain lastCreatedFunction() and from base function -->
-              <span class="time text-muted small">{{user.numeroTelephone}}</span>
+              <span class="time text-muted small">{{receiver.numeroTelephone}}</span>
             </div>
             <hr>
              </ng-container>
@@ -257,8 +257,8 @@
             <div class="chat-panel">
                 <div class="chat-messages" id="style-13">
                 <div class="row no-gutters" *ngFor="let message of messages">
-                    <div class="col-md-3" [ngClass]="{'offset-md-9': message.sender.id == 2}">
-                      <div class="chat-bubble" [ngClass]="{'chat-bubble--right': message.sender.id === 2, 'chat-bubble--left': message.sender.id !== ReceiverId}">
+                    <div class="col-md-3" [ngClass]="{'offset-md-9': message.sender.id == this.userID}">
+                      <div class="chat-bubble" [ngClass]="{'chat-bubble--right': message.sender.id === this.userID, 'chat-bubble--left': message.sender.id !== ReceiverId}">
                         {{ message.content }}
                       </div>
                     </div>
@@ -311,7 +311,7 @@
                   <div class="chat-box-tray">
                     <i class="material-icons">sentiment_very_satisfied</i>
                     <input [(ngModel)]="newMessage" type="text" placeholder="Type your message here...">
-                    <i class="material-icons" (click)="sendMessage()">send</i>
+                    <i class="material-icons" style="cursor: pointer;" (click)="sendMessage()">send</i>
                     <i class="material-icons">mic</i>
                     <i class="material-icons">send</i>
                   </div>

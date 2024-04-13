@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { message } from '../models/Message';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { message } from '../models/Message';
 export class WebSocketService {
   public stompClient : Stomp.Client;
 
-
+  private messageSubject: Subject<any> = new Subject<any>();
 
   public connect() {
     const socket = new SockJS('http://localhost:8763/socket');
@@ -26,10 +27,14 @@ export class WebSocketService {
     this.stompClient = Stomp.over(socket);
     this.stompClient.connect({}, frame => {
       console.log('Connected: HEEEEE' + frame);
-    //  this.stompClient.subscribe('/topic/public', message => {
-    //    console.log('Received: ' + message.body);
-     // });
+      this.stompClient.subscribe('/topic/public', message => {
+        const messageObject = JSON.parse(message.body);
+        this.messageSubject.next(messageObject);
+      });
     });
+  }
+  getMessageSubject(): Subject<any> {
+    return this.messageSubject;
   }
 
   public sendName(name: string) {

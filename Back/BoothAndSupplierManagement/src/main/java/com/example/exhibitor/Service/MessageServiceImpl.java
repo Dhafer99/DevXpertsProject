@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 @Slf4j
@@ -54,5 +56,18 @@ public class MessageServiceImpl  implements MessageService{
         chatMessage1.setSender(sender);
         chatMessage1.setReceiver(receiver);
         messageRepository.save(chatMessage1);
+    }
+
+    @Override
+    public List<ChatMessage> allMessages() {
+        return messageRepository.findAll();
+    }
+
+    @Override
+    public List<ChatMessage> getChatMessagesBySenderAndReceiver( Long receiverId,Long senderId) {
+
+
+
+        return messageRepository.findBySenderIdAndReceiverIdOrReceiverIdAndSenderId(senderId,receiverId);
     }
 }

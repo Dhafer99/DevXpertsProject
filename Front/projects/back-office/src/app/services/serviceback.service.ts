@@ -29,6 +29,8 @@ export class ServicebackService {
 
   authUserUrl ='http://localhost:8222/auth'
 
+  chatUrl='http://localhost:8763'
+
   constructor(private http:HttpClient) { }
 /* 
   getSommeValueOf(list:any[], critiria:string, value:any){
@@ -60,9 +62,9 @@ return n
   return this.http.put<Supplier[]>(this.SupplierUrl+'/modifysupplierrequest/'+id,supplier)
 }
 
-getSupplierById(id: number): Observable<User[]> {
+getSupplierById(id: number): Observable<User> {
 
-  return this.http.get<User[]>(`${this.SupplierUrl}/Supplierbyid/${id}`);
+  return this.http.get<User>(`${this.SupplierUrl}/Supplierbyid/${id}`);
   
 }
 setRequestStatus(requestid: number,status:String): Observable<Supplier[]> {
@@ -170,6 +172,10 @@ getUserId(username:string):Observable<number>{
 }
 
 /////Messaging
+
+getAllMessages(senderId:number,receiverId:number): Observable<message[]>{
+  return this.http.get<message[]>(`${this.chatUrl}/getChatMessagesBySenderAndReceiver/${senderId}/${receiverId}`)
+}
 
 
 }

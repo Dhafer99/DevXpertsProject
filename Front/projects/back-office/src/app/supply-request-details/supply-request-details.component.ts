@@ -28,30 +28,66 @@ UsersList : User[]=[
 
 
 ] ;
-  CurrentUser:User = {
-    id: 2,
-    nom : "dhafer entreprises",
-    numeroTelephone : "9999999"
+  sender:User = {
+    id: 0,
+    nom : "",
+    numeroTelephone : ""
   }
-  secondUser:User = {
-    id: 3,
-    nom : "hamma",
-    numeroTelephone : "9999999"
+  receiver:User = {
+    id: 0,
+    nom : "",
+    numeroTelephone : ""
   }
-  thirdUser:User = {
-    id: 4,
-    nom : "hamma",
-    numeroTelephone : "9999999"
+ 
+  sentMessage : message ={
+    content:"",
+    sender: new User,
+    receiver:new User
   }
+  messagecomingfromsocket: message = {
 
+    content :"",
+    sender:new User,
+    receiver: new User
+   }
   sendMessage() {
     if (this.newMessage.trim() !== '') {
-    this.messages.push({ content: this.newMessage, sender: this.CurrentUser ,receiver: this.secondUser});
-      this.messages.push({ content: this.newMessage, sender: this.secondUser ,receiver: this.CurrentUser});
-      const sentmessage={ content: this.newMessage, sender: this.CurrentUser ,receiver: this.secondUser}
-    this.chatSocket.sendMessage(sentmessage);
+      // Assuming this.userID and this.ReceiverId are properly assigned
+      var userIDString = localStorage.getItem("userID");
+      this.userID = parseInt(userIDString, 10);
+      console.log("current user id")
+      console.log(this.userID);
+      const testmessage = this.newMessage;
+  
+  
+      this.serviceback.getSupplierById(this.userID).subscribe((senderData: User) => {
+        console.log("senderDATA")
+        console.log(senderData);
+        this.sender = senderData;
+      
+  
+        
+       // Assuming this.receiver is properly assigned
+       this.serviceback.getSupplierById(this.ReceiverId).subscribe((receiverData: User) => {
+        this.receiver = receiverData;
+       
 
-    this.chatSocket.stompClient.subscribe('/topic/public', (message :any) => {
+        // Construct the message object here
+        const willbesent = new message(testmessage, this.sender, this.receiver);
+        
+        // Assuming sendMessage is a method that sends the message
+        this.chatSocket.sendMessage(willbesent);
+     
+       // this.messages.push(willbesent)
+      });
+
+       
+      });
+
+
+    
+
+   /* this.chatSocket.stompClient.subscribe('/topic/public', (message :any) => {
       console.log('SENDER: ' + message.body);
       const messageObject = JSON.parse(message.body);
       const senderId = messageObject.sender.id;
@@ -61,25 +97,41 @@ UsersList : User[]=[
   const receiverId = messageObject.receiver.id;
   const receiverName = messageObject.receiver.nom;
   const receiverPhonenumber = messageObject.receiver.numeroTelephone;
+
   console.log('Sender ID:', senderId);
   console.log('Sender Name:', senderName);
   console.log('Sender Phone Number:', senderPhoneNumber);
+  
   console.log('receiver ID:', receiverId);
   console.log('receiver Name:', receiverName);
   console.log('receiver Phone Number:', receiverPhonenumber);
+
+  const containingmessage = messageObject.content
+  this.messagecomingfromsocket = {content:containingmessage,sender:messageObject.sender,receiver:messageObject.receiver}
+ 
      // console.log(message.body.sender.id)
-    });
+    });*/
+    //this.messages.push(this.messagecomingfromsocket)
       // Code to send message to the backend or perform any other actions
       this.newMessage = '';
     }
   }
-  loadConversation(senderId:number,ReceiverId:number){
+  loadConversation(senderId:number,receiverid:number){
    
-    this.ReceiverId = ReceiverId; // loads the receiver id you're going to send a message to 
-   this.messages = []
-   this.messages.push({ content: "third conversation", sender: this.CurrentUser ,receiver: this.thirdUser});
-   this.messages.push({ content: "second conversation", sender: this.CurrentUser ,receiver: this.secondUser});
-   this.messages = this.messages.filter((message) => message.sender.id === senderId && message.receiver.id === ReceiverId);
+    this.ReceiverId = receiverid; // loads the receiver id you're going to send a message to 
+
+   
+   //this.messages = [] // this has to be become a get request from DB
+   var userIDString = localStorage.getItem("userID");
+   this.userID = parseInt(userIDString, 10);
+   this.serviceback.getAllMessages(this.userID,this.ReceiverId).subscribe((data:message[])=>{
+
+    this.messages=data ;
+    console.log(data);
+   });
+   //this.messages.push({ content: "third conversation", sender: this.sender ,receiver: this.thirdUser});
+  // this.messages.push({ content: "second conversation", sender: this.sender ,receiver: this.secondUser});
+  // this.messages = this.messages.filter((message) => message.sender.id === senderId && message.receiver.id === receiverid);
     console.log("MESSAGES")
     console.log(this.messages)
   }
@@ -145,13 +197,41 @@ UsersList : User[]=[
 }
 Suppliers : User[]=[];
 SupplyOffer : SupplierOffer[]=[];
+userID: number ;
   constructor(private serviceback:ServicebackService ,private acr:ActivatedRoute,private renderer: Renderer2,private chatSocket:WebSocketService){}
   ngOnInit(): void {
 
+    this.serviceback.getAllUserSuppliers().subscribe((data:User[])=>{
+      this.UsersList = data ;
+    })
+
+  
+   
 
       /////Socket 
       this.chatSocket.connectToChat();
-     
+      //message 
+      this.chatSocket.getMessageSubject().subscribe(messageObject => {
+      //  console.log('Sender ID:', messageObject.sender.id);
+       // console.log('Sender Name:', messageObject.sender.nom);
+      //  console.log('Sender Phone Number:', messageObject.sender.numeroTelephone);
+        
+      //  console.log('Receiver ID:', messageObject.receiver.id);
+      //  console.log('Receiver Name:', messageObject.receiver.nom);
+      //  console.log('Receiver Phone Number:', messageObject.receiver.numeroTelephone);
+        
+         if ((messageObject.sender.id === this.userID && messageObject.receiver.id === this.ReceiverId) ||
+        (messageObject.sender.id === this.ReceiverId && messageObject.receiver.id === this.userID)) {
+        const containingmessage = messageObject.content;
+        const parsedMessage = {
+            content: containingmessage,
+            sender: messageObject.sender,
+            receiver: messageObject.receiver
+        };
+        this.messages.push(parsedMessage);
+    }
+      });
+    
 
 
 
@@ -174,19 +254,19 @@ SupplyOffer : SupplierOffer[]=[];
   
   this.acr.params.subscribe((params)=>{
     this.serviceback.getsupplierItemById(params['id']).subscribe((data)=>{
-      console.log(params['id'])
-      console.log(data)
+    //  console.log(params['id'])
+    //  console.log(data)
      this.supplyRequest= data;
      this.serviceback.getSuppliersOffers(params['id']).subscribe((data:User[])=>{
       this.Suppliers=data ;
-      console.log(data);
+   //   console.log(data);
     })
     
     })
     this.serviceback.getAllOfferForSupplyRequest(params['id']).subscribe((data:SupplierOffer[])=>{
       this.SupplyOffer=data ;
-      console.log("SUPPLIER OFFER DATA :")
-      console.log(data);
+    //  console.log("SUPPLIER OFFER DATA :")
+    //  console.log(data);
       
     })
   });

@@ -3,6 +3,7 @@ package com.example.exhibitor.Controller;
 import com.example.exhibitor.Entity.Supplier;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.ws.rs.Path;
 import org.springframework.stereotype.Controller;
 import com.example.exhibitor.Entity.ChatMessage;
 import com.example.exhibitor.Entity.Exhibitor;
@@ -23,13 +24,16 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 
 
 
 @AllArgsConstructor
 @Slf4j
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class ChatController {
 
 
@@ -109,4 +113,17 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }*/
+
+    @GetMapping("/allChatMessages")
+    public List<ChatMessage> getAllmessages(){
+        return messageService.allMessages();
+    }
+    @GetMapping("/getChatMessagesBySenderAndReceiver/{sender}/{receiver}")
+    public List<ChatMessage> getAllRoomMessages(
+            @PathVariable("sender") Long senderID,
+            @PathVariable ("receiver") Long receiverId
+
+    ){
+        return messageService.getChatMessagesBySenderAndReceiver(senderID,receiverId);
+    }
 }
