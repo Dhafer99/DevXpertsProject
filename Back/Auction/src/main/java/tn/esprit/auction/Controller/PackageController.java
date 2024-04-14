@@ -72,6 +72,11 @@ public class PackageController {
     public  Map<Integer, Map<Long, Long>> getPackStatisticsByYearAndStatus() {
         return  packageInterface.getPackStatisticsByYear();
     }
+    @GetMapping("/getPacksByStatus/{status}")
+    public  List<Pack> getPacksByStatus(@PathVariable("status") Boolean status) {
+        return  packageInterface.getPacksByStatus(status);
+    }
+
     @GetMapping("/QuantitePeTypePack/{typePack}")
     public  int QuantitePeTypePack(@PathVariable("typePack") TypePack typePack) {
         return  packageInterface.QuantitePeTypePack(typePack);

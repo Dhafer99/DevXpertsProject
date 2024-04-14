@@ -25,7 +25,7 @@ public interface PackageInterface {
 
     List<Pack> findPacksByIdRoom (Long idroom);
     void delete (Long idpack);
-
+    List<Pack> getPacksByStatus( Boolean status);
     Map<Integer, Map<Long, Long>> getPackStatisticsByYear();
 
 

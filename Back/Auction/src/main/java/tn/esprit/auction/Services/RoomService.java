@@ -28,7 +28,7 @@ PackgeRepository packgeRepository ;
 EnchereInterface enchereInterface ;
     @Override
     public void addRoom(Room room) {
-        List<Pack> packs = packgeRepository.findByTypePack(room.getTypePack());
+        List<Pack> packs = packgeRepository.findByTypePackAndStatus(room.getTypePack(),true);
         room.setQuantity(packs.size());
         room.setMaxWinners(packs.size());
         room.setPriceAuction(room.getPrice());
@@ -164,4 +164,6 @@ EnchereInterface enchereInterface ;
 
         return totalAmount;
     }
+
+
 }

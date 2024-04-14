@@ -28,10 +28,18 @@ export class ViewPackComponent implements OnInit {
       { name: 'tools', items: ['Maximize'] }
     ]
   };
+  packsAuction: Pack[] = [];
+  packsBooth: Pack[] = [];
   ngOnInit() {
-    this.packService.getAllPacks().subscribe(res => {
-      this.packs = res;
+    this.packService.getPacksByStatus(true).subscribe(res => {
+    this.packsAuction=res ; 
+     
     });
+
+    this.packService.getPacksByStatus(false).subscribe(res => {
+      this.packsBooth=res ; 
+       
+      });
   }
   deletePack ( userId: number ): void
   {

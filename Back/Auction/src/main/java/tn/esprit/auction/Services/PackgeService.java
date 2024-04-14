@@ -39,7 +39,7 @@ public class PackgeService implements PackageInterface {
 
 
         Pack pack = packgeRepository.findById(packid).get();
-Room  room = roomRepository.findById(roomId).orElse(null);
+        Room  room = roomRepository.findById(roomId).orElse(null);
         pack.setStatus(false);
         pack.setRoom(room);
         System.out.println(roomId);
@@ -50,18 +50,18 @@ Room  room = roomRepository.findById(roomId).orElse(null);
     @Override
     public Pack addPackge(Pack pack) {
         Date dateAujourdhui = new Date();
-               pack.setCreationDate(dateAujourdhui);
-
+        pack.setCreationDate(dateAujourdhui);
+Room room = roomRepository.findByTypePack(pack.getTypePack());
+if(room!=null && pack.isStatus())
+{
+   pack.setRoom(room);
+}
 
         return packgeRepository.save(pack);
     }
 
     @Override
     public Pack updatePackage(Pack pack) {
-
-
-
-
 
         return packgeRepository.save(pack);
     }
@@ -123,7 +123,10 @@ Room  room = roomRepository.findById(roomId).orElse(null);
 
         packgeRepository.delete(p);
     }
-
+    @Override
+    public List<Pack> getPacksByStatus(Boolean status) {
+        return packgeRepository.findByStatus(status);
+    }
     @Override
     public Map<Integer, Map<Long, Long>> getPackStatisticsByYear() {
         List<Pack> packs = packgeRepository.findAll();

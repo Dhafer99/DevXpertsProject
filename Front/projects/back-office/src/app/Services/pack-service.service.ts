@@ -29,6 +29,14 @@ public getPayments (  ): Observable<any>
 }
 
 
+public getPacksByStatus ( status: boolean ): Observable<any>
+{
+  return this.http.get<any>( `${ this.url }getPacksByStatus/${ status }`, {
+    
+  } );
+
+}
+
 /********************* stat  */
 
   public getDetailsPackById ( id: number ): Observable<any>
