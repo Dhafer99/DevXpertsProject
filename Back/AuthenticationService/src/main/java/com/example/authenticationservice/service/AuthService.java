@@ -46,7 +46,7 @@ public void AffecterRoomToUser(long roomId,int id,int newPoints) {
     UserCredential user =  repository.findById(id).orElse(null);
     user.setRoomid(roomId);
     int oldpoints = user.getPoints();
-    
+
     user.setPoints(oldpoints+newPoints);
     repository.save(user);
 

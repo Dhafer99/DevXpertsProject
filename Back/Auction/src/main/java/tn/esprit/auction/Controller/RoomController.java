@@ -43,7 +43,12 @@ public class RoomController {
 
       return   enchereInterface.getUserEnchere( companyId,roomId);
     }
+    @GetMapping("/getUsersEnterningAuction/{roomId}")
+    public List<Enchere> getUsersEnterningAuction(
+        @PathVariable("roomId") long roomId) {
 
+        return  enchereInterface.getUsersEnterningAuction( roomId);
+    }
 
     @GetMapping("/getTopEncheresByRoomId/{roomId}")
     public List<Enchere> getTopEncheresByRoomId(
@@ -61,6 +66,22 @@ public class RoomController {
     }
 
     /*********************************** Enchere methodes ****/
+    @GetMapping("findHighestPricedEnchereByRoomId/{idRoom}")
+    public Enchere findHighestPricedEnchereByRoomId(@PathVariable("idRoom") long idRoom )
+    {
+        return  enchereInterface.findHighestPricedEnchereByRoomId(idRoom);
+    }
+    @GetMapping("getCurrentUserBiding/{idcompany}/{idRoom}")
+    public Enchere getCurrentUserBiding(@PathVariable("idcompany") Long idcompany,@PathVariable("idRoom") long idRoom )
+    {
+        return  enchereInterface.getCurrentUserBiding(idcompany,idRoom);
+    }
+    @DeleteMapping("/deleteUserFromEnchere/{idcompany}/{idRoom}")
+    public void deleteUserFromEnchere(@PathVariable("idcompany") Long idcompany,@PathVariable("idRoom") long idRoom )
+    {
+        enchereInterface.deleteEnchereSortieUser(idcompany,idRoom);
+    }
+
     @PutMapping("/ReservePack/{idPack}/{idRoom}")
     public void ReservePack(@PathVariable("idPack") Long idPack,@PathVariable("idRoom") Long idRoom ) {
           roomInterface.ReservePack(idPack,idRoom);
@@ -79,7 +100,7 @@ public class RoomController {
         Stripe.apiKey = "pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC";
     }
     @PutMapping("/updatePrice/{nbrpoint}/{idroom}")
-    public float updatePrice(@PathVariable("nbrpoint") int nbrpoint ,@PathVariable("idroom") long idroom ) {
+    public float updatePrice(@PathVariable("nbrpoint") float nbrpoint ,@PathVariable("idroom") long idroom ) {
         return  roomInterface.UpdatePrice(nbrpoint,idroom);
     }
     @PostMapping("/addRoom")
@@ -91,6 +112,8 @@ public class RoomController {
     public Room findRoom(@PathVariable("idRoom") long idRoom ) {
         return  roomInterface.findRoom(idRoom);
     }
+
+
 
     @GetMapping("/getAllRooms")
     public List<Room> getAllRooms() {

@@ -94,7 +94,23 @@ export class RoomServiceService {
   }
 
 
-
+  getUsersEnterningAuction (idroom:number): Observable<any> {
+    return this.http.get<any>(`${this.url}getUsersEnterningAuction/${idroom}`,{});
+  }
+  findHighestPricedEnchereByRoomId (idroom:number): Observable<any> {
+    return this.http.get<any>(`${this.url}findHighestPricedEnchereByRoomId/${idroom}`,{});
+  }
+  getCurrentUserBiding (idcompany:number,idroom:number): Observable<any> {
+    return this.http.get<any>(`${this.url}getCurrentUserBiding/${idcompany}/${idroom}`,{});
+  }
+  deleteUserSortieEnchere ( idcompany: number ,idroom: number): Observable<any>
+  {
+   
+    return this.http.delete(`${ this.url }deleteUserFromEnchere/${ idcompany }/${ idroom }` , {
+      
+    } );
+ 
+  }
   private auctionEndedSource = new Subject<void>();
 
   auctionEnded$ = this.auctionEndedSource.asObservable();

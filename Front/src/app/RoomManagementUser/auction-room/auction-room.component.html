@@ -17,115 +17,10 @@
         <div class="border-horizontal"></div>
         <div class="home-image-gallery">
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-4" *ngFor="let user of usersInRoom">
               <div class="mt-4">
                 <img
                   src="../../../assets/images/blog-3/img-1.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-2.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-3.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-4.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-5.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-6.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-7.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-8.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-1.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row mb-0 mb-lg-4">
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-3.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-6.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-4.png"
                   alt=""
                   class="img-fluid"
                 />
@@ -253,11 +148,10 @@
                       150p
                     </div>
                     <div class="text ms-auto">
-                      <p class="mb-0 f-14 fw-semibold">2.51 ETH $314.00</p>
+                      <p class="mb-0 f-14 fw-semibold">your biding is {{currentEnchere.pricing}}</p>
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>

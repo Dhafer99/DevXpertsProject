@@ -17,7 +17,7 @@ public interface RoomInterface {
 
     void ParticipateToRoom(Long idroom,Long idCompany);
 
-    float UpdatePrice(int nbrpoint, Long idRoom);
+    float UpdatePrice(float nbrpoint, Long idRoom);
 
     List<Company> getCapaniesParticipants( Long roomId);
 

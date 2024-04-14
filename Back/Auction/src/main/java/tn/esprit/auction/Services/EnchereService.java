@@ -1,6 +1,8 @@
 package tn.esprit.auction.Services;
 
+import jakarta.persistence.TypedQuery;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tn.esprit.auction.Entites.Enchere;
 import tn.esprit.auction.Entites.Room;
@@ -71,6 +73,13 @@ public class EnchereService implements  EnchereInterface{
     }
 
     @Override
+    public List<Enchere> getUsersEnterningAuction(Long RoomId) {
+        Room room = roomRepository.findById(RoomId).orElse(null);
+
+        return enchereRepository.findByRoom(room);
+    }
+
+    @Override
     public List<Enchere> getTopEncheresByRoomId(Long roomId) {
         Room room = roomRepository.findById(roomId).orElse(null);
         List<Enchere> topwinners = enchereRepository.findTopEncheresByRoomId(roomId);
@@ -90,4 +99,26 @@ return  topwinnersFinal ;
             throw new RuntimeException("La salle avec l'id " + roomId + " n'a pas été trouvée.");
         }
     }
+
+    @Override
+    public void deleteEnchereSortieUser(Long idCompany, long room) {
+        Room room1 = roomRepository.findById(room).orElse(null);
+        System.out.println(room);
+        System.out.println(idCompany);
+       Enchere enchere=  enchereRepository.findByIdcompanyAndRoomIdRoom(idCompany,room);
+               if(enchere != null){  enchereRepository.delete(enchere);}
+
+    }
+
+    @Override
+    public Enchere getCurrentUserBiding(Long idCompany, long room) {
+        return enchereRepository.findByIdcompanyAndRoomIdRoom(idCompany,room);
+    }
+
+    @Override
+    public Enchere findHighestPricedEnchereByRoomId(long roomId) {
+        return  enchereRepository.findHighestPricedEnchereByRoomId(roomId).get(0);
+    }
+
+
 }

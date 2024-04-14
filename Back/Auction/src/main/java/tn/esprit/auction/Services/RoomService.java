@@ -98,9 +98,9 @@ EnchereInterface enchereInterface ;
     }
 
     @Override
-    public float UpdatePrice(int nbrpoint,Long idRoom) {
+    public float UpdatePrice(float nbrpoint,Long idRoom) {
         Room room = roomRepository.findById(idRoom).get() ;
-        float somme =0;
+       /* float somme =0;
         if(nbrpoint==50)
         {
            somme= room.getPriceAuction() + 30;
@@ -112,10 +112,10 @@ EnchereInterface enchereInterface ;
         if(nbrpoint==150)
         {
             somme= room.getPriceAuction() + 100;
-        }
-        room.setPriceAuction(somme);
+        }*/
+        room.setPriceAuction(nbrpoint);
         roomRepository.save(room);
-            return somme;
+            return nbrpoint;
     }
 
     @Override

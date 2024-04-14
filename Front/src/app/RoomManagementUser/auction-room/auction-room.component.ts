@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+//import { StompService } from '@stomp/ng2-stompjs';
+//import { Message } from '@stomp/stompjs';
 import moment from 'moment';
 import { Enchere } from 'projects/back-office/src/app/models/Enchere';
 import { User } from 'projects/back-office/src/app/models/User';
@@ -14,22 +16,20 @@ import { RoomServiceService } from 'projects/back-office/src/app/services/room-s
   templateUrl: './auction-room.component.html',
   styleUrls: ['./auction-room.component.css'],
 })
-export class AuctionRoomComponent {
+export class AuctionRoomComponent implements OnDestroy {
+  usersInRoom: User[] = [];
+
   constructor(
     private activate: ActivatedRoute,
-    private packService: PackServiceService,
-    private route: Router,
     private roomService: RoomServiceService
   ) {}
+
   room: Room = new Room();
-  usersInRoom: User[] = [];
   id = 0;
   isAuctionEnded: boolean = false;
   isAuctionEndedWinners: boolean = false;
   isAuctionEndedLosers: boolean = false;
-
   isUserWinner: boolean = false;
-
   timeLeft: string = '';
   calculateTimeLeft(): void {
     const now = moment();
@@ -45,7 +45,7 @@ export class AuctionRoomComponent {
         .getTopEncheresByRoomId(this.room.idRoom)
         .subscribe((response) => {
           response.forEach((element: Enchere) => {
-            const companyIdToCheck = parseInt(localStorage.getItem("userID"));
+            const companyIdToCheck = parseInt(localStorage.getItem('userID'));
             const isCompanyIdPresent = response.some((element: Enchere) => {
               return element.idcompany === companyIdToCheck;
             });
@@ -70,38 +70,94 @@ export class AuctionRoomComponent {
   }
 
   showModal(): void {
-    // Affichez le modal en utilisant JavaScript pur
     const modalElement = document.getElementById('exampleModalCenterr');
     if (modalElement) {
       modalElement.classList.add('show');
       modalElement.style.display = 'block';
     }
   }
+  fetchInterval: any;
+  currentEnchere: Enchere ; 
+  highestEnchre :number; 
   ngOnInit() {
-    this.calculateTimeLeft();
-    setInterval(() => {
-      this.calculateTimeLeft();
-    }, 1000);
-
+    
     this.id = this.activate.snapshot.params['id'];
-    this.roomService.getRoomById(this.id).subscribe(
-      (r) => {
-        this.room = r;
-      },
-      (error) => {
-        console.error('Erreur lors de la récupération du room :', error);
-      }
-    );
+   
+    this.calculateTimeLeft();
+  
+    this.fetchInterval = setInterval(() => {
+      this.roomService.getCurrentUserBiding(parseInt(localStorage.getItem('userID')), this.id).subscribe
+      ((res)=>{this.currentEnchere=res});
+     
+
+
+      this.roomService.getRoomById(this.id).subscribe(
+        (r) => {
+          this.room = r;
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération du room :', error);
+        }
+      );
+      this.calculateTimeLeft();
+      this.roomService.getUsersEnterningAuction(this.id).subscribe(
+        (r) => {
+          this.usersInRoom = r;
+        },
+        (error) => {
+          console.error('Erreur getting users :', error);
+        }
+      );
+    }, 1000);
   }
 
+  ngOnDestroy() {
+ 
+    const userID = parseInt(localStorage.getItem('userID'));
+  
+    this.roomService
+      .deleteUserSortieEnchere(userID, this.room.idRoom)
+      .subscribe(
+        () => {
+          console.log('Utilisateur supprimé avec succès');
+        },
+        (error) => {
+          console.error(
+            "Erreur lors de la suppression de l'utilisateur :",
+            error
+          );
+        }
+      );
+    this.fetchInterval();
+    clearInterval(this.fetchInterval);
+  }
   updatePrice(tokenAmount: number): void {
+
+
     this.roomService
-      .updatePricingEnchere(1, this.room.idRoom, tokenAmount)
-      .subscribe();
-    this.roomService
-      .UpdatePriceAuction(tokenAmount, this.id)
-      .subscribe((priceUpdate: any) => {
-        this.room.priceAuction = priceUpdate;
+      .updatePricingEnchere(
+        parseInt(localStorage.getItem('userID')),
+        this.room.idRoom,
+        tokenAmount
+      )
+      .subscribe(()=>{
+
+        this.roomService.findHighestPricedEnchereByRoomId(this.id).subscribe
+        ((res)=>{
+  
+          this.roomService
+          .UpdatePriceAuction(res.pricing, this.id)
+          .subscribe((priceUpdate: any) => {
+              this.room.priceAuction = priceUpdate;
+           });
+  
+  
+        });
       });
+ 
+     
+  
+      
+    
   }
 }
