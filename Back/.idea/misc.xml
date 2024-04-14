@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/Supplier/pom.xml" />
         <option value="$PROJECT_DIR$/Exhibitor/pom.xml" />
         <option value="$PROJECT_DIR$/Booth/pom.xml" />
+        <option value="$PROJECT_DIR$/Offer/pom.xml" />
         <option value="$PROJECT_DIR$/dhafer/pom.xml" />
         <option value="$PROJECT_DIR$/BoothAndSupplierManagement/pom.xml" />
         <option value="$PROJECT_DIR$/AuthService/pom.xml" />
@@ -34,5 +35,8 @@
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
   </component>
 </project>

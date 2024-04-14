@@ -10,8 +10,7 @@ import java.util.Optional;
 @Repository
 public interface UserCredentialRepository  extends JpaRepository<UserCredential,Integer> {
     Optional<UserCredential> findByName(String name);
-
-
-
+    Optional<UserCredential> findByEmail(String email);
+    Optional<UserCredential> findById(int id);
 
 }

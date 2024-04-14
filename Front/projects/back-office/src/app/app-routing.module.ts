@@ -1,8 +1,9 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-
+import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/afficher-offer-admin.component';
+import { AfficherCandidatureOffreAdminComponent } from './offer/afficher-candidature-offre-admin/afficher-candidature-offre-admin.component';
+import { StatAdminCandidatureComponent } from './stat/stat-admin-candidature/stat-admin-candidature.component';
 import { SupplierComponent } from './supplier/supplier.component';
 import { BoothplacementComponent } from './boothplacement/boothplacement.component';
 import { DialogboxComponent } from './boothplacement/dialogbox/dialogbox.component';
@@ -23,6 +24,10 @@ import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.co
 import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
 import { PaymentListComponent } from './payment-list/payment-list.component';
 const routes: Routes = [ 
+      { path: 'list', component: ListUsersComponent },
+      { path: 'admin/offers', component: AfficherOfferAdminComponent },
+      { path: 'admin/offer/candidatures/:id', component: AfficherCandidatureOffreAdminComponent},
+      { path: 'admin/stat',component: StatAdminCandidatureComponent},
       {path : 'supplier/:id',component: SupplierComponent},
       {path : 'supplier',component: SupplierComponent},
       {path : 'booth',component: BoothplacementComponent},

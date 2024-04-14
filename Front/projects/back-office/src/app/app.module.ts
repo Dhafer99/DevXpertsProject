@@ -34,6 +34,13 @@ import { TokenInterceptorInterceptor } from './token-interceptor.interceptor';
 
 
 import { ListUsersComponent } from './list-users/list-users.component';
+import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/afficher-offer-admin.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AfficherCandidatureOffreAdminComponent } from './offer/afficher-candidature-offre-admin/afficher-candidature-offre-admin.component';
+import { StatAdminCandidatureComponent } from './stat/stat-admin-candidature/stat-admin-candidature.component';
+
+//import { NgChartsModule } from 'ng2-charts';
+import { NgApexchartsModule } from "ng-apexcharts";
 import { AddPackComponent } from './PackManagementAdmin/add-pack/add-pack.component';
 import { ViewPackComponent } from './PackManagementAdmin/view-pack/view-pack.component';
 import { UpdatePackComponent } from './PackManagementAdmin/update-pack/update-pack.component';
@@ -67,6 +74,9 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
   
 
     ListUsersComponent,
+    AfficherOfferAdminComponent,
+    AfficherCandidatureOffreAdminComponent,
+    StatAdminCandidatureComponent,
     AddPackComponent,
     ViewPackComponent,
     UpdatePackComponent,
@@ -83,6 +93,13 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
   imports: [
     CKEditorModule,
     BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    //NgChartsModule,
+    NgApexchartsModule,
 
     AppRoutingModule,
     FormsModule ,

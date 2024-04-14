@@ -6,86 +6,95 @@ spring:
     name: gateway
   cloud:
     gateway:
-        routes:
-          - id: booths
-            uri: http://localhost:8763
-            predicates:
-              - Path=/api/BoothAndSupplier/**
-            filters:
-              - AuthenticationFilter
-          - id: suppliers
-            uri: http://localhost:8763
-            predicates:
-              - Path=/api/supplyrequest/**
-            metadata:
-              cors:
-                allowedOrigins: '*'
-                allowedMethods:
-                  - GET
-                  - POST
-                allowedHeaders: '*'
-                maxAge: 120
-            filters:
-              - AuthenticationFilter
-          - id: supplyoffer
-            uri: http://localhost:8763
-            predicates:
-              - Path=/api/SupplyOffer/**
-            metadata:
-              cors:
-                allowedOrigins: '*'
-                allowedMethods:
-                  - GET
-                  - POST
-                  - DELETE
-                allowedHeaders: '*'
-                maxAge: 120
-            filters:
-              - AuthenticationFilter
-          - id: chat
-            uri: http://localhost:8763
-            predicates:
-              - Path=/socket/**
-            metadata:
-              cors:
-                allowedOrigins: 'http://localhost:4203'
-                allowedMethods:
-                  - GET
-                  - POST
-                allowedHeaders: '*'
-                maxAge: 120
-
-            filters:
-              - AuthenticationFilter
-          - id: authservice
-            uri: http://localhost:8080
-            predicates:
-              - Path=/auth/**
-            metadata:
-              cors:
-                allowedOrigins: '*'
-                allowedMethods:
-                  - GET
-                  - POST
-                allowedHeaders: '*'
-                maxAge: 120
-            filters:
-              - AuthenticationFilter
-          - id: exhibitors
-            uri: http://localhost:8070
-            predicates:
-              - Path=/exhibitor/api/Exhibitors/**
-          - id: rooms
-            uri: http://localhost:8083
-            predicates:
-              - Path=/api/rooms/**
-          - id: packs
-            uri: http://localhost:8083
-            predicates:
-              - Path=/api/packs/**
-
-
-
+      routes:
+        - id: booths
+          uri: http://localhost:8763
+          predicates:
+            - Path=/api/BoothAndSupplier/**
+          filters:
+            - AuthenticationFilter
+        - id: suppliers
+          uri: http://localhost:8763
+          predicates:
+            - Path=/api/supplyrequest/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
+        - id: supplyoffer
+          uri: http://localhost:8763
+          predicates:
+            - Path=/api/SupplyOffer/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
+        - id: authservice
+          uri: http://localhost:8080
+          predicates:
+            - Path=/auth/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
+        - id: exhibitors
+          uri: http://localhost:8070
+          predicates:
+            - Path=/exhibitor/api/Exhibitors/**
+        - id: offers
+          uri: http://localhost:8899
+          predicates:
+            - Path=/api/Offer/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
+        - id: applications
+          uri: http://localhost:8899
+          predicates:
+            - Path=/api/Application/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
+        - id: rooms
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/rooms/**
+        - id: packs
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/packs/**
 
 eureka:
   client:

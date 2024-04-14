@@ -1,6 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
+import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
+import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
+import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
+import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.component';
+import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
+import { AfficherCandidatursUserComponent } from './candidature/afficher-candidaturs-user/afficher-candidaturs-user.component';
+
+  
 import { ListPacksComponent } from './PackageManagementUser/list-packs/list-packs.component';
 import { DetailPackComponent } from './PackageManagementUser/detail-pack/detail-pack.component';
 import { MyPacksComponent } from './PackageManagementUser/my-packs/my-packs.component';
@@ -15,9 +23,21 @@ import { NewsupplierfrontComponent } from './newsupplierfront/newsupplierfront.c
 import { ExhibitorReservationComponent } from './exhibitor-reservation/exhibitor-reservation.component';
 import { SupplierDetailComponent } from './supplier-detail/supplier-detail.component';
 import { MessagestestComponent } from './messagestest/messagestest.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 export * from '../../projects/back-office/src/app/app.module'; // <==== THAT WAS MISSING
 export * from '../../projects/back-office/src/app/supplier/supplier.component';
 const routes: Routes = [  
+
+  { path: 'signup', component: SignUpComponent },
+  { path: 'auth', component: AuthenticationinterfaceComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'offers', component:AfficherOffreComponent},
+  { path: 'addoffer', component:AjouterOffreComponent},
+  { path: 'offers/:id', component:DetailOffreComponent},
+  { path: 'modifier/:id', component:ModifierOfferComponent},
+  { path: 'offer/applications/:id', component:AfficherCandidatureComponent}, //exhibitor accep/refuse candidature
+  { path: 'myapplications', component:AfficherCandidatursUserComponent},
 
   { path: 'message', component: MessagestestComponent },
   { path: 'profile/prof', component: ProfileComponent },

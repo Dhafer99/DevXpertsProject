@@ -5,6 +5,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
+import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
+import { FormGroup} from '@angular/forms';
+import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
+import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.component';
+import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
+import { DetailCandidatureComponent } from './candidature/detail-candidature/detail-candidature.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AfficherCandidatursUserComponent } from './candidature/afficher-candidaturs-user/afficher-candidaturs-user.component';
+import { DatePipe } from '@angular/common';
+//import { ZXingScannerModule } from '@zxing/ngx-scanner';
+//import { QRCodeModule } from 'angularx-qrcode';
+//import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ListPacksComponent } from './PackageManagementUser/list-packs/list-packs.component';
 import { DetailPackComponent } from './PackageManagementUser/detail-pack/detail-pack.component';
@@ -13,9 +26,9 @@ import { RoomsListComponent } from './RoomManagementUser/rooms-list/rooms-list.c
 import { AuctionRoomComponent } from './RoomManagementUser/auction-room/auction-room.component';
 import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.component';
 import { PaymentComponent } from './payment/payment.component';
-import { StripeModule } from 'stripe-angular';
+//import { StripeModule } from 'stripe-angular';
 import { RouletteComponent } from './RoomManagementUser/roulette/roulette.component';
-import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
+//import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,11 +47,19 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
+    AfficherOffreComponent,
+    AjouterOffreComponent,
+    DetailOffreComponent,
+    ModifierOfferComponent,
+    AfficherCandidatureComponent,
+    DetailCandidatureComponent,
+    AfficherCandidatursUserComponent,
     HeaderComponent,
          FooterComponent,
          MessagestestComponent,
@@ -55,25 +76,33 @@ import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-
     MyRoomsComponent,
     PaymentComponent,
     RouletteComponent,
+    SignUpComponent,
 
   ],
   imports: [
-    NgxWheelModule  ,
+    //NgxWheelModule  ,
     BrowserModule,
-
     AppRoutingModule,
-    FormsModule ,
+    HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
-   HttpClientModule,
-   DragDropModule,
+    
+    NgbModule,
+    //QRCodeModule,
+    //ZXingScannerModule,
+    //ZXingScannerModule 
+   //DragDropModule,
    MatTooltipModule,
    BrowserAnimationsModule,
    MatNativeDateModule,
    MatDialogModule,
     AppRoutingModule,HttpClientModule,
-    StripeModule.forRoot("pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC"),
+    //StripeModule.forRoot("pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC"),
 
   ],
+
+  //providers: [DatePipe],
+
   providers: [ 
     {
       provide: HTTP_INTERCEPTORS,

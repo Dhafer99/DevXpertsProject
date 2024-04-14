@@ -25,7 +25,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/custom-theme.scss",
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -93,7 +95,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
@@ -123,7 +126,8 @@
               "projects/back-office/src/assets"
             ],
             "styles": [
-              "projects/back-office/src/styles.css"
+              "projects/back-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -173,7 +177,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "port":"4202",
+            "port":"4203",
             "browserTarget": "backOffice:build"
           }
         },
@@ -190,7 +194,8 @@
               "projects/back-office/src/assets"
             ],
             "styles": [
-              "projects/back-office/src/styles.css"
+              "projects/back-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
@@ -219,7 +224,8 @@
               "projects/front-office/src/assets"
             ],
             "styles": [
-              "projects/front-office/src/styles.css"
+              "projects/front-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -284,7 +290,8 @@
               "projects/front-office/src/assets"
             ],
             "styles": [
-              "projects/front-office/src/styles.css"
+              "projects/front-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
