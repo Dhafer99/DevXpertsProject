@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
 import { Enchere } from 'projects/back-office/src/app/models/Enchere';
+import { User } from 'projects/back-office/src/app/models/User';
 
 import { Room } from 'projects/back-office/src/app/models/room';
 import { PackServiceService } from 'projects/back-office/src/app/services/pack-service.service';
@@ -21,7 +22,7 @@ export class AuctionRoomComponent {
     private roomService: RoomServiceService
   ) {}
   room: Room = new Room();
-
+  usersInRoom: User[] = [];
   id = 0;
   isAuctionEnded: boolean = false;
   isAuctionEndedWinners: boolean = false;

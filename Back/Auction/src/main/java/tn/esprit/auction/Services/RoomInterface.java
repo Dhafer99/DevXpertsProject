@@ -12,7 +12,7 @@ public interface RoomInterface {
     List<Room> findAllRooms();
 
     Room updateRoom( Room room);
-
+    Room updateRoomParticipant( long roomid);
     void deleteRoom(Room room);
 
     void ParticipateToRoom(Long idroom,Long idCompany);

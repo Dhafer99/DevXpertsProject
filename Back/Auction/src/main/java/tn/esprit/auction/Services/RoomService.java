@@ -69,6 +69,19 @@ EnchereInterface enchereInterface ;
     }
 
     @Override
+    public Room updateRoomParticipant(long roomid) {
+        Room room = roomRepository.findById(roomid).orElse(null);
+        if(room != null)
+        {
+            int p = room.getConfirmedParticipant();
+            room.setConfirmedParticipant(p+1);
+            roomRepository.save(room);
+        }
+
+        return room;
+    }
+
+    @Override
     public void deleteRoom(Room room) {
         roomRepository.delete(room);
     }

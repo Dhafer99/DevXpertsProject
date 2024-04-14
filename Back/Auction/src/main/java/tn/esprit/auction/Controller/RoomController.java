@@ -65,6 +65,11 @@ public class RoomController {
     public void ReservePack(@PathVariable("idPack") Long idPack,@PathVariable("idRoom") Long idRoom ) {
           roomInterface.ReservePack(idPack,idRoom);
     }
+
+    @PutMapping("/updateRoomPaticipant/{idRoom}")
+    public Room updateRoomPaticipant(@PathVariable("idRoom") Long idRoom ) {
+        return  roomInterface.updateRoomParticipant(idRoom);
+    }
     @MessageMapping("/payment")
     @SendTo("/topic/payment")
     public String handlePaymentNotification(String message) {

@@ -31,4 +31,10 @@ export class UserService {
     
     return this.http.get<any>(`${this.userUrl}getRoomUser/${iduser}` );
   }
+
+
+  getUserById(iduser:number): Observable<any> {
+    
+    return this.http.get<any>(`${this.userUrl}getUserById/${iduser}` );
+  }
 }

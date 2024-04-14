@@ -54,6 +54,8 @@ public class PackgeService implements PackageInterface {
 Room room = roomRepository.findByTypePack(pack.getTypePack());
 if(room!=null && pack.isStatus())
 {
+    room.setMaxWinners(room.getPackages().size()+1);
+    roomRepository.save(room);
    pack.setRoom(room);
 }
 
@@ -120,8 +122,17 @@ if(room!=null && pack.isStatus())
     public void delete(Long idpack) {
 
         Pack p = packgeRepository.findById(idpack).get();
+     //   Room room = roomRepository.findByTypePack(p.getTypePack());
+       // if(room!=null && p.isStatus())
+       // {
+        //    room.setMaxWinners(room.getPackages().size()-1);
+     //       roomRepository.save(room);
+           // p.setRoom(room);
+         //   packgeRepository.delete(p);
+      //  }
+     //
+            packgeRepository.delete(p);
 
-        packgeRepository.delete(p);
     }
     @Override
     public List<Pack> getPacksByStatus(Boolean status) {

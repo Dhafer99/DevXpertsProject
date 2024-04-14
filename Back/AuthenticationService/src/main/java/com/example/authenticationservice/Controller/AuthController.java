@@ -60,6 +60,12 @@ public class AuthController {
     public long getRoomUser(@PathVariable("userid") int userid) {
         return service.getRoomUser(userid);
     }
+
+
+    @GetMapping("/getUserById/{userid}")
+    public UserCredential getUserById(@PathVariable("userid") int userid) {
+        return service.getUserById(userid);
+    }
    // @GetMapping("/CurrentUser/{email}")
    // public UserCredential getCurrentUser(@PathVariable("email") String email) {
 
