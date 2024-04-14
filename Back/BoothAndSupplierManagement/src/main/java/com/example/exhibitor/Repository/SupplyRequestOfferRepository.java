@@ -9,4 +9,5 @@ import java.util.List;
 public interface SupplyRequestOfferRepository extends JpaRepository<SupplyRequestOffer,Long> {
 
     List<SupplyRequestOffer> findBySupplierRequestFK(Long supplierRequestId);
+    List<SupplyRequestOffer> findBySupplierFkAndSupplierRequestFK(Long userId,Long supplierRequestId);
 }

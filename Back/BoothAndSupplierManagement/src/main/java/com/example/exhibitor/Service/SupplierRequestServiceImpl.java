@@ -52,20 +52,7 @@ public class SupplierRequestServiceImpl implements SupplierRequestService{
          return supplierRequest ;
     }
 
-    @Override
-    public SupplierRequest changeSupplierRequestStatus(Status status,Long requestid) throws Exception {
-        SupplierRequest supplierRequest=supplierRequestRepository.findById(requestid).orElseThrow(() -> new Exception("supplier request not found"));
-        if(status.equals(Status.Approved))
-        {
-            supplierRequest.setStatus(Status.Approved);
-        }
-        else {
-            supplierRequest.setStatus(Status.NotApproved);
 
-        }
-        return supplierRequestRepository.save(supplierRequest);
-
-    }
 
     @Override
     public SupplierRequest getSupplierRequestStatus(Long requestid) throws Exception {

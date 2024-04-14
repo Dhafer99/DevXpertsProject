@@ -15,4 +15,6 @@ List<Supplier> showAllSuppliers();
 
 List<Supplier> getSuppliersBySupplyRequest(Long supplyRequestId);
 
+    public SupplierRequest getSupplierRequestStatus(Long requestid) throws Exception;
+
 }

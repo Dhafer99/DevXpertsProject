@@ -14,8 +14,11 @@ export class NewsupplierfrontComponent implements OnInit{
  
   supplierOffer: SupplierOffer = {
     description: "" ,
-    price : 0
+    price : 0,
+    status :"Pending"
   }
+
+  supplierOfferList :any[]=[];
   openDialog(itemId:number): void {
     const dialogRef = this.dialog.open(DialogboxComponent, {
       data: {supplierOffer: this.supplierOffer},
@@ -25,6 +28,7 @@ export class NewsupplierfrontComponent implements OnInit{
       console.log(result.price)
       this.supplierOffer.description=result.description ;
       this.supplierOffer.price=result.price ;
+  
       this.servicefront.addSupplierOffer(this.supplierOffer,3,itemId).subscribe((data:any)=>{
         console.log("returned data after supplier suggestion :")
         console.log(data);
@@ -32,9 +36,53 @@ export class NewsupplierfrontComponent implements OnInit{
     });
   }
 
+  userID:number ;
   SupplierList: Supplier[]= [];
+requestSent:boolean = false ;
+  getIfRequestSent( supplyRequestid : number): boolean{
+    const matchingItems = this.supplierOfferList.filter((supplyrequest) => {
+      const matchCondition = supplyrequest.supplier.id === 3 && supplyrequest.supplierRequest.id === supplyRequestid;
+      //console.log(`Checking item:`, supplyrequest, `Matched:`, matchCondition);
+      return matchCondition;
+  });
+
+  const requestSent = !!matchingItems.length;
+  //console.log(`Request sent for supplyRequestid ${supplyRequestid}:`, requestSent);
+  return requestSent;
+  }
+  getIfRequestAccepted( supplyRequestid : number): boolean{
+    const matchingItems = this.supplierOfferList.filter((supplyrequest) => {
+      const matchCondition = supplyrequest.supplier.id === 3 && supplyrequest.status === "Approved" && supplyrequest.supplierRequest.id===supplyRequestid;
+      //console.log(`Checking item:`, supplyrequest, `Matched:`, matchCondition);
+      return matchCondition;
+  });
+  
+
+  const requestSent = !!matchingItems.length;
+  //console.log(`Request sent for supplyRequestid ${supplyRequestid}:`, requestSent);
+  return requestSent;
+  }
+  getIfRequestRefused( supplyRequestid : number): boolean{
+    const matchingItems = this.supplierOfferList.filter((supplyrequest) => {
+      const matchCondition = supplyrequest.supplier.id === 3 && supplyrequest.status === "NotApproved" && supplyrequest.supplierRequest.id === supplyRequestid;
+      //console.log(`Checking item:`, supplyrequest, `Matched:`, matchCondition);
+      return matchCondition;
+  });
+  
+
+  const requestSent = !!matchingItems.length;
+  //console.log(`Request sent for supplyRequestid ${supplyRequestid}:`, requestSent);
+  return requestSent;
+  }
   ngOnInit(): void {
 
+    var userIDString = localStorage.getItem("userID");
+    this.userID = parseInt(userIDString, 10);
+
+    this.servicefront.allSupplierOfferList().subscribe((data:any)=>{
+      console.log(data);
+      this.supplierOfferList=data ;
+    })
     this.servicefront.getsupplier().subscribe((data:Supplier[])=>{
       this.SupplierList = data 
       console.log(data)
@@ -68,8 +116,11 @@ export class NewsupplierfrontComponent implements OnInit{
   
   UnsendRequest(supplyRequestid:number){
    
+    var userIDString = localStorage.getItem("userID");
+    this.userID = parseInt(userIDString, 10);
 
-    this.servicefront.removeSupplierFromSupplyRequest(supplyRequestid).subscribe(()=> {
+
+    this.servicefront.removeOffer(this.userID,supplyRequestid).subscribe(()=> {
       setTimeout(() => {
         Swal.fire({
           icon: 'success',

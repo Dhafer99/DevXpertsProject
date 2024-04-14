@@ -528,10 +528,10 @@ removeBooth(boothName : string){
             showConfirmButton: false // This line removes the "OK" button
           
           });
-         // setTimeout(()=>
-          //location.reload()
+          setTimeout(()=>
+          location.reload()
           
-         // ,1000)
+          ,1000)
         
          
     

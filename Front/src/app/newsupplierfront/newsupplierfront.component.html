@@ -29,15 +29,19 @@
                             </div>
                             <div class="blog-like-button ms-auto">
                               
-                                <button  *ngIf="!item?.supplier?.id && item?.status === 'Pending'" class="btn" (click)="openDialog(item.id)"><i class="mdi mdi-heart text-danger f-18 align-middle"></i>
-                                    Send a request </button>
-                            
-                              
-                                    <button   (click)="UnsendRequest(item.id)" *ngIf="item?.supplier?.id && item?.status === 'Pending'" class="btn" ><i  class="mdi mdi-heart-outline f-18 align-middle"></i>
-                                        Unsend Request </button>
+                                <button *ngIf="!getIfRequestSent(item.id) && !getIfRequestRefused(item.id) && !getIfRequestAccepted(item.id) " class="btn" (click)="openDialog(item.id)">
+                                    <i class="mdi mdi-heart text-danger f-18 align-middle"></i>
+                                    Send a request
+                                </button>
+                                
+                                <button *ngIf="getIfRequestSent(item.id) && !getIfRequestRefused(item.id) && !getIfRequestAccepted(item.id)" class="btn" (click)="UnsendRequest(item.id)">
+                                    <i class="mdi mdi-heart-outline f-18 align-middle"></i>
+                                    Unsend Request
+                                </button>
+                                
 
-                                        <h6  *ngIf="item?.status === 'NotApproved'"  class="mb-1" style="color: red;"> Request Refused !</h6>
-                                        <h6  *ngIf="item?.status === 'Approved'"  class="mb-1" style="color: green;"> Request Accepted !</h6>
+                                        <h6  *ngIf="getIfRequestRefused(item.id)"  class="mb-1" style="color: red;"> Request Refused !</h6>
+                                        <h6  *ngIf="getIfRequestAccepted(item.id)"  class="mb-1" style="color: green;"> Request Accepted !</h6>
                                         
                                 
                             </div>

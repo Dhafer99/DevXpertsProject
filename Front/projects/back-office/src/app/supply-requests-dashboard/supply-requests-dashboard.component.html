@@ -45,8 +45,11 @@
                             </td>
                             <td>{{ getType(r.type) }}</td>
                             <td>
-                                <button type="button" class="btn btn-info" (click)="updateSupplier(r)">Update</button>
-                                <button type="button" class="btn btn-danger" (click)="deleteSupplier(r)">Delete</button>
+                                <button type="button" class="btn btn-info" style="margin: 5px;" (click)="updateSupplier(r)">Update</button>
+                                
+                                <button type="button" class="btn btn-danger" style="margin: 5px;"  (click)="deleteSupplier(r)">Delete</button>
+                                
+                                <button type="button" class="btn light btn-success"  style="margin: 5px;"  (click)="showdetailofsupplierrequest(r)">show Detail</button>
                             </td>
                         </tr>
                     </ng-container>
@@ -99,9 +102,9 @@
                         </td>
                         <td>{{ getType(r.type) }}</td>
                         <td>
-                            <button type="button" class="btn btn-info" (click)="updateSupplier(r)">Update</button>
-                            <button type="button" class="btn btn-danger" (click)="deleteSupplier(r)">Delete</button>
-                            <button type="button" class="btn btn-info" (click)="showdetailofsupplierrequest(r)">show Detail</button>
+                            <button type="button" class="btn btn-info"   style="margin: 5px;"(click)="updateSupplier(r)">Update</button>
+                            <button type="button" class="btn btn-danger"  style="margin: 5px;" (click)="deleteSupplier(r)">Delete</button>
+                            <button type="button" class="btn light btn-success"  style="margin: 5px;"  (click)="showdetailofsupplierrequest(r)">show Detail</button>
                         </td>
                     </tr>
                 </ng-container>

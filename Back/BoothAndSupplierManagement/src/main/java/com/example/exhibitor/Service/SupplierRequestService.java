@@ -16,7 +16,6 @@ public interface SupplierRequestService  {
 
     SupplierRequest AffectSupplierRequestToSupplier(Long supplierRequestId,Long supplierId) throws Exception;
 
-    SupplierRequest changeSupplierRequestStatus(Status status,Long requestid) throws Exception;
 
     SupplierRequest getSupplierRequestStatus(Long requestid) throws Exception;
 

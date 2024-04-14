@@ -126,4 +126,12 @@ public class ChatController {
     ){
         return messageService.getChatMessagesBySenderAndReceiver(senderID,receiverId);
     }
+    @GetMapping("/getLastMessage/{sender}/{receiver}")
+    public ChatMessage getLastMessage(
+            @PathVariable("sender") Long senderID,
+            @PathVariable ("receiver") Long receiverId
+
+    ){
+        return messageService.getLastChatMessage(senderID,receiverId);
+    }
 }

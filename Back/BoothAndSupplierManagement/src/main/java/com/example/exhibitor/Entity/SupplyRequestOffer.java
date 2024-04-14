@@ -24,6 +24,8 @@ public class SupplyRequestOffer {
 
 
     private Long supplierFk ;
+    @Enumerated(EnumType.STRING)
+    private Status status ;
 
 
 

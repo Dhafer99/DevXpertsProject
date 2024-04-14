@@ -114,7 +114,7 @@ export class SupplierComponent implements OnInit{
     productname: 'String' ,
     servicename: 'String' ,
    type : typerequirement[typerequirement.isProduct] ,
-   status : status[status.NotApproved],
+   
    image:null
    
   }
@@ -268,7 +268,7 @@ get price(){return this.supplierForm.get('price')}
           this.supplier.boothPosition=this.supplierForm.value.boothPosition
           this.supplier.productname=this.supplierForm.value.productname
           this.supplier.servicename=this.supplierForm.value.servicename
-          this.supplier.status= status[status.Pending]
+          
           
           if(this.image==null){
             Swal.fire({

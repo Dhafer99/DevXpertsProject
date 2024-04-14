@@ -37,4 +37,10 @@ public class SupplierServiceImpl implements SupplierService{
 
         return  supplierRepository.findSupplierBySupplierRequests(supplierRequest);
     }
+    @Override
+    public SupplierRequest getSupplierRequestStatus(Long requestid) throws Exception {
+        return supplierRequestRepository.findById(requestid).orElseThrow(() -> new Exception("supplier request not found"));
+
+
+    }
 }

@@ -6,6 +6,7 @@ import com.example.exhibitor.Repository.SupplierRequestRepository;
 import com.example.exhibitor.Service.BoothService;
 import com.example.exhibitor.Service.SupplierRequestService;
 import com.example.exhibitor.Service.SupplierService;
+import com.example.exhibitor.dto.SupplierListDTO;
 import jakarta.ws.rs.Path;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -95,12 +96,7 @@ public class SupplierController {
     {
         return  supplierService.findSupplierByid(supplierId);
     }
-    @PostMapping("/changeStatus/{supplierRequestId}/{status}")
-    public SupplierRequest changeStatus(@PathVariable("supplierRequestId") Long supplierRequestId,
-                                 @PathVariable("status")Status status
-                                 ) throws Exception {
-        return  supplierRequestService.changeSupplierRequestStatus(status,supplierRequestId);
-    }
+
     @GetMapping("/SupplierRequestStatus/{supplierRequest-id}")
     public SupplierRequest Getstatus(@PathVariable("supplierRequest-id") Long supplierRequestId
     ) throws Exception {
@@ -132,4 +128,5 @@ public class SupplierController {
     ) throws Exception {
         return supplierService.getSuppliersBySupplyRequest(supplyRequestId);
     }
+
 }

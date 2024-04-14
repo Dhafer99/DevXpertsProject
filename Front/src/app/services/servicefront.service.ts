@@ -67,5 +67,16 @@ export class ServicefrontService {
   }
 
 
+  /////////////
+
+  public allSupplierOfferList(): Observable<any[]> {
+    return this.http.get<any[]>(this.SupplierOfferSuggestion_URL + '/getAllSupplyRequests');
+  }
+
+  ///removing offer
+
+  public removeOffer(userId:number,supplyrequestid:number): Observable<any[]> {
+    return this.http.delete<any[]>(`${this.SupplierOfferSuggestion_URL}/removeSupplyRequest/${userId}/${supplyrequestid}`);
+  }
 
 }

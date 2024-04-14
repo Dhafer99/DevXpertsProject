@@ -25,8 +25,6 @@ public class SupplierRequest {
     private String servicename ;
     @Enumerated(EnumType.STRING)
     Type type ;
-    @Enumerated(EnumType.STRING)
-    Status status ;
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     Supplier supplier ;

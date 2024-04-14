@@ -1,6 +1,7 @@
 package com.example.exhibitor.Controller;
 
 
+import com.example.exhibitor.Entity.Status;
 import com.example.exhibitor.Entity.SupplierRequest;
 import com.example.exhibitor.Entity.SupplyRequestOffer;
 import com.example.exhibitor.Service.SupplyRequestOfferService;
@@ -37,5 +38,28 @@ public class SupplyRequestOfferController {
     ){
         return supplyRequestOfferService.supplyRequestOffers(supplyRequestId);
     }
+    @GetMapping("/getAllSupplyRequests")
+    public List<SupplierListDTO> getAllSupplyRequests(
+
+    ){
+        return supplyRequestOfferService.getAllSupplyRequests();
+    }
+    @DeleteMapping("/removeSupplyRequest/{userId}/{supplyRequestid}")
+    public void removeSupplyRequest(
+            @PathVariable("userId") Long userId,
+            @PathVariable("supplyRequestid") Long supplyRequestId
+
+
+    ){
+         supplyRequestOfferService.removeSupplyOffer(userId,supplyRequestId);
+    }
+    @PostMapping("/changeStatus/{supplierRequestId}/{status}")
+    public SupplyRequestOffer changeStatus(@PathVariable("supplierRequestId") Long supplierRequestId,
+                                        @PathVariable("status") Status status
+    ) throws Exception {
+        return  supplyRequestOfferService.changeSupplierRequestStatus(status,supplierRequestId);
+    }
+
+
 
 }

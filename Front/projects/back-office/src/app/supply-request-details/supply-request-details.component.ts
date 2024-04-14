@@ -8,18 +8,30 @@ import { SupplierOffer } from '../models/SupplierOffer';
 import $ from 'jquery';
 import { message } from '../models/Message';
 import { WebSocketService } from '../services/websocketservice';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 @Component({
   selector: 'app-supply-request-details',
   templateUrl: './supply-request-details.component.html',
-  styleUrls: ['./supply-request-details.component.scss']
+  styleUrls: ['./supply-request-details.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition(':enter, :leave', [
+        animate(300)
+      ])
+    ])
+  ]
 })
 export class SupplyRequestDetailsComponent implements OnInit {
-  
+ 
 
-
+  AllChatMessages:message[]=[];
   ReceiverId : number ;
   messages: message[] = [];
   newMessage: string = '';
+  showChat: boolean = false;
 UsersList : User[]=[
 { id: 1 ,nom:"dhafer",numeroTelephone : "5520278"},
 { id: 2 ,nom:"hamma",numeroTelephone : "7897845"},
@@ -42,14 +54,51 @@ UsersList : User[]=[
   sentMessage : message ={
     content:"",
     sender: new User,
-    receiver:new User
+    receiver:new User,
+    createdAt: ""
   }
   messagecomingfromsocket: message = {
 
     content :"",
     sender:new User,
-    receiver: new User
+    receiver: new User,
+    createdAt: ""
    }
+    
+   get filteredUsersList() {
+    return this.UsersList.filter(user =>
+      user.nom.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+  searchTerm: string = '';
+  toggleChat() {
+    this.showChat = true ;
+  }
+
+  lastMessage:message
+  getLastMessage(senderId: number, receiverId: number): string {
+    if (!this.messages || this.messages.length === 0) {
+      return "No messages available";
+    }
+    
+    // Filter messages based on sender and receiver IDs
+    const filteredMessages = this.messages.filter(message => 
+      (message.sender.id === senderId && message.receiver.id === receiverId) ||
+      (message.sender.id === receiverId && message.receiver.id === senderId)
+    );
+
+    if (filteredMessages.length === 0) {
+      return "No messages with content available";
+    }
+
+    // Sort messages based on createdAt attribute
+    const sortedMessages = filteredMessages.sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+
+    // Return the last (latest) message content
+    return sortedMessages[0].content;
+}
   sendMessage() {
     if (this.newMessage.trim() !== '') {
       // Assuming this.userID and this.ReceiverId are properly assigned
@@ -118,6 +167,7 @@ UsersList : User[]=[
   }
   loadConversation(senderId:number,receiverid:number){
    
+    this.toggleChat();
     this.ReceiverId = receiverid; // loads the receiver id you're going to send a message to 
 
    
@@ -191,7 +241,7 @@ UsersList : User[]=[
     productname: 'String' ,
     servicename: 'String' ,
     type : 'String' ,
-    status :'String' ,
+    
    
    image:null
 }
@@ -200,6 +250,18 @@ SupplyOffer : SupplierOffer[]=[];
 userID: number ;
   constructor(private serviceback:ServicebackService ,private acr:ActivatedRoute,private renderer: Renderer2,private chatSocket:WebSocketService){}
   ngOnInit(): void {
+
+    
+    $( '.friend-drawer--onhover' ).on( 'click',  function() {
+  
+      $( '.chat-bubble' ).hide('slow').show('slow');
+      
+    });
+
+  //  this.serviceback.AllMessages().subscribe((data:message[])=>{
+    //  this.AllChatMessages=data
+
+  //  })
 
     this.serviceback.getAllUserSuppliers().subscribe((data:User[])=>{
       this.UsersList = data ;
@@ -226,7 +288,8 @@ userID: number ;
         const parsedMessage = {
             content: containingmessage,
             sender: messageObject.sender,
-            receiver: messageObject.receiver
+            receiver: messageObject.receiver,
+            createdAt: messageObject.createdAt
         };
         this.messages.push(parsedMessage);
     }
@@ -241,11 +304,6 @@ userID: number ;
 
 
 
-    $( '.friend-drawer--onhover' ).on( 'click',  function() {
-  
-      $( '.chat-bubble' ).hide('slow').show('slow');
-      
-    });
    
     this.serviceback.getsupplier().subscribe((data:Supplier[])=>{
       this.SupplyRequestList=data
@@ -265,6 +323,8 @@ userID: number ;
     })
     this.serviceback.getAllOfferForSupplyRequest(params['id']).subscribe((data:SupplierOffer[])=>{
       this.SupplyOffer=data ;
+      console.log("supplyoffer list ")
+      console.log(this.SupplyOffer)
     //  console.log("SUPPLIER OFFER DATA :")
     //  console.log(data);
       
@@ -273,4 +333,23 @@ userID: number ;
   })
   }
   SupplyRequestList : Supplier[]=[]
+
+  setStatusAccepted(requestid:number) { 
+    this.serviceback.setRequestStatus(requestid, 'Approved').subscribe((data: any[]) => {
+     location.reload()
+     
+   //  this.SupplyRequestList[this.SupplyRequestList.indexOf(requestid)].status = 'Approved'
+    });
+  }
+  setStatusRefused(requestid:number){
+    this.serviceback.setRequestStatus(requestid,'NotApproved').subscribe((data:any[]) =>{
+    console.log(data)
+    this.serviceback.removeSupplierFromSupplyRequest(requestid).subscribe();
+    //this.SupplyRequestList[this.SupplyRequestList.indexOf(requestid)].status = 'NotApproved'
+  }
+    );
+   
+
+  }
+
 }

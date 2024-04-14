@@ -70,13 +70,13 @@ getSupplierById(id: number): Observable<User> {
 setRequestStatus(requestid: number,status:String): Observable<Supplier[]> {
   
 
-  return this.http.post<Supplier[]>(`${this.SupplierUrl}/changeStatus/${requestid}/${status}`,{});
+  return this.http.post<Supplier[]>(`${this.SupplierOfferSuggestion_URL}/changeStatus/${requestid}/${status}`,{});
   
 }
 CheckStatusSupplyRequest(requestid: number): Observable<Supplier> {
   
 
-  return this.http.get<Supplier>(`${this.SupplierUrl}/SupplierRequestStatus/${requestid}`);
+  return this.http.get<Supplier>(`${this.SupplierOfferSuggestion_URL}/SupplierRequestStatus/${requestid}`);
   
 }
 ////////////////////////////////////////////////////////////////BOOOOOOOOOOOOOOOOOOTHHHHHHHH/////////////////////////////////////////////////////////////////
@@ -176,6 +176,10 @@ getUserId(username:string):Observable<number>{
 getAllMessages(senderId:number,receiverId:number): Observable<message[]>{
   return this.http.get<message[]>(`${this.chatUrl}/getChatMessagesBySenderAndReceiver/${senderId}/${receiverId}`)
 }
-
-
+getLastMessage(senderId:number,receiverId:number): Observable<message>{
+  return this.http.get<message>(`${this.chatUrl}/getLastMessage/${senderId}/${receiverId}`)
+}
+AllMessages(): Observable<message[]>{
+  return this.http.get<message[]>(`${this.chatUrl}/allChatMessages`)
+}
 }

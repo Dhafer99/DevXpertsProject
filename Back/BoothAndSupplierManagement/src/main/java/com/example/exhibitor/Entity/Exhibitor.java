@@ -25,5 +25,7 @@ public class Exhibitor {
      @OneToMany(mappedBy = "exhibitor",cascade = CascadeType.ALL)
      List<Booth> booth ;
 
+     public Long userID ;
+
 
 }

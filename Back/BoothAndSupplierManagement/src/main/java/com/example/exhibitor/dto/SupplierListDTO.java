@@ -1,5 +1,6 @@
 package com.example.exhibitor.dto;
 
+import com.example.exhibitor.Entity.Status;
 import com.example.exhibitor.Entity.Supplier;
 import com.example.exhibitor.Entity.SupplierRequest;
 import jakarta.persistence.ManyToOne;
@@ -19,5 +20,7 @@ public class SupplierListDTO {
     private Supplier supplier;
 
     private SupplierRequest supplierRequest ;
+
+    private Status status ;
 
 }

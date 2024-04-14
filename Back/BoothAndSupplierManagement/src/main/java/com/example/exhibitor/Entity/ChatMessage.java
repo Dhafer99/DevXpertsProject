@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -24,6 +27,8 @@ public class ChatMessage {
 
     @ManyToOne
     private Supplier receiver ;
+
+    private LocalDateTime createdAt ;
 
 
 

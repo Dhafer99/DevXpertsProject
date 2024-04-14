@@ -18,4 +18,6 @@ public interface MessageService {
 
     public List<ChatMessage> getChatMessagesBySenderAndReceiver(Long receiverId,Long senderId);
 
+    public ChatMessage getLastChatMessage(Long senderId,Long receiverId);
+
 }

@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -55,6 +57,7 @@ public class MessageServiceImpl  implements MessageService{
         chatMessage1.setContent(chatMessage);
         chatMessage1.setSender(sender);
         chatMessage1.setReceiver(receiver);
+        chatMessage1.setCreatedAt(LocalDateTime.now());
         messageRepository.save(chatMessage1);
     }
 
@@ -69,5 +72,10 @@ public class MessageServiceImpl  implements MessageService{
 
 
         return messageRepository.findBySenderIdAndReceiverIdOrReceiverIdAndSenderId(senderId,receiverId);
+    }
+
+    @Override
+    public ChatMessage getLastChatMessage(Long senderId,Long receiverId) {
+        return messageRepository.findLastMessageBySenderIdAndReceiverIdOrReceiverIdAndSenderId(senderId,receiverId).get(0);
     }
 }

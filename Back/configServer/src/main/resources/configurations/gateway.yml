@@ -24,7 +24,7 @@ spring:
                   - GET
                   - POST
                 allowedHeaders: '*'
-                maxAge: 30
+                maxAge: 120
             filters:
               - AuthenticationFilter
           - id: supplyoffer
@@ -37,8 +37,9 @@ spring:
                 allowedMethods:
                   - GET
                   - POST
+                  - DELETE
                 allowedHeaders: '*'
-                maxAge: 30
+                maxAge: 120
             filters:
               - AuthenticationFilter
           - id: chat
@@ -52,7 +53,7 @@ spring:
                   - GET
                   - POST
                 allowedHeaders: '*'
-                maxAge: 30
+                maxAge: 120
 
             filters:
               - AuthenticationFilter
@@ -67,7 +68,7 @@ spring:
                   - GET
                   - POST
                 allowedHeaders: '*'
-                maxAge: 30
+                maxAge: 120
             filters:
               - AuthenticationFilter
           - id: exhibitors
