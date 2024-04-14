@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 //import { StompService } from '@stomp/ng2-stompjs';
 //import { Message } from '@stomp/stompjs';
@@ -8,7 +8,7 @@ import { User } from 'projects/back-office/src/app/models/User';
 
 import { Room } from 'projects/back-office/src/app/models/room';
 import { PackServiceService } from 'projects/back-office/src/app/services/pack-service.service';
-
+import { gsap } from 'gsap';
 import { RoomServiceService } from 'projects/back-office/src/app/services/room-service.service';
 
 @Component({
@@ -17,8 +17,16 @@ import { RoomServiceService } from 'projects/back-office/src/app/services/room-s
   styleUrls: ['./auction-room.component.css'],
 })
 export class AuctionRoomComponent implements OnDestroy {
-  usersInRoom: User[] = [];
-
+  usersInRoom: any[] = [];
+  @ViewChild('sellerBox') sellerBoxRef!: ElementRef; // Référence à l'élément du box dans le template HTML
+  animateBoxUp() {
+    const sellerBox = this.sellerBoxRef.nativeElement as HTMLElement; // Récupère l'élément du box du DOM
+    gsap.to(sellerBox, {
+      y: -100, // Déplace le box vers le haut de 100px
+      duration: 0.5, // Durée de l'animation en secondes
+      ease: 'power2.out' // Type d'interpolation pour une transition douce
+    });
+  }
   constructor(
     private activate: ActivatedRoute,
     private roomService: RoomServiceService
@@ -79,6 +87,14 @@ export class AuctionRoomComponent implements OnDestroy {
   fetchInterval: any;
   currentEnchere: Enchere ; 
   highestEnchre :number; 
+  highestPricingUser: any;
+  findHighestPricingUser(users: any[]) {
+    if (users.length > 0) {
+        this.highestPricingUser = users[0]; // Le premier utilisateur sera celui avec le prix le plus élevé après le tri
+    } else {
+        this.highestPricingUser = null;
+    }
+}
   ngOnInit() {
     
     this.id = this.activate.snapshot.params['id'];
@@ -102,6 +118,8 @@ export class AuctionRoomComponent implements OnDestroy {
       this.calculateTimeLeft();
       this.roomService.getUsersEnterningAuction(this.id).subscribe(
         (r) => {
+          r.sort((a: any, b: any) => b.pricing - a.pricing);
+;  
           this.usersInRoom = r;
         },
         (error) => {

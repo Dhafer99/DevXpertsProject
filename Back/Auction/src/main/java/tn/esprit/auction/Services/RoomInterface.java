@@ -15,7 +15,7 @@ public interface RoomInterface {
     Room updateRoomParticipant( long roomid);
     void deleteRoom(Room room);
 
-    void ParticipateToRoom(Long idroom,Long idCompany);
+    void ParticipateToRoom(Long idroom,int idCompany);
 
     float UpdatePrice(float nbrpoint, Long idRoom);
 

@@ -87,7 +87,7 @@ EnchereInterface enchereInterface ;
     }
 
     @Override
-    public void ParticipateToRoom(Long idroom , Long idCompany) {
+    public void ParticipateToRoom(Long idroom , int idCompany) {
         Company company = companyRepository.findById(idCompany).orElse(null);
         Room room = roomRepository.findById(idroom).orElse(null);
         if(room != null ){

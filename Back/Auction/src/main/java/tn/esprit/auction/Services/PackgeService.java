@@ -204,15 +204,15 @@ if(room!=null && pack.isStatus())
     @Override
     public List<Company> findTopLoyalCustomers(int topCount) {
         List<Pack> reservedPacks = packgeRepository.findByReserved(Boolean.TRUE);
-        Map<Long, Integer> reservationsByCompany = new HashMap<>();
+        Map<Integer, Integer> reservationsByCompany = new HashMap<>();
 
         for (Pack pack : reservedPacks) {
-            if(pack.getCompany()!=null) {
-                Long companyId = pack.getCompany();
+            if(pack.getCompany()!=0) {
+                int companyId = pack.getCompany();
                 reservationsByCompany.put(companyId, reservationsByCompany.getOrDefault(companyId, 0) + 1);
             }  }
 
-        List<Long> loyalCustomerIds = reservationsByCompany.entrySet().stream()
+        List<Integer> loyalCustomerIds = reservationsByCompany.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(topCount)
                 .map(Map.Entry::getKey)

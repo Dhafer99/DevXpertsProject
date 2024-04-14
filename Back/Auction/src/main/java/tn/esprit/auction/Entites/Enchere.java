@@ -18,8 +18,8 @@ public class Enchere {
     @Column(name="idenchere")
     private Long idenchere;
 
-    private Long idcompany;
-
+    private int idcompany;
+    private int points;
     private float pricing;
 
     private  Boolean status ;

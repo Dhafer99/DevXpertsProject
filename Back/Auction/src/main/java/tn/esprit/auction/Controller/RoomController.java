@@ -6,6 +6,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.auction.Entites.Enchere;
+import tn.esprit.auction.Entites.EnchereUserDTO;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.Room;
 import tn.esprit.auction.Services.EnchereInterface;
@@ -24,7 +25,7 @@ public class RoomController {
     /*********************************** Enchere methodes ****/
     @PostMapping("/addEncherForUser/{companyId}/{roomId}")
     public Enchere addEncherForUser(
-                                    @PathVariable("companyId") long companyId, @PathVariable("roomId") long roomId) {
+                                    @PathVariable("companyId") int companyId, @PathVariable("roomId") long roomId) {
 
        return enchereInterface.addEncherForUser( companyId,roomId);
     }
@@ -32,19 +33,19 @@ public class RoomController {
 
     @PutMapping("/updatePricing/{companyId}/{roomId}/{points}")
     public void updatePricing(@PathVariable("points") int points,
-            @PathVariable("companyId") long companyId, @PathVariable("roomId") long roomId) {
+            @PathVariable("companyId") int companyId, @PathVariable("roomId") long roomId) {
 
          enchereInterface.updatePricing( companyId,roomId,points);
     }
 
     @GetMapping("/getUserEnchere/{companyId}/{roomId}")
     public Boolean getUserEnchere(
-                              @PathVariable("companyId") long companyId, @PathVariable("roomId") long roomId) {
+                              @PathVariable("companyId") int companyId, @PathVariable("roomId") long roomId) {
 
       return   enchereInterface.getUserEnchere( companyId,roomId);
     }
     @GetMapping("/getUsersEnterningAuction/{roomId}")
-    public List<Enchere> getUsersEnterningAuction(
+    public List<EnchereUserDTO>getUsersEnterningAuction(
         @PathVariable("roomId") long roomId) {
 
         return  enchereInterface.getUsersEnterningAuction( roomId);
@@ -72,12 +73,12 @@ public class RoomController {
         return  enchereInterface.findHighestPricedEnchereByRoomId(idRoom);
     }
     @GetMapping("getCurrentUserBiding/{idcompany}/{idRoom}")
-    public Enchere getCurrentUserBiding(@PathVariable("idcompany") Long idcompany,@PathVariable("idRoom") long idRoom )
+    public Enchere getCurrentUserBiding(@PathVariable("idcompany") int idcompany,@PathVariable("idRoom") long idRoom )
     {
         return  enchereInterface.getCurrentUserBiding(idcompany,idRoom);
     }
     @DeleteMapping("/deleteUserFromEnchere/{idcompany}/{idRoom}")
-    public void deleteUserFromEnchere(@PathVariable("idcompany") Long idcompany,@PathVariable("idRoom") long idRoom )
+    public void deleteUserFromEnchere(@PathVariable("idcompany") int idcompany,@PathVariable("idRoom") long idRoom )
     {
         enchereInterface.deleteEnchereSortieUser(idcompany,idRoom);
     }
@@ -132,7 +133,7 @@ public class RoomController {
     }
 
     @PutMapping("/participateToRoom/{companyId}/{idRoom}")
-    public void ParticipateToRoom( @PathVariable("idRoom") long idRoom,@PathVariable("companyId") long companyId ) {
+    public void ParticipateToRoom( @PathVariable("idRoom") long idRoom,@PathVariable("companyId") int companyId ) {
         roomInterface.ParticipateToRoom(idRoom,companyId);
     }
 

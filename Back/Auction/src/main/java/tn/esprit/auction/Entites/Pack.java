@@ -30,7 +30,7 @@ public class Pack {
     private boolean reserved ;
     private Date creationDate ;
 
-    private Long company;
+    private int company;
     // supplier
     // company
     private float price ;

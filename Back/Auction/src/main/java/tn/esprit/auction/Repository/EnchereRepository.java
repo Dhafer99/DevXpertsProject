@@ -10,10 +10,10 @@ import java.awt.print.Pageable;
 import java.util.List;
 
 public interface EnchereRepository extends JpaRepository<Enchere,Long> {
-    Enchere findByIdcompanyAndRoomIdRoom(Long companyId, Long roomid);
+    Enchere findByIdcompanyAndRoomIdRoom(int companyId, Long roomid);
     List<Enchere> findByRoom(Room room);
 
-void deleteByIdcompanyAndRoom(Long idCompany, Room room);
+void deleteByIdcompanyAndRoom(int idCompany, Room room);
 
     @Query("SELECT e FROM Enchere e WHERE e.room.idRoom = :roomId AND e.status = true ORDER BY e.pricing DESC")
     List<Enchere> findTopEncheresByRoomId(Long roomId);
