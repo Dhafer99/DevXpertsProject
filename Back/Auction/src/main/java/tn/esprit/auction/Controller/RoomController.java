@@ -12,7 +12,7 @@ import tn.esprit.auction.Services.EnchereInterface;
 import tn.esprit.auction.Services.RoomInterface;
 
 import java.util.List;
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/rooms")

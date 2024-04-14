@@ -42,7 +42,7 @@ spring:
             filters:
               - AuthenticationFilter
           - id: authservice
-            uri: http://localhost:8080
+            uri: http://localhost:8099
             predicates:
               - Path=/auth/**
             metadata:
@@ -51,6 +51,8 @@ spring:
                 allowedMethods:
                   - GET
                   - POST
+                  - PUT
+                  - DELETE
                 allowedHeaders: '*'
                 maxAge: 30
             filters:
@@ -63,10 +65,34 @@ spring:
             uri: http://localhost:8083
             predicates:
               - Path=/api/rooms/**
+            metadata:
+              cors:
+                allowedOrigins: '*'
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - DELETE
+                allowedHeaders: '*'
+                maxAge: 30
+            filters:
+              - AuthenticationFilter
           - id: packs
             uri: http://localhost:8083
             predicates:
               - Path=/api/packs/**
+            metadata:
+              cors:
+                allowedOrigins: '*'
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - DELETE
+                allowedHeaders: '*'
+                maxAge: 30
+            filters:
+              - AuthenticationFilter
 
 
 

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
@@ -22,6 +23,8 @@
         <option value="$PROJECT_DIR$/PackageAuction/pom.xml" />
         <option value="$PROJECT_DIR$/Auction/pom.xml" />
         <option value="$PROJECT_DIR$/PackMangement/pom.xml" />
+        <option value="$PROJECT_DIR$/../../mainProject/DevXpertsProject/Back/AuthenticationService/pom.xml" />
+        <option value="$PROJECT_DIR$/../../mainProject/DevXpertsProject/Back/gateway/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -29,6 +32,8 @@
         <option value="$PROJECT_DIR$/AuctionPackManagement/pom.xml" />
         <option value="$PROJECT_DIR$/PackMangement/pom.xml" />
         <option value="$PROJECT_DIR$/test/pom.xml" />
+        <option value="$PROJECT_DIR$/../../mainProject/DevXpertsProject/Back/AuthenticationService/pom.xml" />
+        <option value="$PROJECT_DIR$/../../mainProject/DevXpertsProject/Back/gateway/pom.xml" />
       </set>
     </option>
   </component>

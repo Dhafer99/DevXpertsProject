@@ -10,7 +10,7 @@ export class RoomServiceService {
   constructor(private http: HttpClient) {
     this.initializeWebSocketConnection();
   }
-  url = "http://localhost:8083/api/rooms/";
+  url = "http://localhost:8222/api/rooms/";
    
   httpOptions = {
     headers: new HttpHeaders({

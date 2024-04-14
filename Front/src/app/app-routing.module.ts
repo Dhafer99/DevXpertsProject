@@ -15,6 +15,7 @@ import { NewsupplierfrontComponent } from './newsupplierfront/newsupplierfront.c
 import { ExhibitorReservationComponent } from './exhibitor-reservation/exhibitor-reservation.component';
 import { SupplierDetailComponent } from './supplier-detail/supplier-detail.component';
 import { MessagestestComponent } from './messagestest/messagestest.component';
+import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 export * from '../../projects/back-office/src/app/app.module'; // <==== THAT WAS MISSING
 export * from '../../projects/back-office/src/app/supplier/supplier.component';
 const routes: Routes = [  
@@ -38,6 +39,8 @@ const routes: Routes = [
   { path: 'auction/:id/roulette', component: RouletteComponent },
   { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent },
   { path: 'payments/:id', component: PaymentComponent },
+  { path: 'auth', component: AuthenticationinterfaceComponent },
+
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }
   
   

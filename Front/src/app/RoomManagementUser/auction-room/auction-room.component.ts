@@ -44,7 +44,7 @@ export class AuctionRoomComponent {
         .getTopEncheresByRoomId(this.room.idRoom)
         .subscribe((response) => {
           response.forEach((element: Enchere) => {
-            const companyIdToCheck = 1;
+            const companyIdToCheck = parseInt(localStorage.getItem("userID"));
             const isCompanyIdPresent = response.some((element: Enchere) => {
               return element.idcompany === companyIdToCheck;
             });

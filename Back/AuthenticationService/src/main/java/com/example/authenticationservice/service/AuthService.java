@@ -19,7 +19,20 @@ public class AuthService {
 
     private JwtService jwtService;
 
+    public void AffecterRoomToUser(long roomId,int id,int newPoints) {
+      UserCredential user =  repository.findById(id).orElse(null);
+      user.setRoomid(roomId);
+      int oldpoints = user.getPoints();
+      user.setPoints(oldpoints+newPoints);
+      repository.save(user);
 
+    }
+
+    public long getRoomUser(int id) {
+        UserCredential user =  repository.findById(id).orElse(null);
+       return user.getRoomid() ;
+
+    }
 
     public String saveUser(UserCredential credential) {
         credential.setPassword(passwordEncoder.encode(credential.getPassword()));

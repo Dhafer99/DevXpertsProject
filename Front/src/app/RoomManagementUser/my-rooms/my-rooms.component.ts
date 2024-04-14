@@ -30,10 +30,10 @@ export class MyRoomsComponent implements OnInit {
   @ViewChild('exampleModalCenter') modal!: ElementRef; 
   sendButtonClick(codeInput: string) {
     if (codeInput === this.room.codeRoom) {
-      this.roomService.getUserEnchere(1 ,this.room.idRoom).subscribe(
+      this.roomService.getUserEnchere(parseInt(localStorage.getItem("userID")) ,this.room.idRoom).subscribe(
         (response: boolean) => {  
           if (response === false) {
-          this.roomService.addEnchere(1 ,this.room.idRoom).subscribe(() => {
+          this.roomService.addEnchere(parseInt(localStorage.getItem("userID"))  ,this.room.idRoom).subscribe(() => {
             this.modal.nativeElement.dismiss();
           
           });

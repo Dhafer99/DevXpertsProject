@@ -8,22 +8,32 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="BoothAndSupplierManagement" />
-        <module name="AuthenticationService" />
         <module name="Auction" />
-        <module name="gateway" />
         <module name="configServer" />
         <module name="discovery" />
+        <module name="AuthenticationService" />
+        <module name="gateway" />
+        <module name="AuthenticationService (1)" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AuthenticationService (2)" target="17" />
+      <module name="Booth" target="17" />
+      <module name="Exhibitor" target="17" />
+      <module name="gateway (1)" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Auction" options="-parameters" />
       <module name="AuthenticationService" options="-parameters" />
-      <module name="BoothAndSupplierManagement" options="-parameters" />
+      <module name="AuthenticationService (1)" options="-parameters" />
+      <module name="AuthenticationService (2)" options="-parameters" />
+      <module name="BoothAndSupplierManagement" options="" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="gateway (1)" options="-parameters" />
     </option>
   </component>
 </project>

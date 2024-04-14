@@ -30,8 +30,9 @@
        
         <div class="user-card">
           <div class="level center">
-            <button  data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn btn-primary">Confirm</button>
-          
+            <button  *ngIf="testExistantRoom" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn btn-primary">Confirm</button>
+            <button  *ngIf="!testExistantRoom" [disabled]="!testExistantRoom"  class="btn btn-primary">You already participate</button>
+
           </div>
           <div class="points center">Available place {{ room.maxParticipants - room.confirmedParticipant}}</div>
         </div>

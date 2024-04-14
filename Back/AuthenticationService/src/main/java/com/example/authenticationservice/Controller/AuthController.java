@@ -47,7 +47,19 @@ public class AuthController {
        return service.getUserId(username);
 
     }
+    /************************* adds from eya  */
 
+    @PutMapping("/affecterRoomToUser/{idRoom}/{userid}/{newPoints}")
+    public void affecterRoomToUser(@PathVariable("idRoom") long idRoom ,
+                                   @PathVariable("userid") int userid,
+                                   @PathVariable("newPoints") int newPoints) {
+         service.AffecterRoomToUser(idRoom,userid,newPoints);
+
+    }
+    @GetMapping("/getRoomUser/{userid}")
+    public long getRoomUser(@PathVariable("userid") int userid) {
+        return service.getRoomUser(userid);
+    }
    // @GetMapping("/CurrentUser/{email}")
    // public UserCredential getCurrentUser(@PathVariable("email") String email) {
 

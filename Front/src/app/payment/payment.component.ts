@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { PackServiceService } from '../../../projects/back-office/src/app/services/pack-service.service';
 import { Payment } from '../../../projects/back-office/src/app/models/Payment';
 import { Room } from '../../../projects/back-office/src/app/models/room';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-payment',
@@ -18,7 +19,7 @@ import { Room } from '../../../projects/back-office/src/app/models/room';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit{
-  constructor( private http: HttpClient,private activate: ActivatedRoute,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
+  constructor( private userservice : UserService, private http: HttpClient,private activate: ActivatedRoute,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
     payment: Payment = new Payment();
    points50 : number = 0;
    points100: number = 0;
@@ -47,12 +48,20 @@ export class PaymentComponent implements OnInit{
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
+ iduser : number = 0; 
 
   async pay(): Promise<void> {
+
+
+
+    
     this.id = this.activate.snapshot.params['id'];
     this.roomService.getRoomById(this.id).subscribe(
       (r) => {
-       
+        
+        this.iduser =  parseInt(localStorage.getItem("userID")) ; 
+        console.log(this.id + "hh"+ this.iduser)     ;
+        this.userservice.affecterRoomTouser(this.id,this.iduser, this.totalPoints ).subscribe((r)=>{});
         this.room = r;
        
       },
@@ -76,7 +85,7 @@ export class PaymentComponent implements OnInit{
      // cancelUrl: 'http://localhost:4200/cancel',
      // successUrl: 'http://localhost:4200/success',
     };
-
+   
     const stripe = await this.stripePromise;
 
     // this is a normal http calls for a backend api

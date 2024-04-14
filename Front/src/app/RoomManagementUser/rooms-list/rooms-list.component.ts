@@ -5,6 +5,7 @@ import { Room } from 'projects/back-office/src/app/models/room';
 import { PackServiceService } from 'projects/back-office/src/app/services/pack-service.service';
 
 import { RoomServiceService } from 'projects/back-office/src/app/services/room-service.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-rooms-list',
@@ -17,15 +18,25 @@ export class RoomsListComponent implements OnInit{
   @ViewChild('exampleModalCenter') modal!: ElementRef; 
   constructor( private sanitizer: DomSanitizer,
     private packService: PackServiceService,
+   private userserv : UserService,
+   
      private route: Router,private roomService: RoomServiceService) {}
   sanitizeHtml(html: string): SafeHtml {
     // Utiliser DomSanitizer pour marquer le HTML comme sûr
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
+
+  idRoom : number= 0 ; 
+  testExistantRoom : boolean = true ; 
   ngOnInit() {
+   
     this.roomService.getAllRooms().subscribe(res => {
       this.rooms = res;
-    });
+
+    })
+
+    
+
   }
 
 
@@ -46,8 +57,18 @@ export class RoomsListComponent implements OnInit{
 
       room!: Room ;
       Participate(id:number){
+        this.testExistantRoom = true;
     this.roomService.getRoomById(id).subscribe(
       (r) => {
+        console.log(r);
+      this.userserv.getRoomId(parseInt(localStorage.getItem("userID"))).subscribe(res => {
+        this.idRoom = res;
+        console.log(res +"ff"+ r.idRoom )
+        console.log(res === r.idRoom);
+        if (res === r.idRoom) {
+          this.testExistantRoom = false;
+        }
+      });
         this.room = r;
         this.test=true
       },
