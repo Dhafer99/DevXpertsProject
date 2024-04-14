@@ -1,6 +1,7 @@
 <section id="services" class="services section-bg">
     <div class="container" data-aos="fade-up">
         <div class="row">
+            <div *ngIf="listCandidatures.length==0">La liste est vide</div>
             <ng-container *ngFor="let c of listCandidatures">
                 <div class="col-lg-4">
                     <div class="card" *ngIf="c.status.toString()=='en_cours'">

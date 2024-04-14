@@ -100,8 +100,11 @@ export class SignUpComponent implements OnInit{
         });
       }
       else{
-        this.userService.register(this.formData).subscribe(()=>{
-        console.log( "l'offre a été ajoutée")
+        this.formData.forEach(function(value, key) {
+  console.log(key + ": " + value);
+});
+        this.userService.register(this.formData).subscribe(res=>{
+        console.log( res)
         console.log("notre form"+JSON.stringify(this.userForm.value))})
         //this.route.navigate(['/offers']);
         

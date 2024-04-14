@@ -200,6 +200,7 @@
                     <div class="col-lg-12 order-2 order-lg-1" class="tab-pane fade" id="v-pills-settings" role="tabpanel"
                         aria-labelledby="v-pills-settings-tab">
                         <div class="row">
+                            <div *ngIf="lisRecFinal.length==0">La liste est vide</div>
                         <ng-container *ngFor="let o of lisRecFinal ;let i=index">
                             <ng-container *ngIf="o[0].titre.toLowerCase().includes(titre.toLowerCase())">
                                 

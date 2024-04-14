@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
@@ -33,7 +34,7 @@ public class AuthController {
     }*/
 
     @PostMapping("/register")
-    public ResponseEntity<?> addNewUser(@RequestParam("name") String name,
+    public ResponseEntity<Map<String, Object>> addNewUser(@RequestParam("name") String name,
                                       @RequestParam("email")String email,
                                       @RequestParam("password") String password,
                                       @RequestParam("role")role role,
@@ -42,8 +43,8 @@ public class AuthController {
                                         @RequestParam("lastname") String lastname,
                                         @RequestParam("phonenumber") String phoneNumber) throws IOException {
         UserCredential user = new UserCredential();
-        UserCredential savedUser =  service.saveUser(user, name , email, role , password , firstname, lastname, phoneNumber, cv);
-        return ResponseEntity.ok(savedUser);
+        ResponseEntity<Map<String, Object>> savedUser =  service.saveUser(user, name , email, role , password , firstname, lastname, phoneNumber, cv);
+        return savedUser;
     }
 
     @PostMapping("/token")
