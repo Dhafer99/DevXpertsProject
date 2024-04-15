@@ -44,4 +44,11 @@ export class UserService {
     return this.http.put<any>(`${this.userUrl}UpdateUserPoints/${iduser}/${points}`,{});
   
   }
+
+  RembourssementPoints (iduser:number,points: number): Observable<any> 
+  {
+    return this.http.put<any>(`${this.userUrl}RembourssementPoints/${iduser}/${points}`,{});
+  
+  }
+  
 }

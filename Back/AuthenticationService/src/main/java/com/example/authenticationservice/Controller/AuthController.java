@@ -74,8 +74,16 @@ public class AuthController {
         return service.UpdateUserPoints(userid,points);
     }
 
+    @PutMapping("/RembourssementPoints/{userid}/{points}")
+    public UserCredential RembourssementPoints(@PathVariable("userid") int userid,@PathVariable("points") int points) {
 
-   // @GetMapping("/CurrentUser/{email}")
+
+        return service.RembourssementPoints(userid,points);
+    }
+
+
+
+    // @GetMapping("/CurrentUser/{email}")
    // public UserCredential getCurrentUser(@PathVariable("email") String email) {
 
  //     return service.finduserbyemail(email);

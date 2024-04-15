@@ -42,7 +42,7 @@ export class AuctionRoomComponent implements OnDestroy {
   isAuctionEndedLosers: boolean = false;
   isUserWinner: boolean = false;
   ExpiringPoints: boolean = false;
-
+  oldPoints : number
   timeLeft: string = '';
   calculateTimeLeft(): void {
     const now = moment();
@@ -68,6 +68,9 @@ export class AuctionRoomComponent implements OnDestroy {
             if (isCompanyIdPresent) {
               this.isAuctionEndedWinners = true;
             } else {
+            console.log((this.oldPoints-this.CurentUser.points)+this.CurentUser.points );
+              this.userserv.RembourssementPoints(parseInt(localStorage.getItem("userID")),(this.oldPoints-this.CurentUser.points)+this.CurentUser.points ).subscribe(()=>{})
+          
               this.isAuctionEndedLosers = true;
             }
           });
@@ -106,7 +109,11 @@ export class AuctionRoomComponent implements OnDestroy {
   CurentUser: User;
   ngOnInit() {
     this.id = this.activate.snapshot.params['id'];
-
+    this.userserv
+    .getUserById(parseInt(localStorage.getItem('userID')))
+    .subscribe((res) => {
+      this.oldPoints = res.points;
+    });
     this.calculateTimeLeft();
 
     this.fetchInterval = setInterval(() => {

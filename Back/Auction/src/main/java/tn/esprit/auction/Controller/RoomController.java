@@ -146,7 +146,7 @@ public class RoomController {
 
     @MessageMapping("/startRoulette")
     @SendTo("/topic/rouletteResult")
-    public int startRoulette() {
+    public int startRoulette(Long roomId) {
 
         int result = (int) (Math.random() * 37);
         return result;

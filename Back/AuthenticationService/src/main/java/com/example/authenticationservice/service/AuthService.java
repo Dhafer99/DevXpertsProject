@@ -86,4 +86,13 @@ public void AffecterRoomToUser(long roomId,int id,int newPoints) {
         return user ;
 
     }
+
+
+    public UserCredential RembourssementPoints ( int iduser , int points)
+    {
+        UserCredential user = repository.findById(iduser).orElse(null);
+        user.setPoints(points);
+        repository.save(user);
+        return  user;
+    }
 }

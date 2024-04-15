@@ -18,6 +18,8 @@ import { Pack } from 'projects/back-office/src/app/models/pack';
 import { Room } from 'projects/back-office/src/app/models/room';
 import { PackServiceService } from 'projects/back-office/src/app/services/pack-service.service';
 import { RoomServiceService } from 'projects/back-office/src/app/services/room-service.service';
+import { WebSocketService } from 'src/app/web-socket.service';
+
 import Swal from 'sweetalert2';
 // Déclarez jQuery comme variable externe
 
@@ -34,11 +36,11 @@ export class RouletteComponent implements OnInit {
     private route: Router,
     private roomService: RoomServiceService,
     private ngZone: NgZone,
-    //private socket: Socket
+    private webSocketService: WebSocketService,
+   // private socket: Socket
+   
   ) {}
-  startRoulette() {
-    //this.socket.emit('http://localhost:8222/api/rooms/startRoulette');
-  }
+  rouletteResult: number | undefined;
   idToLandOn: any;
 
   items: Item[] = [];
@@ -52,14 +54,38 @@ export class RouletteComponent implements OnInit {
   isSpinning: boolean = false;
 
   ngOnInit(): void {
-    // this.socket.on('http://localhost:8222/api/rooms/topic/rouletteResult', (result: number) => {
-      // Mettez à jour l'interface utilisateur avec le résultat de la roulette
-    //  console.log('Roulette result:', result);
-   // });
-    this.getPack();
-   
-  }
 
+    this.getPack();
+ /*   this.socket.on('connect', () => {
+      console.log('Connected to WebSocket server eyaaaaaaaa');
+    });
+    this.socket.on('rouletteResult', (result: number) => {
+      this.wheel.idToLandOn = result;
+      this.wheel.spin(); // Trigger spin animation
+    });*/
+   /* this.webSocketService.getRouletteResult().subscribe(
+      result => {
+        this.rouletteResult = result;
+        // Traitez le résultat de la roulette ici, par exemple, affichez-le dans la console
+        console.log('Résultat de la roulette :', this.rouletteResult);
+      },
+      error => {
+        console.error('Erreur lors de la réception du résultat de la roulette :', error);
+      }
+    );*/
+
+   /* this.socket.on('connect', () => {
+      console.log('Connected to WebSocket server eyaa');
+    });
+    this.socket.on('rouletteResult', (result: number) => {
+      this.wheel.idToLandOn = result;
+      this.wheel.spin(); // Trigger spin animation
+    });
+   */
+  }
+  spinRoulette() {
+    this.webSocketService.startRoulette();
+  }
   getPack() {
     console.log("eeeeeeeeeeeeeee")
     this.id = this.activate.snapshot.params['id'];
@@ -102,28 +128,16 @@ export class RouletteComponent implements OnInit {
   stoppedAt: number = -1;
   
   async spin(prize: number) {
+
     this.reset();
-   
-   // this.idToLandOn = 2
-  
-    //await new Promise(resolve => setTimeout(resolve, 0));
-   // this.stoppedAt = Math.floor(Math.random() * this.seed.length);
-
- 
-
-  /*  if (this.stoppedAt !== -1) {
-  
-      this.roomService
-        .ReservePack(this.items[this.stoppedAt].id)
-        .subscribe(() => {});
-    }*/
-
+    //this.socket.emit('startRoulette', this.id);
     this.wheel.spin();
     console.log(this.wheel.idToLandOn);
     this.roomService
     .ReservePack(this.wheel.idToLandOn,this.id)
     .subscribe(() => {});
   }
+ 
 
   after() {
     console.log("La roulette s'est arrêtée sur la position:",this.wheel.idToLandOn);

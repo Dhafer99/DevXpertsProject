@@ -16,6 +16,7 @@ import { ExhibitorReservationComponent } from './exhibitor-reservation/exhibitor
 import { SupplierDetailComponent } from './supplier-detail/supplier-detail.component';
 import { MessagestestComponent } from './messagestest/messagestest.component';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
+import { AuthGuard } from './auth.guard';
 export * from '../../projects/back-office/src/app/app.module'; // <==== THAT WAS MISSING
 export * from '../../projects/back-office/src/app/supplier/supplier.component';
 const routes: Routes = [  
@@ -30,15 +31,15 @@ const routes: Routes = [
 
 
 
-  { path: 'profile', component: ProfileComponent },
-  { path: 'ListPacks', component: ListPacksComponent },
-  { path: 'ListPacks/DetailPack/:typePack', component: DetailPackComponent },
-  { path: 'MyPacks', component: MyPacksComponent },
-  { path: 'ListPacks/ListRooms', component: RoomsListComponent },
-  { path: 'auction/:id', component: AuctionRoomComponent },
-  { path: 'auction/:id/roulette', component: RouletteComponent },
-  { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent },
-  { path: 'payments/:id', component: PaymentComponent },
+  { path: 'profile', component: ProfileComponent,canActivate:[AuthGuard] },
+  { path: 'ListPacks', component: ListPacksComponent ,canActivate:[AuthGuard]},
+  { path: 'ListPacks/DetailPack/:typePack', component: DetailPackComponent ,canActivate:[AuthGuard]},
+  { path: 'MyPacks', component: MyPacksComponent,canActivate:[AuthGuard] },
+  { path: 'ListPacks/ListRooms', component: RoomsListComponent ,canActivate:[AuthGuard]},
+  { path: 'auction/:id', component: AuctionRoomComponent ,canActivate:[AuthGuard]},
+  { path: 'auction/:id/roulette', component: RouletteComponent,canActivate:[AuthGuard] },
+  { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent ,canActivate:[AuthGuard]},
+  { path: 'payments/:id', component: PaymentComponent ,canActivate:[AuthGuard]},
   { path: 'auth', component: AuthenticationinterfaceComponent },
 
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }
