@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.core.io.Resource;
 
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.auction.Entites.CheckoutPayment;
-import tn.esprit.auction.Entites.Company;
 
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.TypePack;
@@ -23,7 +21,6 @@ import org.apache.commons.io.IOUtils;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -93,12 +90,12 @@ public class PackageController {
     public   List<Double> calculateReservationPercentageByType() {
         return  packageInterface.calculateReservationPercentageByType();
     }
-    @GetMapping("/toployalcustomers")
+    /*@GetMapping("/toployalcustomers")
     public List<Company> getTopLoyalCustomers() {
 
         return packageInterface.findTopLoyalCustomers(5);
     }
-
+*/
 
 
     // Afficher les packs d'un room

@@ -1,11 +1,8 @@
 package tn.esprit.auction.Services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import tn.esprit.auction.Entites.*;
-import tn.esprit.auction.Repository.CompanyRepository;
 import tn.esprit.auction.Repository.PackgeRepository;
 import tn.esprit.auction.Repository.PaymentRepository;
 import tn.esprit.auction.Repository.RoomRepository;
@@ -20,7 +17,7 @@ import java.util.stream.Collectors;
 public class PackgeService implements PackageInterface {
     PackgeRepository packgeRepository ;
     RoomRepository roomRepository ;
-    CompanyRepository companyRepository ;
+
     PaymentRepository paymentRepository ;
  //  private final SimpMessagingTemplate messagingTemplate;
 
@@ -201,9 +198,9 @@ if(room!=null && pack.isStatus())
         return percentages ;
     }
 
-    @Override
-    public List<Company> findTopLoyalCustomers(int topCount) {
-        List<Pack> reservedPacks = packgeRepository.findByReserved(Boolean.TRUE);
+   /* @Override
+    public List<int> findTopLoyalCustomers(int topCount) {
+       List<Pack> reservedPacks = packgeRepository.findByReserved(Boolean.TRUE);
         Map<Integer, Integer> reservationsByCompany = new HashMap<>();
 
         for (Pack pack : reservedPacks) {
@@ -217,7 +214,7 @@ if(room!=null && pack.isStatus())
                 .limit(topCount)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
-        List<Company> topLoyalCustomers = new ArrayList<>();
+        List<int> topLoyalCustomers = new ArrayList<>();
         if(loyalCustomerIds!=null){
           topLoyalCustomers = loyalCustomerIds.stream()
                 .map(companyId -> companyRepository.findById(companyId).get())
@@ -225,7 +222,7 @@ if(room!=null && pack.isStatus())
 
 
         return topLoyalCustomers;
-    }
+    }*/
 
     @Override
     public void sendCoderoom(String emailCompany,String codeRoom) {

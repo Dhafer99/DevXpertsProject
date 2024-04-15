@@ -1,6 +1,5 @@
 package tn.esprit.auction.Services;
 
-import tn.esprit.auction.Entites.Company;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.Room;
 
@@ -19,7 +18,7 @@ public interface RoomInterface {
 
     float UpdatePrice(float nbrpoint, Long idRoom);
 
-    List<Company> getCapaniesParticipants( Long roomId);
+   // List<Company> getCapaniesParticipants( Long roomId);
 
 
     List<Pack> getRoomPacks( Long roomId);

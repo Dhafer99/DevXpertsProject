@@ -63,4 +63,27 @@ public void AffecterRoomToUser(long roomId,int id,int newPoints) {
         return user ;
 
     }
+
+    public UserCredential UpdateUserPoints (int id , int points) {
+        UserCredential user =  repository.findById(id).orElse(null);
+        if(user.getPoints()>0){  if(points ==50 )
+        {
+            user.setPoints(user.getPoints()-points);
+            repository.save((user));
+        }
+            if(points ==150 )
+            {
+                user.setPoints(user.getPoints()-points);
+                repository.save((user));
+            }
+            if(points ==100 )
+            {
+                user.setPoints(user.getPoints()-points);
+                repository.save((user));
+            }}
+
+
+        return user ;
+
+    }
 }

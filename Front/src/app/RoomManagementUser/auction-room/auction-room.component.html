@@ -144,7 +144,7 @@
                   <h6>Highest Bid:</h6>
                   <div class="d-flex">
                     <div
-                    type="button"
+                      type="button"
                       (click)="updatePrice(50)"
                       style="margin-right: 5%; width: 10%"
                       class="avatar-xs bg-primary rounded-circle text-center text-white"
@@ -152,7 +152,7 @@
                       50p
                     </div>
                     <div
-                    type="button"
+                      type="button"
                       (click)="updatePrice(100)"
                       style="margin-right: 5%; width: 10%"
                       class="avatar-xs bg-primary rounded-circle text-center text-white"
@@ -160,7 +160,7 @@
                       100p
                     </div>
                     <div
-                    type="button"
+                      type="button"
                       (click)="updatePrice(150)"
                       style="margin-right: 5%; width: 10%"
                       class="avatar-xs bg-primary rounded-circle text-center text-white"
@@ -168,6 +168,9 @@
                       150p
                     </div>
                     <div class="text ms-auto">
+                      <p class="mb-0 f-14 fw-semibold">
+                        you still have {{ CurentUser.points }}
+                      </p>
                       <p class="mb-0 f-14 fw-semibold">
                         your biding is {{ currentEnchere.pricing }}
                       </p>

@@ -1,13 +1,10 @@
 package tn.esprit.auction.Services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-import tn.esprit.auction.Entites.Company;
 import tn.esprit.auction.Entites.Enchere;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.Room;
-import tn.esprit.auction.Repository.CompanyRepository;
 import tn.esprit.auction.Repository.EnchereRepository;
 import tn.esprit.auction.Repository.PackgeRepository;
 import tn.esprit.auction.Repository.RoomRepository;
@@ -21,7 +18,7 @@ import java.util.List;
 public class RoomService implements RoomInterface{
 
 RoomRepository roomRepository;
-CompanyRepository companyRepository ;
+
 PackgeRepository packgeRepository ;
     EnchereRepository enchereRepository ;
 
@@ -87,16 +84,21 @@ EnchereInterface enchereInterface ;
     }
 
     @Override
-    public void ParticipateToRoom(Long idroom , int idCompany) {
-        Company company = companyRepository.findById(idCompany).orElse(null);
-        Room room = roomRepository.findById(idroom).orElse(null);
-        if(room != null ){
-            company.setRoom(room);
-            companyRepository.save(company);}
-
+    public void ParticipateToRoom(Long idroom, int idCompany) {
 
     }
 
+    /* @Override
+     public void ParticipateToRoom(Long idroom , int idCompany) {
+         Company company = companyRepository.findById(idCompany).orElse(null);
+         Room room = roomRepository.findById(idroom).orElse(null);
+         if(room != null ){
+             company.setRoom(room);
+             companyRepository.save(company);}
+
+
+     }
+ */
     @Override
     public float UpdatePrice(float nbrpoint,Long idRoom) {
         Room room = roomRepository.findById(idRoom).get() ;
@@ -118,18 +120,18 @@ EnchereInterface enchereInterface ;
             return nbrpoint;
     }
 
-    @Override
+   /* @Override
     public List<Company> getCapaniesParticipants( Long roomId) {
         Room room = roomRepository.findById(roomId).get();
 
         return room.getCompanies();
-    }
+    }*/
 
     @Override
     public List<Pack> getRoomPacks(Long roomId) {
         Room room = roomRepository.findById(roomId).orElse(null);
         List<Pack> packs = new ArrayList<>();
-        System.out.println(room.getPackages());
+
         for (Pack p : room.getPackages()) {
             if(p.isReserved()==false)
             {

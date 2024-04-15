@@ -10,6 +10,8 @@ import { Room } from 'projects/back-office/src/app/models/room';
 import { PackServiceService } from 'projects/back-office/src/app/services/pack-service.service';
 import { gsap } from 'gsap';
 import { RoomServiceService } from 'projects/back-office/src/app/services/room-service.service';
+import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-auction-room',
@@ -24,12 +26,13 @@ export class AuctionRoomComponent implements OnDestroy {
     gsap.to(sellerBox, {
       y: -100, // Déplace le box vers le haut de 100px
       duration: 0.5, // Durée de l'animation en secondes
-      ease: 'power2.out' // Type d'interpolation pour une transition douce
+      ease: 'power2.out', // Type d'interpolation pour une transition douce
     });
   }
   constructor(
     private activate: ActivatedRoute,
-    private roomService: RoomServiceService
+    private roomService: RoomServiceService,
+    private userserv: UserService
   ) {}
 
   room: Room = new Room();
@@ -38,6 +41,8 @@ export class AuctionRoomComponent implements OnDestroy {
   isAuctionEndedWinners: boolean = false;
   isAuctionEndedLosers: boolean = false;
   isUserWinner: boolean = false;
+  ExpiringPoints: boolean = false;
+
   timeLeft: string = '';
   calculateTimeLeft(): void {
     const now = moment();
@@ -50,12 +55,14 @@ export class AuctionRoomComponent implements OnDestroy {
     if (duration.asSeconds() < 0) {
       this.timeLeft = ' 00:00:00';
       this.roomService
-        .getTopEncheresByRoomId(this.room.idRoom)
+        .getTopEncheresByRoomId(this.id)
         .subscribe((response) => {
+          console.log("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"+response)
           response.forEach((element: Enchere) => {
             const companyIdToCheck = parseInt(localStorage.getItem('userID'));
-            const isCompanyIdPresent = response.some((element: Enchere) => {
-              return element.idcompany === companyIdToCheck;
+            const isCompanyIdPresent = response.some((elemente: Enchere) => {
+            
+              return elemente.idcompany === companyIdToCheck;
             });
 
             if (isCompanyIdPresent) {
@@ -85,27 +92,37 @@ export class AuctionRoomComponent implements OnDestroy {
     }
   }
   fetchInterval: any;
-  currentEnchere: Enchere ; 
-  highestEnchre :number; 
+  currentEnchere: Enchere;
+  highestEnchre: number;
   highestPricingUser: any;
   findHighestPricingUser(users: any[]) {
     if (users.length > 0) {
-        this.highestPricingUser = users[0]; // Le premier utilisateur sera celui avec le prix le plus élevé après le tri
+      this.highestPricingUser = users[0]; // Le premier utilisateur sera celui avec le prix le plus élevé après le tri
     } else {
-        this.highestPricingUser = null;
+      this.highestPricingUser = null;
     }
-}
-  ngOnInit() {
-    
-    this.id = this.activate.snapshot.params['id'];
-   
-    this.calculateTimeLeft();
-  
-    this.fetchInterval = setInterval(() => {
-      this.roomService.getCurrentUserBiding(parseInt(localStorage.getItem('userID')), this.id).subscribe
-      ((res)=>{this.currentEnchere=res});
-     
+  }
 
+  CurentUser: User;
+  ngOnInit() {
+    this.id = this.activate.snapshot.params['id'];
+
+    this.calculateTimeLeft();
+
+    this.fetchInterval = setInterval(() => {
+      this.userserv
+        .getUserById(parseInt(localStorage.getItem('userID')))
+        .subscribe((res) => {
+          this.CurentUser = res;
+        });
+      if (this.CurentUser.points == 0) {
+        this.ExpiringPoints = true;
+      }
+      this.roomService
+        .getCurrentUserBiding(parseInt(localStorage.getItem('userID')), this.id)
+        .subscribe((res) => {
+          this.currentEnchere = res;
+        });
 
       this.roomService.getRoomById(this.id).subscribe(
         (r) => {
@@ -119,7 +136,6 @@ export class AuctionRoomComponent implements OnDestroy {
       this.roomService.getUsersEnterningAuction(this.id).subscribe(
         (r) => {
           r.sort((a: any, b: any) => b.pricing - a.pricing);
-;  
           this.usersInRoom = r;
         },
         (error) => {
@@ -130,9 +146,8 @@ export class AuctionRoomComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
- 
     const userID = parseInt(localStorage.getItem('userID'));
-  
+
     this.roomService
       .deleteUserSortieEnchere(userID, this.room.idRoom)
       .subscribe(
@@ -150,32 +165,40 @@ export class AuctionRoomComponent implements OnDestroy {
     clearInterval(this.fetchInterval);
   }
   updatePrice(tokenAmount: number): void {
+    if (this.CurentUser.points > 0 && this.CurentUser.points > tokenAmount ) {
+      this.roomService
+        .updatePricingEnchere(
+          parseInt(localStorage.getItem('userID')),
+          this.room.idRoom,
+          tokenAmount
+        )
+        .subscribe(() => {
+          this.userserv
+            .UpdateUserPoints(
+              parseInt(localStorage.getItem('userID')),
+              tokenAmount
+            )
+            .subscribe((res) => {
+              this.CurentUser = res;
+            });
 
-
-    this.roomService
-      .updatePricingEnchere(
-        parseInt(localStorage.getItem('userID')),
-        this.room.idRoom,
-        tokenAmount
-      )
-      .subscribe(()=>{
-
-        this.roomService.findHighestPricedEnchereByRoomId(this.id).subscribe
-        ((res)=>{
-  
           this.roomService
-          .UpdatePriceAuction(res.pricing, this.id)
-          .subscribe((priceUpdate: any) => {
-              this.room.priceAuction = priceUpdate;
-           });
-  
-  
+            .findHighestPricedEnchereByRoomId(this.id)
+            .subscribe((res) => {
+              this.roomService
+                .UpdatePriceAuction(res.pricing, this.id)
+                .subscribe((priceUpdate: any) => {
+                  this.room.priceAuction = priceUpdate;
+                });
+            });
         });
+    } else {
+      Swal.fire({
+        title: 'Operation failure!',
+        text: 'You expired all your points !',
+        icon: 'error',
+        showConfirmButton: false,
       });
- 
-     
-  
-      
-    
+    }
   }
 }

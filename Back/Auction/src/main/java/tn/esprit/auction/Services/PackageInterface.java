@@ -3,7 +3,6 @@ package tn.esprit.auction.Services;
 
 
 import tn.esprit.auction.Entites.CheckoutPayment;
-import tn.esprit.auction.Entites.Company;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.TypePack;
 
@@ -31,7 +30,7 @@ public interface PackageInterface {
 
     double RevenuePeTypePack (TypePack pack);
     List<Double> calculateReservationPercentageByType() ;
-    List<Company> findTopLoyalCustomers(int topCount);
+  //  List<int> findTopLoyalCustomers(int topCount);
 
     void sendCoderoom(String emailCompany , String codeRoom);
 

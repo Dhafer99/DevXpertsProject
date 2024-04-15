@@ -39,9 +39,6 @@ public class Room {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
     @JsonBackReference
     private List<Pack> packages;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
-    @JsonIgnore
-    private List<Company> companies;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "room")
     @JsonIgnore

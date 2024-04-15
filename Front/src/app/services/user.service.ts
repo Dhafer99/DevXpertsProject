@@ -37,4 +37,11 @@ export class UserService {
     
     return this.http.get<any>(`${this.userUrl}getUserById/${iduser}` );
   }
+
+  
+  UpdateUserPoints (iduser:number,points: number): Observable<any> 
+  {
+    return this.http.put<any>(`${this.userUrl}UpdateUserPoints/${iduser}/${points}`,{});
+  
+  }
 }

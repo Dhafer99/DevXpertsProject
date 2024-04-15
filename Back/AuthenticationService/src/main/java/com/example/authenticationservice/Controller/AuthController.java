@@ -66,6 +66,15 @@ public class AuthController {
     public UserCredential getUserById(@PathVariable("userid") int userid) {
         return service.getUserById(userid);
     }
+
+    @PutMapping("/UpdateUserPoints/{userid}/{points}")
+    public UserCredential UpdateUserPoints(@PathVariable("userid") int userid,@PathVariable("points") int points) {
+
+
+        return service.UpdateUserPoints(userid,points);
+    }
+
+
    // @GetMapping("/CurrentUser/{email}")
    // public UserCredential getCurrentUser(@PathVariable("email") String email) {
 

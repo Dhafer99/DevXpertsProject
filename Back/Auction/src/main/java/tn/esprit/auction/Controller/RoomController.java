@@ -137,8 +137,18 @@ public class RoomController {
         roomInterface.ParticipateToRoom(idRoom,companyId);
     }
 
-    @GetMapping("/getCapaniesParticipants/{idRoom}")
+   /* @GetMapping("/getCapaniesParticipants/{idRoom}")
     public void getCapaniesParticipants( @PathVariable("idRoom") long idRoom) {
         roomInterface.getCapaniesParticipants(idRoom);
+    }*/
+
+    /***************************  ROULETTE WEB SOCKET  */
+
+    @MessageMapping("/startRoulette")
+    @SendTo("/topic/rouletteResult")
+    public int startRoulette() {
+
+        int result = (int) (Math.random() * 37);
+        return result;
     }
 }

@@ -7,6 +7,7 @@ import {
   Input,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Socket } from 'ngx-socket-io';
 import {
   Item,
   NgxWheelComponent,
@@ -32,9 +33,12 @@ export class RouletteComponent implements OnInit {
     private packService: PackServiceService,
     private route: Router,
     private roomService: RoomServiceService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    //private socket: Socket
   ) {}
-
+  startRoulette() {
+    //this.socket.emit('http://localhost:8222/api/rooms/startRoulette');
+  }
   idToLandOn: any;
 
   items: Item[] = [];
@@ -45,15 +49,23 @@ export class RouletteComponent implements OnInit {
   id = 0;
   packNames: Pack[] = [];
   seed: any[] = [];
+  isSpinning: boolean = false;
+
   ngOnInit(): void {
+    // this.socket.on('http://localhost:8222/api/rooms/topic/rouletteResult', (result: number) => {
+      // Mettez à jour l'interface utilisateur avec le résultat de la roulette
+    //  console.log('Roulette result:', result);
+   // });
     this.getPack();
    
   }
 
   getPack() {
+    console.log("eeeeeeeeeeeeeee")
     this.id = this.activate.snapshot.params['id'];
     this.roomService.getRoomPackages(this.id).subscribe(
       (data: any) => {
+        console.log(data)
         this.packNames = data;
         this.seed = this.packNames.map((pack) => pack.idPack);
 
@@ -88,6 +100,7 @@ export class RouletteComponent implements OnInit {
     alert('Your wheel is about to spin');
   }
   stoppedAt: number = -1;
+  
   async spin(prize: number) {
     this.reset();
    
