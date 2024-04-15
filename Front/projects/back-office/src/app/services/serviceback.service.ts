@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { status, Supplier } from '../models/Supplier';
-import { User } from '../models/User';
+import { supplierUser } from '../models/SupplierUser';
 import { Image, SupplyRequest } from '../models/SupplyRequest';
 import { map } from 'rxjs';
 import { Booth } from '../models/Booth';
 import { BoothRepresentation } from '../models/BoothRepresentation';
 import { SupplierOffer } from '../models/SupplierOffer';
 import { message } from '../models/Message';
+import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +19,9 @@ export class ServicebackService {
 
   BoothUrl ='http://localhost:8763/api/BoothAndSupplier'
 
-  userUrl ='http://localhost:8763/api/Users'
+  supplieruserUrl ='http://localhost:8763/api/Users'
+  
+  userUrl ='http://localhost:8222/auth/';
 
   sequenceUrl ='http://localhost:8763/api/sequence'
   
@@ -62,9 +65,9 @@ return n
   return this.http.put<Supplier[]>(this.SupplierUrl+'/modifysupplierrequest/'+id,supplier)
 }
 
-getSupplierById(id: number): Observable<User> {
+getSupplierById(id: number): Observable<supplierUser> {
 
-  return this.http.get<User>(`${this.SupplierUrl}/Supplierbyid/${id}`);
+  return this.http.get<supplierUser>(`${this.SupplierUrl}/Supplierbyid/${id}`);
   
 }
 setRequestStatus(requestid: number,status:String): Observable<Supplier[]> {
@@ -92,8 +95,8 @@ getBoothRepresentation():Observable<BoothRepresentation[]>{
   return this.http.get<BoothRepresentation[]>(this.BoothUrl+'/showallBooths')
 }
 
-getAllUserSuppliers():Observable<User[]>{
-  return this.http.get<User[]>(this.userUrl)
+getAllUserSuppliers():Observable<supplierUser[]>{
+  return this.http.get<supplierUser[]>(this.supplieruserUrl)
 }
 
 deleteBooth(booth : Booth):Observable<Booth[]>{
@@ -147,8 +150,8 @@ incrementBoothSequence(boothName: string):Observable<number>{
 
   //-------------------------------supply request suppliers offers------------------------------
 
- public getSuppliersOffers(supplyRequestId:number):Observable<User[]>{
-return this.http.get<User[]>(this.SupplierUrl + '/getAllSuppliersBySupplyRequest/'+supplyRequestId);
+ public getSuppliersOffers(supplyRequestId:number):Observable<supplierUser[]>{
+return this.http.get<supplierUser[]>(this.SupplierUrl + '/getAllSuppliersBySupplyRequest/'+supplyRequestId);
   }
 
   //////////////////Notifications
@@ -171,6 +174,14 @@ getUserId(username:string):Observable<number>{
   return this.http.post<number>(`${this.authUserUrl}/currentUserId/${username}`,{})
 }
 
+getUser(id:String): Observable<any> {
+  return this.http.get<any>(this.userUrl+'currentUser/'+id)
+}
+
+getAdmins():Observable<User[]> {
+  return this.http.get<User[]>(this.userUrl+'admins')
+}
+
 /////Messaging
 
 getAllMessages(senderId:number,receiverId:number): Observable<message[]>{
@@ -182,4 +193,7 @@ getLastMessage(senderId:number,receiverId:number): Observable<message>{
 AllMessages(): Observable<message[]>{
   return this.http.get<message[]>(`${this.chatUrl}/allChatMessages`)
 }
+
+
+/////
 }

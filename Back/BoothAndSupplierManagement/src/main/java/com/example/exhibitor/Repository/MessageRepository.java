@@ -10,10 +10,10 @@ import java.util.Optional;
 
 public interface MessageRepository extends JpaRepository<ChatMessage,Long> {
 
-    @Query("SELECT m FROM ChatMessage m WHERE (m.sender.id = ?1 AND m.receiver.id = ?2) OR (m.sender.id = ?2 AND m.receiver.id = ?1)")
+    @Query("SELECT m FROM ChatMessage m WHERE (m.senderFK = ?1 AND m.receiverFK = ?2) OR (m.senderFK = ?2 AND m.receiverFK = ?1)")
     List<ChatMessage> findBySenderIdAndReceiverIdOrReceiverIdAndSenderId(Long senderId, Long receiverId);
 
-    @Query("SELECT m FROM ChatMessage m WHERE ((m.sender.id  = ?1 AND m.receiver.id = ?2) OR (m.sender.id = ?2 AND m.receiver.id = ?1)) ORDER BY m.createdAt DESC")
+    @Query("SELECT m FROM ChatMessage m WHERE ((m.senderFK  = ?1 AND m.receiverFK = ?2) OR (m.senderFK = ?2 AND m.receiverFK= ?1)) ORDER BY m.createdAt DESC")
     List<ChatMessage> findLastMessageBySenderIdAndReceiverIdOrReceiverIdAndSenderId(Long senderId, Long receiverId);
 
 }

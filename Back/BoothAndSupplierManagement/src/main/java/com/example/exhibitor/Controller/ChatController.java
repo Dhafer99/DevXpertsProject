@@ -1,6 +1,8 @@
 package com.example.exhibitor.Controller;
 
 import com.example.exhibitor.Entity.Supplier;
+import com.example.exhibitor.client.UserClient;
+import com.example.exhibitor.dto.UserCredential;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.ws.rs.Path;
@@ -38,6 +40,9 @@ public class ChatController {
 
 
     private ChatRoomService chatRoomService ;
+
+    @Autowired
+    UserClient userClient ;
 
     @Autowired
     private SupplierRepository supplierRepository ;
@@ -88,8 +93,10 @@ public class ChatController {
 
         ChatMessageDTO messageDTO = new ChatMessageDTO();
 
-        Supplier sender = supplierRepository.findSupplierById(senderID);
-        Supplier receiver = supplierRepository.findSupplierById(receiverID);
+        UserCredential sender = userClient.getUser(senderID.intValue());//the sender is the admin
+        UserCredential receiver = userClient.getUser(receiverID.intValue());
+
+
         messageService.saveMessage(chatMessage,sender,receiver);
         messageDTO.setContent(chatMessage);
          messageDTO.setSender(sender);
@@ -102,6 +109,7 @@ public class ChatController {
 
 
     }
+
 
    /* @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")

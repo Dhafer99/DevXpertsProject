@@ -10,6 +10,7 @@ import com.example.exhibitor.dto.SupplierListDTO;
 import jakarta.ws.rs.Path;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @RestController
 
-
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/api/supplyrequest")
 public class SupplierController {
@@ -128,5 +129,16 @@ public class SupplierController {
     ) throws Exception {
         return supplierService.getSuppliersBySupplyRequest(supplyRequestId);
     }
+
+
+
+    //to be consumed from other microservices
+    @PostMapping("/addingsupplierfromuser")
+    public void functionInMicroserviceB(@RequestBody Supplier supplier) {
+        log.info("saving supplier worked");
+        supplierService.addSupplier(supplier);
+    }
+
+
 
 }

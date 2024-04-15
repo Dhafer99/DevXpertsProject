@@ -1,5 +1,5 @@
 import { Image } from "./SupplyRequest";
-import { User } from "./User";
+import { supplierUser } from "./SupplierUser";
 
 export class Supplier{
     id!:number;
@@ -11,7 +11,7 @@ export class Supplier{
     servicename: String ;
     type : String ;
     status :String ;
-    supplier : User ;
+    supplier : supplierUser ;
    image!:Image;
 }
 export enum typerequirement {

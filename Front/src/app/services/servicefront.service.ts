@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Supplier } from '../models/Supplier';
 import { Booth } from '../../../projects/back-office/src/app/models/Booth';
 import { SupplierOffer } from '../models/SupplierOffer';
+import { message } from '../models/Message';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +13,7 @@ export class ServicefrontService {
   SupplierUrl ='http://localhost:8222/api/supplyrequest'
   Notification_URL='http://localhost:8763/api/notifications'
   SupplierOfferSuggestion_URL = 'http://localhost:8222/api/SupplyOffer'
+  chatUrl='http://localhost:8763'
 
   constructor(private http:HttpClient) { }
   getsupplier():Observable<Supplier[]>{
@@ -79,4 +81,7 @@ export class ServicefrontService {
     return this.http.delete<any[]>(`${this.SupplierOfferSuggestion_URL}/removeSupplyRequest/${userId}/${supplyrequestid}`);
   }
 
+  getAllMessages(senderId:number,receiverId:number): Observable<message[]>{
+    return this.http.get<message[]>(`${this.chatUrl}/getChatMessagesBySenderAndReceiver/${senderId}/${receiverId}`)
+  }
 }

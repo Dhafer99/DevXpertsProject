@@ -5,7 +5,7 @@ export class User {
     //role: string = "student";
     //role: string = "exibitor";
 
-    id! : number ;
+    id : number ;
     firstname!:String;
     lastname!: String ;
     cv: File ;

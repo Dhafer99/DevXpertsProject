@@ -24,4 +24,8 @@ spring:
     database: mysql
 
 
+application:
+  config:
+    user-url: http://localhost:8362/auth
+
 

@@ -5,7 +5,9 @@ import com.example.exhibitor.Entity.Supplier;
 import com.example.exhibitor.Repository.ChatRoomRepository;
 import com.example.exhibitor.Repository.MessageRepository;
 import com.example.exhibitor.Repository.SupplierRepository;
+import com.example.exhibitor.client.UserClient;
 import com.example.exhibitor.dto.ChatMessageDTO;
+import com.example.exhibitor.dto.UserCredential;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class MessageServiceImpl  implements MessageService{
     MessageRepository messageRepository;
 
 
+
+
     private final MessageSendingOperations<String> messagingTemplate;
 
     SupplierRepository supplierRepository ;
@@ -32,7 +36,7 @@ public class MessageServiceImpl  implements MessageService{
     @Override
     public ChatMessageDTO addMessage(ChatMessage chatMessage,Long senderId,Long receiverId) throws Exception {
 
-        ChatMessageDTO message = new ChatMessageDTO();
+      /*  ChatMessageDTO message = new ChatMessageDTO();
 
         Supplier sender = supplierRepository.findSupplierById(senderId);
         Supplier receiver = supplierRepository.findSupplierById(receiverId);
@@ -42,7 +46,8 @@ public class MessageServiceImpl  implements MessageService{
        message.setContent(chatMessage.getContent());
        message.setSender(sender);
        message.setReceiver(receiver);
-         return message;
+         return message;*/
+        return null ;
     }
 
     @Override
@@ -52,11 +57,11 @@ public class MessageServiceImpl  implements MessageService{
     }
 
     @Override
-    public void saveMessage(String chatMessage, Supplier sender, Supplier receiver) {
+    public void saveMessage(String chatMessage, UserCredential sender, UserCredential receiver) {
         ChatMessage chatMessage1 = new ChatMessage();
         chatMessage1.setContent(chatMessage);
-        chatMessage1.setSender(sender);
-        chatMessage1.setReceiver(receiver);
+        chatMessage1.setSenderFK(sender.getId());
+        chatMessage1.setReceiverFK(receiver.getId());
         chatMessage1.setCreatedAt(LocalDateTime.now());
         messageRepository.save(chatMessage1);
     }

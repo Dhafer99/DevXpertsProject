@@ -1,5 +1,5 @@
 
-import { User } from './User';
+import { supplierUser } from './SupplierUser';
 export class Booth{
     id!:number;
     x!:number;

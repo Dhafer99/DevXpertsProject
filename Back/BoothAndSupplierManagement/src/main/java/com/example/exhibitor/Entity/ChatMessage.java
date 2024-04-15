@@ -1,5 +1,6 @@
 package com.example.exhibitor.Entity;
 
+import com.example.exhibitor.dto.UserCredential;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,11 +23,10 @@ public class ChatMessage {
 
     private String content ;
 
-    @ManyToOne
-    private Supplier sender ;
 
-    @ManyToOne
-    private Supplier receiver ;
+    private Integer senderFK ;
+
+    private Integer receiverFK ;
 
     private LocalDateTime createdAt ;
 

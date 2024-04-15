@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { status, Supplier, typerequirement } from '../models/Supplier';
 import { SupplyRequest, Image } from '../models/SupplyRequest';
-import { User } from '../models/User';
+import { supplierUser } from '../models/SupplierUser';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ServicebackService } from '../services/serviceback.service';
@@ -60,7 +60,7 @@ export class SupplierComponent implements OnInit{
     servicename: 'String',
     type : 'String' ,
     status :'String' ,
-    supplier : new User,
+    supplier : new supplierUser,
     image:null
   }
   setStatusAccepted(requestid:number) { 

@@ -8,8 +8,8 @@ import lombok.Setter;
 @Setter
 public class ChatMessageDTO {
     private String Content ;
-    private Supplier sender ;
-    private Supplier receiver ;
+    private UserCredential sender ;
+    private UserCredential receiver ;
 
 
 }

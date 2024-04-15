@@ -1,4 +1,4 @@
-package com.example.authenticationservice.entity;
+package com.example.exhibitor.dto;
 
 public enum role {
     exhibitor,

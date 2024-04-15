@@ -1,7 +1,7 @@
 
 
 import { Supplier } from './Supplier';
-import { User } from './User';
+import { supplierUser } from './SupplierUser';
 
 
 export class SupplierOffer {
@@ -10,6 +10,6 @@ export class SupplierOffer {
     description: string ;
     price:number ;
     supplierRequest:Supplier ;
-    supplier: User 
+    supplier: supplierUser 
     status:string
 }

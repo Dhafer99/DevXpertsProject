@@ -16,7 +16,7 @@ import { Booth } from '../models/Booth';
 
 import Swal from 'sweetalert2';
 import { Supplier } from '../models/Supplier';
-import { User } from '../models/User';
+import { supplierUser } from '../models/SupplierUser';
 import { BoothRepresentation } from '../models/BoothRepresentation';
 
 @Component({
@@ -60,7 +60,7 @@ export class BoothplacementComponent  implements OnInit{
      storedBigBoothsNames : string [] = [];
 
 /////////////////////////////supplier /////////////////////////////////////
-supplierList : User[] = []
+supplierList : supplierUser[] = []
 
 /////////////////////////////booth representation /////////////////////////////////////
 
@@ -184,7 +184,7 @@ boothRepresentationList : BoothRepresentation[] = []
 
   
     /////supplier list
-    this.serviceBooth.getAllUserSuppliers().subscribe((data :User[])=>
+    this.serviceBooth.getAllUserSuppliers().subscribe((data :supplierUser[])=>
     {
       this.supplierList = data ;
     }

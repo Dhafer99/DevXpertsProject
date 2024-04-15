@@ -48,6 +48,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { ChatSupplierAdminComponent } from './chat-supplier-admin/chat-supplier-admin.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     PaymentComponent,
     RouletteComponent,
     SignUpComponent,
+    ChatSupplierAdminComponent,
 
   ],
   imports: [

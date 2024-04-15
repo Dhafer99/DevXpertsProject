@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
@@ -42,7 +43,10 @@ public class AuthController {
                                         @RequestParam("lastname") String lastname,
                                         @RequestParam("phonenumber") String phoneNumber) throws IOException {
         UserCredential user = new UserCredential();
+
         UserCredential savedUser =  service.saveUser(user, name , email, role , password , firstname, lastname, phoneNumber, cv);
+
+
         return ResponseEntity.ok(savedUser);
     }
 
@@ -70,6 +74,10 @@ public class AuthController {
     @GetMapping("/currentUser/{id}")
     public UserCredential getUser(@PathVariable("id") int id) {
         return service.getUserById(id);
+    }
+    @GetMapping("/admins")
+    public List<UserCredential> getAdmins() {
+        return service.getAdmins();
     }
 
    // @GetMapping("/CurrentUser/{email}")

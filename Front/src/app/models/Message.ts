@@ -8,9 +8,9 @@ export class message{
     senderFK: number
     createdAt:string
 
-    constructor(content: string, sender: number, receiver: number) {
+    constructor(content: string, senderFK: number, receiverFK: number) {
         this.content = content;
-        this.senderFK = sender;
-        this.receiverFK = receiver;
+        this.senderFK = senderFK;
+        this.receiverFK = receiverFK;
     }
 }

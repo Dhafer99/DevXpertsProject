@@ -1,32 +1,22 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Supplier } from '../models/Supplier';
-import { ServicebackService } from '../services/serviceback.service';
-import { SupplyRequest } from '../models/SupplyRequest';
-import { supplierUser } from '../models/SupplierUser';
-import { SupplierOffer } from '../models/SupplierOffer';
-import $ from 'jquery';
+import { SupplyRequest } from 'projects/back-office/src/app/models/SupplyRequest';
+import { ServicebackService } from 'projects/back-office/src/app/services/serviceback.service';
+
 import { message } from '../models/Message';
-import { WebSocketService } from '../services/websocketservice';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Supplier } from '../models/Supplier';
+import { SupplierOffer } from '../models/SupplierOffer';
+import { supplierUser } from '../models/SupplierUser';
 import { User } from '../models/user';
+import { WebSocketService } from '../services/websocketservice';
+import { ServicefrontService } from '../services/servicefront.service';
+
 @Component({
-  selector: 'app-supply-request-details',
-  templateUrl: './supply-request-details.component.html',
-  styleUrls: ['./supply-request-details.component.scss'],
-  animations: [
-    trigger('fadeInOut', [
-      state('void', style({
-        opacity: 0
-      })),
-      transition(':enter, :leave', [
-        animate(300)
-      ])
-    ])
-  ]
+  selector: 'app-chat-supplier-admin',
+  templateUrl: './chat-supplier-admin.component.html',
+  styleUrls: ['./chat-supplier-admin.component.scss']
 })
-export class SupplyRequestDetailsComponent implements OnInit {
- 
+export class ChatSupplierAdminComponent {
 
   AllChatMessages:message[]=[];
   ReceiverId : number ;
@@ -35,11 +25,7 @@ export class SupplyRequestDetailsComponent implements OnInit {
   showChat: boolean = false;
 
   sender : User ;
-UsersList : supplierUser[]=[
-{ id: 1 ,nom:"dhafer",numeroTelephone : "5520278"},
-{ id: 2 ,nom:"hamma",numeroTelephone : "7897845"},
-{ id: 3 ,nom:"ahmed",numeroTelephone : "4564524"},
-{ id: 4 ,nom:"salah",numeroTelephone : "1234567"}
+UsersList : User[]=[
 
 
 ] ;
@@ -62,7 +48,7 @@ UsersList : supplierUser[]=[
     
    get filteredUsersList() {
     return this.UsersList.filter(user =>
-      user.nom.toLowerCase().includes(this.searchTerm.toLowerCase())
+      user.name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
   searchTerm: string = '';
@@ -113,6 +99,7 @@ UsersList : supplierUser[]=[
         
        // Assuming this.receiver is properly assigned
        this.serviceback.getUser(this.ReceiverId.toString()).subscribe((receiverData: User) => {
+        console.log("receiver data")
         this.receiver = receiverData;
        
 
@@ -224,7 +211,7 @@ UsersList : supplierUser[]=[
 
   addUserToList(supplierId: number)
 {
-  this.UsersList.push({ id : 2,nom:"TAHER",numeroTelephone :"123456789"})
+
 
 }
   supplyRequest: SupplyRequest = {
@@ -246,19 +233,20 @@ userID: number ;
   constructor(private serviceback:ServicebackService ,private acr:ActivatedRoute,private renderer: Renderer2,private chatSocket:WebSocketService){}
   ngOnInit(): void {
 
-    
+/*     
     $( '.friend-drawer--onhover' ).on( 'click',  function() {
   
       $( '.chat-bubble' ).hide('slow').show('slow');
       
-    });
+    }); */
 
   //  this.serviceback.AllMessages().subscribe((data:message[])=>{
     //  this.AllChatMessages=data
 
   //  })
+  
 
-    this.serviceback.getAllUserSuppliers().subscribe((data:supplierUser[])=>{
+    this.serviceback.getAdmins().subscribe((data:User[])=>{
       this.UsersList = data ;
     })
 
@@ -269,24 +257,22 @@ userID: number ;
       this.chatSocket.connectToChat();
       //message 
       this.chatSocket.getMessageSubject().subscribe(messageObject => {
-      //  console.log('Sender ID:', messageObject.sender.id);
-       // console.log('Sender Name:', messageObject.sender.nom);
-      //  console.log('Sender Phone Number:', messageObject.sender.numeroTelephone);
-        
-      //  console.log('Receiver ID:', messageObject.receiver.id);
-      //  console.log('Receiver Name:', messageObject.receiver.nom);
-      //  console.log('Receiver Phone Number:', messageObject.receiver.numeroTelephone);
+       
+        console.log(messageObject)
         
          if ((messageObject.sender.id === this.userID && messageObject.receiver.id === this.ReceiverId) ||
         (messageObject.sender.id === this.ReceiverId && messageObject.receiver.id === this.userID)) {
         const containingmessage = messageObject.content;
         const parsedMessage = {
             content: containingmessage,
-            senderFK: messageObject.sender.id,
             receiverFK: messageObject.receiver.id,
+            senderFK: messageObject.sender.id,
+            
             createdAt: messageObject.createdAt
         };
         this.messages.push(parsedMessage);
+        console.log("MESSAGES")
+        console.log(this.messages)
     }
       });
     
@@ -346,5 +332,5 @@ userID: number ;
    
 
   }
-
+  
 }

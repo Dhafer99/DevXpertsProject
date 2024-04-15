@@ -261,8 +261,8 @@
             <div class="chat-panel" >
                 <div class="chat-messages" id="style-13">
                 <div class="row no-gutters" *ngFor="let message of messages">
-                    <div class="col-md-3" [ngClass]="{'offset-md-9': message.sender.id == this.userID}">
-                      <div class="chat-bubble" [ngClass]="{'chat-bubble--right': message.sender.id === this.userID, 'chat-bubble--left': message.sender.id !== ReceiverId}">
+                    <div class="col-md-3" [ngClass]="{'offset-md-9': message.senderFK == this.userID}">
+                      <div class="chat-bubble" [ngClass]="{'chat-bubble--right': message.senderFK === this.userID, 'chat-bubble--left': message.senderFK !== ReceiverId}">
                         {{ message.content }}
                       </div>
                     </div>
