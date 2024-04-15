@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -22,10 +23,11 @@ public class Controller {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void save(
+            @RequestParam(value ="file",required = false) MultipartFile file,
             @RequestBody Claim claim
     )
     {
-        service.addClaim(claim);
+        service.addClaim(claim, file);
     }
 
     @GetMapping

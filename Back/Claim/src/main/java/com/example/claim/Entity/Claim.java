@@ -29,7 +29,8 @@ public class Claim {
     @Enumerated(EnumType.STRING)
     private ServiceProb serviceProblem ;
 
-
+    @Lob
+    private String attachment;
 
     @OneToOne(mappedBy = "claim", cascade = CascadeType.ALL)
     private Response response;

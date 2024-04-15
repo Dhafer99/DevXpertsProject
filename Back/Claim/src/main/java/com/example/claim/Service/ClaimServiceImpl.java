@@ -1,5 +1,8 @@
 package com.example.claim.Service;
 
+
+
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.claim.Entity.Claim;
@@ -12,12 +15,20 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
+
 public class ClaimServiceImpl implements ClaimService {
 
     private static final Logger logger = LoggerFactory.getLogger(ClaimServiceImpl.class);
@@ -38,15 +49,30 @@ public class ClaimServiceImpl implements ClaimService {
     }
 
     @Override
-    public Claim addClaim(Claim claim) {
+    public Claim addClaim(Claim claim,MultipartFile file) {
         // Setting the level of disappointment based on the description
-        String description = claim.getDescription().toLowerCase();
-        if (description.contains("angry") || description.contains("worst") || description.contains("urgent")) {
-            claim.setLevel(1);
-        } else if (description.contains("disappointed") || description.contains("medium")) {
-            claim.setLevel(2);
+        String description = claim.getDescription();
+        if (description != null) {
+            description = description.toLowerCase();
+            if (description.contains("angry") || description.contains("worst") || description.contains("urgent")) {
+                claim.setLevel(1);
+            } else if (description.contains("disappointed") || description.contains("medium")) {
+                claim.setLevel(2);
+            } else {
+                claim.setLevel(3);
+            }
         } else {
-            claim.setLevel(3);
+            // Handle null description here if needed
+        }
+          String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if(fileName.contains(".."))
+        {
+            log.error("not a valid file");
+        }
+        try {
+            claim.setAttachment(Base64.getEncoder().encodeToString(file.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         // Setting the status to "pending" by default
         claim.setStatus("pending");
@@ -55,6 +81,50 @@ public class ClaimServiceImpl implements ClaimService {
         // Save the claim
         return claimRepo.save(claim);
     }
+
+   /* @Override
+    public Claim addClaim(Claim claim, MultipartFile file) {
+        try {
+            // Setting the level of disappointment based on the description
+            String description = claim.getDescription().toLowerCase();
+            if (description != null) {
+                description = description.toLowerCase();
+                if (description.contains("angry") || description.contains("worst") || description.contains("urgent")) {
+                    claim.setLevel(1);
+                } else if (description.contains("disappointed") || description.contains("medium")) {
+                    claim.setLevel(2);
+                } else {
+                    claim.setLevel(3);
+                }
+            } else {
+                // Handle the case when description is null
+            }
+
+            // Setting the status to "pending" by default
+            claim.setStatus("pending");
+
+            // Setting the current date
+            claim.setDate(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
+
+            // Save the claim
+            Claim savedClaim = claimRepo.save(claim);
+
+            // Handle file attachment if provided
+            if (file != null && !file.isEmpty()) {
+                // Convert MultipartFile to byte array
+                byte[] fileBytes = file.getBytes();
+                // Set the attachment
+                savedClaim.setAttachment(fileBytes);
+                // Save the claim with attachment
+                claimRepo.save(savedClaim);
+            }
+
+            return savedClaim;
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to add claim with attachment.", e);
+        }
+    }
+*/
 
     @Override
     public List<Claim> findAllClaims() {
