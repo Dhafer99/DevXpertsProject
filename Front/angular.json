@@ -27,7 +27,8 @@
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/custom-theme.scss"
             ],
             "scripts": []
           },
@@ -96,7 +97,8 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
@@ -113,6 +115,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+           
             "outputPath": "dist/back-office",
             "index": "projects/back-office/src/index.html",
             "main": "projects/back-office/src/main.ts",
@@ -125,7 +128,8 @@
               "projects/back-office/src/assets"
             ],
             "styles": [
-              "projects/back-office/src/styles.css"
+              "projects/back-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -175,7 +179,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "port":"4202",
+            "port":"4203",
             "browserTarget": "backOffice:build"
           }
         },
@@ -192,7 +196,8 @@
               "projects/back-office/src/assets"
             ],
             "styles": [
-              "projects/back-office/src/styles.css"
+              "projects/back-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
@@ -221,7 +226,8 @@
               "projects/front-office/src/assets"
             ],
             "styles": [
-              "projects/front-office/src/styles.css"
+              "projects/front-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -286,7 +292,8 @@
               "projects/front-office/src/assets"
             ],
             "styles": [
-              "projects/front-office/src/styles.css"
+              "projects/front-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
