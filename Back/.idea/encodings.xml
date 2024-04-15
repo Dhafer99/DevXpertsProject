@@ -7,6 +7,10 @@
     <file url="file://$PROJECT_DIR$/Events/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Events/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/Exhibitor/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Offer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Auction/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/AuthenticationService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BoothAndSupplierManagement/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/configServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />

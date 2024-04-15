@@ -8,25 +8,47 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Booth" />
+<<<<<<< HEAD
         <module name="Events" />
         <module name="configServer" />
         <module name="discovery" />
         <module name="Exhibitor" />
         <module name="AppointementAndClassroom" />
+=======
+        <module name="BoothAndSupplierManagement" />
+        <module name="Offer" />
+        <module name="Auction" />
+        <module name="configServer" />
+        <module name="discovery" />
+        <module name="AuthenticationService" />
+>>>>>>> main
         <module name="gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+<<<<<<< HEAD
       <module name="Claim" target="1.5" />
       <module name="Forum" target="1.5" />
+=======
+      <module name="Booth" target="17" />
+      <module name="Exhibitor" target="17" />
+>>>>>>> main
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+<<<<<<< HEAD
       <module name="AppointementAndClassroom" options="-parameters" />
       <module name="Booth" options="-parameters" />
       <module name="Events" options="-parameters" />
+=======
+      <module name="Auction" options="" />
+      <module name="AuthenticationService" options="-parameters" />
+      <module name="Booth" options="-parameters" />
+      <module name="BoothAndSupplierManagement" options="" />
+>>>>>>> main
       <module name="Exhibitor" options="-parameters" />
+      <module name="Offer" options="-parameters" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />

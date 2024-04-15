@@ -1,0 +1,62 @@
+
+<div class="title-box">
+            
+    <h2 class="section-header">Rooms</h2>
+  </div>
+      <section class="card-area "  >
+          <section class="card-section "  *ngFor="let room of rooms">
+              <div class="card">
+                  <div class="flip-card">
+                      <div class="flip-card__container">
+                          <div class="card-front">
+                              <div class="card-front__tp card-front__tp--ski">
+                                <div class="icon"  *ngIf="room.typePack === 'diamond'">
+                                    <i class="ri-vip-diamond-fill"></i>
+                                    
+                                  </div>
+                                  <div class="icon"  *ngIf="room.typePack === 'silver'">
+                                    <i class="ri-medal-2-fill fa-100x"></i>
+                                    
+                                  </div>
+                                  <div class="icon"  *ngIf="room.typePack === 'standard'">
+                                    <i class="bx bxl-500px"></i>
+                                    
+                                  </div>
+                                  
+                                 
+                                             <h2 class="card-front__heading">
+                                                room
+                                             </h2>
+                                             <p class="card-front__text-price">
+                                                 start from {{room.price | currency:'DT'}} 
+                                             </p>
+                              </div>
+
+                              <div class="card-front__bt">
+                                  <p class="card-front__text-view card-front__text-view--ski">
+                                      View me
+                                  </p>
+                              </div>
+                          </div>
+
+                        
+                      </div>
+                  </div>
+
+                  <div class="inside-page">
+                      <div class="inside-page__container">
+                          <h3 class="inside-page__heading inside-page__heading--ski">
+                          {{room.typePack}} packs
+                          </h3>
+                          <div [innerHTML]="sanitizeHtml(room.description.length > 50 ? room.description.slice(0, 50) + '...' : room.description )" class="formatted-text"></div>
+                         
+                          <button  [routerLink]="['detailRoom', room.idRoom]" class="inside-page__btn inside-page__btn--ski">View details</button>
+                      </div>
+                  </div>
+              </div>
+
+          </section>
+
+       
+      </section> 
+  

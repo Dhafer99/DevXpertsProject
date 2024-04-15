@@ -4,9 +4,9 @@ eureka:
     hostname: localhost
   client:
     eureka-service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8762/eureka
 server:
-  port: 8070
+  port: 8763
   servlet:
     context-path: /exhibitor
 spring:
@@ -25,7 +25,7 @@ spring:
 
 application:
   config:
-    booths-url: http://localhost:8090/api/Booths
+    booths-url: http://localhost:8362/api/Booths
 
 
 

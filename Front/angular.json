@@ -25,9 +25,15 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
+=======
+              "src/custom-theme.scss",
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+>>>>>>> main
             ],
             "scripts": []
           },
@@ -93,9 +99,14 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
 
               "src/styles.css",
               "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
+=======
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+>>>>>>> main
             ],
             "scripts": []
           }
@@ -112,6 +123,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+           
             "outputPath": "dist/back-office",
             "index": "projects/back-office/src/index.html",
             "main": "projects/back-office/src/main.ts",
@@ -124,8 +136,13 @@
               "projects/back-office/src/assets"
             ],
             "styles": [
+<<<<<<< HEAD
               
               "projects/back-office/src/styles.css"
+=======
+              "projects/back-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+>>>>>>> main
             ],
             "scripts": []
           },
@@ -175,7 +192,11 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
+<<<<<<< HEAD
             "port": "4202",
+=======
+            "port":"4203",
+>>>>>>> main
             "browserTarget": "backOffice:build"
           }
         },
@@ -192,7 +213,8 @@
               "projects/back-office/src/assets"
             ],
             "styles": [
-              "projects/back-office/src/styles.css"
+              "projects/back-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
@@ -221,7 +243,8 @@
               "projects/front-office/src/assets"
             ],
             "styles": [
-              "projects/front-office/src/styles.css"
+              "projects/front-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -283,7 +306,8 @@
               "projects/front-office/src/assets"
             ],
             "styles": [
-              "projects/front-office/src/styles.css"
+              "projects/front-office/src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           }
