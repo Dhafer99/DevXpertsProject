@@ -31,7 +31,7 @@
                 <p class="comment-like-count">{{ comment.comment.likesCount }} Like</p>
               </div>
               <div class="comment-dislike" (click)="savelike(comment.comment,'Dislike')" >
-                <i class="mdi mdi-thumb-down-outline f-20 text-dark" *ngIf="comment.comment.ActiveLike.status=='Like'"></i>
+                <i class="mdi mdi-thumb-down-outline f-20 text-dark" *ngIf="comment.comment.ActiveLike.status!='Dislike'"></i>
                 <i class="mdi mdi-thumb-down f-20 text-dark" *ngIf="comment.comment.ActiveLike.status=='Dislike'"></i>
                 <p class="comment-dislike-count">{{ comment.comment.dislikesCount }} Dislike</p>
               </div>

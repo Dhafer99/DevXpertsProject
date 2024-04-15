@@ -42,7 +42,7 @@ public class CommentController {
       return   service.addLike(dislike);
         // service.findEventComments(dislike.getEventID());
     }
-    @DeleteMapping("/removeLike")
+    @DeleteMapping("/removeLike" )
     @ResponseStatus(HttpStatus.CREATED)
     public Comment removeLike(@RequestBody Dislike dislike)
     {

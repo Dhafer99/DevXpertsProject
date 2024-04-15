@@ -135,6 +135,10 @@ export class EventServiceService {
       //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
       return  this.http.post<Comment>(this.__URL+this.commentURL+'/addLike',Like)
     }
+    removeLike(Like:Like):Observable<Comment>{
+      //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+      return  this.http.post<Comment>(this.__URL+this.commentURL+'/removeLike',Like)
+    }
   //-------------------------------- ------------------------------
      //----------------------------------Interested related URLS-------------------------------------
     // this does add / update on a rating nothing to change here
