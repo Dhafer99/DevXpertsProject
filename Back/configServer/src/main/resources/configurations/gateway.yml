@@ -24,7 +24,7 @@ spring:
                   - GET
                   - POST
                 allowedHeaders: '*'
-                maxAge: 30
+                maxAge: 2000
             filters:
               - AuthenticationFilter
           - id: supplyoffer
@@ -38,7 +38,7 @@ spring:
                   - GET
                   - POST
                 allowedHeaders: '*'
-                maxAge: 30
+                maxAge: 2000
             filters:
               - AuthenticationFilter
           - id: authservice
@@ -54,7 +54,7 @@ spring:
                   - PUT
                   - DELETE
                 allowedHeaders: '*'
-                maxAge: 30
+                maxAge: 2000
             filters:
               - AuthenticationFilter
           - id: exhibitors
@@ -74,7 +74,7 @@ spring:
                   - PUT
                   - DELETE
                 allowedHeaders: '*'
-                maxAge: 30
+                maxAge: 2000
             filters:
               - AuthenticationFilter
           - id: packs
@@ -90,7 +90,7 @@ spring:
                   - PUT
                   - DELETE
                 allowedHeaders: '*'
-                maxAge: 30
+                maxAge: 2000
             filters:
               - AuthenticationFilter
 

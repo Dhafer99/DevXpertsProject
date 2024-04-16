@@ -109,7 +109,7 @@ public class EnchereService implements  EnchereInterface{
 
             int maxWinners = room.getMaxWinners();
             for (Enchere e : topwinners) {
-                if (topwinnersFinal.size() < maxWinners) {
+                if (topwinnersFinal.size() <= maxWinners) {
                     topwinnersFinal.add(e);
                 } else {
                     break;

@@ -1,26 +1,36 @@
 package tn.esprit.auction.Controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.stripe.Stripe;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.auction.DTO.RouletteDTO;
 import tn.esprit.auction.Entites.Enchere;
 import tn.esprit.auction.Entites.EnchereUserDTO;
 import tn.esprit.auction.Entites.Pack;
 import tn.esprit.auction.Entites.Room;
 import tn.esprit.auction.Services.EnchereInterface;
 import tn.esprit.auction.Services.RoomInterface;
+import tn.esprit.auction.Services.RouletteInterface;
 
 import java.util.List;
+import java.util.Random;
+
 //@CrossOrigin(origins = "*")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/rooms")
+@Slf4j
 public class RoomController {
 
     RoomInterface roomInterface ;
     EnchereInterface enchereInterface ;
+
+    RouletteInterface rouletteInterface;
 
     /*********************************** Enchere methodes ****/
     @PostMapping("/addEncherForUser/{companyId}/{roomId}")
@@ -144,11 +154,35 @@ public class RoomController {
 
     /***************************  ROULETTE WEB SOCKET  */
 
-    @MessageMapping("/startRoulette")
+    @MessageMapping("/startRoulette/{roomId}")
     @SendTo("/topic/rouletteResult")
-    public int startRoulette(Long roomId) {
+    public void getRandomLandId(
 
-        int result = (int) (Math.random() * 37);
-        return result;
+            @DestinationVariable  Long roomId) throws JsonProcessingException {
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(roomInterface.getRoomPacks(roomId).size());
+
+
+        RouletteDTO rouletteDTO = new RouletteDTO();
+        rouletteDTO.setResult(roomInterface.getRoomPacks(roomId).get(randomIndex).getIdPack().intValue());
+        //rouletteDTO.setSpin(true);
+        log.info("result {}",Math.random());
+
+        rouletteInterface.sendToRoulette(rouletteDTO);
+
+
+
+    }
+
+    @MessageMapping("/eyaharfa")
+    @SendTo("/test/startroulette")
+    public void startRoulette() throws JsonProcessingException {
+
+
+    rouletteInterface.startRoulette();
+
+
+
     }
 }

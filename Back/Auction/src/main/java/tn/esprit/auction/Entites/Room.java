@@ -36,7 +36,7 @@ public class Room {
     private int confirmedParticipant ;
     private String description ;
     private Boolean status ;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "room", fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Pack> packages;
 

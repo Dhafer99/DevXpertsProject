@@ -8,7 +8,7 @@ import * as SockJS from 'sockjs-client';
 })
 export class RoomServiceService {
   constructor(private http: HttpClient) {
-    this.initializeWebSocketConnection();
+    //this.initializeWebSocketConnection();
   }
   url = "http://localhost:8222/api/rooms/";
    
