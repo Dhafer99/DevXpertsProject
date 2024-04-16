@@ -23,10 +23,26 @@ spring:
               maxAge: 30
           filters:
             - AuthenticationFilter
-        - id: forums
+        - id: postsForum
           uri: http://localhost:8040
           predicates:
-            - Path=/api/Forums/**
+            - Path=/api/Posts/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
+        - id: commentForum
+          uri: http://localhost:8040
+          predicates:
+            - Path=/api/Comments/**
           metadata:
             cors:
               allowedOrigins: "*"

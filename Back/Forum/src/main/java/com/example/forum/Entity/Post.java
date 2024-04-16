@@ -33,6 +33,7 @@ public class Post {
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String video;
+    private int userId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="post")
     private Set<Comment> comment;

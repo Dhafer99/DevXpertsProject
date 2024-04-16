@@ -86,7 +86,9 @@ export class PostListComponent implements OnInit {
   }
 
   navigateToPost(IdPost: number) { 
-    this.router.navigate(['/post-detail/'+ IdPost]);
+    console.log(IdPost,"HHH")
+    console.log(this.router.navigate(['/post-detail/'+ IdPost]),"fff")
+    //this.router.navigate(['/post-detail/'+ IdPost]);
   }
 
   openDialog(){

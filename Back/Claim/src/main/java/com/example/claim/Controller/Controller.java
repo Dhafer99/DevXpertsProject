@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/Claims")
 @RequiredArgsConstructor
-@CrossOrigin(origins = { "*" })
+//@CrossOrigin(origins = { "*" })
 public class Controller {
 
     private final ClaimService service;

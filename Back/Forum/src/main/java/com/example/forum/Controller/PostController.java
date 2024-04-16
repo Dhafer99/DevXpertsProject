@@ -21,7 +21,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 @RestController
 @RequestMapping("/api/Posts")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 public class PostController {
 
     private final PostService service;

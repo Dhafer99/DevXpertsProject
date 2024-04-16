@@ -121,6 +121,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
   //providers: [DatePipe],
 
   providers: [ 
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorInterceptor,

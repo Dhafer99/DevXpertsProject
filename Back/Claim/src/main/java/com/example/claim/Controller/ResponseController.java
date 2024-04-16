@@ -15,7 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/Responses")
 @RequiredArgsConstructor
-@CrossOrigin(origins = { "*" })
+//@CrossOrigin(origins = { "*" })
 public class ResponseController {
     private final ResponseService responseService;
     private final ClaimService claimService;

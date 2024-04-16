@@ -22,6 +22,7 @@ public class Comment {
     private String textComment;
     @Temporal(TemporalType.DATE)
     private Date dateCreationComment;
+    private int userId;
 
 
     @JsonIgnore

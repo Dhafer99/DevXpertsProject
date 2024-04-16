@@ -7,7 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Booth" />
         <module name="BoothAndSupplierManagement" />
         <module name="Offer" />
         <module name="Auction" />
@@ -29,12 +28,11 @@
       <module name="Auction" options="" />
       <module name="AuthenticationService" options="-parameters" />
       <module name="Booth" options="-parameters" />
+      <module name="BoothAndSupplierManagement" options="" />
       <module name="Claim" options="-parameters" />
       <module name="Exhibitor" options="-parameters" />
       <module name="Forum" options="-parameters" />
-      <module name="BoothAndSupplierManagement" options="" />
-      <module name="Exhibitor" options="-parameters" />
-      <module name="Offer" options="-parameters" />
+      <module name="Offer" options="" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />

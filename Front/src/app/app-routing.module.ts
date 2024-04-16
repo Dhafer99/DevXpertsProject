@@ -42,7 +42,6 @@ const routes: Routes = [
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) },
   { path: 'post-list', component: PostListComponent },
   { path: 'post-detail/:id', component: PostDetailComponent},
-  { path: 'post-detail/:id', component: PostDetailComponent},
   { path: 'post-form', component: PostFormComponent},
   { path: 'claim-form', component: ClaimFormComponent},
   { path: 'claim-list', component: ClaimListComponent},
