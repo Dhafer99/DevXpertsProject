@@ -1,6 +1,7 @@
 package com.example.appointementandclassroom.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,8 +30,12 @@ public class Question {
   @CollectionTable(name = "question_options", joinColumns = @JoinColumn(name = "question_id"))
        @Column(name = "option")
       private List<String> options;
-      private String category ;
       private  String answer ;
-     private  String difficultylevel ;
+      private  String difficultylevel ;
+      private int coefficient;
+
+      @JsonIgnore
+      @ManyToOne
+      Quiz quiz;
 
 }

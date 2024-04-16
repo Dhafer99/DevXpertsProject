@@ -12,22 +12,31 @@ public interface IQuizService {
     Quiz createQuiz(QuizCreate quizCreate);
 
 
-
-    ResponseEntity<List<QuestionWrapper>> getQuizQuestion(Integer id);
+    ResponseEntity<List<QuestionWrapper>> getQuizQuestion(int id);
 
     ResponseEntity<Integer> CalculateResult(Integer id, List<Response> responses);
 
+    Result CalculateResultAdvanced(AnswerSheet answerSheet);
+
+
     List<Quiz> getAllquiz();
+
+     List<Quiz> afficheMyQuiz(int mine);
 
     List<Quiz> getQuizzesByCategory(String category);
 
 
     // public Quiz QuizBycateg(String categorie);
 
-    public void  addQuiz(Quiz quiz);
-    public  List<Quiz> afficheAllQuiz();
-    public  Quiz AfficheuneQuiz(int id );
+    public void addQuiz(Quiz quiz);
 
-    public  void deleateQuiz(int id );
+    public List<Quiz> afficheAllQuiz();
 
+    public Quiz AfficheuneQuiz(int id);
+
+    public void deleateQuiz(int id);
+
+    public List<Result> userResult(int userId);
+
+    public List<Result> quizResult(int quizId);
 }

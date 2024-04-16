@@ -4,7 +4,65 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="" />
+    <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/entities/AnswerSheet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/entities/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/repositories/ResultRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/ConfigWeb/config/WebSocket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/ConfigWeb/config/WebSocketEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/chat/ChatController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/chat/ChatMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/chat/MessageType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/controllers/AppointementManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/controllers/AppointementManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/AppointementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/AppointementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/IAppointementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/services/IAppointementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Appointement/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Appointement/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatbotPython/chatbot/Model.h5" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatbotPython/chatbot/Model.h5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatbotPython/chatbot/chatBotData.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatbotPython/chatbot/chatBotData.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatbotPython/chatbot/chatbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatbotPython/chatbot/chatbot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatbotPython/chatbot/intentt.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatbotPython/chatbot/intentt.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/add-classroom/add-classroom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/add-classroom/add-classroom.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/afficher-classroom/afficher-classroom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/afficher-classroom/afficher-classroom.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calander2/calander2.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calander2/calander2.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calander2/calander2.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calander2/calander2.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calander2/calander2.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calander2/calander2.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/calender/calender.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/chatbot/chatbot.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/chatbot/chatbot.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/chatbot/chatbot.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/chatbot/chatbot.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/chatbot/chatbot.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/chatbot/chatbot.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/import-file/import-file.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/import-file/import-file.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/import-file/import-file.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Appointment/import-file/import-file.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/models/appointement.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/models/appointement.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/classroom.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/classroom.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/assets/images/logoEsprit.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/assets/images/logoEsprit.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/calender/calender.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/calender/calender.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/calender/calender.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/calender/calender.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/calender/calender.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/calender/calender.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/assets/scss/Readme.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/styles.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,12 +71,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -27,6 +85,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/3.2.2/spring-data-commons-3.2.2.jar!/org/springframework/data/repository/CrudRepository.class" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/controllers/AppointementManagement.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -66,6 +125,10 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\fares\OneDrive\Bureau\DevEpert project\DevXpertsProject\Back\Appointement\src\main\resources\static\js" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.appointementandclassroom.repositories" />
+      <recent name="com.example.appointementandclassroom.entities" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -118,6 +181,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.AppointementApplication" />
+      <item itemvalue="Spring Boot.DiscoveryApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.BoothApplication" />
+      <item itemvalue="Spring Boot.ConfigServerApplication" />
+      <item itemvalue="Spring Boot.ExhibitorApplication" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -145,6 +216,26 @@
       <workItem from="1709635599896" duration="4750000" />
       <workItem from="1709665779157" duration="4005000" />
       <workItem from="1709715931553" duration="7462000" />
+      <workItem from="1710333724716" duration="9369000" />
+      <workItem from="1710973169571" duration="10837000" />
+      <workItem from="1711318385443" duration="3435000" />
+      <workItem from="1711463386114" duration="2598000" />
+      <workItem from="1711506752297" duration="2897000" />
+      <workItem from="1711636376448" duration="6309000" />
+      <workItem from="1711808070523" duration="28321000" />
+      <workItem from="1711970043247" duration="1713000" />
+      <workItem from="1712010681431" duration="2728000" />
+      <workItem from="1712052519892" duration="4549000" />
+      <workItem from="1712092392272" duration="15663000" />
+      <workItem from="1712222278261" duration="2931000" />
+      <workItem from="1712574762608" duration="4477000" />
+      <workItem from="1712941451100" duration="10593000" />
+      <workItem from="1713019109053" duration="706000" />
+      <workItem from="1713026876727" duration="20189000" />
+      <workItem from="1713118044873" duration="8000" />
+      <workItem from="1713118072333" duration="37000" />
+      <workItem from="1713201413845" duration="1331000" />
+      <workItem from="1713209448809" duration="27691000" />
     </task>
     <servers />
   </component>

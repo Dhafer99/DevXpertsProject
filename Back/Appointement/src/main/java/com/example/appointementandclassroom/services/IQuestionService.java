@@ -8,6 +8,16 @@ public interface IQuestionService {
 
 public List<Question> getAllQuestion();
 
-    List<Question> getQuestionByCategory(String category);
-    public Question addQuestion(Question question);
+
+    public Question addQuestion(Question question,int id_quiz);
+
+    Question updatequestion(Question question ,int id_quiz);
+
+    void deleatequestion(Integer id);
+
+    List<Question> afficheAllQuestion();
+
+    Question AfficheuneQuestion(Integer id);
+
+    public List<Question> getQuestionsByQuizId(int quizId);
 }

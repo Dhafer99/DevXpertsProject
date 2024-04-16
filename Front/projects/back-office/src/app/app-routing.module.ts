@@ -3,15 +3,19 @@ import { ListUsersComponent } from './list-users/list-users.component';
 import { ClassroomComponent } from './Appointment/classroom/classroom.component';
 import { AfficherClassroomComponent } from './Appointment/afficher-classroom/afficher-classroom.component';
 import { AddClassroomComponent } from './Appointment/add-classroom/add-classroom.component';
-import { CalenderComponent } from './Appointment/calender/calender.component';
+
 import { UpdateClassroomComponent } from './Appointment/update-classroom/update-classroom.component';
 import { ChatbotComponent } from './Appointment/chatbot/chatbot.component';
 import { Calander2Component } from './Appointment/calander2/calander2.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ImportFileComponent } from './Appointment/import-file/import-file.component';
+
 import { OnlineMeetingComponent } from './Appointment/online-meeting/online-meeting.component';
 import { quartersInYear } from 'date-fns';
+import { QuizComponent } from './Appointment/quiz/quiz.component';
+
+import { QuestionListComponent } from './Appointment/question-list/question-list.component';
 import { QuizListComponent } from './Appointment/quiz-list/quiz-list.component';
+
 
 const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 { path: 'classrooms', component: AfficherClassroomComponent },
@@ -20,9 +24,10 @@ const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 {path: 'addclassroom/:id', component:AddClassroomComponent  },
 {path: 'chatBot', component:ChatbotComponent  },
 {path: 'calander2', component:Calander2Component  },
-{path: 'importfile', component:ImportFileComponent  },
 {path: 'OnlineMeeting/:idroom', component:OnlineMeetingComponent  },
-{path: 'quizlist', component:QuizListComponent  },
+{path: 'quiz', component:QuizComponent  },
+{path: 'listequiz', component:QuizListComponent  },
+{path: 'listequestion', component: QuestionListComponent },
 ];
 
 @NgModule({

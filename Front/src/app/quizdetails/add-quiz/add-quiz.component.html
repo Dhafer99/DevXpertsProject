@@ -1,0 +1,15 @@
+<h1>add quiz</h1>
+
+<!-- category-form.component.html -->
+
+<form [formGroup]="QuestionForm">
+    <label for="category">Title:</label>
+    <input type="text" id="title" name="title" formControlName="title">
+   <!--  <label for="category">Category:</label>
+    <input type="text" id="category" name="category" formControlName="category"> -->
+    <button type="submit" aria-label="add" value="add" class="btn btn-primary" (click)="add()" >
+
+      Add
+    </button>
+  </form>
+  

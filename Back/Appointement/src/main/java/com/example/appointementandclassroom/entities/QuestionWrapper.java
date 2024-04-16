@@ -20,6 +20,7 @@ public class QuestionWrapper {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private  int id ;
-    private  String questionTitle ;
+    private  String question ;
    private List<String> options ;
+
 }

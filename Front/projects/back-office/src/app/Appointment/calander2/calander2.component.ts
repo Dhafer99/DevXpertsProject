@@ -166,6 +166,16 @@ getMinutes(): number[] {
  
 
   }
+
+  QuizTest(){
+
+   
+    this.router.navigate(['/quiz']);
+
+
+
+}
+
 /* ----------------------------------------------- */
 
   handleClick(event:EventClickArg){

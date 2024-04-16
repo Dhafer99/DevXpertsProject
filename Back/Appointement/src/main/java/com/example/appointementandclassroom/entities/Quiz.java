@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,8 +19,10 @@ public class Quiz {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private  int id ;
     private  String title ;
-    @ManyToMany
-    private List<Question> questions;
-
+    private  String categorie;
+    private int userId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="quiz")
+    private List<Question> Questions;
+    private int optionNumber;
 
 }

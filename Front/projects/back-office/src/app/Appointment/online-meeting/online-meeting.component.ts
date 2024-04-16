@@ -34,7 +34,7 @@ export class OnlineMeetingComponent   implements OnInit{
   constructor(private activatedRoute: ActivatedRoute ){}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.roomID = params[' '];
+      this.roomID = params['idroom'];
       
     });
   }
@@ -61,8 +61,8 @@ export class OnlineMeetingComponent   implements OnInit{
     //  const roomID = getUrlParams().get('idroom') || randomID(5);
 
      // generate Kit Token
-      const appID = 1213421494;
-      const serverSecret = "9b6392dec060ea0cd4642a72a0c70e5a";
+      const appID = 1787633511;
+      const serverSecret = "be7d01f6b8f4d9066443d71c7b6d235c";
       const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, this.roomID,  randomID(5),  randomID(5));
 
       // Create instance object from Kit Token.
@@ -87,5 +87,5 @@ export class OnlineMeetingComponent   implements OnInit{
       });
   }
 
-
+  
 }

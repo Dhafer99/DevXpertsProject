@@ -17,3 +17,21 @@ export class calenderEvent{
     title:string="Available";
     color:string="green  "
 }
+export class Result {
+    id: number;
+    userId: number;
+    score: number;
+    quizId: number;
+    time: Date;
+    elapsedTime:number; 
+    coefficient: number;
+    maxScore:number
+}
+
+export class AnswerSheet{
+        answers:string[];
+        userId:number;
+        quizId:number;
+        elaspsedTime:number;
+        
+}

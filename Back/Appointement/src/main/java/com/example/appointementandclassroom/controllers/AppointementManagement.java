@@ -157,23 +157,14 @@ public List<Date> getAvailableDate(){
         return quizService.getAllquiz();
     }
 
-    @GetMapping("category/{category}")
-    public  List<Question> getQuestionByCategory(@PathVariable String category ){
-        return  questionService.getQuestionByCategory(category);
 
 
-    }
-
-  //  @GetMapping("getQuizbyCategorie/{category}")
- //public Quiz getQuizBycategorie(@PathVariable String category){
-
-   //     return  quizService.QuizBycateg(category);
-    //}
-
-    @PostMapping("add questions")
-    public Question addQuestions(@RequestBody Question question){
-
-        return  questionService.addQuestion(question);
+        @PostMapping("add-questions/{id_quiz}")
+    public Question addQuestions(@RequestBody Question question,@PathVariable("id_quiz") int id_quiz){
+                if (question.getId()==0)
+        return  questionService.addQuestion(question,id_quiz);
+                else
+        return questionService.updatequestion(question,id_quiz);
     }
 
 
@@ -191,15 +182,11 @@ public List<Date> getAvailableDate(){
 
 
 
-    @GetMapping("Get Quiz Question/{id}")
-    public ResponseEntity<List<QuestionWrapper>> getquizQuestions(@PathVariable Integer id){
+    @GetMapping("/Get_Quiz_Question/{id}")
+    public ResponseEntity<List<QuestionWrapper>> getquizQuestions(@PathVariable int id){
        return quizService.getQuizQuestion(id);
 
     }
-
-
-
-
 
     @PostMapping("Submit/{id}")
     public ResponseEntity<Integer> SubmitQuiz(@PathVariable Integer id , @RequestBody List<Response>  responses){
@@ -209,6 +196,13 @@ public List<Date> getAvailableDate(){
 
     }
 
+
+    @PostMapping("/SubmitAdvanced")
+    public Result  SubmitQuizAdvanced( @RequestBody AnswerSheet responses){
+        return quizService.CalculateResultAdvanced(responses);
+
+
+    }
 
     @GetMapping("/quizzes/{category}")
     public List<Quiz> getQuizzesByCategory(@PathVariable String category) {
@@ -242,7 +236,7 @@ public List<Date> getAvailableDate(){
         return quizService.afficheAllQuiz();
     }
 
-    @PostMapping("/afficher-une-quiz/{id}")
+    @GetMapping ("/afficher-une-quiz/{id}")
     public Quiz AfficheuneQuiz(@PathVariable ("id") Integer id) {
         return quizService.AfficheuneQuiz(id);
     }
@@ -254,6 +248,58 @@ public List<Date> getAvailableDate(){
 
 }
 
+// --------- update question
+
+ //   QuestionService questionService;
+//    @Operation(description = "Update-question ")
+//    @PutMapping("/update_question")
+//    public Question updateQuestion(@RequestBody Question question){
+//        return  questionService.updatequestion(question);
+//    }
+
+    // delete question
+
+    @DeleteMapping("/deleteQuestionByID/{id}")
+    public  void  deletequestion(@PathVariable ("id") Integer id){
+        questionService.deleatequestion(id);
+
+    }
 
 
-}
+    // afficher tous les question
+    @GetMapping("/afficher-tous-les-question")
+    public List<Question> afficheAllquestion() {
+        return questionService.afficheAllQuestion();
+    }
+
+
+
+    // Afficher  une Question
+    @PostMapping("/afficher-une-Question/{id}")
+    public Question AfficheuneQuestion(@PathVariable ("id") Integer id) {
+        return questionService.AfficheuneQuestion(id);
+    }
+
+
+// find all questions by quiz id
+
+    @GetMapping("/getAllquestionsbyquizid/{id}")
+    public List<Question> getQuestionsByQuizId(@PathVariable int id) {
+        return questionService.getQuestionsByQuizId(id);
+    }
+
+    @GetMapping("/userResult/{userid}")
+    public List<Result> getuserResult(@PathVariable("userid") int userid)
+    {
+        return quizService.userResult(userid);
+    }
+    @GetMapping("/quizResult/{quizid}")
+    public List<Result> getquizResult(@PathVariable("quizid") int quizid)
+    {
+        return quizService.quizResult(quizid);
+    }
+    @GetMapping("/afficherQuizes/{mine}")
+    public List<Quiz> getQuizez(@PathVariable("mine") int mine){
+        return quizService.afficheMyQuiz(mine);
+    }
+ }

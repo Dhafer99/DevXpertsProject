@@ -13,7 +13,7 @@ import lombok.Setter;
 public class QuizCreate {
 
    private  int numQ;
-   private  String  category ;
-   private  String title ;
 
+   private  String title ;
+   private  String  category ;
 }

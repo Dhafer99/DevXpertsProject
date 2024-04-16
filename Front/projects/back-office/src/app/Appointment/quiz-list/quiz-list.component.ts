@@ -1,39 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { Quiz } from '../../models/quiz';
 import { ClassroomService } from '../../services/classroom.service';
-import { Router } from '@angular/router';
-import { Test } from '../../models/quiz';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-quiz-list',
   templateUrl: './quiz-list.component.html',
   styleUrls: ['./quiz-list.component.css']
 })
-export class QuizListComponent implements OnInit {
-  constructor(private classRoomS:ClassroomService, private router:Router){}
+export class QuizListComponent implements OnInit{
 
-  ngOnInit(): void {
-   
-    this.getalltests();
-    
-      }
-      public tests!:Test[];
-      public getalltests(): void{
-        this.classRoomS.getTests().subscribe(
-          (response:Test[])=>{
-            this.tests=response;
-          },
-          (error:HttpErrorResponse)=>{
-            alert(error.message);
-          }
-        );
-      }
-    
-      active(id:number){
-          this.classRoomS.activateanactivate(id).subscribe(() => {
-          // just refresh
-          this.getalltests();
-        });
+quiz : Quiz[];
+constructor(private quizservice : ClassroomService){}
+ngOnInit(): void {
+  
+this.getQuiz();
 
 }
+getQuiz(): void{
+  this.quizservice.getAllQuizs().subscribe((data)=>{
+    this.quiz = data 
+  })
+  
 }
+
+}
+
+
+
