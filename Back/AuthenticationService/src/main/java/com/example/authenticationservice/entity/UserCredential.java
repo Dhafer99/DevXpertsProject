@@ -22,10 +22,18 @@ public class UserCredential {
     private String firstname;
     private String lastname;
     private String phoneNumber;
+
     private LocalDate creationDate;
     @Enumerated(EnumType.STRING)
     private role role;
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] cv;
+
+
+    //-------------------------    Use ImageURL for Display  and ImageId for Delete Image ----------------
+    private String imageUrl;
+    private String imageId;
+    //-------------------------    Use ImageURL for Display  and ImageId for Delete Image ----------------
+
 }

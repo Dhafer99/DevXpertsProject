@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { Image } from '../models/image';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,6 +18,9 @@ export class SignUpComponent implements OnInit{
   selectedFile!: File;
   user!:User;
   userRole!: string;
+  mainImage: Image = new Image();
+  image: File | null = null;
+
   @ViewChild('fileInput') fileInput!: ElementRef;
 
   constructor(private userService:UserService, private route:Router){  }
@@ -77,7 +81,8 @@ export class SignUpComponent implements OnInit{
       this.formData.append('lastname',this.lastname?.value);
       this.formData.append('phonenumber',this.phonenumber?.value);
       this.formData.append('cv',this.selectedFile);
-
+      this.formData.append('imageUrl',this.mainImage.imageUrl)
+      this.formData.append('imageId',this.mainImage.imageId)
       if (this.name?.value=='' || this.email?.value=='' || this.password?.value=='' || this.firstname?.value=='' || this.lastname?.value=='' || this.phonenumber?.value==''){
         Swal.fire({
           icon: "error",
@@ -111,5 +116,30 @@ export class SignUpComponent implements OnInit{
     }
 
 }
+uploadImage(){
+  if(this.image){
+    this.userService.upload(this.image).subscribe(
+      (data) => {
+        this.mainImage = data;
+     //   this.mainImageAdded = !this.mainImageAdded;
+        console.log(data);
+      //  this.uploadingFile=false;
+      },
+      (err) => {
+        console.log(err);
 
+      }
+    );
+  }
+
+}
+deleteImage(imageId:String){
+  this.userService.deleteImage(imageId).subscribe((data)=>{
+    Swal.fire({
+      icon: 'warning',
+      title: 'Image Deleted',
+      text: "Image Deleted"
+  });
+  })
+}
 }

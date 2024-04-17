@@ -39,8 +39,8 @@ public class AuthService {
     private LocalDate creationDate;
     }*/
 
-    public ResponseEntity<Map<String, Object>> saveUser(UserCredential credential, String name , String email, role role , String password ,
-                                                        String firstname, String lastname, String phoneNumber, MultipartFile cv) throws IOException {
+    public ResponseEntity<Map<String, Object>>  saveUser(UserCredential credential, String name , String email, role role , String password ,
+                                                        String firstname, String lastname, String phoneNumber, MultipartFile cv , String imageUrl,String imageId) throws IOException {
         if(repository.findByEmail(email).isPresent()){
             Map<String, Object> response = new HashMap<>();
             response.put("message", "L'utilisateur existe déjà");
@@ -55,6 +55,8 @@ public class AuthService {
             credential.setLastname(lastname);
             credential.setPhoneNumber(phoneNumber);
             credential.setCreationDate(LocalDate.now());
+            credential.setImageUrl(imageUrl);
+            credential.setImageId(imageId);
             if (cv != null && !cv.isEmpty()) {
                 credential.setCv(cv.getBytes());
             }
