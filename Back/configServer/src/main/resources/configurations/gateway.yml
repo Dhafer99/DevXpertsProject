@@ -64,6 +64,7 @@ spring:
           uri: http://localhost:8080
           predicates:
             - Path=/auth/**
+            - Path=/authImage/**
           metadata:
             cors:
               allowedOrigins: "*"

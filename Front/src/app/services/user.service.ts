@@ -23,11 +23,11 @@ export class UserService {
 
   //----------------------Image THINGS ------------------------------
   deleteImage(id:String) : Observable<Image>{
-    return this.http.get<Image>(this.userUrl+"image/delete/"+id)
+    return this.http.get<Image>(this.userUrl+"Image/delete/"+id)
   }
    upload(image: File): Observable<any> {
     const formData = new FormData();
     formData.append('multipartFile', image);
-    return this.http.post<any>(this.userUrl+ "image/upload", formData);
+    return this.http.post<any>(this.userUrl+ "Image/upload", formData);
   }
 }

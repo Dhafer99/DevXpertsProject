@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/Controller/CloudinaryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/entity/Image.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/service/CloudinaryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/Controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/entity/UserCredential.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/entity/UserCredential.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/Controller/CloudinaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/Controller/CloudinaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/config/AuthConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/config/AuthConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/filter/RouteValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/filter/RouteValidator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +83,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthenticationServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ConfigServerApplication">
     <configuration name="AppointementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="AppointementAndClassroom" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.appointementandclassroom.AppointementApplication" />
@@ -261,7 +258,7 @@
       <workItem from="1713183494116" duration="107000" />
       <workItem from="1713183639406" duration="698000" />
       <workItem from="1713196237963" duration="8389000" />
-      <workItem from="1713309595727" duration="5206000" />
+      <workItem from="1713309595727" duration="9755000" />
     </task>
     <servers />
   </component>

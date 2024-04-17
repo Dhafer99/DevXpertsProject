@@ -34,6 +34,7 @@ public class CloudinaryController {
         if (bi == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
+        System.out.println("Entered Upload Image");
         Map result = cloudinaryService.upload(multipartFile);
         Image image = new Image((String) result.get("original_filename"),
                 (String) result.get("url"),

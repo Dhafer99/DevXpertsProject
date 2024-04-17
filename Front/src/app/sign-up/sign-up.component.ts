@@ -17,6 +17,7 @@ export class SignUpComponent implements OnInit{
   formData = new FormData();
   selectedFile!: File;
   user!:User;
+  imageMin: File | null = null;
   userRole!: string;
   mainImage: Image = new Image();
   image: File | null = null;
@@ -116,6 +117,18 @@ export class SignUpComponent implements OnInit{
     }
 
 }
+onFileChange(event: any) {
+  this.image = event.target.files[0];
+  this.imageMin = null;
+  const fr = new FileReader();
+  fr.onload = (evento: any) => {
+    this.imageMin = evento.target.result;
+  };
+  if (this.image) {
+    fr.readAsDataURL(this.image);
+  }
+}
+
 uploadImage(){
   if(this.image){
     this.userService.upload(this.image).subscribe(
