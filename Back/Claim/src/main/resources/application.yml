@@ -33,7 +33,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: salma.saidi@esprit.tn
-    password: "xafr ccgm lqqi dzal"
+    password: "lpoq fsrm byny cpqh"
     properties:
       mail:
         smtp:

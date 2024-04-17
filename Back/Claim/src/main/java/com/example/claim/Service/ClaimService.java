@@ -22,8 +22,8 @@ public interface ClaimService {
     public List<Claim> FindBySubject(ClaimType subject) ;
     public List<Claim> FindByStatus(String status) ;
     public Optional<Claim> FindByDate(String date) ;
-    public List<Claim> GetClaimsByLevelorder();
-    public List<Claim> GetClaimsByLevelorder2();
+    public List<Claim> GetClaimsByLevelorder(String status);
+    public List<Claim> GetClaimsByLevelorder2(String status);
     public ResponseEntity<HttpStatus> updateClaimDecision(long claimId);
 
 

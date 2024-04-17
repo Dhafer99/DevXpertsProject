@@ -64,16 +64,16 @@ public class ClaimServiceImpl implements ClaimService {
         } else {
             // Handle null description here if needed
         }
-          String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        if(fileName.contains(".."))
-        {
-            log.error("not a valid file");
-        }
-        try {
-            claim.setAttachment(Base64.getEncoder().encodeToString(file.getBytes()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//          String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+//        if(fileName.contains(".."))
+//        {
+//            log.error("not a valid file");
+//        }
+//        try {
+//            claim.setAttachment(Base64.getEncoder().encodeToString(file.getBytes()));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         // Setting the status to "pending" by default
         claim.setStatus("pending");
         // Setting the current date
@@ -166,12 +166,23 @@ public class ClaimServiceImpl implements ClaimService {
         return claimRepo.findByDate(date);
     }
 
-    public List<Claim> GetClaimsByLevelorder() {
-        return claimRepo.getClaimsByLevelorder();
+    public List<Claim> GetClaimsByLevelorder(String status) {
+        List<Claim> claims= claimRepo.getClaimsByLevelorder();
+        if(!status.equals("pending") && !status.equals("Treated")){
+            status="pending";
+        }
+        String finalStatus = status;
+        return claims.stream().filter((claim)-> claim.getStatus().equals(finalStatus)).toList();
     }
 
-    public List<Claim> GetClaimsByLevelorder2() {
-        return claimRepo.getClaimsByLevelorder2();
+    public List<Claim> GetClaimsByLevelorder2(String status) {
+        List<Claim> claims= claimRepo.getClaimsByLevelorder2();
+        if(!status.equals("pending") && !status.equals("Treated")){
+            status="pending";
+        }
+        String finalStatus = status;
+        return claims.stream().filter((claim)-> claim.getStatus().equals(finalStatus)).toList();
+
     }
 
     @Override

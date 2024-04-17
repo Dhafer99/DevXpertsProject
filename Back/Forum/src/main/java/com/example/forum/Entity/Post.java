@@ -26,6 +26,7 @@ public class Post {
     private String image;
     private String descriptionSubject;
     private int likesSubject;
+    private int dislikesSubject;
     private int commentsCount;
     @Temporal(TemporalType.DATE)
     private Date dateCreationPost;

@@ -10,8 +10,14 @@ export class ClaimService {
 
   constructor(private http: HttpClient) { }
 
+  public getClaimsListAsc(status:string): Observable<Claim[]> {
+    return this.http.get<Claim[]>('http://localhost:8222/api/Claims/levelAsc/'+status);
+  }
   public getClaimsList(): Observable<Claim[]> {
     return this.http.get<Claim[]>('http://localhost:8222/api/Claims');
+  }
+  public getClaimsListDesc(status:string): Observable<Claim[]> {
+    return this.http.get<Claim[]>('http://localhost:8222/api/Claims/levelDesc/'+status);
   }
 
   public addClaim(claim: Claim): Observable<Object> {

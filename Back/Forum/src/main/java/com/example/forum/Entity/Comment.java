@@ -18,7 +18,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idComment ;
     private int likesComment;
-    private boolean mostPertinentComment;
+    private int dislikesComment;
     private String textComment;
     @Temporal(TemporalType.DATE)
     private Date dateCreationComment;

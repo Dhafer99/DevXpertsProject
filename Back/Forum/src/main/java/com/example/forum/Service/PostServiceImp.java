@@ -34,7 +34,7 @@ public class PostServiceImp implements PostService {
     private final CommentRepository commentRepo;
     private final List<Consumer<Post>> listeners = new ArrayList<>();
     @Override
-    public void savePost(String title,String descriptionSubject,MultipartFile file,List<TagDto> postTags){
+    public Post savePost(String title,String descriptionSubject,MultipartFile file,List<Tag> postTags){
 
         Post p = new Post();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -55,20 +55,19 @@ public class PostServiceImp implements PostService {
 
         if (postTags != null && postTags.size() > 0) {
             postTags.forEach(tagDto -> {
-                Tag tagToAdd = null;
-                try {
-                    Tag existingTag = tagService.getTagByName(tagDto.getTagName());
+                Tag tagToAdd = new Tag();
+
+                    Tag existingTag = tagService.getTagByName(tagDto.getName());
                     if (existingTag != null) {
-                        tagToAdd = tagService.increaseTagUseCounter(tagDto.getTagName());
+                        tagToAdd = tagService.increaseTagUseCounter(tagDto);
+                       //      tagToAdd=   tagService.save(tagToAdd);
                     }
-                } catch (TagNotFoundException e) {
-                    tagToAdd = tagService.createNewTag(tagDto.getTagName());
-                }
+
                 p.getPostTags().add(tagToAdd);
             });
         }
 
-        postRepo.save(p);
+      return  postRepo.save(p);
         //  notifyNewPost(p);
     }
 

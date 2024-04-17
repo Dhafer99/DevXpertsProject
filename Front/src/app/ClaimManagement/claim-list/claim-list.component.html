@@ -3,8 +3,14 @@
         <div class="col-lg-6 mx-auto">
             <form class="search-form">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search here..." aria-label="Search"
-                        aria-describedby="search-button">
+                    <!-- <input type="text" class="form-control" placeholder="Search here..." aria-label="Search"
+                        aria-describedby="search-button"> -->
+                        <a class="dropdown-item" (click)="filterOrderChange('Asc')"  *ngIf="FilterOrder=='Desc'">Ascending order</a>
+                        <a class="dropdown-item" (click)="filterOrderChange('Desc')"  *ngIf="FilterOrder=='Desc'">Descending order</a>
+                        
+                        <a class="dropdown-item" (click)="filterStatusChange('pending')"  *ngIf="FilterStatus=='pending'">Treated Status</a>
+                        <a class="dropdown-item" (click)="filterStatusChange('treated')"  *ngIf="FilterStatus=='treated'">Treated Status</a>
+
                     <button class="btn btn-outline-secondary" type="button" id="search-button">
                         <i class="mdi mdi-magnify f-22"></i>
                     </button>

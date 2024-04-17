@@ -11,9 +11,20 @@ import Swal from 'sweetalert2';
   styleUrls: ['./claim-list.component.css']
 })
 export class ClaimListComponent {
+  filterOrderChange(arg0: string) {
+  this.FilterOrder=arg0;
+  this.getClaims();
+}
+filterStatusChange // For example, you may want to refresh the list of claims
+(arg0: string) {
+  this.FilterStatus=arg0;
+  this.getClaims();
+}
+
   claims: Claim[] = [];
   claimToUpdate!: Claim;
-
+  FilterStatus='pending'
+  FilterOrder='Asc'
   constructor(
     private service: ClaimService,
     private router: Router,
@@ -24,14 +35,27 @@ export class ClaimListComponent {
   }
 
   private getClaims() {
-    this.service.getClaimsList().subscribe(
-      (response: Claim[]) => {
-        this.claims = response;
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
+    if (this.FilterOrder=="Asc")
+      {
+
+        this.service.getClaimsListAsc(this.FilterStatus).subscribe(
+          (response: Claim[]) => {
+            this.claims = response;
+          },
+          (error: HttpErrorResponse) => {
+            alert(error.message);
+          }
+        );
+      }else{
+        this.service.getClaimsListDesc(this.FilterStatus).subscribe(
+          (response: Claim[]) => {
+            this.claims = response;
+          },
+          (error: HttpErrorResponse) => {
+            alert(error.message);
+          }
+        );
       }
-    );
   }
 
   deleteClaim(idClaim: number): void {

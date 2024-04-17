@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface PostService {
 
-    void savePost(String title,String descriptionSubject, MultipartFile file,List<TagDto> postTags);
+    Post savePost(String title,String descriptionSubject, MultipartFile file,List<Tag> postTags);
     List<Post> findAllPosts();
     Post retrievePost(Long postId);
     void removePost(Long postId);

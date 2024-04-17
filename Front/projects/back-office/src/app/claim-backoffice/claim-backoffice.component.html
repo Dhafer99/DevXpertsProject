@@ -1,12 +1,10 @@
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+<br>
+<br>
+<br>
+<br>
+<br>
+v
+
 
 
 <div class="container">
@@ -19,7 +17,14 @@
 
                 <div class="row mb-3">
                     <div class="col-xl-6">
-                      <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" (input)="search()">
+                      <!-- <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" (input)="search()"> -->
+                      <a class="dropdown-item" (click)="defaultLoad()" >Default</a>
+                      <a class="dropdown-item" (click)="filterOrderChange('Asc')"  *ngIf="FilterOrder=='Desc'">Ascending order</a>
+                      <a class="dropdown-item" (click)="filterOrderChange('Desc')"  *ngIf="FilterOrder=='Asc'">Descending order</a>
+                      
+                      <a class="dropdown-item" (click)="filterStatusChange('Treated')"  *ngIf="FilterStatus=='pending'">Treated Status</a>
+                      <a class="dropdown-item" (click)="filterStatusChange('pending')"  *ngIf="FilterStatus=='Treated'">Pending Status</a>
+
                     </div>
                     <div class="col-xl-6">
                       <mat-form-field appearance="fill">
@@ -79,9 +84,12 @@
                                 <td>{{claim.title}}</td>
                                 <td>{{claim.systemProblem}}</td>
                                 <td>{{claim.serviceProblem}}</td>
-                                <td><span class="btn bgl-danger text-danger btn-rounded btn-sm">{{claim.status}}</span></td>
+                                <td>
+                                    <span class="btn bgl-danger text-danger btn-rounded btn-sm" *ngIf="claim.status=='pending'" >{{claim.status}}</span>
+                                    <span class="btn bgl-success text-success btn-rounded btn-sm"  >{{claim.status}}</span>
+                                </td>
                                 <td style="overflow: visible;">
-                                    <div class="dropdown ml-auto">
+                                    <!-- <div class="dropdown ml-auto">
                                         <div class="btn-link" data-bs-toggle="dropdown">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M11.0005 12C11.0005 12.5523 11.4482 13 12.0005 13C12.5528 13 13.0005 12.5523 13.0005 12C13.0005 11.4477 12.5528 11 12.0005 11C11.4482 11 11.0005 11.4477 11.0005 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -97,7 +105,15 @@
 														<i class="far fa-times-circle me-1 text-danger"></i>Reject claim
 													  </a>
 												</div>
-                                    </div>
+                                    </div> -->
+                                    <div *ngIf="claim.status=='pending'">
+                                        <a class="dropdown-item text-black" href="javascript:void(0);" (click)="updateClaimDecision(claim.idClaim)">
+											<i class="far fa-check-circle me-1 text-success"></i>Accept claim
+										</a>
+                                        <a class="dropdown-item text-black" href="javascript:void(0);" (click)="rejectClaim(claim.idClaim)">
+                                            <i class="far fa-times-circle me-1 text-danger"></i>Reject claim
+                                          </a>
+                                                                            </div>
                                 </td>
                             </tr>
                         </tbody>

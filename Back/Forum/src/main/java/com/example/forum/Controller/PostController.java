@@ -31,13 +31,11 @@ public class PostController {
     public void save(@RequestParam ("title") String title,
                      @RequestParam ("descriptionSubject") String descriptionSubject,
                      @RequestParam("file") MultipartFile file,
-                     @RequestParam("postTags") Optional <String> postTags
+                     @RequestParam("postTags") List<Tag> postTags
                      ) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
 
-        List<TagDto> postTagsToAdd = postTags.isEmpty() ? null :
-                mapper.readValue(postTags.get(), new TypeReference<>() {});
-        service.savePost(title,descriptionSubject,file, postTagsToAdd);
+        service.savePost(title,descriptionSubject,file, postTags);
     }
     @GetMapping("/{tagName}")
     public ResponseEntity<?> getPostsByTag(@PathVariable("tagName") String tagName,

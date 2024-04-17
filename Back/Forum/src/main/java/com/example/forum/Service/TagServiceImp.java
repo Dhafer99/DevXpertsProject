@@ -20,6 +20,11 @@ public class TagServiceImp  implements TagService {
     private final TagRepository tagRepository;
 
     @Override
+    public Tag save(Tag tag) {
+        return tagRepository.save(tag);
+    }
+
+    @Override
     public Tag getTagById(Long id) {
         return tagRepository.findById(id).orElseThrow(TagNotFoundException::new);
     }
@@ -48,11 +53,11 @@ public class TagServiceImp  implements TagService {
     }
 
     @Override
-    public Tag increaseTagUseCounter(String name) {
-        Tag targetTag = getTagByName(name);
-        targetTag.setTagUseCounter(targetTag.getTagUseCounter()+1);
-        targetTag.setDateLastModified(new Date());
-        return tagRepository.save(targetTag);
+    public Tag increaseTagUseCounter(Tag tag) {
+
+        tag.setTagUseCounter(tag.getTagUseCounter()+1);
+        tag.setDateLastModified(new Date());
+        return tagRepository.save(tag);
     }
 
     @Override

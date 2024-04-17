@@ -8,18 +8,30 @@
     </header>
   
     <mat-form-field appearance="fill" style="width: 100%">
-      <input matInput [(ngModel)]="post.title"  placeholder="Title..." style="width: 100%">
       <mat-icon matSuffix>title</mat-icon>
+      <input matInput [(ngModel)]="post.title"  placeholder="Title..." style="width: 100%">
     </mat-form-field>
   
     <mat-form-field appearance="fill" style="width: 100%">
-      <textarea matInput [(ngModel)]="post.descriptionSubject" placeholder="Description" rows="4" style="width: 100%"></textarea>
       <mat-icon matSuffix>description</mat-icon>
+      <textarea matInput [(ngModel)]="post.descriptionSubject" placeholder="Description" rows="4" style="width: 100%"></textarea>
     </mat-form-field>
-  
+
+    <mat-icon matSuffix>Tag</mat-icon>
+    <div class="blog-side-box mb-5 mb-lg-0">
+
+    <div class="items mt-4">
+    <div class="tag-box mt-4">
+      <span class="badge" >#nft</span>
+      </div>
+      </div>
+      </div>
+      <input matInput [(ngModel)]="post.title"  placeholder="Title..." style="width: 100%">
+
     <div appearance="fill" style="width: 80%">
-      <input  type="file" placeholder="Upload image "  (change)="onFileSelected($event)" style="width: 105%">
+      <input type="file" placeholder="Upload image" (change)="onFileSelected($event)" style="width: 105%" accept="image/jpeg, image/png">
     </div>
+
 
   </mat-dialog-content>
   

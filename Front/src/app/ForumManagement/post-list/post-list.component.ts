@@ -243,4 +243,8 @@ export class PostListComponent implements OnInit {
     );
     this.exampleModal.hide();
   }*/
+
+  muadz(post:Post){
+    
+  }
 }

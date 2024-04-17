@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { JwtClientService } from '../services/jwt-client.service';
 import { ServicebackService } from '../services/serviceback.service';
+import { JwtClientService } from '../Services/jwt-client.service';
 
 @Component({
   selector: 'app-authentification',

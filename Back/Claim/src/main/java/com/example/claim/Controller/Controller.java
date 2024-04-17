@@ -66,15 +66,15 @@ public class Controller {
         return service.FindByStatus(status);
     }
 
-    @GetMapping("/levelAsc")
-    public List<Claim> GetClaimsByLevelorder() {
-        return service.GetClaimsByLevelorder();
+    @GetMapping("/levelAsc/{status}")
+    public List<Claim> GetClaimsByLevelorder(@PathVariable("status") String status) {
+        return service.GetClaimsByLevelorder(status);
 
     }
 
-    @GetMapping("/levelDesc")
-    public List<Claim> GetClaimsByLevelorder2() {
-        return service.GetClaimsByLevelorder2();
+    @GetMapping("/levelDesc/{status}")
+    public List<Claim> GetClaimsByLevelorder2(@PathVariable("status") String status) {
+        return service.GetClaimsByLevelorder2( status);
     }
 
     @PutMapping("/decision/{claimId}")
