@@ -8,7 +8,9 @@ import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { formatDate } from '@angular/common'
-import { DatePipe } from '@angular/common';;
+import { DatePipe } from '@angular/common';import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
+;
 
 @Component({
   selector: 'app-post-detail',
@@ -27,14 +29,16 @@ export class PostDetailComponent implements OnInit {
   commentaire:string=''
   P!: Post;
   commentToUpdate!: Comment;
-
+  user:User
   constructor(
     private router: ActivatedRoute,
     private service: ForumService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private userservice:UserService,
   ){this.postId = this.router.snapshot.params['id'];}
 
   ngOnInit() {
+    this.user=JSON.parse(localStorage.getItem("user"))
     this.getPost();
     this.loadComments();
   }
@@ -44,6 +48,12 @@ export class PostDetailComponent implements OnInit {
     console.log("IdPost"+ IdPost);
    this.service.getPost(IdPost).subscribe((data)=>{
     console.log(data,"AAA")
+      data.comment.forEach(comment => {
+        this.userservice.getUser(comment.userId.toString()).subscribe(response=>{
+          console.log(response)
+          comment.fullUser=response
+        })
+      });
     this.post=data;
    });
   }
@@ -80,7 +90,7 @@ export class PostDetailComponent implements OnInit {
     {
 
       this.comment.textComment=this.commentaire
-      
+      this.comment.userId=this.user.id
       // Set the dateCreationComment property to the current date
    // this.comment.dateCreationComment = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!; // Format the date as needed
 
@@ -89,7 +99,12 @@ export class PostDetailComponent implements OnInit {
       .subscribe(
         (data) => {
           // location.reload(); 
-          this.post.comment.push(data)
+          this.userservice.getUser(data.userId.toString()).subscribe(response=>{
+            console.log(response)
+            data.fullUser=response
+            this.post.comment.push(data)
+          })
+         
           Swal.fire({
             position: "top-end",
             icon: "success",

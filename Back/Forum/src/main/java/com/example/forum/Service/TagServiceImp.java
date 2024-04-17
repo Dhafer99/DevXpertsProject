@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -21,6 +22,7 @@ public class TagServiceImp  implements TagService {
 
     @Override
     public Tag save(Tag tag) {
+
         return tagRepository.save(tag);
     }
 
@@ -30,8 +32,25 @@ public class TagServiceImp  implements TagService {
     }
 
     @Override
+    public Tag getTagById(String id) {
+        long tagId = Long.parseLong(id); // Parsing id to long
+        return tagRepository.findById(tagId).orElseThrow(TagNotFoundException::new);    }
+
+    @Override
     public Tag getTagByName(String name) {
-        return tagRepository.findTagByName(name).orElseThrow(TagNotFoundException::new);
+        Optional<Tag> optionalTag = tagRepository.findTagByName(name);
+
+        Tag tag = optionalTag.orElseGet(() -> {
+            Tag newTag = new Tag();
+            newTag.setName(name);
+            newTag.setTagUseCounter(0);
+            System.out.println(newTag.getTagUseCounter());
+             tagRepository.save(newTag);
+            System.out.println(newTag.getTagUseCounter());
+             return  newTag;
+        });
+
+        return tag;
     }
 
     @Override

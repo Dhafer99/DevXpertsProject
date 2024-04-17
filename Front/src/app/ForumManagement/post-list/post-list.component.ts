@@ -7,6 +7,9 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PostFormComponent } from 'src/app/ForumManagement/post-form/post-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
+import { Tag } from 'src/app/models/tag';
+import { Observable, map, startWith } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 
 
@@ -25,19 +28,32 @@ export class PostListComponent implements OnInit {
   form : boolean = false;
   currentPage = 0;
   pageSize = 4;
-  
+  tagList:Tag[]=[]
   @ViewChild('exampleModal') exampleModal: any;
 
   postToUpdate!: Post 
+  myControl = new FormControl();
 
+  options: string[] = ['Angular', 'React', 'Vue', 'JavaScript', 'TypeScript'];
+  filteredOptions: Observable<string[]>;
   constructor(
     private router: Router,
     private service: ForumService,
     private matDialog:MatDialog,
     private modalService: NgbModal,
     
-  ){}
-
+  ){    this.filteredOptions = this.myControl.valueChanges.pipe(
+    startWith(''),
+    map(value => this._filter(value))
+  );}
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    if (!this.options.some(option => option.toLowerCase() === value.toLowerCase())) {
+      // Add the entered value to the options array
+      this.options.push(value);
+    }
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
   ngOnInit(): void {
    // this.getPosts();
    console.log('ngOnInit called');
@@ -72,7 +88,18 @@ export class PostListComponent implements OnInit {
       }
     );
   }
-
+  onOptionSelected(event: any) {
+    // Custom function to execute when an option is selected
+    console.log('Selected option:', event.option.value);
+   this.service.findTagByName(event.option.value).subscribe((data)=>{
+    this.tagList.push(data)
+    this.service.findbyTags(this.tagList).subscribe((Response)=>{
+      this.posts=Response;
+      
+      console.log(Response)
+    })
+   })
+  }
   nextPage(): void {
     this.currentPage++;
     this.loadPosts();
@@ -244,7 +271,7 @@ export class PostListComponent implements OnInit {
     this.exampleModal.hide();
   }*/
 
-  muadz(post:Post){
+  searchForTag(tag:Tag){
     
   }
 }

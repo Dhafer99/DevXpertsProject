@@ -34,9 +34,10 @@ public class PostServiceImp implements PostService {
     private final CommentRepository commentRepo;
     private final List<Consumer<Post>> listeners = new ArrayList<>();
     @Override
-    public Post savePost(String title,String descriptionSubject,MultipartFile file,List<Tag> postTags){
+    public Post savePost(String title,String descriptionSubject,MultipartFile file,List<Tag> postTags,String userId){
 
         Post p = new Post();
+        p.setUserId(Integer.parseInt(userId));
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         if(fileName.contains(".."))
         {
@@ -144,6 +145,12 @@ public class PostServiceImp implements PostService {
         Post a = postRepo.findById(id).orElse(new Post());
         int nb = a.getLikesSubject() -1 ;
         return postRepo.addLike(nb , id) ; }
+
+    @Override
+    public List<Post> findByTags(List<Tag> tags) {
+
+        return  postRepo.findPostsByTags(tags) ;
+    }
 
     @Override
     public PostResponse getPostResponseById(Long postId) {

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface PostService {
 
-    Post savePost(String title,String descriptionSubject, MultipartFile file,List<Tag> postTags);
+    Post savePost(String title,String descriptionSubject, MultipartFile file,List<Tag> postTags,String userId);
     List<Post> findAllPosts();
     Post retrievePost(Long postId);
     void removePost(Long postId);
@@ -18,6 +18,7 @@ public interface PostService {
 
     Post likePost(long id) ;
      int dislike(long id);
+     List<Post> findByTags(List<Tag> tags);
     List<PostResponse> getPostByTagPaginate(Tag tag, Integer page, Integer size);
     public PostResponse getPostResponseById(Long postId);
 

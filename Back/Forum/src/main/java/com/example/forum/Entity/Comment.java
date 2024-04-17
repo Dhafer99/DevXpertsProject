@@ -19,6 +19,7 @@ public class Comment {
     private long idComment ;
     private int likesComment;
     private int dislikesComment;
+    private boolean mostPertinentComment;
     private String textComment;
     @Temporal(TemporalType.DATE)
     private Date dateCreationComment;

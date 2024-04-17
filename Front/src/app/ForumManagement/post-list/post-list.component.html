@@ -36,6 +36,23 @@
 
 
             <div class="row mt-5">
+                <mat-form-field>
+                    <input type="text" placeholder="Choose an option" matInput [formControl]="myControl" [matAutocomplete]="auto" />
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+                      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{ option }}
+                      </mat-option>
+                      
+                    </mat-autocomplete>
+                  </mat-form-field>
+                  <div class="blog-side-box mb-5 mb-lg-0">
+
+                    <div class="items mt-4">
+                    <div class="tag-box mt-4">
+                        <span class="badge" *ngFor="let tag of tagList" (click)="searchForTag(tag)">#{{tag.name}}</span>
+                        </div>
+                        </div>
+                        </div>
                 <div class="col-lg-8 order-2 order-lg-1" >
                     <div class="row">
                         <div class="col-lg-6" *ngFor="let post of posts">
@@ -48,6 +65,14 @@
                                         </span>
                                     </div>
                                 </div>
+                                <div class="blog-side-box mb-5 mb-lg-0">
+
+                                <div class="items mt-4">
+                                <div class="tag-box mt-4">
+                                    <span class="badge" *ngFor="let tag of post.postTags" (click)="searchForTag(tag)">#{{tag.name}}</span>
+                                    </div>
+                                    </div>
+                                    </div>
                                 <style>
                                     .blog-content h5 a,
                                     .blog-content p a {
@@ -61,6 +86,7 @@
                                 <div class="blog-content mt-3" [routerLink]="['/post-detail', post.idPost]">
                                     <h5 class="fw-bold"> <a (click)="navigateToPost(post.idPost)">{{post.title}} </a></h5>
                                     <p class="text-muted f-15 mb-3"><a (click)="navigateToPost(post.idPost)">{{post.descriptionSubject}}</a></p>
+                                    
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <div class="d-flex align-items-center">
@@ -71,6 +97,7 @@
                                             </div>
 
                                         </div>
+                                
                                         <div class="flex-grow-1 ms-3">
                                             <h6 class="text-blue mb-0">Mamie Barnett</h6>
                                             <p class="mb-0 f-14 text-muted">VERIFIED WRITER</p>

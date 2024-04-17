@@ -60,6 +60,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    MatAutocompleteModule,
+  MatInputModule,
     NgbModule,
     //QRCodeModule,
     //ZXingScannerModule,

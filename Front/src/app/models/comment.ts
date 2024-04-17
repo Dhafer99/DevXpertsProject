@@ -1,4 +1,5 @@
 import {Post} from './post';
+import { User } from './user';
 
 export class Comment{
   idComment!: number;
@@ -7,6 +8,6 @@ export class Comment{
   textComment!: string;
   dateCreationComment!: string ;
   post!: Post;
- 
-
+  userId:number
+  fullUser:User
 }

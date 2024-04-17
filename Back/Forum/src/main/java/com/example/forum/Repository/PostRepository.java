@@ -15,4 +15,6 @@ public interface PostRepository extends JpaRepository<Post,Long> {
     @Query(value="UPDATE post p SET p.likesSubject=:nb WHERE p.idPost=:id",nativeQuery= true)
     int addLike(@Param("nb") int nb , @Param("id") long id);
     List<Post> findPostsByPostTags(Tag tag, Pageable pageable);
-}
+
+    @Query("SELECT p FROM Post p JOIN p.postTags t WHERE t IN :tags GROUP BY p ")
+    List<Post> findPostsByTags(@Param("tags") List<Tag> tags);}

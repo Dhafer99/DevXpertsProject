@@ -150,13 +150,13 @@
                                     </div>
                                     <div class="profile-content ms-3">
                                         <div class="side-content d-flex">
-                                            <h6 class="fw-bold mb-0">@Mamie_Barnett</h6>
+                                            <h6 class="fw-bold mb-0">@ {{c?.fullUser?.email}} </h6>
                                             <p class="mb-0 ms-4 text-muted"><i
                                                     class="mdi mdi-clock-outline f-18 me-2 align-middle"></i>{{c.dateCreationComment}}
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="actions">
+                                    <div class="actions" *ngIf="c.userId == user.id">
                                         <!-- Edit icon -->
                                         <button mat-icon-button aria-label="Edit comment"(click)="edit(c,postId)" class="edit-icon-container">
                                             <mat-icon>edit</mat-icon>

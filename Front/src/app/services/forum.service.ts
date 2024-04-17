@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Post} from '../models/post';
 import {Comment} from '../models/comment';
+import { Tag } from '../models/tag';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,13 @@ export class ForumService {
 
   dislikePost(postId: number): Observable<void> {
     return this.http.put<void>(`http://localhost:8222/api/Posts/${postId}/dislike`, {});
+  }
+
+  findTagByName(tagname: string): Observable<Tag> {
+    return this.http.get<Tag>("http://localhost:8222/api/Posts/findTagByName/"+tagname);
+  }
+  findbyTags(tags:Tag[]): Observable<Post[]> {
+    return this.http.post<Post[]>("http://localhost:8222/api/Posts/findByTags",tags);
   }
  /* public dislike(idPost: number, P: Post): any {
     return this.http.put(`http://localhost:8222/api/Posts/dislikeSubject-id/${idPost}`, P);

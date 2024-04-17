@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 @RestController
 @RequestMapping("/api/Posts")
@@ -31,11 +34,15 @@ public class PostController {
     public void save(@RequestParam ("title") String title,
                      @RequestParam ("descriptionSubject") String descriptionSubject,
                      @RequestParam("file") MultipartFile file,
-                     @RequestParam("postTags") List<Tag> postTags
+                     @RequestParam("postTags") String postTags,
+                     @RequestParam("userId") String userId
                      ) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-
-        service.savePost(title,descriptionSubject,file, postTags);
+        String[] tagIds = postTags.split("\\s+"); // Split the postTags string by spaces
+        List<Tag> listPostTag = Arrays.stream(tagIds)
+                .map(tagId -> tagService.getTagById(tagId)) // Assuming service.findTagById(tagId) fetches a tag by its ID
+                .filter(tag -> tag != null) // Filter out null tags (in case a tag with the given ID doesn't exist)
+                .collect(Collectors.toList());        service.savePost(title,descriptionSubject,file, listPostTag,userId);
     }
     @GetMapping("/{tagName}")
     public ResponseEntity<?> getPostsByTag(@PathVariable("tagName") String tagName,
@@ -110,4 +117,14 @@ public class PostController {
 
     @PutMapping("/dilikeSubject-id")
     public void dislike(@RequestParam("id") long id){service.dislike(id);}
+
+    @GetMapping("/findTagByName/{tagname}")
+    public Tag findTagByName(@PathVariable("tagname") String tagname)
+    {
+        return tagService.getTagByName(tagname);
+    }
+    @PostMapping("/findByTags")
+    public List<Post> findByTags(@RequestBody List<Tag> taglist){
+        return service.findByTags(taglist);
+    }
 }
