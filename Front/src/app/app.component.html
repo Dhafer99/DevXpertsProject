@@ -11,9 +11,7 @@
     <div class="container-fluid custom-container">
         <a class="navbar-brand logo f-30 text-dark fw-bold" href="index.html">
 
-          <img src="../assets/images/logoEsprit.png" class="logo-dark" alt="" height="40">
-            <img src="../assets/images/logoEsprit.png" class="logo-dark" alt="" height="40">
-            <img src="../assets/images/logoEsprit.png" class="logo-light" alt="" height="40">
+          <img src="../assets/images/logoEsprit.png" class="logo-dark" alt="" height="80">
 
         </a>
         <div>
@@ -27,41 +25,58 @@
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" href="index.html" id="homedrop" role="button"
                         data-bs-toggle="dropdown">
-                        Home
+                        Wael
                     </a>
                     <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
                         <li><a class="dropdown-item" href="index.html"><i
-                                    class="mdi mdi-home-outline f-20 me-2 align-middle"></i>Home Page 1</a></li>
+                                    class="mdi mdi-home-outline f-20 me-2 align-middle"></i>Event</a></li>
                         <li><a class="dropdown-item" href="index-3.html"><i
                                     class="mdi mdi-home-modern f-20 me-2 align-middle"></i>Home Page 2</a></li>
                         <li><a class="dropdown-item" href="index-4.html"><i
                                     class="mdi mdi-home-variant f-20 me-2 align-middle"></i>Home Page 3</a></li>
                     </ul>
                 </li>
-  
-                <li class="nav-item">
 
-                    <a href="http://localhost:4201/myRooms/17/1" class="nav-link">My Room</a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/exhibitor/front" class="nav-link">Exhibitor Reservation</a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/supplier/front" class="nav-link">Supplier Requests</a>
 
+                <li class="nav-item dropdown dropdown-hover">
+                    <a class="nav-link dropdown-toggle" href="index.html" id="homedrop" role="button" data-bs-toggle="dropdown">
+                        Dhafer
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                        <li><a class="dropdown-item" routerLink="/supplier/front"><i
+                                    class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>Supplier Requests</a></li>
+                        <li><a class="dropdown-item" routerLink="/exhibitor/front"><i
+                                    class="mdi mdi-account-edit f-20 me-2 align-middle"></i>Exhibitor Reservation</a></li>
+                    </ul>
                 </li>
-  
-                <li class="nav-item">
-                    <a href="http://localhost:4201/ListPacks" class="nav-link">Available packs</a>
+
+
+                <li class="nav-item dropdown dropdown-hover">
+                    <a class="nav-link dropdown-toggle"  id="homedrop" role="button" data-bs-toggle="dropdown">
+                        Eya
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                        <li><a class="dropdown-item" href="http://localhost:4201/ListPacks"><i
+                                    class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>Available packs</a></li>
+                        <li><a class="dropdown-item" href="http://localhost:4201/myRooms/17/1" ><i
+                                    class="mdi mdi-account-edit f-20 me-2 align-middle"></i>My Room</a></li>
+                    </ul>
                 </li>
+
+
                 <!--end dropdown-->
   
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="pagedropdown" role="button"
                         data-bs-toggle="dropdown">
-                        Pages
+                        Salma
                     </a>
-
+                    <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                        <li><a class="dropdown-item" href="profile.html"><i
+                                    class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>All quiz</a></li>
+                        <li><a class="dropdown-item" href="edit-profile.html"><i
+                                    class="mdi mdi-account-edit f-20 me-2 align-middle"></i>Calendrier</a></li>
+                    </ul>
   
                 </li>
                 <!--end dropdown-->
@@ -70,7 +85,19 @@
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" href="index.html" id="homedrop" role="button"
                         data-bs-toggle="dropdown">
-                        Profile
+                        Fares
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                        <li><a class="dropdown-item" href="profile.html"><i
+                                    class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>All quiz</a></li>
+                        <li><a class="dropdown-item" href="edit-profile.html"><i
+                                    class="mdi mdi-account-edit f-20 me-2 align-middle"></i>Calendrier</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown dropdown-hover">
+                    <a class="nav-link dropdown-toggle" routerLink="/offers" id="homedrop" role="button" data-bs-toggle="dropdown">
+                        Offers
                     </a>
                     <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
                         <li><a class="dropdown-item" href="profile.html"><i
@@ -79,12 +106,7 @@
                                     class="mdi mdi-account-edit f-20 me-2 align-middle"></i>Edit profile</a></li>
                     </ul>
                 </li>
-  
-  
-  
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/offers">Offers</a>
-                </li>
+
                 <!--end dropdown-->
 
                 <li class="nav-item">

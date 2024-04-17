@@ -33,7 +33,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { AuthGuard } from './auth.guard';
 import { MessagestestComponent } from './messagestest/messagestest.component';
 import { NewsupplierfrontComponent } from './newsupplierfront/newsupplierfront.component';
 import { ExhibitorReservationComponent } from './exhibitor-reservation/exhibitor-reservation.component';
