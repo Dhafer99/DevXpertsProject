@@ -20,6 +20,7 @@ import { Room } from 'projects/back-office/src/app/models/room';
 import { PackServiceService } from 'projects/back-office/src/app/services/pack-service.service';
 import { RoomServiceService } from 'projects/back-office/src/app/services/room-service.service';
 import { WebSocketService } from 'src/app/services/websocketservice';
+import { setInterval } from 'stompjs';
 
 import Swal from 'sweetalert2';
 // Déclarez jQuery comme variable externe
@@ -53,42 +54,76 @@ export class RouletteComponent implements OnInit {
   seed: any[] = [];
   isSpinning: boolean = false;
   spinNumber = 0;
+  role: any;
   testSocket() {
     console.log('RESULTS FROM BACK');
-   // console.log(this.webSocketService.getResults(this.id));
+    // console.log(this.webSocketService.getResults(this.id));
   }
-
-  ngOnInit(): void {
+  number = 0;
+  varInterval: any;
+  ngOnInit() :void  {
     this.getPack();
+
+    this.role = localStorage.getItem('role');
+    //this.idToLandOn =this.seed[Math.floor(Math.random() * this.seed.length)];
+     if (this.role == 'admin') {
+      this.roomService.getRoomPackages(this.id).subscribe(
+        (data: any) => {
+          console.log(data);
+          this.packNames = data;
+          this.seed = this.packNames.map((pack) => pack.idPack);
+
+          this.idToLandOn =
+            this.seed[Math.floor(Math.random() * this.seed.length)];
+          this.webSocketService
+            .saveRandomNumber(this.id, this.idToLandOn)
+            .subscribe(() => {});
+          console.log('test anas');
+          console.log(this.number);
+        },
+        (error) => {
+          console.error(
+            'Erreur lors de la récupération des noms de pack :',
+            error
+          );
+        }
+      );
+      } else {
+      this.webSocketService.getDataPolling(1000).subscribe((res) => {
+        console.log(res.randomValue, 'khraa');
+        this.idToLandOn = res.randomValue;
+      });
+      // Appel toutes les 1000 millisecondes (1 seconde
+    } 
+
     this.id = this.activate.snapshot.params['id'];
- 
-   // this.idToLandOn= 1
-   // this.webSocketService.getDataPolling(2000,this.id).subscribe(data => {
-    
-   // });
-   /*  this.webSocketService.saveRandomNumber(this.id).subscribe(()=>{})
+
+    // this.idToLandOn= 1
+    // this.webSocketService.getDataPolling(2000,this.id).subscribe(data => {
+
+    // });
+    /*  this.webSocketService.saveRandomNumber(this.id).subscribe(()=>{})
     this.webSocketService.GetRandomIndex().subscribe((res)=>{
       console.log("eeeeeeeeeeeeeee")
       console.log(res)
       this.idToLandOn = res ;
     }) */
-   /*  this.idToLandOn= data;
+    /*  this.idToLandOn= data;
      console.log(data)
     });*/
 
-    
-  this.webSocketService.connectToRouletteSocket(this.id);
-   /* this.webSocketService.getListObservable().subscribe((list) => {
+    //this.webSocketService.connectToRouletteSocket(this.id);
+    /* this.webSocketService.getListObservable().subscribe((list) => {
       console.log('Test Observable Object TAB ');
       console.log(list);
     });*/
 
-    this.webSocketService.getMessageSubject().subscribe((messageObject) => {
+   /* this.webSocketService.getMessageSubject().subscribe((messageObject) => {
       const parsedMessage = {
         result: messageObject.result,
         spin: messageObject.spin,
       };
-      this.idToLandOn = messageObject.result;
+      //this.idToLandOn = messageObject.result;
       console.log('teest eya ');
       console.log(this.idToLandOn);
 
@@ -105,7 +140,7 @@ export class RouletteComponent implements OnInit {
 
       //  }
     });
-
+*/
     // this.webSocketService.getResults(this.id);
     this.webSocketService.connectToStartRouletteSocket();
 
@@ -114,11 +149,10 @@ export class RouletteComponent implements OnInit {
       .subscribe((messageObject) => {
         console.log('MESSAGE OBJECT');
         console.log(messageObject);
-       
-        this.wheel.spin();
+        //this.idToLandOn = this.wheel.spin();
 
         // if(parsedMessage)
-        // this.wheel.spin();
+         this.wheel.spin();
 
         // if (parsedMessage.spin === true) {
         // Spin the wheel when spin is true
@@ -166,9 +200,9 @@ export class RouletteComponent implements OnInit {
         this.packNames = data;
         this.seed = this.packNames.map((pack) => pack.idPack);
 
-      // this.idToLandOn =
-          // this.seed[Math.floor(Math.random() * this.seed.length)];
-        
+         /* this.idToLandOn =
+        this.seed[Math.floor(Math.random() * this.seed.length)];
+         */
         console.log('ID TO LAND ON');
         console.log(this.idToLandOn);
 
@@ -195,13 +229,15 @@ export class RouletteComponent implements OnInit {
 
   reset() {
     this.wheel.reset();
-   // this.idToLandOn =
+    // this.idToLandOn =
     //this.seed[Math.floor(Math.random() * this.seed.length)];
   }
   before() {
-    
-   // alert('Your wheel is about to spin');
-  
+    // alert('Your wheel is about to spin');
+    console.log("before")
+    this.idToLandOn =
+    this.seed[Math.floor(Math.random() * this.seed.length)];
+    console.log("AJAJAJAJJA",this.idToLandOn)
   }
   stoppedAt: number = -1;
 
@@ -209,17 +245,35 @@ export class RouletteComponent implements OnInit {
     this.spinNumber = this.spinNumber + 1;
    
     // this.resultWinner.splice(0, this.resultWinner.length);
-    this.reset();
+    //this.reset();
+     this.roomService.getRoomPackages(this.id).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.packNames = data;
+        this.seed = this.packNames.map((pack) => pack.idPack);
 
- 
-      
- //   this.webSocketService.getResults(this.id);
+        this.idToLandOn =
+          this.seed[Math.floor(Math.random() * this.seed.length)];
+        this.webSocketService
+          .saveRandomNumber(this.id, this.idToLandOn)
+          .subscribe(() => {});
+        console.log('test anas');
+        console.log(this.number);
+      },
+      (error) => {
+        console.error(
+          'Erreur lors de la récupération des noms de pack :',
+          error
+        );
+      }
+    ); 
+    //   this.webSocketService.getResults(this.id);
     this.webSocketService.startRoulette();
-   
+
     //
     //this.socket.emit('startRoulette', this.id);
 
-    // this.wheel.spin();
+     this.wheel.spin();
 
     // if (parsedMessage.spin === true) {
     // Spin the wheel when spin is true
@@ -253,8 +307,7 @@ export class RouletteComponent implements OnInit {
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title:
-        'campany x with id win pack ' + this.wheel.idToLandOn,
+      title: 'campany x with id win pack ' + this.wheel.idToLandOn,
       showConfirmButton: false,
       timer: 2500,
     });

@@ -15,6 +15,7 @@ import tn.esprit.auction.Services.EnchereInterface;
 import tn.esprit.auction.Services.RoomInterface;
 import tn.esprit.auction.Services.RouletteInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -157,8 +158,8 @@ public class RoomController {
     }*/
 
     /***************************  ROULETTE WEB SOCKET  */
-    @PutMapping("/SendRandomIndex/{idRoom}")
-    public void SendRandomIndex( @PathVariable("idRoom") long idRoom) {
+    @PutMapping("/SendRandomIndex/{idRoom}/{randomNumber}")
+    public void SendRandomIndex( @PathVariable("idRoom") long idRoom,@PathVariable("randomNumber") int randomNumber) {
         Random random = new Random();
         RandomRoulette roulette = new RandomRoulette();
         roulette.setId(1l);
@@ -170,7 +171,7 @@ public class RoomController {
             {
 
                 int randomIndex = random.nextInt(roomInterface.getRoomPacks(idRoom).size());
-                roulette.setRandomValue(randomIndex);
+                roulette.setRandomValue(randomNumber);
                 radomRouletteRepository.save(roulette);
             }
     }}
@@ -229,4 +230,5 @@ public class RoomController {
 
 
     }
+
 }

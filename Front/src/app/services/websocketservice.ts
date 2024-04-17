@@ -17,20 +17,25 @@ export class WebSocketService {
   private apiUrlls = 'http://localhost:8222/api/rooms/GetRandomIndex';
 
   constructor(private http: HttpClient) { }
-   getDataPolling(intervalTime: number , roomId : number): Observable<string> {
+  /*  getDataPolling(intervalTime: number): Observable<any> {
     return interval(intervalTime).pipe(
       switchMap(() => 
+      this.http.get<any>( `${ this.apiUrlls }`))
       
-     
-      this.http.get<string>( `${ this.apiUrlls }`))
+    )
+    ;
+  }  */
+  getDataPolling(intervalTime: number): Observable<any> {
+    return interval(intervalTime).pipe(
+      switchMap(() => 
+       this.http.get<any>( `${ this.apiUrlls }`))
       
     )
     ;
   } 
 
-
-  saveRandomNumber( roomId : number): Observable<any> {
-    return this.http.put<any>( `${ this.apiUrl }${ roomId }`,{})
+  saveRandomNumber( roomId : number , randomnumber:number): Observable<any> {
+    return this.http.put<any>( `${ this.apiUrl }${ roomId }/${ randomnumber }`,{})
     ;}
 
     GetRandomIndex(): Observable<any> {
