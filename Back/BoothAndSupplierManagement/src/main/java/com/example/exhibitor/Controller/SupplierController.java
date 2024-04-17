@@ -17,6 +17,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -53,6 +54,7 @@ public class SupplierController {
     }
     @PostMapping("/addsupplierrequest")
     public SupplierRequest addSupplierRequest(@RequestBody SupplierRequest supplierRequest){
+        supplierRequest.setCreatedAt(LocalDate.now());
         return supplierRequestService.addRequest(supplierRequest);
     }
     @PutMapping("/modifysupplierrequest/{supplierRequestID}")
@@ -70,7 +72,7 @@ public class SupplierController {
         s.setType(supplierRequest.getType());
         return supplierRequestService.ModifyRequest(s);
     }
-    @DeleteMapping("/deletesupplierrequest/{supplierRequestID}")
+    @PostMapping("/deletesupplierrequest/{supplierRequestID}")
     public void deleteSupplierRequest(@PathVariable("supplierRequestID") Long id) throws Exception {
 
          supplierRequestService.deleteRequest(id);
@@ -123,6 +125,11 @@ public class SupplierController {
     public Long getExhibitorByBooth(@PathVariable("boothname") String boothName
     ) throws Exception {
         return boothService.ExhibitorIdByBooth(boothName);
+    }
+    @GetMapping("/findSupplierByBooth/{boothname}")
+    public Long findSupplierByBooth(@PathVariable("boothname") String boothName
+    ) throws Exception {
+        return boothService.SupplierIdByBooth(boothName);
     }
     @GetMapping("/getAllSuppliersBySupplyRequest/{supplyRequestId}")
     public List<Supplier> getAllSuppliersBySupplyRequest(@PathVariable("supplyRequestId") Long supplyRequestId

@@ -10,6 +10,6 @@ public class ChatMessageDTO {
     private String Content ;
     private UserCredential sender ;
     private UserCredential receiver ;
-
+    private Long isButton ;
 
 }

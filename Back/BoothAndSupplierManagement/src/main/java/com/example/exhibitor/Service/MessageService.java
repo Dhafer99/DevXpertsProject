@@ -14,7 +14,7 @@ public interface MessageService {
 
     public void sendMessage(String chatMessage,String Mapping);
 
-    public void saveMessage(String chatMessage, UserCredential sender, UserCredential receiver);
+    public void saveMessage(String chatMessage, UserCredential sender, UserCredential receiver,Long isButton);
 
     public List<ChatMessage> allMessages();
 

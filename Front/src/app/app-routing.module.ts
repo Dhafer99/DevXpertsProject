@@ -26,6 +26,7 @@ import { MessagestestComponent } from './messagestest/messagestest.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 import { ChatSupplierAdminComponent } from './chat-supplier-admin/chat-supplier-admin.component';
+import { BoothsForSupplierComponent } from './booths-for-supplier/booths-for-supplier.component';
 export * from '../../projects/back-office/src/app/app.module'; // <==== THAT WAS MISSING
 export * from '../../projects/back-office/src/app/supplier/supplier.component';
 const routes: Routes = [  
@@ -46,6 +47,7 @@ const routes: Routes = [
  
   
   { path: 'exhibitor/front', component: ExhibitorReservationComponent },
+  { path: 'supplierBooth/front', component: BoothsForSupplierComponent },
   { path: 'chat', component: ChatSupplierAdminComponent },
   //{ path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app-routing.module').then(m => m.AppRoutingModule) }
 

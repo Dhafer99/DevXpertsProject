@@ -30,6 +30,8 @@ public class ChatMessage {
 
     private LocalDateTime createdAt ;
 
+    private Long isButton ;
+
 
 
 

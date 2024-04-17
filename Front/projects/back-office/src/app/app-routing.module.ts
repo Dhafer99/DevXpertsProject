@@ -23,6 +23,7 @@ import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.compo
 import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
 import { PaymentListComponent } from './payment-list/payment-list.component';
+
 const routes: Routes = [ 
       { path: 'list', component: ListUsersComponent },
       { path: 'admin/offers', component: AfficherOfferAdminComponent },
@@ -61,7 +62,10 @@ const routes: Routes = [
     { path: 'viewRooms', component: ViewRoomsComponent },
     { path: 'viewRooms/detailRoom/:id', component: DetailRoomComponent },
     { path: 'packSalesPerYear', component: PackSalesPerYearComponent },
-    { path: 'checkPayments', component: PaymentListComponent }, 
+    { path: 'checkPayments', component: PaymentListComponent },
+    
+
+    
      
 ];
 

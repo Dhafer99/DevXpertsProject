@@ -7,7 +7,7 @@ export class SupplyRequest{
     productname: String ;
     servicename: String ;
     type : String ;
-    
+    createdAt : string ;
     image!:Image
 }
 

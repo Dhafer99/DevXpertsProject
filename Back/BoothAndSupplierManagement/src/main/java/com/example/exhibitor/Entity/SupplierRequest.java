@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -23,6 +26,7 @@ public class SupplierRequest {
     private String boothPosition ;
     private String productname ;
     private String servicename ;
+    private LocalDate createdAt ;
     @Enumerated(EnumType.STRING)
     Type type ;
     @JsonIgnore

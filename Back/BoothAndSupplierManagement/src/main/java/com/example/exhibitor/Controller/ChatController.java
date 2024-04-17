@@ -81,26 +81,35 @@ public class ChatController {
     ) throws Exception {
         return  messageService.addMessage(chatMessage,senderId,receiverId);
     }
-    @MessageMapping("/chat/sendMessage/{senderID}/{receiverID}")
+    @MessageMapping("/chat/sendMessage/{senderID}/{receiverID}/{isButton}")
     @SendTo("/topic/public")
     public void sendMessage(
             @Payload String chatMessage,
             @DestinationVariable Long senderID ,
-            @DestinationVariable Long receiverID
+            @DestinationVariable Long receiverID,
+            @DestinationVariable Long isButton
 
     ) throws JsonProcessingException {
+
         log.info("payload : {}",chatMessage);
+
 
         ChatMessageDTO messageDTO = new ChatMessageDTO();
 
         UserCredential sender = userClient.getUser(senderID.intValue());//the sender is the admin
         UserCredential receiver = userClient.getUser(receiverID.intValue());
 
+            if(isButton == 1){
+                messageService.saveMessage(chatMessage,sender,receiver,1l);
+            }else {
+                messageService.saveMessage(chatMessage,sender,receiver,0l);
+            }
 
-        messageService.saveMessage(chatMessage,sender,receiver);
         messageDTO.setContent(chatMessage);
          messageDTO.setSender(sender);
         messageDTO.setReceiver(receiver);
+        messageDTO.setIsButton(isButton);
+
         ObjectMapper objectMapper = new ObjectMapper();
         String MessageDTOJSON = objectMapper.writeValueAsString(messageDTO);
 

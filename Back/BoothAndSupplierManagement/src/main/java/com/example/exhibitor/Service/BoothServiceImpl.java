@@ -6,6 +6,7 @@ import com.example.exhibitor.Entity.Exhibitor;
 import com.example.exhibitor.Entity.Supplier;
 import com.example.exhibitor.Repository.BoothRepository;
 import com.example.exhibitor.Repository.ExhibitorRepository;
+import com.example.exhibitor.Repository.SupplierRepository;
 import com.example.exhibitor.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class BoothServiceImpl implements BoothService {
     private final BoothRepository boothRepo;
     private final UserRepository userRepository;
     private final ExhibitorRepository exhibitorRepository ;
+    private final SupplierRepository supplierRepository ;
 
     @Override
     public void saveBooth(Booth booth) {
@@ -127,6 +129,18 @@ public class BoothServiceImpl implements BoothService {
 
         if(exhibitor != null) {
             return exhibitor.getId();
+        }
+        return null ;
+    }
+
+    @Override
+    public Long SupplierIdByBooth(String boothName) {
+        Booth booth = boothRepo.findByBoothname(boothName);
+
+        Supplier supplier = supplierRepository.findByBooths(booth);
+
+        if(supplier != null) {
+            return supplier.getId();
         }
         return null ;
     }

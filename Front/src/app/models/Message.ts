@@ -7,7 +7,7 @@ export class message{
     receiverFK: number
     senderFK: number
     createdAt:string
-
+    
     constructor(content: string, senderFK: number, receiverFK: number) {
         this.content = content;
         this.senderFK = senderFK;

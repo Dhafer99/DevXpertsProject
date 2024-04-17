@@ -21,5 +21,6 @@ public void saveBooth(Booth booth);
     void affectBoothToExhibitor(String BoothName,Long ExhibitorId);
 
     Long ExhibitorIdByBooth(String boothName);
+    Long SupplierIdByBooth(String boothName);
 
 }

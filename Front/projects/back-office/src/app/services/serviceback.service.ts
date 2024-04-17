@@ -54,10 +54,10 @@ return n
     return this.http.get<SupplyRequest>(this.SupplierUrl+'/SupplierRequestStatus/'+id)
   }
   addsupplier(supplier:SupplyRequest):Observable<SupplyRequest[]>{
-    return this.http.post<Supplier[]>(this.SupplierUrl+'/addsupplierrequest',supplier)
+    return this.http.post<SupplyRequest[]>(this.SupplierUrl+'/addsupplierrequest',supplier)
   }
   deletesupplier(id : number):Observable<Supplier[]>{
-    return this.http.delete<Supplier[]>(this.SupplierUrl+'/deletesupplierrequest/'+id)
+    return this.http.post<Supplier[]>(this.SupplierUrl+'/deletesupplierrequest/'+id,{})
   }
 
   upadatesupplier(id:number,supplier:Supplier):Observable<Supplier[]>

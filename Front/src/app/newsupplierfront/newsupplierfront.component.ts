@@ -29,7 +29,7 @@ export class NewsupplierfrontComponent implements OnInit{
       this.supplierOffer.description=result.description ;
       this.supplierOffer.price=result.price ;
   
-      this.servicefront.addSupplierOffer(this.supplierOffer,3,itemId).subscribe((data:any)=>{
+      this.servicefront.addSupplierOffer(this.supplierOffer,this.userID,itemId).subscribe((data:any)=>{
         console.log("returned data after supplier suggestion :")
         console.log(data);
       })
@@ -41,7 +41,7 @@ export class NewsupplierfrontComponent implements OnInit{
 requestSent:boolean = false ;
   getIfRequestSent( supplyRequestid : number): boolean{
     const matchingItems = this.supplierOfferList.filter((supplyrequest) => {
-      const matchCondition = supplyrequest.supplier.id === 3 && supplyrequest.supplierRequest.id === supplyRequestid;
+      const matchCondition = supplyrequest.supplier.id === this.userID && supplyrequest.supplierRequest.id === supplyRequestid;
       //console.log(`Checking item:`, supplyrequest, `Matched:`, matchCondition);
       return matchCondition;
   });
@@ -52,7 +52,7 @@ requestSent:boolean = false ;
   }
   getIfRequestAccepted( supplyRequestid : number): boolean{
     const matchingItems = this.supplierOfferList.filter((supplyrequest) => {
-      const matchCondition = supplyrequest.supplier.id === 3 && supplyrequest.status === "Approved" && supplyrequest.supplierRequest.id===supplyRequestid;
+      const matchCondition = supplyrequest.supplier.id === this.userID && supplyrequest.status === "Approved" && supplyrequest.supplierRequest.id===supplyRequestid;
       //console.log(`Checking item:`, supplyrequest, `Matched:`, matchCondition);
       return matchCondition;
   });
@@ -64,7 +64,7 @@ requestSent:boolean = false ;
   }
   getIfRequestRefused( supplyRequestid : number): boolean{
     const matchingItems = this.supplierOfferList.filter((supplyrequest) => {
-      const matchCondition = supplyrequest.supplier.id === 3 && supplyrequest.status === "NotApproved" && supplyrequest.supplierRequest.id === supplyRequestid;
+      const matchCondition = supplyrequest.supplier.id === this.userID && supplyrequest.status === "NotApproved" && supplyrequest.supplierRequest.id === supplyRequestid;
       //console.log(`Checking item:`, supplyrequest, `Matched:`, matchCondition);
       return matchCondition;
   });
@@ -89,31 +89,7 @@ requestSent:boolean = false ;
     });
    
   }
-  RequestSent(requestId: number) {
-    this.servicefront.addNotification(2).subscribe();
-    this.servicefront.affectsupplierTorequest(2, requestId).subscribe(() => {
-      setTimeout(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: 'Request sent successfully.',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'OK'
-        }).then(() => {
-          location.reload();
-        });
-      }, 1000);
-    }, error => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Something went wrong!',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
-      });
-    });
-  }
-  
+
   UnsendRequest(supplyRequestid:number){
    
     var userIDString = localStorage.getItem("userID");

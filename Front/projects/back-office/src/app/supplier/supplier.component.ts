@@ -113,6 +113,7 @@ export class SupplierComponent implements OnInit{
     boothPosition: '000' ,
     productname: 'String' ,
     servicename: 'String' ,
+    createdAt : null,
    type : typerequirement[typerequirement.isProduct] ,
    
    image:null
@@ -298,7 +299,7 @@ get price(){return this.supplierForm.get('price')}
         Swal.fire({
           icon: 'success',
           title: 'Success!',
-          text: 'supplier added successfuly.',
+          text: 'Supply request added successfuly.',
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'OK'
         });

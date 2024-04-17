@@ -49,6 +49,7 @@ import { AuthenticationinterfaceComponent } from './authenticationinterface/auth
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ChatSupplierAdminComponent } from './chat-supplier-admin/chat-supplier-admin.component';
+import { BoothsForSupplierComponent } from './booths-for-supplier/booths-for-supplier.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { ChatSupplierAdminComponent } from './chat-supplier-admin/chat-supplier-
     RouletteComponent,
     SignUpComponent,
     ChatSupplierAdminComponent,
+    BoothsForSupplierComponent,
 
   ],
   imports: [
@@ -93,7 +95,7 @@ import { ChatSupplierAdminComponent } from './chat-supplier-admin/chat-supplier-
     //QRCodeModule,
     //ZXingScannerModule,
     //ZXingScannerModule 
-   //DragDropModule,
+    DragDropModule,
    MatTooltipModule,
    BrowserAnimationsModule,
    MatNativeDateModule,

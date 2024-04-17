@@ -20,7 +20,7 @@ message : string = '';
     if (type === 'isProduct')
     {
       return 'Product'
-    }else if (type ==='isService'){
+    }else if (type ==='isService'){  
       return 'Service'
     }else if (type === 'isProductAndService'){ return ('Product and Service')}
     else{ return type }

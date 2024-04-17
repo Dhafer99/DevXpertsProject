@@ -48,7 +48,9 @@ export class ServicefrontService {
   findExhibitorIdByBooth(boothName:string): Observable<number>{
     return this.http.get<number>(`${this.SupplierUrl}/findExhibitorByBooth/${boothName}`)
   }
-
+  findSupplierIdByBooth(boothName:string): Observable<number>{
+    return this.http.get<number>(`${this.SupplierUrl}/findSupplierByBooth/${boothName}`)
+  }
   ///
   public getNotificationCount(userId:number): Observable<number> {
     return this.http.get<number>(this.Notification_URL + '/count/'+userId);

@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Booth } from 'projects/back-office/src/app/models/Booth';
 import { BoothRepresentation } from 'projects/back-office/src/app/models/BoothRepresentation';
 import { ServicebackService } from 'projects/back-office/src/app/services/serviceback.service';
-import { ServicefrontService } from '../services/servicefront.service';
 import Swal from 'sweetalert2';
-import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ServicefrontService } from '../services/servicefront.service';
+
 @Component({
-  selector: 'app-exhibitor-reservation',
-  templateUrl: './exhibitor-reservation.component.html',
-  styleUrls: ['./exhibitor-reservation.component.scss']
+  selector: 'app-booths-for-supplier',
+  templateUrl: './booths-for-supplier.component.html',
+  styleUrls: ['./booths-for-supplier.component.scss']
 })
-export class ExhibitorReservationComponent implements OnInit{
+export class BoothsForSupplierComponent implements OnInit{
   selectedImage: string | ArrayBuffer | null = '../../assets/images/Floor_plans_of_Sacred_Heart_School.jpg';
   booth:Booth = {
     id:0,
@@ -52,7 +51,7 @@ boothList : Booth[]= [];
  userID: number ;
 
   getExhibitorId(boothname: string) {
-    this.serviceFront.findExhibitorIdByBooth(boothname).subscribe((data: number) => {
+    this.serviceFront.findSupplierIdByBooth(boothname).subscribe((data: number) => {
       console.log("INCOMING ID DATA ")
       console.log(data)
       this.userID = parseInt(localStorage.getItem("userID"));

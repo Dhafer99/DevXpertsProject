@@ -57,11 +57,12 @@ public class MessageServiceImpl  implements MessageService{
     }
 
     @Override
-    public void saveMessage(String chatMessage, UserCredential sender, UserCredential receiver) {
+    public void saveMessage(String chatMessage, UserCredential sender, UserCredential receiver,Long isButton) {
         ChatMessage chatMessage1 = new ChatMessage();
         chatMessage1.setContent(chatMessage);
         chatMessage1.setSenderFK(sender.getId());
         chatMessage1.setReceiverFK(receiver.getId());
+        chatMessage1.setIsButton(isButton);
         chatMessage1.setCreatedAt(LocalDateTime.now());
         messageRepository.save(chatMessage1);
     }

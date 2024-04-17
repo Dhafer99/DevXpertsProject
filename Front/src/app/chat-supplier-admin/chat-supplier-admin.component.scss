@@ -171,6 +171,10 @@ hr {
   border-radius: 9px;
   position: relative;
   animation: fadeIn 1s ease-in;
+  display: block;
+  word-wrap: break-word;
+ 
+ 
   
   &:after {
     content: '';
@@ -184,7 +188,9 @@ hr {
   }
   
   &--left {
+    
      &:after {
+      
       left: 0;
       border-right-color: #eee;
 	    border-left: 0;
@@ -194,6 +200,7 @@ hr {
   
   &--right {
     &:after {
+     
       right: 0;
       border-left-color: $blue;
 	    border-right: 0;
@@ -201,7 +208,12 @@ hr {
     }
   }
 }
-
+.offset-md-9 {
+  .chat-bubble {
+    background: $blue;
+    color: #fff;
+  }
+}
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -212,12 +224,7 @@ hr {
 }
 
 
-.offset-md-9 {
-  .chat-bubble {
-    background: $blue;
-    color: #fff;
-  }
-}
+
 
 .chat-box-tray {
   background: #eee;
@@ -250,6 +257,7 @@ hr {
 }
 .chat-messages {
   height: 400px; /* Adjust the height as needed */
+  width: auto;
   overflow-y: auto;
   overflow-x: hidden;
 }
