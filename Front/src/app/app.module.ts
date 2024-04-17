@@ -5,9 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CalenderComponent } from './calender/calender.component';
+import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
+import { EventsComponent } from './events/events.component';
+import { CarouselModule } from '@coreui/angular';
 import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
-import { FormGroup} from '@angular/forms';
 import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
 import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.component';
 import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
@@ -48,11 +51,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
+    CalenderComponent,
+    EventsComponent,
     AfficherOffreComponent,
     AjouterOffreComponent,
     DetailOffreComponent,
@@ -81,11 +87,20 @@ import { SignUpComponent } from './sign-up/sign-up.component';
   ],
   imports: [
     //NgxWheelModule  ,
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
+    ScheduleModule,
     ReactiveFormsModule,
+    FormsModule,
+     RecurrenceEditorModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      NgbModule,
+      CarouselModule,
+    
+    HttpClientModule,
+
     
     NgbModule,
     //QRCodeModule,

@@ -1,0 +1,86 @@
+<p>afficher-classroom works!</p>
+
+
+<!-- ======= Services Section ======= -->
+
+           <!--  <section id="services" class="services section-bg">
+                
+                            <div class="card-body" style="width: 18rem;">
+                                    <div class="container" data-aos="fade-up">
+                                
+                                        <div class="row" *ngFor="let o of classroomList  ;let i=index"> 
+                                            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                                                <div class="icon-box iconbox-blue">
+                                            
+                                                    <h4><a href="">{{o.id}}</a></h4>
+                                                    <p>{{o.block}}</p>
+                                                    <p>{{o.classRoomNumber}}</p>
+                                                    <p>{{o.level}}</p>
+                                                    <a [routerLink]="['/offers', o.id]" class="btn btn-primary">Detail</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                            </div>
+                
+            </section> --><!-- End Services Section -->
+             <!-- //////////prof   --> 
+             <div class="row">
+                <div
+                  class="card m-3"
+                  *ngFor="let r of classroomList; let i = index"
+                  style="width: 18rem "
+                >
+                 
+                  <div class="card-body">
+                    <h5 class="card-title">classroom</h5>
+                    <p class="card-text">
+                        <p>{{r.block}}</p>
+                                                    <p>{{r.classRoomNumber}}</p>
+                                                    <p>{{r.level}}</p>
+                     <a [routerLink]="['/offers', r.id]" class="btn btn-primary" style="margin:20px">Detail</a>  
+                    
+                     <a [routerLink]="['/offers', r.id]" class="btn btn-danger">Delete</a>
+                    
+                  </div>
+                </div>
+              </div>
+
+
+
+
+  <!-- Sales Card -->
+  <!-- <div class="col-xxl-4 col-md-6">
+    <div class="card info-card sales-card">
+
+      <div class="filter">
+        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+          <li class="dropdown-header text-start">
+            <h6>Filter</h6>
+          </li>
+
+          <li><a class="dropdown-item" href="#">Today</a></li>
+          <li><a class="dropdown-item" href="#">This Month</a></li>
+          <li><a class="dropdown-item" href="#">This Year</a></li>
+        </ul>
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title">Sales <span>| Today</span></h5>
+
+        <div class="d-flex align-items-center">
+          <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+            <i class="bi bi-cart"></i>
+          </div>
+          <div class="ps-3">
+            <h6>145</h6>
+            <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div> --><!-- End Sales Card -->

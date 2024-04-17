@@ -13,7 +13,7 @@ import { User } from 'src/app/models/user';
 export class AuthentificationComponent implements OnInit {
   authForm!: FormGroup;
   userID !: number ;
-  user:User;
+  user!:User;
   request ={
     email: "",
     password: ""
@@ -51,6 +51,12 @@ export class AuthentificationComponent implements OnInit {
                   localStorage.setItem("user",JSON.stringify(res));
                 })
                 localStorage.setItem("userID",this.userID.toString())
+
+                this.userService.getUser(this.userID.toString()).subscribe(res=>{
+                  //this.nbrCandidature.push(res);
+                  this.user=res;
+                  localStorage.setItem("user",JSON.stringify(res));
+                })
 
           })
         }
