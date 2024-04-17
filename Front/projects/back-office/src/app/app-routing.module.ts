@@ -15,6 +15,7 @@ import { QuizComponent } from './Appointment/quiz/quiz.component';
 
 import { QuestionListComponent } from './Appointment/question-list/question-list.component';
 import { QuizListComponent } from './Appointment/quiz-list/quiz-list.component';
+import { AddroulsComponent } from './Appointment/addrouls/addrouls.component';
 
 
 const routes: Routes = [  { path: 'list', component: ListUsersComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [  { path: 'list', component: ListUsersComponent },
 {path: 'quiz', component:QuizComponent  },
 {path: 'listequiz', component:QuizListComponent  },
 {path: 'listequestion', component: QuestionListComponent },
+{path: 'addroule', component: AddroulsComponent },
 ];
 
 @NgModule({

@@ -31,6 +31,7 @@ import { QuizComponent } from './Appointment/quiz/quiz.component';
 
 import { QuestionListComponent } from './Appointment/question-list/question-list.component';
 import { QuizListComponent } from './Appointment/quiz-list/quiz-list.component';
+import { AddroulsComponent } from './Appointment/addrouls/addrouls.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { QuizListComponent } from './Appointment/quiz-list/quiz-list.component';
     QuizComponent,
     QuestionListComponent,
     QuizListComponent,
+    AddroulsComponent,
 
   ],
   imports: [
