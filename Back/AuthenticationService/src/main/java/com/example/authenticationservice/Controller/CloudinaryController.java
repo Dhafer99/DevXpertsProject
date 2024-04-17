@@ -18,7 +18,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/authImage")
-@CrossOrigin(origins = "*")
 public class CloudinaryController {
     @Autowired
     CloudinaryService cloudinaryService;

@@ -1,4 +1,4 @@
-<div class="login">
+<!-- <div class="login">
   <img />
 </div>
 <form>
@@ -60,7 +60,7 @@
       <i class="mdi mdi-plus-thick"></i>
     </button>
   </div>
-</form>
+</form> -->
 
 <section class="contact section bg-light overflow-hidden">
   <!-- start container -->
@@ -101,6 +101,7 @@
           <div class="info-box">
             <div class="col">
                 <div class="alert alert-danger">Main Image is Required</div>
+                <img  [src]="mainImage.imageUrl">
                 <input type="file" (change)="onFileChange($event)" />
                 <button
                   (click)="uploadImage()"

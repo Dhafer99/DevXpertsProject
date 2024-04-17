@@ -17,35 +17,34 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 
 public class InterestController {
-    private final InterestService service ;
+    private final InterestService service;
 
     @GetMapping("/addInterest/{user}/{event}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Interested addInterest(@PathVariable("user") int user,@PathVariable("event") int event )
-    {
-      return  service.save(event,user);
+    public Interested addInterest(@PathVariable("user") int user, @PathVariable("event") int event) {
+        return service.save(event, user);
     }
+
     @GetMapping("/AllInterest")
-    public ResponseEntity<List<Interested>> findAllInterests(){
+    public ResponseEntity<List<Interested>> findAllInterests() {
         return ResponseEntity.ok(service.findAllInterests());
     }
+
     @GetMapping("/UserInterest/{user}")
-    public ResponseEntity<List<Interested>> findUserIntereset(@PathVariable("user") int user){
+    public ResponseEntity<List<Interested>> findUserIntereset(@PathVariable("user") int user) {
         return ResponseEntity.ok(service.findByUserID(user));
     }
 
 
-
     @DeleteMapping("/removeInterest/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Event remove(@PathVariable("id") int id)
-    {
-      return   service.remove(id);
+    public Event remove(@PathVariable("id") int id) {
+        return service.remove(id);
     }
+
     @DeleteMapping("/removeInterestByUserByEvent/{id}/{event}")
     @ResponseStatus(HttpStatus.OK)
-    public Event remove(@PathVariable("id") int id,@PathVariable("event") int event)
-    {
-        return   service.removeByUserByEvent(id,event);
+    public Event remove(@PathVariable("id") int id, @PathVariable("event") int event) {
+        return service.removeByUserByEvent(id, event);
     }
 }
