@@ -87,6 +87,12 @@ export class RoomServiceService {
   updatePricingEnchere ( companyId: number,idroom:number ,points:number ): Observable<any> {
     return this.http.put<any>(`${this.url}updatePricing/${companyId}/${idroom}/${points}`,{});
   }
+  ///////////////////////////////////////// Roulette
+  
+  SendRandomIndex ( idroom:number  ): Observable<any> {
+    return this.http.put<any>(`${this.url}SendRandomIndex/${idroom}`,{});
+  }
+  ///////////////////////////////////////// Roulette
 
   getUserEnchere ( companyId: number,idroom:number): Observable<any> {
     return this.http.get<any>(`${this.url}getUserEnchere/${companyId}/${idroom}`,{});
@@ -141,7 +147,6 @@ export class RoomServiceService {
   getNotifications() {
     return this.notificationsSubject.asObservable();
   }
-
   connect(): Observable<any> {
     const socket = new SockJS('http://localhost:8083/ws');
     this.stompClient = Stomp.over(socket);

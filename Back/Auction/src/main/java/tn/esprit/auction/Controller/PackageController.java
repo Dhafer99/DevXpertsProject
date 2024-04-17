@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.auction.Entites.CheckoutPayment;
 
 import tn.esprit.auction.Entites.Pack;
+import tn.esprit.auction.Entites.RandomRoulette;
 import tn.esprit.auction.Entites.TypePack;
+import tn.esprit.auction.Repository.RadomRouletteRepository;
 import tn.esprit.auction.Services.PackageInterface;
 import org.springframework.core.io.ClassPathResource;
 import java.nio.charset.StandardCharsets;

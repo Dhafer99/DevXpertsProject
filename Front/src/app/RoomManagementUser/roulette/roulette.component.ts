@@ -37,14 +37,12 @@ export class RouletteComponent implements OnInit {
     private route: Router,
     private roomService: RoomServiceService,
     private ngZone: NgZone,
-    private webSocketService: WebSocketService
-  ) // private socket: Socket
-
-  {}
+    private webSocketService: WebSocketService // private socket: Socket
+  ) {}
 
   rouletteResult: number | undefined;
   idToLandOn: any;
-  resultWinner:number[]=[];
+  resultWinner: number[] = [];
   items: Item[] = [];
   textOrientation: TextOrientation = TextOrientation.HORIZONTAL;
   textAlignment: TextAlignment = TextAlignment.OUTER;
@@ -57,33 +55,47 @@ export class RouletteComponent implements OnInit {
   spinNumber = 0;
   testSocket() {
     console.log('RESULTS FROM BACK');
-    console.log(this.webSocketService.getResults(this.id));
+   // console.log(this.webSocketService.getResults(this.id));
   }
 
   ngOnInit(): void {
     this.getPack();
     this.id = this.activate.snapshot.params['id'];
-    this.webSocketService.connectToRouletteSocket(this.id);
-    this.webSocketService.getListObservable().subscribe((list)=>{
-      console.log("Test Observable Object TAB ")
+ 
+   // this.idToLandOn= 1
+   // this.webSocketService.getDataPolling(2000,this.id).subscribe(data => {
+    
+   // });
+   /*  this.webSocketService.saveRandomNumber(this.id).subscribe(()=>{})
+    this.webSocketService.GetRandomIndex().subscribe((res)=>{
+      console.log("eeeeeeeeeeeeeee")
+      console.log(res)
+      this.idToLandOn = res ;
+    }) */
+   /*  this.idToLandOn= data;
+     console.log(data)
+    });*/
+
+    
+  this.webSocketService.connectToRouletteSocket(this.id);
+   /* this.webSocketService.getListObservable().subscribe((list) => {
+      console.log('Test Observable Object TAB ');
       console.log(list);
-    })
+    });*/
 
     this.webSocketService.getMessageSubject().subscribe((messageObject) => {
-
-     
       const parsedMessage = {
         result: messageObject.result,
         spin: messageObject.spin,
       };
       this.idToLandOn = messageObject.result;
-      console.log("teest eya ")
-      console.log(this.idToLandOn)
-     
-      this.resultWinner.push(this.idToLandOn);
-      console.log("TAAB eya ")
+      console.log('teest eya ');
+      console.log(this.idToLandOn);
 
-      console.log(this.resultWinner)
+      this.resultWinner.push(this.idToLandOn);
+      console.log('TAAB eya ');
+
+      console.log(this.resultWinner);
       // if(parsedMessage)
       //this.wheel.spin();
 
@@ -92,19 +104,17 @@ export class RouletteComponent implements OnInit {
       //  this.wheel.spin();
 
       //  }
-      
     });
-   
-   // this.webSocketService.getResults(this.id);
+
+    // this.webSocketService.getResults(this.id);
     this.webSocketService.connectToStartRouletteSocket();
-    
 
     this.webSocketService
       .getStartRouletteSubject()
       .subscribe((messageObject) => {
         console.log('MESSAGE OBJECT');
         console.log(messageObject);
-
+       
         this.wheel.spin();
 
         // if(parsedMessage)
@@ -156,9 +166,9 @@ export class RouletteComponent implements OnInit {
         this.packNames = data;
         this.seed = this.packNames.map((pack) => pack.idPack);
 
-        // this.idToLandOn =
-        //   this.seed[Math.floor(Math.random() * this.seed.length)];
-
+      // this.idToLandOn =
+          // this.seed[Math.floor(Math.random() * this.seed.length)];
+        
         console.log('ID TO LAND ON');
         console.log(this.idToLandOn);
 
@@ -185,20 +195,28 @@ export class RouletteComponent implements OnInit {
 
   reset() {
     this.wheel.reset();
+   // this.idToLandOn =
+    //this.seed[Math.floor(Math.random() * this.seed.length)];
   }
   before() {
-    alert('Your wheel is about to spin');
+    
+   // alert('Your wheel is about to spin');
+  
   }
   stoppedAt: number = -1;
 
   async spin(prize: number) {
-    this.spinNumber = this.spinNumber+1;
+    this.spinNumber = this.spinNumber + 1;
    
-   // this.resultWinner.splice(0, this.resultWinner.length);
+    // this.resultWinner.splice(0, this.resultWinner.length);
     this.reset();
-    this.webSocketService.getResults(this.id);
+
+ 
+      
+ //   this.webSocketService.getResults(this.id);
     this.webSocketService.startRoulette();
-   // 
+   
+    //
     //this.socket.emit('startRoulette', this.id);
 
     // this.wheel.spin();
@@ -208,7 +226,7 @@ export class RouletteComponent implements OnInit {
     //  this.wheel.spin();
 
     //  }
-    console.log("on spin");
+    console.log('on spin');
     console.log(this.wheel.idToLandOn);
     this.roomService
       .ReservePack(this.wheel.idToLandOn, this.id)
@@ -216,7 +234,7 @@ export class RouletteComponent implements OnInit {
   }
 
   after() {
-    console.log("spin number is : " +this.spinNumber)
+    console.log('spin number is : ' + this.spinNumber);
     console.log(
       "La roulette s'est arrêtée sur la position:",
       this.wheel.idToLandOn
@@ -235,7 +253,8 @@ export class RouletteComponent implements OnInit {
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title: 'campany x with id win pack ' + this.resultWinner[this.spinNumber-1],
+      title:
+        'campany x with id win pack ' + this.wheel.idToLandOn,
       showConfirmButton: false,
       timer: 2500,
     });
