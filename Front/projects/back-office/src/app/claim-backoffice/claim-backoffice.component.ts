@@ -138,17 +138,33 @@ export class ClaimBackofficeComponent implements OnInit {
               title: "Updated!",
               text: "The claim has been updated.",
               icon: "success"
+            }).then(() => {
+              // Reload the page after successful update
+              location.reload();
             });
           },
           (error) => {
-            // Update failed
-            console.error("Update claim error:", error); // Log the error for debugging
-            // Handle the error here, you can show a message or do nothing to ignore it
+            // Check if the error status is 200 and handle it as a success
+            if (error.status === 200) {
+              Swal.fire({
+                title: "Updated!",
+                text: "The claim has been updated.",
+                icon: "success"
+              }).then(() => {
+                // Reload the page after successful update
+                location.reload();
+              });
+            } else {
+              // Update failed
+              console.error("Update claim error:", error); // Log the error for debugging
+              // Handle the error here, you can show a message or do nothing to ignore it
+            }
           }
         );
       }
     });
-  }  
+  }
+   
  /* search(): void {
     if (this.searchText.trim() !== '') {
       this.service.findCBySubject(this.searchText).subscribe(

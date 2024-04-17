@@ -36,8 +36,6 @@
   .confirm-button:hover, .cancel-button:hover {
     opacity: 0.8;
   }
-  .delete-icon-container {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-  }
+  
+
+  

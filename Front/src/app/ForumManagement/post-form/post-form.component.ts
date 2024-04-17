@@ -9,6 +9,7 @@ import { Observable, map, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Tag } from 'src/app/models/tag';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-post-form',
@@ -23,6 +24,7 @@ export class PostFormComponent implements OnInit{
   myControl = new FormControl();
   options: string[] = ['Angular', 'React', 'Vue', 'JavaScript', 'TypeScript'];
   filteredOptions: Observable<string[]>;
+  user:User;
   constructor(
     private service:ForumService,
     private router :Router,
@@ -45,6 +47,7 @@ export class PostFormComponent implements OnInit{
     }
     ngOnInit(): void {
       this.post.postTags=[]
+      this.user=JSON.parse(localStorage.getItem("user"))
     }
 
     onFileSelected(event:any){
@@ -91,6 +94,7 @@ export class PostFormComponent implements OnInit{
           listtag += element.id +" ";
       });
       formData.append('postTags',listtag);
+      formData.append('userId',JSON.stringify(this.user.id));
       this.http.post<Post>('http://localhost:8222/api/Posts/add-post', formData)
         .subscribe(response => {
           console.log('Post saved successfully:', response);

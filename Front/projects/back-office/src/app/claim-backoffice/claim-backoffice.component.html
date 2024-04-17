@@ -1,50 +1,26 @@
 <br>
 <br>
-<br>
-<br>
-<br>
-v
-
-
-
 <div class="container">
-    
     <div class="row">
         <div class="col-xl-12">
-            
             <div class="table-responsive">
-                <!-- Your existing HTML code -->
-
                 <div class="row mb-3">
                     <div class="col-xl-6">
-                      <!-- <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText" (input)="search()"> -->
-                      <a class="dropdown-item" (click)="defaultLoad()" >Default</a>
-                      <a class="dropdown-item" (click)="filterOrderChange('Asc')"  *ngIf="FilterOrder=='Desc'">Ascending order</a>
-                      <a class="dropdown-item" (click)="filterOrderChange('Desc')"  *ngIf="FilterOrder=='Asc'">Descending order</a>
-                      
-                      <a class="dropdown-item" (click)="filterStatusChange('Treated')"  *ngIf="FilterStatus=='pending'">Treated Status</a>
-                      <a class="dropdown-item" (click)="filterStatusChange('pending')"  *ngIf="FilterStatus=='Treated'">Pending Status</a>
+                        <a class="dropdown-item" (click)="defaultLoad()">Default</a>
+                        <a class="dropdown-item" (click)="filterOrderChange('Asc')" *ngIf="FilterOrder=='Desc'">Ascending order</a>
+                        <a class="dropdown-item" (click)="filterOrderChange('Desc')" *ngIf="FilterOrder=='Asc'">Descending order</a>
 
+                        <a class="dropdown-item" (click)="filterStatusChange('Treated')" *ngIf="FilterStatus=='pending'">Treated Status</a>
+                        <a class="dropdown-item" (click)="filterStatusChange('pending')" *ngIf="FilterStatus=='Treated'">Pending Status</a>
                     </div>
                     <div class="col-xl-6">
-                      <mat-form-field appearance="fill">
-                        <mat-label>Search by:</mat-label>
-                        <mat-select [(value)]="selectedSearchOption">
-                          <mat-option *ngFor="let option of searchOptions" [value]="option.value">{{ option.viewValue }}</mat-option>
-                        </mat-select>
-                      </mat-form-field>
+                        <!-- Search options -->
                     </div>
-                  </div>
-                  
-                  
-  
-  <!-- Your existing HTML code -->
-  
-                <div class="table-scrollable">
-                    
+                </div>
+
+                <div class="table-scrollable" style="max-height: 450px; overflow-y: auto;">
                     <table class="table display mb-4 dataTablesCard order-table shadow-hover card-table text-black" id="example5">
                         <thead>
-                            
                             <tr>
                                 <th>
                                     <div class="form-check ms-2">
@@ -52,9 +28,6 @@ v
                                         <label class="form-check-label" for="checkAll"></label>
                                     </div>
                                 </th>
-                                
-                                  
-                            
                                 <th>Date</th>
                                 <th>Customer</th>
                                 <th>Subject</th>
@@ -75,7 +48,6 @@ v
                                         <label class="form-check-label" for="customCheckBox10"></label>
                                     </div>
                                 </td>
-                        
                                 <td class="wspace-no">{{claim.date}}</td>
                                 <td>Olivia Shine</td>
                                 <td class="text-ov">{{claim.subject}}</td>
@@ -85,35 +57,18 @@ v
                                 <td>{{claim.systemProblem}}</td>
                                 <td>{{claim.serviceProblem}}</td>
                                 <td>
-                                    <span class="btn bgl-danger text-danger btn-rounded btn-sm" *ngIf="claim.status=='pending'" >{{claim.status}}</span>
-                                    <span class="btn bgl-success text-success btn-rounded btn-sm"  >{{claim.status}}</span>
+                                    <span class="btn bgl-danger text-danger btn-rounded btn-sm" *ngIf="claim.status=='pending'">{{claim.status}}</span>
+                                    <span class="btn bgl-success text-success btn-rounded btn-sm">{{claim.status}}</span>
                                 </td>
                                 <td style="overflow: visible;">
-                                    <!-- <div class="dropdown ml-auto">
-                                        <div class="btn-link" data-bs-toggle="dropdown">
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M11.0005 12C11.0005 12.5523 11.4482 13 12.0005 13C12.5528 13 13.0005 12.5523 13.0005 12C13.0005 11.4477 12.5528 11 12.0005 11C11.4482 11 11.0005 11.4477 11.0005 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M18.0005 12C18.0005 12.5523 18.4482 13 19.0005 13C19.5528 13 20.0005 12.5523 20.0005 12C20.0005 11.4477 19.5528 11 19.0005 11C18.4482 11 18.0005 11.4477 18.0005 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M4.00049 12C4.00049 12.5523 4.4482 13 5.00049 13C5.55277 13 6.00049 12.5523 6.00049 12C6.00049 11.4477 5.55277 11 5.00049 11C4.4482 11 4.00049 11.4477 4.00049 12Z" stroke="#3E4954" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </svg>
-                                        </div>
-                                       <div class="dropdown-menu dropdown-menu-right">
-										<a class="dropdown-item text-black" href="javascript:void(0);" (click)="updateClaimDecision(claim.idClaim)">
-											<i class="far fa-check-circle me-1 text-success"></i>Accept claim
-										</a>
-													<a class="dropdown-item text-black" href="javascript:void(0);" (click)="rejectClaim(claim.idClaim)">
-														<i class="far fa-times-circle me-1 text-danger"></i>Reject claim
-													  </a>
-												</div>
-                                    </div> -->
                                     <div *ngIf="claim.status=='pending'">
                                         <a class="dropdown-item text-black" href="javascript:void(0);" (click)="updateClaimDecision(claim.idClaim)">
-											<i class="far fa-check-circle me-1 text-success"></i>Accept claim
-										</a>
+                                            <i class="far fa-check-circle me-1 text-success"></i>Accept claim
+                                        </a>
                                         <a class="dropdown-item text-black" href="javascript:void(0);" (click)="rejectClaim(claim.idClaim)">
                                             <i class="far fa-times-circle me-1 text-danger"></i>Reject claim
-                                          </a>
-                                                                            </div>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

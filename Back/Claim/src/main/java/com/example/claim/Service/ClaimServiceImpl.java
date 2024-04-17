@@ -206,12 +206,45 @@ public class ClaimServiceImpl implements ClaimService {
     }
 
     private void updateClaimDecisionAndStatus(Claim claim) {
-        // Your existing code
+        if (claim.getTitle() == ClaimType.SYSTEM) {
+            switch (claim.getSystemProblem()) {
+                case SERVER:
+                    claim.setDecision("Hi, we are incredibly sorry. We may be facing some technical issues with our servers. We are working on it to provide the best services. Thank you for contacting us.");
+                    break;
+                case OPERATIONAL_MALFUNCTION:
+                    claim.setDecision("Hi, we apologize for the operational malfunctions that you have faced. We will fix this abnormality as soon as possible. Thank you for contacting us.");
+                    break;
+                case UNCORRECT_TIMING:
+                    claim.setDecision("Hi, thank you for reaching us. Our team is working on renewing the expired certificate to fix the timing problem. We are sorry for the encountered issue. Thank you for contacting us.");
+                    break;
+                default:
+                    // Handle unexpected system problem
+                    break;
+            }
+        } else if (claim.getTitle() == ClaimType.SERVICE) {
+            switch (claim.getServiceProblem()) {
+                case STAFF_SHORTAGE:
+                    claim.setDecision("Hi, we apologize for the inconvenience caused by the shortage of staff during the event. We are working to address this issue to ensure smoother operations in the future. Thank you for bringing this to our attention.");
+                    break;
+                case DESORGANISATION:
+                    claim.setDecision("Hi, we apologize for the disorganization experienced during the event. We are taking steps to improve our organizational processes to prevent such issues from reoccurring. Thank you for your patience and understanding.");
+                    break;
+                default:
+                    // Handle unexpected service problem
+                    break;
+            }
+        }
+
+        // Update status
+        claim.setStatus("Treated");
+
+        // Save updated claim
+        claimRepo.save(claim);
     }
 
     public void sendEmail(String text) throws MailException {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setTo("salma.saidi@esprit.tn");
+        simpleMailMessage.setTo("salmasaidi1110@gmail.com");
         simpleMailMessage.setSubject("Claim Response");
         simpleMailMessage.setText(text);
         javaMailSender.send(simpleMailMessage);

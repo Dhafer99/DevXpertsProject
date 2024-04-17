@@ -116,6 +116,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
    MatNativeDateModule,
    MatDialogModule,
     AppRoutingModule,HttpClientModule,
+MatIconModule 
+    
     //StripeModule.forRoot("pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC"),
 
   ],

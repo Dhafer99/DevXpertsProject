@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { Tag } from 'src/app/models/tag';
 import { Observable, map, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { User } from 'src/app/models/user';
 
 
 
@@ -36,6 +37,7 @@ export class PostListComponent implements OnInit {
 
   options: string[] = ['Angular', 'React', 'Vue', 'JavaScript', 'TypeScript'];
   filteredOptions: Observable<string[]>;
+  user:User;
   constructor(
     private router: Router,
     private service: ForumService,
