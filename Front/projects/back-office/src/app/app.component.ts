@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit{
 
 
-  
+  title = 'ProjetPi';
   public notifications = 0;
   message !: string ;
   
@@ -63,21 +63,7 @@ export class AppComponent implements OnInit{
     //this.router.navigate(['/new-page']);
   //user!:User;
   user=JSON.parse(localStorage.getItem("user"));
-  
-/******************** **********************/
-dark(){
-  const body = document.querySelector('body');
-  if (body) {
-    body.setAttribute('data-bs-theme',"dark");
-  }
-}
-light(){
-  const body = document.querySelector('body');
-  if (body) {
-    body.setAttribute('data-bs-theme',"light");
-  }
 
-}
 
 disconnect(){
   localStorage.removeItem("token");

@@ -11,6 +11,7 @@ export class AuthGuard implements CanActivate {
     const token = localStorage.getItem('token'); // Supposons que le token est stocké dans le local storage
 
     if (!token) {
+      this.router.navigate(['/auth']);
       return false;
     }
 
