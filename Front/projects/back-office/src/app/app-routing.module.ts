@@ -35,39 +35,42 @@ import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.co
 import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
 import { PaymentListComponent } from './payment-list/payment-list.component';
 
+import { AuthGuard } from '../../../../src/app/auth.guard';
 const routes: Routes = [ 
-      { path: 'list', component: ListUsersComponent },
-      { path: 'admin/offers', component: AfficherOfferAdminComponent },
-      { path: 'admin/offer/candidatures/:id', component: AfficherCandidatureOffreAdminComponent},
-      { path: 'admin/stat',component: StatAdminCandidatureComponent},
-      {path : 'supplier/:id',component: SupplierComponent},
-      {path : 'supplier',component: SupplierComponent},
-      {path : 'booth',component: BoothplacementComponent},
-      {path : 'detail',component: SupplierDetailComponent},
+      { path: 'list', component: ListUsersComponent ,canActivate: [AuthGuard]},
+      { path: 'admin/offers', component: AfficherOfferAdminComponent ,canActivate: [AuthGuard]},
+      { path: 'admin/offer/candidatures/:id', component: AfficherCandidatureOffreAdminComponent ,canActivate: [AuthGuard]},
+      { path: 'admin/stat',component: StatAdminCandidatureComponent ,canActivate: [AuthGuard]},
+      {path : 'supplier/:id',component: SupplierComponent,canActivate: [AuthGuard]},
+      {path : 'supplier',component: SupplierComponent,canActivate: [AuthGuard]},
+      {path : 'booth',component: BoothplacementComponent,canActivate: [AuthGuard]},
+      {path : 'detail',component: SupplierDetailComponent,canActivate: [AuthGuard]},
       
-      {path : 'message',component: MessagestestComponent},
+      {path : 'message',component: MessagestestComponent,canActivate: [AuthGuard]},
       {path: 'dialog',
-      component: DialogboxComponent,
+      component: DialogboxComponent
+      ,canActivate: [AuthGuard]
     },
     {path: 'boothDashboard',
-      component: SupplyRequestsDashboardComponent,
+      component: SupplyRequestsDashboardComponent
+      ,canActivate: [AuthGuard]
     },
     {path: 'newDashboard',
-      component: NewsupplyrequestsdashboardComponent,
+      component: NewsupplyrequestsdashboardComponent
+      ,canActivate: [AuthGuard]
     },
     {path: 'supplyRequestDetails',
-      component: SupplyRequestDetailsComponent,
+      component: SupplyRequestDetailsComponent
+      ,canActivate: [AuthGuard]
     },
     {path: 'supplyRequestDetails/:id',
-    component: SupplyRequestDetailsComponent,
+    component: SupplyRequestDetailsComponent
+    ,canActivate: [AuthGuard]
   },
   {path: 'auth',
     component: AuthentificationComponent,
   }
     ,  
-    { path: 'list', component: ListUsersComponent },
-    { path: 'addPack', component: AddPackComponent },
-    { path: 'viewPack', component: ViewPackComponent },
     { path: 'viewPack/detail/:id', component: UpdatePackComponent },
     { path: 'HistoriquePacks', component: HistoriquePacksComponent },
     { path: 'viewRooms', component: ViewRoomsComponent },
@@ -97,6 +100,15 @@ const routes: Routes = [
     { path: 'events/""', pathMatch: 'full', redirectTo: '/events/create' },
     { path: 'events/**', component: EventCreateComponent },
 
+    { path: 'list', component: ListUsersComponent ,canActivate: [AuthGuard]},
+    { path: 'addPack', component: AddPackComponent ,canActivate: [AuthGuard]},
+    { path: 'viewPack', component: ViewPackComponent ,canActivate: [AuthGuard]},
+    { path: 'viewPack/detail/:id', component: UpdatePackComponent ,canActivate: [AuthGuard]},
+    { path: 'HistoriquePacks', component: HistoriquePacksComponent ,canActivate: [AuthGuard]},
+    { path: 'viewRooms', component: ViewRoomsComponent ,canActivate: [AuthGuard]},
+    { path: 'viewRooms/detailRoom/:id', component: DetailRoomComponent ,canActivate: [AuthGuard]},
+    { path: 'packSalesPerYear', component: PackSalesPerYearComponent ,canActivate: [AuthGuard]},
+    { path: 'checkPayments', component: PaymentListComponent ,canActivate: [AuthGuard]}, 
      
 ];
 

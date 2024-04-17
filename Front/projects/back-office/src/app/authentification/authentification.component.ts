@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JwtClientService } from '../services/jwt-client.service';
 import { ServicebackService } from '../services/serviceback.service';
 import { UserService } from 'src/app/services/user.service';
-import { User } from '../models/User';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-authentification',
@@ -43,7 +43,13 @@ export class AuthentificationComponent implements OnInit {
           this.serviceback.getUserId(this.request.email).subscribe( (data:number) => {
                 this.userID= data ;
                 console.log("user id ")
-                console.log(data); 
+                console.log(data);
+
+                this.userService.getUser(this.userID.toString()).subscribe(res=>{
+                  //this.nbrCandidature.push(res);
+                  this.user=res;
+                  localStorage.setItem("user",JSON.stringify(res));
+                })
                 localStorage.setItem("userID",this.userID.toString())
 
                 this.userService.getUser(this.userID.toString()).subscribe(res=>{

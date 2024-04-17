@@ -88,6 +88,8 @@ spring:
               allowedMethods:
                 - GET
                 - POST
+                - PUT
+                - DELETE
               allowedHeaders: "*"
               maxAge: 30
           filters:
@@ -102,6 +104,8 @@ spring:
               allowedMethods:
                 - GET
                 - POST
+                - PUT
+                - DELETE
               allowedHeaders: "*"
               maxAge: 30
           filters:

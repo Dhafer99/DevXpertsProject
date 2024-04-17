@@ -15,7 +15,7 @@ export class SignUpComponent implements OnInit{
 
   userForm!: FormGroup;
   formData = new FormData();
-  selectedFile!: File;
+  selectedFile: File;
   user!:User;
   imageMin: File | null = null;
   userRole!: string;
@@ -27,6 +27,8 @@ export class SignUpComponent implements OnInit{
   constructor(private userService:UserService, private route:Router){  }
 
   ngOnInit(): void {
+    this.userRole="exhibitor"
+    this.selectedFile=null
     this.userForm=new FormGroup({
       firstname:new FormControl('',[Validators.required,Validators.minLength(10)]),
       lastname:new FormControl('',Validators.required),
@@ -72,7 +74,6 @@ export class SignUpComponent implements OnInit{
   }
 
   signup(){
-
     this.user=this.userForm.value; 
       this.formData.append('name', this.name?.value);
       this.formData.append('email', this.email?.value);
@@ -91,7 +92,7 @@ export class SignUpComponent implements OnInit{
           text: "Completeter tous les champs"
         });
       }
-      else if (this.selectedFile==null) {
+      else if (this.selectedFile==null && this.userRole=="student" || this.selectedFile==null && this.userRole=="alumni") {
           Swal.fire({
             icon: 'warning',
             title: 'Erreur',
@@ -105,12 +106,29 @@ export class SignUpComponent implements OnInit{
             text: "Veillez choisir  le type d'offre"
         });
       }
+
+      else if (this.userRole!="exhibitor" && this.firstname?.value==''  || this.lastname?.value=='' && this.userRole!="exhibitor") {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Erreur',
+            text: "Veillez remplir le champs firstname et lastname"
+        });
+      }
+
+
       else{
         this.formData.forEach(function(value, key) {
   console.log(key + ": " + value);
 });
         this.userService.register(this.formData).subscribe(res=>{
         console.log( res)
+        if(res["message"]=="L'utilisateur existe déjà"){
+          Swal.fire({
+            icon: 'warning',
+            title: 'Erreur',
+            text: "Deja inscrit"
+        });
+        }
         console.log("notre form"+JSON.stringify(this.userForm.value))})
         //this.route.navigate(['/offers']);
         
