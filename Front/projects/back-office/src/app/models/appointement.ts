@@ -1,3 +1,5 @@
+import { User } from "src/app/models/user";
+
 export class Appointement {
 
 
@@ -25,7 +27,8 @@ export class Result {
     time: Date;
     elapsedTime:number; 
     coefficient: number;
-    maxScore:number
+    maxScore:number;
+    fullUser:User;
 }
 
 export class AnswerSheet{

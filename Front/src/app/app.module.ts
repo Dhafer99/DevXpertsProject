@@ -19,7 +19,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { QuizDetailsComponent } from './quizdetails/quiz-details.component';
 import { QuizResultDisplayComponent } from './quizdetails/quiz-result-display/quiz-result-display.component';
-import { ProfileComponent } from './profile/profile.component';
+//import { ProfileComponent } from './profile/profile.component';
 import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
 import { FormGroup} from '@angular/forms';
@@ -43,7 +43,7 @@ import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.compone
 import { PaymentComponent } from './payment/payment.component';
 //import { StripeModule } from 'stripe-angular';
 import { RouletteComponent } from './RoomManagementUser/roulette/roulette.component';
-//import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
+import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -63,11 +63,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-result-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
+    //ProfileComponent,
     CalenderComponent,
     DetailsComponent,
     QuizinterfaceComponent,
@@ -100,10 +101,11 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     PaymentComponent,
     RouletteComponent,
     SignUpComponent,
+    QuizResultListComponent,
 
   ],
   imports: [
-    //NgxWheelModule  ,
+    NgxWheelModule  ,
     BrowserModule,
     AppRoutingModule,
     ScheduleModule, RecurrenceEditorModule,
@@ -141,7 +143,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     }
     
   ],
-  [DatePipe],
+  ///[DatePipe],
   bootstrap: [AppComponent],
   schemas : [
     NO_ERRORS_SCHEMA]

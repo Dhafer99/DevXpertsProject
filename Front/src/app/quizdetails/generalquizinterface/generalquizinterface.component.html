@@ -24,6 +24,12 @@
           <td>
             <button  (click)="QuizDetail(item.id)">Detail Quiz</button>
           </td>
+          <td>
+            <button  (click)="Quizresults(item.id)">My Historique </button>
+          </td>
+          <td>
+              <app-quiz-result-list [listResult]="listresults" [quiz]="item" (quizFinished)="showResult($event)" *ngIf="showingHistorique && quizResulting.id==item.id">   </app-quiz-result-list>
+          </td>
         </tr>
       </tbody>
     </table>

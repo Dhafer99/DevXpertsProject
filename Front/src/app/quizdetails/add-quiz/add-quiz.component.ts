@@ -6,6 +6,7 @@ import { aN } from '@fullcalendar/core/internal-common';
 import { Category } from 'projects/back-office/src/app/models/category';
 import { Quiz } from 'projects/back-office/src/app/models/quiz';
 import { ClassroomService } from 'projects/back-office/src/app/services/classroom.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-add-quiz',
@@ -14,11 +15,14 @@ import { ClassroomService } from 'projects/back-office/src/app/services/classroo
 })
 export class AddQuizComponent implements OnInit{
   QuestionForm !: FormGroup;
+  user!:User;
 
   ngOnInit(): void {
+    this.user=JSON.parse(localStorage.getItem("user"))
     this.QuestionForm = new FormGroup({
       title: new FormControl(  '', Validators.required),
       category:new FormControl('',Validators.required), 
+      userId: new FormControl(this.user.id)
     
   })
 }

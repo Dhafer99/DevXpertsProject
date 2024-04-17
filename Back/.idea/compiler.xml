@@ -8,16 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Booth" />
-        <module name="AppointementAndClassroom" />
-        <module name="gateway" />
+        <module name="BoothAndSupplierManagement" />
+        <module name="Offer" />
         <module name="discovery" />
         <module name="Exhibitor" />
         <module name="configServer" />
-        <module name="BoothAndSupplierManagement" />
-        <module name="Offer" />
         <module name="Auction" />
-        <module name="configServer" />
-        <module name="discovery" />
+        <module name="AppointementAndClassroom" />
         <module name="AuthenticationService" />
         <module name="gateway" />
       </profile>
@@ -30,10 +27,10 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AppointementAndClassroom" options="-parameters" />
-      <module name="Auction" options="" />
+      <module name="Auction" options="-parameters" />
       <module name="AuthenticationService" options="-parameters" />
       <module name="Booth" options="-parameters" />
-      <module name="BoothAndSupplierManagement" options="" />
+      <module name="BoothAndSupplierManagement" options="-parameters" />
       <module name="Exhibitor" options="-parameters" />
       <module name="Offer" options="-parameters" />
       <module name="configServer" options="-parameters" />

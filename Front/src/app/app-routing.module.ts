@@ -34,6 +34,7 @@ import { SupplierDetailComponent } from './supplier-detail/supplier-detail.compo
 import { MessagestestComponent } from './messagestest/messagestest.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
+import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-result-list.component';
 export * from '../../projects/back-office/src/app/app.module'; // <==== THAT WAS MISSING
 export * from '../../projects/back-office/src/app/supplier/supplier.component';
 const routes: Routes = [  
@@ -67,13 +68,15 @@ const routes: Routes = [
   { path: 'auction/:id/roulette', component: RouletteComponent , canActivate: [AuthGuard]},
   { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent , canActivate: [AuthGuard]},
   { path: 'payments/:id', component: PaymentComponent , canActivate: [AuthGuard]},
-  { path: 'calender', component: CalenderComponent },
-  { path: 'Details', component: DetailsComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'quiztest', component: QuizinterfaceComponent },
-  { path: 'quizgeneral/:id', component: GeneralquizinterfaceComponent },
-  { path: 'todo', component: TodoComponent},
-  { path: 'addquiz', component:AddQuizComponent},
+  { path: 'calender', component: CalenderComponent ,canActivate: [AuthGuard]},
+  { path: 'Details', component: DetailsComponent ,canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent ,canActivate: [AuthGuard]},
+  { path: 'quiztest', component: QuizinterfaceComponent ,canActivate: [AuthGuard]},
+  { path: 'historique', component: QuizResultListComponent ,canActivate: [AuthGuard]},
+  
+  { path: 'quizgeneral/:id', component: GeneralquizinterfaceComponent ,canActivate: [AuthGuard]},
+  { path: 'todo', component: TodoComponent ,canActivate: [AuthGuard]},
+  { path: 'addquiz', component:AddQuizComponent ,canActivate: [AuthGuard]},
   { path: 'quizdetail/:id', component:QuizDetailsComponent},
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }
   

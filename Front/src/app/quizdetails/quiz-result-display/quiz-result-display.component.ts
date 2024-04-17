@@ -8,7 +8,9 @@ import { Result } from 'projects/back-office/src/app/models/appointement';
 })
 export class QuizResultDisplayComponent implements OnInit{
 ngOnInit(): void {
-  throw new Error('Method not implemented.');
+
+ 
+
 }
 @Input() result:Result;
 @Output() quizFinished: EventEmitter<void> = new EventEmitter<void>();

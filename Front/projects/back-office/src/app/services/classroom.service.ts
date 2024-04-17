@@ -10,11 +10,11 @@ import { Question } from 'src/app/model/Questions';
 @Injectable({
   providedIn: 'root'
 })
-export class ClassroomService {
+export class     ClassroomService {
   
 
 //   classroomURL = 'http://172.16.4.58:8095/api/AppointementAndClassrooms'
- classroomURL = 'http://localhost:8095/api/AppointementAndClassrooms'
+ classroomURL = 'http://localhost:8222/api/AppointementAndClassrooms'
   constructor(private http:HttpClient) { }
 
 
@@ -198,7 +198,9 @@ submitQuizAnswerSheet(AnswerSheet:AnswerSheet):Observable<Result>{
 }
 
 //---------- quiz  Jdii Service 
-
+getResultsQuizs(id:number):Observable<Result[]>{
+  return this.http.get<Result[]>(this.classroomURL+"/quizResult/"+id);
+}
 
 
 }
