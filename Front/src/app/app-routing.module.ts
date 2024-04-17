@@ -1,19 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
-<<<<<<< HEAD
 import { ListUsersComponent } from 'projects/back-office/src/app/list-users/list-users.component';
 import { DisplayComponent } from './events/display/display.component';
 import { EventsListComponent } from './events/events-list/events-list.component';
 import { InitialListEventComponent } from './events/initial-list-event/initial-list-event.component';
-=======
 import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
 import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
 import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.component';
 import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
 import { AfficherCandidatursUserComponent } from './candidature/afficher-candidaturs-user/afficher-candidaturs-user.component';
->>>>>>> main
 
   
 import { ListPacksComponent } from './PackageManagementUser/list-packs/list-packs.component';
@@ -35,7 +32,6 @@ import { AuthenticationinterfaceComponent } from './authenticationinterface/auth
 export * from '../../projects/back-office/src/app/app.module'; // <==== THAT WAS MISSING
 export * from '../../projects/back-office/src/app/supplier/supplier.component';
 const routes: Routes = [  
-<<<<<<< HEAD
   {path:'' ,redirectTo:'index',pathMatch:'full'},
   { path: 'profile', component: ProfileComponent },
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) },
@@ -45,9 +41,7 @@ const routes: Routes = [
   { path: 'events',
    loadChildren: () => import('./events/events.module').then(m => m.EventsModule) },
 
-
-  ];  
-=======
+ 
 
   { path: 'signup', component: SignUpComponent },
   { path: 'auth', component: AuthenticationinterfaceComponent },
@@ -83,7 +77,6 @@ const routes: Routes = [
   
   
   ];
->>>>>>> main
 
 @NgModule({
   declarations: [],

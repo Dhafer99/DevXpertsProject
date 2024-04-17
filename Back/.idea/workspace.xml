@@ -5,8 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Events/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/authentification/authentification.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/authentification/authentification.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/event-display/event-display.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/events/event-display/event-display.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/event.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/event.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/jwt-client.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/jwt-client.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/comment/comment.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/comment/comment.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +102,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ConfigServerApplication">
+  <component name="RunManager" selected="Spring Boot.EventApplication">
     <configuration name="AppointementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="AppointementAndClassroom" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.appointementandclassroom.AppointementApplication" />
@@ -91,6 +113,13 @@
     <configuration name="AppointementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="AppointementAndClassroom" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.appointementandclassroom.AppointementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthenticationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="AuthenticationService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.authenticationservice.AuthenticationServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -180,6 +209,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
       <item itemvalue="Spring Boot.AppointementApplication" />
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.BoothApplication" />
@@ -246,7 +276,8 @@
       <workItem from="1712229037323" duration="2041000" />
       <workItem from="1713183494116" duration="107000" />
       <workItem from="1713183639406" duration="698000" />
-      <workItem from="1713196237963" duration="2523000" />
+      <workItem from="1713196237963" duration="8389000" />
+      <workItem from="1713309595727" duration="2282000" />
     </task>
     <servers />
   </component>

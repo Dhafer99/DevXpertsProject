@@ -10,12 +10,7 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-<<<<<<< HEAD
-  template: '<ejs-schedule> </ejs-schedule>',
-  styleUrls: ['./app.component.css']
-=======
   styleUrls: ['./app.component.css'],
->>>>>>> main
 })
 
 export class AppComponent implements OnInit{

@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
-=======
 import { User } from './models/user';
->>>>>>> main
 
 @Component({
   selector: 'app-root',

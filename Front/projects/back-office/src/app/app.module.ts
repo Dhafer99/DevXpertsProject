@@ -1,13 +1,12 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChangeDetectorRef } from '@angular/core';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 
 import { SupplierComponent } from './supplier/supplier.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NotificationComponent } from './notification/notification.component';
 import { BoothplacementComponent } from './boothplacement/boothplacement.component';
@@ -34,7 +33,6 @@ import { TokenInterceptorInterceptor } from './token-interceptor.interceptor';
 
 
 import { ListUsersComponent } from './list-users/list-users.component';
-<<<<<<< HEAD
 import { ClassroomComponent } from './Appointment/classroom/classroom.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { AfficherClassroomComponent } from './Appointment/afficher-classroom/afficher-classroom.component';
@@ -49,13 +47,9 @@ import { EventCreateComponent } from './events/event-create/event-create.compone
 import { EventsStatsComponent } from './events/events/events-stats/events-stats.component';
 import { EventListComponent } from './events/event-list/event-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CommonModule } from '@angular/common';
 import { EventDisplayComponent } from './events/event-display/event-display.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScanPressenceComponent } from './events/scan-pressence/scan-pressence.component';
-=======
-import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/afficher-offer-admin.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AfficherCandidatureOffreAdminComponent } from './offer/afficher-candidature-offre-admin/afficher-candidature-offre-admin.component';
 import { StatAdminCandidatureComponent } from './stat/stat-admin-candidature/stat-admin-candidature.component';
 
@@ -73,15 +67,25 @@ import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-
 import { AuctionComponent } from './auction/auction.component';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { PaymentListComponent } from './payment-list/payment-list.component';
+import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/afficher-offer-admin.component';
 
 
->>>>>>> main
 
 @NgModule({
   declarations: [
+    StatAdminCandidatureComponent,
+    AfficherCandidatureOffreAdminComponent,
+    AddPackComponent,
+    ViewPackComponent,
+    UpdatePackComponent,
+    HistoriquePacksComponent,
+    ViewRoomsComponent,
+    DetailRoomComponent,
+    PackSalesPerYearComponent,
+    AuctionComponent,
     AppComponent,
-
-   
+  AfficherOfferAdminComponent,
+   PaymentListComponent,
     SupplierComponent,
     NotificationComponent,
     BoothplacementComponent,
@@ -95,7 +99,6 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
   
 
     ListUsersComponent,
-<<<<<<< HEAD
     ClassroomComponent,
     AfficherClassroomComponent,
     CardClassroomComponent,
@@ -109,41 +112,7 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
     ScanPressenceComponent,
   ],
   imports: [
-    CommonModule,
-=======
-    AfficherOfferAdminComponent,
-    AfficherCandidatureOffreAdminComponent,
-    StatAdminCandidatureComponent,
-    AddPackComponent,
-    ViewPackComponent,
-    UpdatePackComponent,
-    HistoriquePacksComponent,
-    ViewRoomsComponent,
-    DetailRoomComponent,
-    PackSalesPerYearComponent,
-    AuctionComponent,
-    PaymentListComponent,
    
-
-   
-  ],
-  imports: [
-    CKEditorModule,
->>>>>>> main
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-<<<<<<< HEAD
-    ScheduleModule ,
-    ChartModule,
-    NgbModule,
-    ZXingScannerModule,
-  ],
-
-  bootstrap: [AppComponent]
-=======
     NgbModule,
     //NgChartsModule,
     NgApexchartsModule,
@@ -158,12 +127,22 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
   
     MatButtonModule,
     MatIconModule,
-    MatTableModule
-  
-
+    MatTableModule,
+    
+    CKEditorModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ScheduleModule ,
+    ChartModule,
+    NgbModule,
+    ZXingScannerModule,
    
-
   ],
+
+
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -174,6 +153,5 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
   ],
   bootstrap: [AppComponent],
   schemas : [CUSTOM_ELEMENTS_SCHEMA]
->>>>>>> main
 })
 export class AppModule { }

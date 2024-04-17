@@ -6,6 +6,8 @@ import { EventServiceService } from 'src/app/services/event-service.service';
 import { Event, Rating } from 'src/app/models/event';
 import { Interested } from 'src/app/models/Interested';
 import { Image } from '../../models/image';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-event-display',
@@ -15,19 +17,22 @@ import { Image } from '../../models/image';
 export class EventDisplayComponent implements OnInit{
   rate:any
   event: Event = new Event;
-  idUser:any=1
+  //idUser:any=1
   localImage:Image[]=[]
   interested:boolean=false;
+  user!:User;
   interestedBy!:Interested
   constructor( 
     private router: Router,
     private acr: ActivatedRoute,
     private eventService: EventServiceService,
+    private userService: UserService
     )
     {}
 
   ngOnInit(): void {
-   
+    
+    this.user=JSON.parse(localStorage.getItem("user"))
     this.acr.params.subscribe(params => {
       this.fetchEvent(params['name']);
    
@@ -42,7 +47,8 @@ export class EventDisplayComponent implements OnInit{
         this.event= result;
         this.localImage=this.event.images;
      })
-    }
+    } 
+    
 
  
   // paladin

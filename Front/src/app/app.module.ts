@@ -5,19 +5,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
-<<<<<<< HEAD
 import { CalenderComponent } from './calender/calender.component';
 import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsComponent } from './events/events.component';
-import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from '@coreui/angular';
-=======
 import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
-import { FormGroup} from '@angular/forms';
 import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
 import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.component';
 import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
@@ -58,16 +51,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
->>>>>>> main
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-<<<<<<< HEAD
     CalenderComponent,
-    EventsComponent
-=======
+    EventsComponent,
     AfficherOffreComponent,
     AjouterOffreComponent,
     DetailOffreComponent,
@@ -93,13 +84,12 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     RouletteComponent,
     SignUpComponent,
 
->>>>>>> main
   ],
   imports: [
     //NgxWheelModule  ,
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
-<<<<<<< HEAD
     ScheduleModule,
     ReactiveFormsModule,
     FormsModule,
@@ -109,10 +99,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
       NgbModule,
       CarouselModule,
     
-=======
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
+
     
     NgbModule,
     //QRCodeModule,
@@ -126,7 +114,6 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     AppRoutingModule,HttpClientModule,
     //StripeModule.forRoot("pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC"),
 
->>>>>>> main
   ],
 
   //providers: [DatePipe],

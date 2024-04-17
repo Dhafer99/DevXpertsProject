@@ -9,10 +9,7 @@
         <option value="$PROJECT_DIR$/configServer/pom.xml" />
         <option value="$PROJECT_DIR$/discovery/pom.xml" />
         <option value="$PROJECT_DIR$/Exhibitor/pom.xml" />
-<<<<<<< HEAD
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
-=======
-        <option value="$PROJECT_DIR$/Booth/pom.xml" />
         <option value="$PROJECT_DIR$/Offer/pom.xml" />
         <option value="$PROJECT_DIR$/dhafer/pom.xml" />
         <option value="$PROJECT_DIR$/BoothAndSupplierManagement/pom.xml" />
@@ -24,7 +21,6 @@
         <option value="$PROJECT_DIR$/PackageAuction/pom.xml" />
         <option value="$PROJECT_DIR$/Auction/pom.xml" />
         <option value="$PROJECT_DIR$/PackMangement/pom.xml" />
->>>>>>> main
       </list>
     </option>
     <option name="ignoredFiles">

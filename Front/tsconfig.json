@@ -3,11 +3,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strictNullChecks": false,
-<<<<<<< HEAD
-=======
     "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports": true,
->>>>>>> main
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

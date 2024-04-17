@@ -10,34 +10,22 @@ spring:
     name: gateway
   cloud:
     gateway:
-<<<<<<< HEAD
-      discovery:
-        locator:
-          enabled: true
-      mvc:
-        routes:
-          - id: booths
-            uri: http://localhost:8090
-            predicates:
-              - Path=/api/Booths/**
-          - id: exhibitors
-            uri: http://localhost:8070
-            predicates:
-              - Path=/exhibitor/api/Exhibitors/**
-          - id: Appointement
-            uri: http://localhost:8095
-            predicates:
-              - Path=/api/AppointementAndClassrooms/**
-
-          - id: events
-            uri: http://localhost:8091
-            predicates:
-            - Path=/api/Event/**
-
-
-
-=======
       routes:
+        - id: events
+          uri: http://localhost:8091
+          predicates:
+            - Path=/api/Event/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
+
         - id: booths
           uri: http://localhost:8763
           predicates:
@@ -126,7 +114,6 @@ spring:
           uri: http://localhost:8083
           predicates:
             - Path=/api/packs/**
->>>>>>> main
 
 eureka:
   client:

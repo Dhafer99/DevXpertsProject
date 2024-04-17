@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Event, Presence } from '../models/event';
 import { Observable } from 'rxjs';
 import { Image } from '../models/image';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,13 @@ export class EventService {
   ratingURL='/Rating'
   imageURL='/cloudinary'
   presenceUrl='/Presence'
+  user!:User
   constructor(private http:HttpClient) { }
+
 //-------------------------------ADD EVENT ------------------------------------------
   addEvent(Event:Event,images:Image[],mainImage:Image):Observable<Event>{
     //return  this.http.post<Event>("http://localhost:8222/api/Event/Events/addEvent",Event)
+    this.user=JSON.parse(localStorage.getItem("user"))
     Event.images=images;
     Event.imageId=mainImage.id;
     Event.imageUrl=mainImage.imageUrl;
@@ -27,6 +32,7 @@ export class EventService {
     
     // paladin the user who created it
     //Event.setLastModified_by(event.getCreated_by());
+    Event.createdBy=this.user.id
     Event.viewsCounter=0;
     Event.interestedCounter=0;
     Event.rating=0;

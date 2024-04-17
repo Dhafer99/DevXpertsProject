@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Comment, Comments, Like, Rating } from 'src/app/models/event';
+import { User } from 'src/app/models/user';
 import { EventServiceService } from 'src/app/services/event-service.service';
 
 @Component({
@@ -14,19 +15,21 @@ export class CommentComponent implements OnInit {
   replying: boolean = false;
   commenting = false;
   // paladin user
-  userID = 1;
+
+  user:User;
   currentComment: Comment;
   myform!: FormGroup;
 
   constructor(private eventService: EventServiceService) {}
 
   ngOnInit(): void {
+   this.user= JSON.parse(localStorage.getItem("user"))
     this.myform = new FormGroup({
       eventID: new FormControl(this.previousComment.eventID),
       comment: new FormControl(''),
       level: new FormControl(this.previousComment.level + 1),
       thread: new FormControl(this.previousComment.id),
-      userID: new FormControl(this.userID),
+      userID: new FormControl(this.user.id),
       id: new FormControl(0),
       status: new FormControl('Accepted'),
     });
@@ -51,13 +54,13 @@ export class CommentComponent implements OnInit {
       mockcomments.level = data.level;
       let like = new Like();
       like.id = 0;
-      like.userID = this.userID;
+      like.userID = this.user.id;
       like.status = ' ';
       mockcomments.comment.ActiveLike = like;
       comment.list.push(mockcomments);
       comment.replying = !comment.replying;
       this.myform.get('comment').setValue('');
-      this.myform.get('userID').setValue(this.userID);
+      this.myform.get('userID').setValue(this.user.id);
       this.myform.get('id').setValue(0);
       this.myform.get('status').setValue('Accepted');
     });
@@ -67,7 +70,7 @@ export class CommentComponent implements OnInit {
     if (!comment.ActiveLike.id) {
       let like = new Like();
       like.id = 0;
-      like.userID = this.userID;
+      like.userID = this.user.id;
       like.status = ' ';
       like.commentID = comment.id;
       comment.ActiveLike = like;
@@ -106,14 +109,14 @@ export class CommentComponent implements OnInit {
   findActiveLike() {
     let like = new Like();
     like.id = 0;
-    like.userID = this.userID;
+    like.userID = this.user.id;
     like.status = ' ';
     this.comments.forEach((comment) => {
       console.log(comment);
       // Check if comment.comment.likes is not undefined before accessing it
       if (comment.comment.likes) {
         comment.comment.ActiveLike =
-          comment.comment.likes.find((rate) => rate.userID == this.userID) ||
+          comment.comment.likes.find((rate) => rate.userID == this.user.id) ||
           like;
       } else {
         comment.comment.ActiveLike = like;
