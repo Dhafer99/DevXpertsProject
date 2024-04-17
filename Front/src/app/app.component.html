@@ -6,6 +6,7 @@
         <i class="uil uil-brightness mode-dark mx-auto" (click)="dark()"></i>
         <i class="uil uil-moon bx-spin mode-light" (click)="light()"></i>
     </a>
+<div *ngIf="token">
    <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar">
     <div class="container-fluid custom-container">
         <a class="navbar-brand logo f-30 text-dark fw-bold" href="index.html">
@@ -48,8 +49,6 @@
                 <li class="nav-item">
                     <a routerLink="/supplier/front" class="nav-link">Supplier Requests</a>
 
-                    <a href="http://localhost:4201/myRooms/4/1" class="nav-link">My Room</a>
-
                 </li>
   
                 <li class="nav-item">
@@ -62,65 +61,7 @@
                         data-bs-toggle="dropdown">
                         Pages
                     </a>
-  
-                    <div class="dropdown-menu dropmenu-width dropdown-menu-center">
-                        <div class="row">
-                            <ul class="col-lg-6 list-unstyled">
-                                <li><a class="dropdown-item" href="activity.html"><i
-                                            class="mdi mdi-chart-line f-20 me-2 align-middle"></i>Activity</a></li>
-  
-                                <li><a class="dropdown-item" href="item-details.html"><i
-                                            class="mdi mdi-image-filter-frames f-20 me-2 align-middle"></i>Item
-                                        Details</a></li>
-                                <li><a class="dropdown-item" href="post-detail.html"><i
-                                            class="mdi mdi-image-filter-center-focus-weak f-20 me-2 align-middle"></i>Post
-                                        Details</a></li>
-                                <li><a class="dropdown-item" href="newsletter.html"><i
-                                            class="mdi mdi-email-open-outline f-20 me-2 align-middle"></i>Newsletter</a>
-                                </li>
-                                <li><a class="dropdown-item" href="creatore.html"><i
-                                            class="mdi mdi-comment-account-outline f-20 me-2 align-middle"></i>Creatore</a>
-                                </li>
-                                <li><a class="dropdown-item" href="login.html"><i
-                                            class="mdi mdi-account-outline f-20 me-2 align-middle"></i>Login</a></li>
-  
-                                <li><a class="dropdown-item" href="register.html"><i
-                                            class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>Register</a></li>
-  
-                                <li><a class="dropdown-item" href="privacy.html"><i
-                                            class="mdi mdi-lock-open-outline f-20 me-2 align-middle"></i>Privacy</a></li>
-  
-                            </ul>
-  
-                            <ul class="col-lg-6 list-unstyled">
-                                <li><a class="dropdown-item" href="wallet.html"><i
-                                            class="mdi mdi-wallet-travel f-20 me-2 align-middle"></i>Connect Wallet</a>
-                                </li>
-  
-                                <li><a class="dropdown-item" href="faq.html"><i
-                                            class="mdi mdi-comment-question-outline f-20 me-2 align-middle"></i>Faq</a>
-                                </li>
-                                <li><a class="dropdown-item" href="submit-request.html"><i
-                                            class="mdi mdi-check-circle-outline f-20 me-2 align-middle"></i>submit
-                                        Reqeust</a></li>
-  
-                                <li><a class="dropdown-item" href="chat.html"><i
-                                            class="mdi mdi-message-text-outline f-20 me-2 align-middle"></i>Chat</a>
-                                </li>
-  
-                                <li><a class="dropdown-item" href="artical.html"><i
-                                            class="mdi mdi-comment-account-outline f-20 me-2 align-middle"></i>Artical</a>
-                                </li>
-  
-                                <li><a class="dropdown-item" href="ranking.html"><i
-                                            class="mdi mdi-numeric-1-box-outline f-20 me-2 align-middle"></i>Ranking</a></li>
-  
-                                <li><a class="dropdown-item" href="404.html"><i
-                                            class="mdi mdi-alert-outline f-20 me-2 align-middle"></i>404</a></li>
-  
-                            </ul>
-                        </div>
-                    </div>
+
   
                 </li>
                 <!--end dropdown-->
@@ -142,23 +83,36 @@
   
   
                 <li class="nav-item">
-                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a class="nav-link" routerLink="/offers">Offers</a>
                 </li>
                 <!--end dropdown-->
-  
+
                 <li class="nav-item">
                     <a href="contact.html" class="nav-link">Contact</a>
                 </li>
                 <!--end dropdown-->
             </ul>
             <!--end navbar-nav-->
-            <a href="http://localhost:4201/auth" class="btn btn-primary" (click)="disconnect()">Disconnect</a>
-  
+            <div *ngIf="token">
+                <li class="nav-item dropdown dropdown-hover">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        {{user.firstname}} {{user.lastname}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
+                        <div *ngIf="user.role == 'student' || user.role == 'alumni'" >
+                            <li><a class="dropdown-item" routerLink="/myapplications"><i
+                                    class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>My applications</a></li>
+                        </div>
+                            <li><a class="dropdown-item" href="http://localhost:4201/auth" (click)="disconnect()"><i
+                                    class="mdi mdi-account-edit f-20 me-2 align-middle"></i>Disconnect</a></li>
+                    </ul>
+                </li>
+            </div>
         </div>
-  
     </div>
     <!--end container-->
   </nav>
+</div>
   <router-outlet></router-outlet>
   
   <section class="footer">

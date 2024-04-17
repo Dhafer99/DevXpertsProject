@@ -5,6 +5,7 @@ import { ServicebackService } from './services/serviceback.service';
 import { ElementRef, ViewChild } from '@angular/core';
 
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -19,7 +20,9 @@ export class AppComponent implements OnInit{
   
   public notifications = 0;
   message !: string ;
-  constructor(private serviceback: ServicebackService) {
+  
+  token = localStorage.getItem("token");
+  constructor(private serviceback: ServicebackService,private router: Router) {
    /*  this.webSocketService.connect().subscribe(() => {
       // Abonnez-vous aux notifications de paiement
       
@@ -54,6 +57,35 @@ export class AppComponent implements OnInit{
     this.serviceback.getNotificationCount(2).subscribe();
 
   }
+
+
+
+    //this.router.navigate(['/new-page']);
+  //user!:User;
+  user=JSON.parse(localStorage.getItem("user"));
+  
+/******************** **********************/
+dark(){
+  const body = document.querySelector('body');
+  if (body) {
+    body.setAttribute('data-bs-theme',"dark");
+  }
+}
+light(){
+  const body = document.querySelector('body');
+  if (body) {
+    body.setAttribute('data-bs-theme',"light");
+  }
+
+}
+
+disconnect(){
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  localStorage.removeItem("userID");
+  this.user=""
+  this.token=""
+}
   
 
     // Connectez-vous au WebSocket
