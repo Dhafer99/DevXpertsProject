@@ -147,6 +147,11 @@ public class RoomController {
         roomInterface.ParticipateToRoom(idRoom,companyId);
     }
 
+    @PutMapping("/updateRoomStatus/{idRoom}")
+    public void updateRoomStatus( @PathVariable("idRoom") long idRoom ) {
+        roomInterface.updateRoomStatus(idRoom);
+    }
+
    /* @GetMapping("/getCapaniesParticipants/{idRoom}")
     public void getCapaniesParticipants( @PathVariable("idRoom") long idRoom) {
         roomInterface.getCapaniesParticipants(idRoom);
@@ -161,15 +166,28 @@ public class RoomController {
             @DestinationVariable  Long roomId) throws JsonProcessingException {
 
         Random random = new Random();
-        int randomIndex = random.nextInt(roomInterface.getRoomPacks(roomId).size());
+        List<Room> roomList = roomInterface.findAllRooms();
+
+        if(roomList.size()>0)
+        {
+            Room room = roomInterface.findRoom(roomId);
+            if ( room != null )
+            {
+
+                int randomIndex = random.nextInt(roomInterface.getRoomPacks(roomId).size());
 
 
-        RouletteDTO rouletteDTO = new RouletteDTO();
-        rouletteDTO.setResult(roomInterface.getRoomPacks(roomId).get(randomIndex).getIdPack().intValue());
-        //rouletteDTO.setSpin(true);
-        log.info("result {}",Math.random());
+                RouletteDTO rouletteDTO = new RouletteDTO();
+                rouletteDTO.setResult(roomInterface.getRoomPacks(roomId).get(randomIndex).getIdPack().intValue());
+                //rouletteDTO.setSpin(true);
+                log.info("result {}",Math.random());
+                rouletteInterface.sendToRoulette(rouletteDTO);
+            }
 
-        rouletteInterface.sendToRoulette(rouletteDTO);
+        }
+
+
+
 
 
 

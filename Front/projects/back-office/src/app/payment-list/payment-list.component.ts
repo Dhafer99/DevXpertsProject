@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { RoomServiceService } from '../services/room-service.service';
 import { Payment } from '../models/Payment';
 import { PackServiceService } from '../services/pack-service.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from '../models/User';
 
 
 @Component({
@@ -13,11 +15,19 @@ import { PackServiceService } from '../services/pack-service.service';
 })
 export class PaymentListComponent implements OnInit {
   payments: Payment[] = [];
+  users:User[]=[];
 
-  constructor(private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
+  constructor(private userService:UserService, private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
   ngOnInit(): void {
     this.packService.getPayments().subscribe(res => {
       console.log(res)
+      res.forEach((k:any) => {
+        this.userService.getUserById(k.companyId).subscribe((ele)=>{
+
+          this.users.push(ele);
+        })
+      });
+     console.log(this.users)
       this.payments = res;
     });
   }

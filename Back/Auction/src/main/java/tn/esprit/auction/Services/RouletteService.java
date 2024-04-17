@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.auction.DTO.RouletteDTO;
 
 @Service
-public class RouletteService implements RouletteInterface{
+public class RouletteService implements RouletteInterface {
     @Autowired
     private final MessageSendingOperations<String> messagingTemplate;
 
@@ -17,14 +17,11 @@ public class RouletteService implements RouletteInterface{
     }
 
 
-
     @Override
     public void sendToRoulette(RouletteDTO rouletteDTO) throws JsonProcessingException {
 
 
-
-        messagingTemplate.convertAndSend("/topic/rouletteResult",rouletteDTO);
-
+        messagingTemplate.convertAndSend("/topic/rouletteResult", rouletteDTO);
 
 
     }
@@ -32,11 +29,11 @@ public class RouletteService implements RouletteInterface{
     @Override
     public void startRoulette() throws JsonProcessingException {
 
-        Boolean start = true ;
+        Boolean start = true;
         ObjectMapper objectMapper = new ObjectMapper();
         String startRoulette = objectMapper.writeValueAsString(start);
 
-        messagingTemplate.convertAndSend("/test/startroulette",startRoulette);
+        messagingTemplate.convertAndSend("/test/startroulette", startRoulette);
 
     }
 }

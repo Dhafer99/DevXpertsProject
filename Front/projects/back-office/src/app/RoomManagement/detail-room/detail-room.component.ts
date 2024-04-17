@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Pack } from '../../models/pack';
 import { PackServiceService } from '../../services/pack-service.service';
+import { User } from '../../models/User';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-detail-room',
@@ -17,8 +19,9 @@ import { PackServiceService } from '../../services/pack-service.service';
 export class DetailRoomComponent  implements OnInit {
   room!: Room;
   pack!: Pack[];
+  users:User[]=[]; 
   id = 0;
-  constructor(private sanitizer: DomSanitizer, private activate: ActivatedRoute,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
+  constructor(private userService:UserService, private sanitizer: DomSanitizer, private activate: ActivatedRoute,private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
   extractedText: string = '';
   extractText() {
   
@@ -31,8 +34,11 @@ export class DetailRoomComponent  implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
   ngOnInit() {
-   
+  
     this.id = this.activate.snapshot.params['id'];  
+    this.userService.getUsersByIdRoom(this.id).subscribe((res)=>{
+      this.users= res
+    })
     this.packService.findPacksByIdRoom(this.id).subscribe(
       (r) => {
         this.pack = r;

@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import tn.esprit.auction.Entites.UserCredential;
 
-@FeignClient(name="AuthenticationService", url = "http://localhost:8099")
+@FeignClient(name = "AuthenticationService", url = "http://localhost:8099")
 public interface ClientUser {
 
     @GetMapping("/auth/getUserById/{userid}")
-     UserCredential getUserById(@PathVariable("userid") int userid);}
+    UserCredential getUserById(@PathVariable("userid") int userid);
+}

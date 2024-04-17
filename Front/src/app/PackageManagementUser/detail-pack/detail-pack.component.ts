@@ -18,18 +18,18 @@ export class DetailPackComponent implements OnInit {
   ngOnInit() {
     this.id = this.activate.snapshot.params['typePack'];  
     if(this.id==2){
-      this.packService.findByTypePack('standard').subscribe(res => {
+      this.packService.findNonReservedPackPerType('standard',true).subscribe(res => {
         this.packs = res;
       });
     }
     
     if(this.id==0){
-      this.packService.findByTypePack('diamond').subscribe(res => {
+      this.packService.findNonReservedPackPerType('diamond',true).subscribe(res => {
         this.packs = res;
       });
     }
     if(this.id==1){
-      this.packService.findByTypePack('silver').subscribe(res => {
+      this.packService.findNonReservedPackPerType('silver',true).subscribe(res => {
         this.packs = res;
       });
     }

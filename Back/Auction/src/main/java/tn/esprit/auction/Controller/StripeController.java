@@ -65,13 +65,13 @@ RoomRepository roomRepository ;
         Resource resource = new ClassPathResource(filePath);
         return IOUtils.toString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
-    @PostMapping("/payment/{roomId}")
+    @PostMapping("/payment/{roomId}/{companyId}")
     /**
      * Payment with Stripe checkout page
      *
      * @throws StripeException
      */
-    public String paymentWithCheckoutPage(@PathVariable("roomId") Long roomId,@RequestBody CheckoutPayment payment) throws StripeException, MessagingException, IOException {
+    public String paymentWithCheckoutPage(@PathVariable("companyId") int companyId,@PathVariable("roomId") Long roomId,@RequestBody CheckoutPayment payment) throws StripeException, MessagingException, IOException {
         // We initilize stripe object with the api key
         init();
         // We create a  stripe session parameters
@@ -99,6 +99,7 @@ RoomRepository roomRepository ;
 
         // Mise à jour de la base de données ou autres actions après le succès du paiement
         payment.setPaymentDay(new Date());
+        payment.setCompanyId(companyId);
         Room room = roomRepository.findById(roomId).orElse(null);
         room.setConfirmedParticipant(room.getConfirmedParticipant() + 1);
         roomRepository.save(room);

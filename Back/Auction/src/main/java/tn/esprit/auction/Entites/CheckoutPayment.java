@@ -27,6 +27,7 @@ public class CheckoutPayment {
     private String cancelUrl;
     private long amount;
     private long quantity;
+    private int companyId;
     private Date PaymentDay;
 
 

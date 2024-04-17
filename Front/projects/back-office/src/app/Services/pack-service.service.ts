@@ -137,4 +137,22 @@ public getPacksByStatus ( status: boolean ): Observable<any>
       
     } );
   }
+
+
+  public findMinPriceByTypePack ( typePack: string ): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }findMinPriceByTypePack/${ typePack }`, {
+      
+    } );
+ 
+  }
+
+  public findNonReservedPackPerType ( typePack: string , status:boolean): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }findNonReservedPackPerType/${ typePack }/${ status }`, {
+      
+    } );
+ 
+  }
+  
 }

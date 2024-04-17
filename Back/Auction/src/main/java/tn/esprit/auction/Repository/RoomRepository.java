@@ -10,4 +10,5 @@ public interface RoomRepository extends JpaRepository<Room,Long> {
 
     Room findByTypePack(TypePack typePack);
     Room findByCodeRoom(String code);
+    List <Room> findByStatus(Boolean status);
 }

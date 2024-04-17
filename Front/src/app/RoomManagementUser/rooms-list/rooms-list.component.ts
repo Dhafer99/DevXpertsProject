@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { User } from 'projects/back-office/src/app/models/User';
@@ -7,15 +7,15 @@ import { PackServiceService } from 'projects/back-office/src/app/services/pack-s
 
 import { RoomServiceService } from 'projects/back-office/src/app/services/room-service.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-rooms-list',
   templateUrl: './rooms-list.component.html',
   styleUrls: ['./rooms-list.component.css'],
 })
-export class RoomsListComponent implements OnInit {
-  rooms: Room[] = [];
-  test: boolean = false;
+export class RoomsListComponent implements OnInit ,AfterViewInit{
+  
   @ViewChild('exampleModalCenter') modal!: ElementRef;
   constructor(
     private sanitizer: DomSanitizer,
@@ -25,26 +25,34 @@ export class RoomsListComponent implements OnInit {
     private route: Router,
     private roomService: RoomServiceService
   ) {}
+ 
   sanitizeHtml(html: string): SafeHtml {
     // Utiliser DomSanitizer pour marquer le HTML comme sûr
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
-
+  rooms: Room[] = [];
+  test: boolean = false;
   idRoom: number = 0;
   testExistantRoom: boolean = true;
   user: User;
   room!: Room;
   testAvailablePlaces: boolean = true;
   testingPointsNumber: boolean = true;
-  ngOnInit() {
+  ngAfterViewInit(): void {
+   
+  }
+  ngOnInit() :void{
+    this.roomService.getAllRooms().subscribe((res) => {
+      this.rooms = res;
+      console.log(res);
+    });
+    
     this.userserv
       .getUserById(parseInt(localStorage.getItem('userID')))
       .subscribe((res) => {
         this.user = res;
       });
-    this.roomService.getAllRooms().subscribe((res) => {
-      this.rooms = res;
-    });
+  
 
    
   }
@@ -64,20 +72,20 @@ export class RoomsListComponent implements OnInit {
     this.testingPointsNumber = true ; 
     this.testAvailablePlaces=true ; 
     this.roomService.getRoomById(id).subscribe(
-      (r) => {
+      (vare) => {
         
         this.userserv
           .getRoomId(parseInt(localStorage.getItem('userID')))
           .subscribe((res) => {
             this.idRoom = res;
             
-            if (res === r.idRoom) {
+            if (res === vare.idRoom) {
               this.testExistantRoom = false;
             }
           });
-        this.room = r;
+        this.room = vare;
 
-        if(r.maxParticipants == r.confirmedParticipant)
+        if(vare.maxParticipants == vare.confirmedParticipant)
         {
           this.testAvailablePlaces=false
         }
@@ -99,8 +107,30 @@ export class RoomsListComponent implements OnInit {
     this.route.navigate(['/payments', id]);
     this.modal.nativeElement.dismiss();
   }
-
+  mail() {
+   
+  }
   userMyPoints(id: number) {
+    this.roomService.getRoomById(id).subscribe(
+      (vare) => {
+
+        this.packService
+        .sendcodeMail(this.user.email, vare.codeRoom)
+        .subscribe(
+          () => {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'envoi code ',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          },
+          (error) => {
+            console.error("Erreur lors de l'ajout", error);
+          }
+        );
+      })
    
     this.userserv.affecterRoomTouser(id,this.user.id, 0).subscribe((r)=>{});
     this.roomService.updateRoomParticipant(id).subscribe(r=>{});

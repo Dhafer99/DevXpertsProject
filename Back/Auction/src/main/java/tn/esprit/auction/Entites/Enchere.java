@@ -17,11 +17,9 @@ public class Enchere {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idenchere")
     private Long idenchere;
-
     private int idcompany;
     private int points;
     private float pricing;
-
     private  Boolean status ;
     @ManyToOne(fetch = FetchType.EAGER)
     @JsonIgnore

@@ -151,5 +151,17 @@ public class PackageController {
           packageInterface.delete(id);
     }
 
+    @GetMapping("/findMinPriceByTypePack/{typePack}")
+    public float findMinPriceByTypePack(@PathVariable("typePack") TypePack typePack) {
+        return  packageInterface.findMinPriceByTypePack(typePack);
+    }
+
+    @GetMapping("/findNonReservedPackPerType/{typePack}/{status}")
+    public List<Pack> findNonReservedPackPerType(@PathVariable("typePack") TypePack typePack
+
+
+    , @PathVariable("status") Boolean status) {
+        return  packageInterface.findNonReservedPackPerType(typePack,status);
+    }
 
 }

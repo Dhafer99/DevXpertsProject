@@ -91,7 +91,7 @@ export class ViewPackComponent implements OnInit {
       !this.room.duration ||
       !this.room.price ||
       !this.room.maxParticipants ||
-      !this.room.dateDebut
+      !this.room.dateDebut 
     ) {
       Swal.fire({
         icon: 'error',

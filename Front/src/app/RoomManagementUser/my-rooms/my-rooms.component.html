@@ -1,4 +1,8 @@
-<div class="row mt-5 align-items-center">
+
+<h1 *ngIf="testExistanteRoom"> you don'have any room </h1>
+
+<div *ngIf="!testExistanteRoom">
+<div   class="row mt-5 align-items-center">
   <div class="col-lg-6">
     <div class="back-home-image pe-4">
       <img
@@ -260,4 +264,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

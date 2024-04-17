@@ -10,6 +10,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/auth")
 @Slf4j
@@ -68,11 +70,28 @@ public class AuthController {
     }
 
     @PutMapping("/UpdateUserPoints/{userid}/{points}")
-    public UserCredential UpdateUserPoints(@PathVariable("userid") int userid,@PathVariable("points") int points) {
+    public UserCredential UpdateUserPoints(
+            @PathVariable("userid") int userid,@PathVariable("points") int points) {
 
 
         return service.UpdateUserPoints(userid,points);
     }
+
+    @PutMapping("/updateUserPointsWheneEnteringAuction/{userid}/{points}")
+    public void updateUserPointsWheneEnteringAuction(
+            @PathVariable("userid") int userid,@PathVariable("points") int points) {
+
+
+         service.updateUserPointsWheneEnteringAuction(userid,points);
+    }
+    @PutMapping("/RemoveUserRoom/{userid}")
+    public void RemoveUserRoom(
+            @PathVariable("userid") int userid) {
+
+
+        service.RemoveUserRoom(userid);
+    }
+
 
     @PutMapping("/RembourssementPoints/{userid}/{points}")
     public UserCredential RembourssementPoints(@PathVariable("userid") int userid,@PathVariable("points") int points) {
@@ -81,6 +100,11 @@ public class AuthController {
         return service.RembourssementPoints(userid,points);
     }
 
+    @GetMapping("/getUsersByIdRoom/{roomId}")
+    public List<UserCredential> getUsersByIdRoom(@PathVariable("roomId") int roomId) {
+
+        return service.getUsersByIdRoom(roomId);
+    }
 
 
     // @GetMapping("/CurrentUser/{email}")

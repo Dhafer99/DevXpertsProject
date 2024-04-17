@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 //import { StompService } from '@stomp/ng2-stompjs';
 //import { Message } from '@stomp/stompjs';
@@ -18,7 +18,7 @@ import Swal from 'sweetalert2';
   templateUrl: './auction-room.component.html',
   styleUrls: ['./auction-room.component.css'],
 })
-export class AuctionRoomComponent implements OnDestroy {
+export class AuctionRoomComponent implements OnInit {
   usersInRoom: any[] = [];
   @ViewChild('sellerBox') sellerBoxRef!: ElementRef; // Référence à l'élément du box dans le template HTML
   animateBoxUp() {
@@ -32,7 +32,7 @@ export class AuctionRoomComponent implements OnDestroy {
   constructor(
     private activate: ActivatedRoute,
     private roomService: RoomServiceService,
-    private userserv: UserService
+    private userserv: UserService, private router:Router
   ) {}
 
   room: Room = new Room();
@@ -43,6 +43,7 @@ export class AuctionRoomComponent implements OnDestroy {
   isUserWinner: boolean = false;
   ExpiringPoints: boolean = false;
   oldPoints : number
+  playingPoints : number
   timeLeft: string = '';
   calculateTimeLeft(): void {
     const now = moment();
@@ -68,8 +69,11 @@ export class AuctionRoomComponent implements OnDestroy {
             if (isCompanyIdPresent) {
               this.isAuctionEndedWinners = true;
             } else {
-            console.log((this.oldPoints-this.CurentUser.points)+this.CurentUser.points );
-              this.userserv.RembourssementPoints(parseInt(localStorage.getItem("userID")),(this.oldPoints-this.CurentUser.points)+this.CurentUser.points ).subscribe(()=>{})
+              console.log("ols"+this.oldPoints)
+              console.log("ccc"+this.room.price)
+              console.log(this.playingPoints)
+            console.log(this.oldPoints+this.room.price+this.playingPoints );
+              this.userserv.RembourssementPoints(parseInt(localStorage.getItem("userID")),(this.playingPoints+this.room.price)).subscribe(()=>{})
           
               this.isAuctionEndedLosers = true;
             }
@@ -113,10 +117,20 @@ export class AuctionRoomComponent implements OnDestroy {
     .getUserById(parseInt(localStorage.getItem('userID')))
     .subscribe((res) => {
       this.oldPoints = res.points;
+      this.playingPoints = res.points
     });
     this.calculateTimeLeft();
 
     this.fetchInterval = setInterval(() => {
+      
+      this.roomService.getRoomById(this.id).subscribe(
+        (r) => {
+          this.room = r;
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération du room :', error);
+        }
+      );
       this.userserv
         .getUserById(parseInt(localStorage.getItem('userID')))
         .subscribe((res) => {
@@ -131,14 +145,6 @@ export class AuctionRoomComponent implements OnDestroy {
           this.currentEnchere = res;
         });
 
-      this.roomService.getRoomById(this.id).subscribe(
-        (r) => {
-          this.room = r;
-        },
-        (error) => {
-          console.error('Erreur lors de la récupération du room :', error);
-        }
-      );
       this.calculateTimeLeft();
       this.roomService.getUsersEnterningAuction(this.id).subscribe(
         (r) => {
@@ -152,7 +158,7 @@ export class AuctionRoomComponent implements OnDestroy {
     }, 1000);
   }
 
-  ngOnDestroy() {
+ /* ngOnDestroy() {
     const userID = parseInt(localStorage.getItem('userID'));
 
     this.roomService
@@ -170,9 +176,49 @@ export class AuctionRoomComponent implements OnDestroy {
       );
     this.fetchInterval();
     clearInterval(this.fetchInterval);
+  }*/
+
+
+  navigateToListeRooms(){
+    this.userserv.RemoveUserRoom(parseInt(localStorage.getItem("userID"))).subscribe(()=>{})
+    this.roomService.updateRoomStatus(this.id).subscribe(()=>{})
+    this.roomService
+      .deleteUserSortieEnchere(parseInt(localStorage.getItem("userID")), this.room.idRoom)
+      .subscribe(
+        () => {
+          console.log('Utilisateur supprimé avec succès');
+        },
+        (error) => {
+          console.error(
+            "Erreur lors de la suppression de l'utilisateur :",
+            error
+          );
+        }
+      );
+    this.router.navigate(['/ListPacks/ListRooms']);
+  }
+
+  navigateToRoolette(){
+    this.roomService
+    .deleteUserSortieEnchere(parseInt(localStorage.getItem("userID")), this.room.idRoom)
+      .subscribe(
+        () => {
+          console.log('Utilisateur supprimé avec succès');
+        },
+        (error) => {
+          console.error(
+            "Erreur lors de la suppression de l'utilisateur :",
+            error
+          );
+        }
+      );
+  //  this.userserv.RemoveUserRoom(parseInt(localStorage.getItem("userID"))).subscribe(()=>{})
+    this.roomService.updateRoomStatus(this.id).subscribe(()=>{})
+    this.router.navigate(['roulette', this.id]);
   }
   updatePrice(tokenAmount: number): void {
-    if (this.CurentUser.points > 0 && this.CurentUser.points > tokenAmount ) {
+   
+    if (this.CurentUser.points > 0 && this.CurentUser.points  >= tokenAmount ) {
       this.roomService
         .updatePricingEnchere(
           parseInt(localStorage.getItem('userID')),

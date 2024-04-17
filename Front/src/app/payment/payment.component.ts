@@ -39,20 +39,26 @@ export class PaymentComponent implements OnInit {
   calculateTotalAmount() {
     this.totalAmount =
       this.points50 * 30 + this.points100 * 50 + this.points150 * 100;
-    this.totalPoints = this.totalPoints+
-      this.points50 * 50 + this.points100 * 100 + this.points150 * 150;
+   // this.totalPoints = this.totalPoints+
+      //this.points50 * 50 + this.points100 * 100 + this.points150 * 150;
   }
   incrementPoints(type: string) {
     if (type === '50') {
       this.points50++;
+      this.totalPoints = this.totalPoints+
+      50
     } else if (type === '100') {
       this.points100++;
+      this.totalPoints = this.totalPoints+
+      100
     } else if (type === '150') {
+      this.totalPoints = this.totalPoints+
+       150
       this.points150++;
     }
     this.calculateTotalAmount();
   }
-user : User;
+  user : User;
   stripePromise = loadStripe(environment.stripe);
   ngOnInit(): void {
     this.userserv
@@ -80,7 +86,7 @@ user : User;
       }
     );
     this.payment.amount === this.totalAmount;
-    this.payment.quantity === this.totalPoints;
+    this.payment.quantity === this.totalPoints-this.user.points;
 
     // here we create a payment object
     const payment = {
@@ -88,7 +94,7 @@ user : User;
       currency: 'usd',
       // amount on cents *10 => to be on dollar
       amount: this.totalAmount,
-      quantity: this.totalPoints,
+      quantity: this.totalPoints-this.user.points,
       // cancelUrl: 'http://localhost:4200/cancel',
       // successUrl: 'http://localhost:4200/success',
     };
@@ -97,7 +103,7 @@ user : User;
 
     // this is a normal http calls for a backend api
     this.http
-      .post(`${environment.serverUrl}/payment/${this.id}`, payment)
+      .post(`${environment.serverUrl}/payment/${this.id}/${this.user.id}`, payment)
       .subscribe((data: any) => {
         // I use stripe to redirect To Checkout page of Stripe platform
         stripe!.redirectToCheckout({
@@ -123,7 +129,7 @@ user : User;
 
   mail() {
     this.packService
-      .sendcodeMail('eya.somai@esprit.tn', this.room.codeRoom)
+      .sendcodeMail(this.user.email, this.room.codeRoom)
       .subscribe(
         () => {
           Swal.fire({

@@ -15,20 +15,22 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class RoomService implements RoomInterface{
+public class RoomService implements RoomInterface {
 
-RoomRepository roomRepository;
+    RoomRepository roomRepository;
 
-PackgeRepository packgeRepository ;
-    EnchereRepository enchereRepository ;
+    PackgeRepository packgeRepository;
+    EnchereRepository enchereRepository;
 
-EnchereInterface enchereInterface ;
+    EnchereInterface enchereInterface;
+
     @Override
     public void addRoom(Room room) {
-        List<Pack> packs = packgeRepository.findByTypePackAndStatus(room.getTypePack(),true);
+        List<Pack> packs = packgeRepository.findByTypePackAndStatus(room.getTypePack(), true);
         room.setQuantity(packs.size());
         room.setMaxWinners(packs.size());
         room.setPriceAuction(room.getPrice());
+        room.setStatus(true);
         SecureRandom random = new SecureRandom();
         StringBuilder codeBuilder = new StringBuilder();
         String allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -42,9 +44,8 @@ EnchereInterface enchereInterface ;
             codeBuilder.append(randomChar);
         }
         room.setCodeRoom(codeBuilder.toString());
-         roomRepository.save(room);
-        for (Pack p : packs)
-        {
+        roomRepository.save(room);
+        for (Pack p : packs) {
             p.setRoom(room);
             packgeRepository.save(p);
         }
@@ -57,21 +58,25 @@ EnchereInterface enchereInterface ;
 
     @Override
     public List<Room> findAllRooms() {
-        return roomRepository.findAll();
+
+
+
+
+
+        return roomRepository.findByStatus(true);
     }
 
     @Override
-    public Room updateRoom( Room room) {
-        return  roomRepository.save(room);
+    public Room updateRoom(Room room) {
+        return roomRepository.save(room);
     }
 
     @Override
     public Room updateRoomParticipant(long roomid) {
         Room room = roomRepository.findById(roomid).orElse(null);
-        if(room != null)
-        {
+        if (room != null) {
             int p = room.getConfirmedParticipant();
-            room.setConfirmedParticipant(p+1);
+            room.setConfirmedParticipant(p + 1);
             roomRepository.save(room);
         }
 
@@ -100,8 +105,8 @@ EnchereInterface enchereInterface ;
      }
  */
     @Override
-    public float UpdatePrice(float nbrpoint,Long idRoom) {
-        Room room = roomRepository.findById(idRoom).get() ;
+    public float UpdatePrice(float nbrpoint, Long idRoom) {
+        Room room = roomRepository.findById(idRoom).get();
        /* float somme =0;
         if(nbrpoint==50)
         {
@@ -117,7 +122,15 @@ EnchereInterface enchereInterface ;
         }*/
         room.setPriceAuction(nbrpoint);
         roomRepository.save(room);
-            return nbrpoint;
+        return nbrpoint;
+    }
+
+    @Override
+    public void updateRoomStatus(long roomId) {
+        Room room = roomRepository.findById(roomId).orElse(null);
+        room.setStatus(false);
+        roomRepository.save(room);
+
     }
 
    /* @Override
@@ -129,32 +142,37 @@ EnchereInterface enchereInterface ;
 
     @Override
     public List<Pack> getRoomPacks(Long roomId) {
-        Room room = roomRepository.findById(roomId).orElse(null);
-        List<Pack> packs = new ArrayList<>();
+        List<Room> listrooms = roomRepository.findAll();
 
-        for (Pack p : room.getPackages()) {
-            if(p.isReserved()==false)
-            {
-                packs.add(p);
-        }}
+        List<Pack> packs = new ArrayList<>();
+        if(listrooms.size()>0){
+             Room room = roomRepository.findById(roomId).orElse(null);
+             if(room!=null)
+             {  for (Pack p : room.getPackages()) {
+                 if (p.isReserved() == false) {
+                     packs.add(p);
+                 }
+             }}}
+
+
         return packs;
     }
 
     @Override
-    public void ReservePack(Long idpack , Long idRoom ) {
-        List < Enchere> encheres = enchereInterface.getTopEncheresByRoomId(idRoom);
+    public void ReservePack(Long idpack, Long idRoom) {
+        List<Enchere> encheres = enchereInterface.getTopEncheresByRoomId(idRoom);
         Pack pack = packgeRepository.findById(idpack).get();
 
-            //pack.setCompany(encheres.get(0).getIdcompany());
-            //encheres.get(0).setStatus(false);
-            //enchereRepository.save(encheres.get(0));
+        //pack.setCompany(encheres.get(0).getIdcompany());
+        //encheres.get(0).setStatus(false);
+        //enchereRepository.save(encheres.get(0));
 
         //pack.setReserved(true);
         packgeRepository.save(pack);
     }
 
     @Override
-    public double calculateTotalAmountFor50pt( int quantity) {
+    public double calculateTotalAmountFor50pt(int quantity) {
         double rate50Points = 30.0;
 
         double totalAmount = rate50Points * quantity;
@@ -163,7 +181,7 @@ EnchereInterface enchereInterface ;
     }
 
     @Override
-    public double calculateTotalAmountFor150pt( int quantity) {
+    public double calculateTotalAmountFor150pt(int quantity) {
         double rate50Points = 50.0;
 
         double totalAmount = rate50Points * quantity;
@@ -172,7 +190,7 @@ EnchereInterface enchereInterface ;
     }
 
     @Override
-    public double calculateTotalAmountFor100pt( int quantity) {
+    public double calculateTotalAmountFor100pt(int quantity) {
         double rate50Points = 100.0;
 
         double totalAmount = rate50Points * quantity;

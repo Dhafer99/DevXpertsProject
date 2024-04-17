@@ -28,9 +28,9 @@ export class RoomServiceService {
     return this.http.post<any>( this.url + "addRoom", data );
   }
 
-  public getAllRooms (  ): Observable<any>
+  public getAllRooms (  ): Observable<any[]>
   {
-    return this.http.get<any>( this.url + "getAllRooms" );
+    return this.http.get<any[]>( this.url + "getAllRooms" );
   }
 
   public getRoomById ( id: number ): Observable<any>
@@ -56,7 +56,8 @@ export class RoomServiceService {
     return this.http.put<any>( this.url + 'updateRoom', data );
   
   }
-
+  
+  
 
   ReservePack ( id: number, idRoom:number  ): Observable<any> 
   {
@@ -72,8 +73,11 @@ export class RoomServiceService {
   UpdatePriceAuction ( points: number,id:number  ): Observable<any> {
     return this.http.put<any>(`${this.url}updatePrice/${points}/${id}`, {});
   }
+  updateRoomStatus ( id:number  ): Observable<any> {
+    return this.http.put<any>(`${this.url}updateRoomStatus/${id}`, {});
+  }
 
-
+  
 
   addEnchere ( companyId: number,idroom:number  ): Observable<any> {
     return this.http.post<any>(`${this.url}addEncherForUser/${companyId}/${idroom}`,{});

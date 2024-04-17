@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface EnchereRepository extends JpaRepository<Enchere,Long> {
     Enchere findByIdcompanyAndRoomIdRoom(int companyId, Long roomid);
+    Enchere findByIdcompanyAndRoom(int companyId, Room roomid);
     List<Enchere> findByRoom(Room room);
 
 void deleteByIdcompanyAndRoom(int idCompany, Room room);

@@ -28,7 +28,7 @@
     <div class="card" *ngIf="test">
       <div class="additional">
         <div class="user-card">
-          <div class="level center"  *ngIf="testExistantRoom || testAvailablePlaces">
+          <div class="level center"  *ngIf="testExistantRoom ">
             <button
             [disabled]="!testAvailablePlaces"
               data-bs-toggle="modal"
@@ -50,7 +50,7 @@
             </button>
           </div>
           <div class="points center">
-            Available place
+            Available places
             {{ room.maxParticipants - room.confirmedParticipant }}
           </div>
         </div>

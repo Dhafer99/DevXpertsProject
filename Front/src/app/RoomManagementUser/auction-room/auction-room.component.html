@@ -169,7 +169,7 @@
                     </div>
                     <div class="text ms-auto">
                       <p class="mb-0 f-14 fw-semibold">
-                        you still have {{ CurentUser.points }}
+                        you still have {{ CurentUser.points  }}
                       </p>
                       <p class="mb-0 f-14 fw-semibold">
                         your biding is {{ currentEnchere.pricing }}
@@ -196,7 +196,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Auction Oufet</h5>
+        <h5 class="modal-title">Auction ended</h5>
         <button
           type="button"
           class="btn-close"
@@ -205,15 +205,17 @@
       </div>
       <div class="modal-body">
         <p>TIME IS OUT !</p>
+        <p> we have refunded your points
+          Other chance ! </p>
       </div>
       <div class="modal-footer">
         <button
           type="button"
           class="btn btn-primary"
-          [routerLink]="['roullette']"
+         
+          (click)="navigateToListeRooms()"
         >
-        we have refunded your points
-          Other chance
+       participate to onother room 
         </button>
       </div>
     </div>
@@ -229,7 +231,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Auction Oufet</h5>
+        <h5 class="modal-title">Auction ended</h5>
         <button
           type="button"
           class="btn-close"
@@ -243,7 +245,7 @@
         <button
           type="button"
           class="btn btn-primary"
-          [routerLink]="['roulette']"
+          (click)="navigateToRoolette()"
         >
           Get your pack
         </button>

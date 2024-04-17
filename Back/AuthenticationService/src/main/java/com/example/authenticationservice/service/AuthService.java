@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class AuthService {
@@ -45,9 +47,9 @@ public class AuthService {
 public void AffecterRoomToUser(long roomId,int id,int newPoints) {
     UserCredential user =  repository.findById(id).orElse(null);
     user.setRoomid(roomId);
-    int oldpoints = user.getPoints();
+  //  int oldpoints = user.getPoints();
 
-    user.setPoints(oldpoints+newPoints);
+    user.setPoints(newPoints);
     repository.save(user);
 
 }
@@ -66,19 +68,21 @@ public void AffecterRoomToUser(long roomId,int id,int newPoints) {
 
     public UserCredential UpdateUserPoints (int id , int points) {
         UserCredential user =  repository.findById(id).orElse(null);
-        if(user.getPoints()>0){  if(points ==50 )
+
+        if(user.getPoints()>0){
+            if(points ==50 )
         {
-            user.setPoints(user.getPoints()-points);
+            user.setPoints(user.getPoints() -points);
             repository.save((user));
         }
             if(points ==150 )
             {
-                user.setPoints(user.getPoints()-points);
+                user.setPoints(user.getPoints() -points);
                 repository.save((user));
             }
             if(points ==100 )
             {
-                user.setPoints(user.getPoints()-points);
+                user.setPoints(user.getPoints()  -points);
                 repository.save((user));
             }}
 
@@ -87,12 +91,30 @@ public void AffecterRoomToUser(long roomId,int id,int newPoints) {
 
     }
 
+public void updateUserPointsWheneEnteringAuction(int id , int points){
+    UserCredential user =  repository.findById(id).orElse(null);
+    user.setPoints(points);
+    repository.save(user);
 
+}
+
+    public void RemoveUserRoom(int id){
+        UserCredential user =  repository.findById(id).orElse(null);
+        user.setRoomid(0);
+        repository.save(user);
+
+    }
     public UserCredential RembourssementPoints ( int iduser , int points)
     {
         UserCredential user = repository.findById(iduser).orElse(null);
         user.setPoints(points);
         repository.save(user);
         return  user;
+    }
+
+
+    public List<UserCredential> getUsersByIdRoom (long roomid )
+    {
+      return  repository.findAllByRoomid(roomid);
     }
 }

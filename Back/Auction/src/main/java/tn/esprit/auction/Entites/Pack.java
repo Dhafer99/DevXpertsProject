@@ -22,8 +22,8 @@ public class Pack {
     private Long idPack;
     @Enumerated(EnumType.STRING)
     private TypePack typePack ;
-    @Enumerated(EnumType.STRING)
-    private TypeAchat typeachat ;
+   // @Enumerated(EnumType.STRING)
+   // private TypeAchat typeachat ;
 
     private String description ;
     private boolean status ;

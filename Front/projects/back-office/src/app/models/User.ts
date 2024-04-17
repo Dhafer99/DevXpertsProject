@@ -4,7 +4,7 @@ export class User{
     nom  : String ;
     numeroTelephone : String;
     /**added by eya  */
-    email : String;
+    email : string;
     points : number
 
 }

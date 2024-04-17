@@ -29,7 +29,7 @@ import Swal from 'sweetalert2';
   templateUrl: './roulette.component.html',
   styleUrls: ['./roulette.component.css'],
 })
-export class RouletteComponent implements OnInit, AfterViewInit {
+export class RouletteComponent implements OnInit {
   @ViewChild(NgxWheelComponent, { static: false }) wheel!: NgxWheelComponent;
   constructor(
     private activate: ActivatedRoute,
@@ -41,9 +41,7 @@ export class RouletteComponent implements OnInit, AfterViewInit {
   ) // private socket: Socket
 
   {}
-  ngAfterViewInit(): void {
- 
-  }
+
   rouletteResult: number | undefined;
   idToLandOn: any;
   resultWinner:number[]=[];

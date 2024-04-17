@@ -44,11 +44,29 @@ export class UserService {
     return this.http.put<any>(`${this.userUrl}UpdateUserPoints/${iduser}/${points}`,{});
   
   }
+  updateUserPointsWheneEnteringAuction (iduser:number,points: number): Observable<any> 
+  {
+    return this.http.put<any>(`${this.userUrl}updateUserPointsWheneEnteringAuction/${iduser}/${points}`,{});
+  
+  }
+
+  RemoveUserRoom (iduser:number): Observable<any> 
+  {
+    return this.http.put<any>(`${this.userUrl}RemoveUserRoom/${iduser}`,{});
+  
+  }
+  
 
   RembourssementPoints (iduser:number,points: number): Observable<any> 
   {
     return this.http.put<any>(`${this.userUrl}RembourssementPoints/${iduser}/${points}`,{});
   
+  }
+  
+
+  getUsersByIdRoom(idRoom:number): Observable<any[]> {
+    
+    return this.http.get<any[]>(`${this.userUrl}getUsersByIdRoom/${idRoom}` );
   }
   
 }
