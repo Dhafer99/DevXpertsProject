@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { User } from './models/user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,39 +7,45 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'ProjectPi';
-  constructor(private router: Router){  }
+export class AppComponent implements OnInit{
+  token = localStorage.getItem("token");
+  title = 'ProjetPi';
 
-/******************** **********************/
-  dark(){
-    const body = document.querySelector('body');
-    if (body) {
-      body.setAttribute('data-bs-theme',"dark");
-    }
+  constructor(private router: Router) {}
+
+  ngOnInit(): void { // Supposons que le token est stocké dans le local storage
+
   }
-  light(){
-    const body = document.querySelector('body');
-    if (body) {
-      body.setAttribute('data-bs-theme',"light");
-    }
+
+
+    //this.router.navigate(['/new-page']);
+  //user!:User;
+  user=JSON.parse(localStorage.getItem("user"));
   
+/******************** **********************/
+dark(){
+  const body = document.querySelector('body');
+  if (body) {
+    body.setAttribute('data-bs-theme',"dark");
+  }
+}
+light(){
+  const body = document.querySelector('body');
+  if (body) {
+    body.setAttribute('data-bs-theme',"light");
   }
 
-  goTocalender(){
-    this.router.navigate(['/calender']);
+}
 
-  }
+disconnect(){
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  localStorage.removeItem("userID");
+  this.user=""
+  this.token=""
+}
 
-  goToallquiz(){
-    this.router.navigate(['/allquiz']);
+/*********************************** */
 
-  }
 
-  goToonequiz(){
-    this.router.navigate(['/onequiz']);
-
-  }
-
-  /*********************************** */
 }

@@ -12332,12 +12332,19 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   .deznav .metismenu {
     display: flex;
     flex-direction: column;
+
     padding-top: 0.9375rem; }
+
     .deznav .metismenu.fixed {
       position: fixed;
       top: 0;
       width: 100%;
       left: 0; }
+
+      .deznav .metismenu:hover {
+        background-color: #ecf0f1; /* Lighter gray on hover */
+    }
+
     .deznav .metismenu > li {
       display: flex;
       flex-direction: column; }

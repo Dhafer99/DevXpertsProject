@@ -1,0 +1,68 @@
+<div class="login">
+    <img >
+</div>
+<form [formGroup]="userForm">
+    <div class="form-group">
+    <h1>SIGN UP</h1>
+
+    <label for="">
+        <input type="text" name="email" id="email" formControlName="email">
+        <span>EMAIL</span>
+    </label>
+
+    <label for="">
+        <input type="password" name="password" id="password" formControlName="password">
+        <span>PASSWORD</span>
+    </label>
+
+    <label for="">
+        <input type="text" name="name" id="name" formControlName="name">
+        <span>NAME</span>
+    </label>
+
+    <label for="name">
+        <input type="text" name="firstname" id="firstname" formControlName="firstname">
+        <span>FIRST NAME</span>
+    </label>
+
+    <label for="name">
+        <input type="text" name="lastname" id="lastname" formControlName="lastname">
+        <span>LAST NAME</span>
+    </label>
+
+    <label for="">
+        <input type="tel" name="tel" id="tel" formControlName="phonenumber">
+        <span>PHONE NUMBER</span>
+    </label>
+
+    <label for="">
+        <select class="form-select" name="role" id="role" (change)="selectType($event)">
+            <option value="exhibitor">Exhibitor</option>
+            <option value="student">Student</option>
+            <option value="alumni">Alumni</option>
+            <option value="teacher">Teacher</option>
+            <option value="supplier">Supplier</option>
+        </select>    
+        <span>ROLE</span>
+    </label>
+
+    <br>
+    <label for="">
+        <input type="file" name="" id="" (change)="onFileSelected($event)">
+        <span>CV</span>
+    </label>
+
+    <div class="termofuse">
+        <input type="checkbox" name="" id="">
+        <span>
+            By submitting this form i agree to
+            <a [routerLink]="['/auth']">terms of use</a>
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary" aria-label="add" value="add" (click)="signup()">
+        Add
+        <i class="mdi mdi-plus-thick"></i>
+    </button>
+    </div>
+</form>

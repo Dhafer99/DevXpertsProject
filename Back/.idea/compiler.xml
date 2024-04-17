@@ -13,14 +13,29 @@
         <module name="discovery" />
         <module name="Exhibitor" />
         <module name="configServer" />
+        <module name="BoothAndSupplierManagement" />
+        <module name="Offer" />
+        <module name="Auction" />
+        <module name="configServer" />
+        <module name="discovery" />
+        <module name="AuthenticationService" />
+        <module name="gateway" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Booth" target="17" />
+      <module name="Exhibitor" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AppointementAndClassroom" options="-parameters" />
+      <module name="Auction" options="" />
+      <module name="AuthenticationService" options="-parameters" />
       <module name="Booth" options="-parameters" />
+      <module name="BoothAndSupplierManagement" options="" />
       <module name="Exhibitor" options="-parameters" />
+      <module name="Offer" options="-parameters" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />
