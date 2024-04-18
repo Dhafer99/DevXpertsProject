@@ -61,13 +61,13 @@ export class RouletteComponent implements OnInit {
   }
   number = 0;
   varInterval: any;
-  valuee:any ; 
-  ngOnInit() :void  {
+  valuee: any;
+  ngOnInit(): void {
     this.getPack();
- 
+
     this.role = localStorage.getItem('role');
     //this.idToLandOn =this.seed[Math.floor(Math.random() * this.seed.length)];
-     if (this.role == 'admin') {
+    if (this.role == 'admin') {
       this.roomService.getRoomPackages(this.id).subscribe(
         (data: any) => {
           console.log(data);
@@ -81,7 +81,7 @@ export class RouletteComponent implements OnInit {
             .subscribe(() => {});
           console.log('test anas');
           console.log(this.number);
-        //  this.getPack();
+          //  this.getPack();
         },
         (error) => {
           console.error(
@@ -90,14 +90,13 @@ export class RouletteComponent implements OnInit {
           );
         }
       );
-      } else {
+    } else {
       this.webSocketService.getDataPolling(4000).subscribe((res) => {
-        
         console.log(res.randomValue, 'khraa');
         this.idToLandOn = res.randomValue;
       });
       // Appel toutes les 1000 millisecondes (1 seconde
-    } 
+    }
 
     this.id = this.activate.snapshot.params['id'];
 
@@ -121,7 +120,7 @@ export class RouletteComponent implements OnInit {
       console.log(list);
     });*/
 
-   /* this.webSocketService.getMessageSubject().subscribe((messageObject) => {
+    /* this.webSocketService.getMessageSubject().subscribe((messageObject) => {
       const parsedMessage = {
         result: messageObject.result,
         spin: messageObject.spin,
@@ -155,7 +154,7 @@ export class RouletteComponent implements OnInit {
         //this.idToLandOn = this.wheel.spin();
 
         // if(parsedMessage)
-         this.wheel.spin();
+        this.wheel.spin();
 
         // if (parsedMessage.spin === true) {
         // Spin the wheel when spin is true
@@ -203,7 +202,7 @@ export class RouletteComponent implements OnInit {
         this.packNames = data;
         this.seed = this.packNames.map((pack) => pack.idPack);
 
-         /* this.idToLandOn =
+        /* this.idToLandOn =
         this.seed[Math.floor(Math.random() * this.seed.length)];
          */
         console.log('ID TO LAND ON');
@@ -236,24 +235,24 @@ export class RouletteComponent implements OnInit {
     //this.seed[Math.floor(Math.random() * this.seed.length)];
   }
   before() {
+   // this.getPack();
     this.webSocketService.GetRandomIndex().subscribe((res) => {
       console.log(res.randomValue, 'khraa');
       this.valuee = res.randomValue;
     });
     // alert('Your wheel is about to spin');
-    console.log("before")
-    this.idToLandOn =
-    this.seed[Math.floor(Math.random() * this.seed.length)];
-    console.log("AJAJAJAJJA",this.idToLandOn)
+    console.log('before');
+    this.idToLandOn = this.seed[Math.floor(Math.random() * this.seed.length)];
+    console.log('AJAJAJAJJA', this.idToLandOn);
   }
   stoppedAt: number = -1;
 
   async spin(prize: number) {
     this.spinNumber = this.spinNumber + 1;
-   
+
     // this.resultWinner.splice(0, this.resultWinner.length);
     this.reset();
-     this.roomService.getRoomPackages(this.id).subscribe(
+    this.roomService.getRoomPackages(this.id).subscribe(
       (data: any) => {
         console.log(data);
         this.packNames = data;
@@ -266,7 +265,7 @@ export class RouletteComponent implements OnInit {
           .subscribe(() => {});
         console.log('test anas');
         console.log(this.number);
-       // this.getPack();
+        // this.getPack();
 
         //this.getPack();
       },
@@ -276,33 +275,30 @@ export class RouletteComponent implements OnInit {
           error
         );
       }
-    ); 
+    );
     //   this.webSocketService.getResults(this.id);
     this.webSocketService.startRoulette();
 
     //
     //this.socket.emit('startRoulette', this.id);
 
-     this.wheel.spin();
+    this.wheel.spin();
 
     // if (parsedMessage.spin === true) {
     // Spin the wheel when spin is true
     //  this.wheel.spin();
 
     //  }
-   
   }
 
   after() {
-  
     console.log('spin number is : ' + this.spinNumber);
     console.log(
       "La roulette s'est arrêtée sur la position:",
       this.wheel.idToLandOn
     );
-    console.log('on spinnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn');
-    console.log(this.wheel.idToLandOn);
-   
+  
+
     // Vous pouvez également utiliser la position pour accéder à l'élément correspondant
     const landedItem = this.items.find((item) => item.id === this.stoppedAt);
     if (landedItem) {
@@ -312,24 +308,28 @@ export class RouletteComponent implements OnInit {
       );
     }
 
-    
     Swal.fire({
       position: 'top-end',
       icon: 'success',
       title: 'campany x with id win pack ' + this.valuee,
       showConfirmButton: false,
       timer: 2500,
-      
-    } ).then((result)=>{
-      if(this.role !=="admin")
-      {this.roomService
-      .ReservePack(this.wheel.idToLandOn, this.id)
-      .subscribe(() => {
+    }).then((result) => {
+      if (this.role !== 'admin') {
+        this.roomService
+          .ReservePack(this.wheel.idToLandOn, this.id)
+          .subscribe(() => {
+           
+            //location.reload();
+          });
+          this.getPack();
+      } else {
+        this.getPack();
+      }
 
-          location.reload();
-      });
-     ;}
-     this.getPack()
+      //  this.getPack()
     });
+
+    this.ngOnInit();
   }
 }
