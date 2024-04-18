@@ -1,5 +1,18 @@
 
 import { NgModule } from '@angular/core';
+import { ListUsersComponent } from './list-users/list-users.component';
+
+import { UpdateClassroomComponent } from './Appointment/update-classroom/update-classroom.component';
+import { ChatbotComponent } from './Appointment/chatbot/chatbot.component';
+import { Calander2Component } from './Appointment/calander2/calander2.component';
+
+import { OnlineMeetingComponent } from './Appointment/online-meeting/online-meeting.component';
+import { quartersInYear } from 'date-fns';
+import { QuizComponent } from './Appointment/quiz/quiz.component';
+
+import { QuestionListComponent } from './Appointment/question-list/question-list.component';
+import { QuizListComponent } from './Appointment/quiz-list/quiz-list.component';
+import { AddroulsComponent } from './Appointment/addrouls/addrouls.component';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ClassroomComponent } from './Appointment/classroom/classroom.component';
 import { AfficherClassroomComponent } from './Appointment/afficher-classroom/afficher-classroom.component';
@@ -24,7 +37,6 @@ import { NewsupplyrequestsdashboardComponent } from './newsupplyrequestsdashboar
 import { SupplierDetailComponent } from './supplier-detail/supplier-detail.component';
 import { SupplyRequestDetailsComponent } from './supply-request-details/supply-request-details.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
-import { ListUsersComponent } from './list-users/list-users.component';
 import { AddPackComponent } from './PackManagementAdmin/add-pack/add-pack.component';
 import { ViewPackComponent } from './PackManagementAdmin/view-pack/view-pack.component';
 import { UpdatePackComponent } from './PackManagementAdmin/update-pack/update-pack.component';
@@ -34,6 +46,8 @@ import { ViewRoomsComponent } from './RoomManagement/view-rooms/view-rooms.compo
 import { DetailRoomComponent } from './RoomManagement/detail-room/detail-room.component';
 import { PackSalesPerYearComponent } from './PackManagementAdmin/pack-sales-per-year/pack-sales-per-year.component';
 import { PaymentListComponent } from './payment-list/payment-list.component';
+
+
 
 import { AuthGuard } from '../../../../src/app/auth.guard';
 const routes: Routes = [ 
@@ -71,34 +85,41 @@ const routes: Routes = [
     component: AuthentificationComponent,
   }
     ,  
-    { path: 'viewPack/detail/:id', component: UpdatePackComponent },
-    { path: 'HistoriquePacks', component: HistoriquePacksComponent },
-    { path: 'viewRooms', component: ViewRoomsComponent },
-    { path: 'viewRooms/detailRoom/:id', component: DetailRoomComponent },
-    { path: 'packSalesPerYear', component: PackSalesPerYearComponent },
-    { path: 'checkPayments', component: PaymentListComponent }, 
+    { path: 'viewPack/detail/:id', component: UpdatePackComponent,canActivate: [AuthGuard] },
+    { path: 'HistoriquePacks', component: HistoriquePacksComponent,canActivate: [AuthGuard] },
+    { path: 'viewRooms', component: ViewRoomsComponent,canActivate: [AuthGuard] },
+    { path: 'viewRooms/detailRoom/:id', component: DetailRoomComponent,canActivate: [AuthGuard] },
+    { path: 'packSalesPerYear', component: PackSalesPerYearComponent,canActivate: [AuthGuard] },
+    { path: 'checkPayments', component: PaymentListComponent ,canActivate: [AuthGuard]}, 
+    { path: 'classrooms', component: AfficherClassroomComponent ,canActivate: [AuthGuard]},
+    {path: 'addclassroom', component: AddClassroomComponent ,canActivate: [AuthGuard]},
+    // {path: 'calender', component: CalenderComponent },
+    {path: 'addclassroom/:id', component:AddClassroomComponent,canActivate: [AuthGuard] },
+    {path: 'chatBot', component:ChatbotComponent ,canActivate: [AuthGuard]},
+    {path: 'calander2', component:Calander2Component ,canActivate: [AuthGuard] },
+    {path: 'OnlineMeeting/:idroom', component:OnlineMeetingComponent ,canActivate: [AuthGuard] },
+    {path: 'quiz', component:QuizComponent  ,canActivate: [AuthGuard]},
+    {path: 'listequiz', component:QuizListComponent  ,canActivate: [AuthGuard]},
+    {path: 'listequestion', component: QuestionListComponent ,canActivate: [AuthGuard]},
+    {path: 'addroule', component: AddroulsComponent ,canActivate: [AuthGuard]},
 
-    { path: 'list', component: ListUsersComponent },
-{ path: 'classrooms', component: AfficherClassroomComponent },
-{path: 'addclassroom', component: AddClassroomComponent },
-{path: 'calender', component: CalenderComponent },
-{path: 'create/:id', component: EventCreateComponent },
-{path: 'details/:name', component: EventDisplayComponent },
-{path: 'create', component: EventCreateComponent },
-{path: 'Eventlist', component: EventListComponent },
-{path: 'stats', component: EventsStatsComponent },
-{path: 'scan/:id',component:ScanPressenceComponent},
+{path: 'calender', component: CalenderComponent ,canActivate: [AuthGuard]},
+{path: 'create/:id', component: EventCreateComponent ,canActivate: [AuthGuard]},
+{path: 'details/:name', component: EventDisplayComponent,canActivate: [AuthGuard] },
+{path: 'Eventlist', component: EventListComponent,canActivate: [AuthGuard] },
+{path: 'stats', component: EventsStatsComponent ,canActivate: [AuthGuard]},
+{path: 'scan/:id',component:ScanPressenceComponent,canActivate: [AuthGuard]},
 
 {
   path: 'events',
-  component: EventsComponent},
+  component: EventsComponent,canActivate: [AuthGuard]},
 
-    { path: 'events/create/:id', component: EventCreateComponent },
-    { path: 'events/create', component: EventCreateComponent },
-    { path: 'events/Eventlist', component: EventListComponent },
-    { path: 'events/stats', component: EventsStatsComponent },
+    { path: 'events/create/:id', component: EventCreateComponent,canActivate: [AuthGuard] },
+    { path: 'events/create', component: EventCreateComponent ,canActivate: [AuthGuard]},
+    { path: 'events/Eventlist', component: EventListComponent,canActivate: [AuthGuard] },
+    { path: 'events/stats', component: EventsStatsComponent ,canActivate: [AuthGuard]},
     { path: 'events/""', pathMatch: 'full', redirectTo: '/events/create' },
-    { path: 'events/**', component: EventCreateComponent },
+    { path: 'events/**', component: EventCreateComponent ,canActivate: [AuthGuard]},
 
     { path: 'list', component: ListUsersComponent ,canActivate: [AuthGuard]},
     { path: 'addPack', component: AddPackComponent ,canActivate: [AuthGuard]},
@@ -120,4 +141,5 @@ const routes: Routes = [
 
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

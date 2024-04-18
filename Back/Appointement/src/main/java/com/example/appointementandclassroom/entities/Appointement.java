@@ -19,12 +19,18 @@ import java.util.Date;
 public class Appointement {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int idAppointement;
-    private Date startDate ;
-    private Date endDate ;
-    private String subject ;
+    private int id;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date start ;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date end ;
+    private String title ;
+    private int sender;
+    private  int receiver ;
+    @Enumerated(EnumType.STRING)
+    private AppointementType appointementType ;
 
-    private int classroomFK;
+
     @JsonIgnore
     @ManyToOne
     Classroom classroom;

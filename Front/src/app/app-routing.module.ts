@@ -1,5 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { CalenderComponent } from './quizdetails/calender/calender.component';
+import { DetailsComponent } from './quizdetails/details/details.component';
+import { QuizinterfaceComponent } from './quizdetails/quizinterface/quizinterface.component';
+import { GeneralquizinterfaceComponent } from './quizdetails/generalquizinterface/generalquizinterface.component';
+import { TodoComponent } from './todo/todo.component';
+import { AddQuizComponent } from './quizdetails/add-quiz/add-quiz.component';
+import { QuizDetailsComponent } from './quizdetails/quiz-details.component';
+
 import { ProfileComponent } from './profile/profile.component';
 import { ListUsersComponent } from 'projects/back-office/src/app/list-users/list-users.component';
 import { DisplayComponent } from './events/display/display.component';
@@ -28,6 +37,7 @@ import { SupplierDetailComponent } from './supplier-detail/supplier-detail.compo
 import { MessagestestComponent } from './messagestest/messagestest.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
+import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-result-list.component';
 export * from '../../projects/back-office/src/app/app.module'; // <==== THAT WAS MISSING
 export * from '../../projects/back-office/src/app/supplier/supplier.component';
 const routes: Routes = [  
@@ -71,6 +81,16 @@ const routes: Routes = [
   { path: 'auction/:id/roulette', component: RouletteComponent , canActivate: [AuthGuard]},
   { path: 'myRooms/:idRoom/:idCompany', component: MyRoomsComponent , canActivate: [AuthGuard]},
   { path: 'payments/:id', component: PaymentComponent , canActivate: [AuthGuard]},
+  { path: 'calender', component: CalenderComponent ,canActivate: [AuthGuard]},
+  { path: 'Details', component: DetailsComponent ,canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent ,canActivate: [AuthGuard]},
+  { path: 'quiztest', component: QuizinterfaceComponent ,canActivate: [AuthGuard]},
+  { path: 'historique', component: QuizResultListComponent ,canActivate: [AuthGuard]},
+  
+  { path: 'quizgeneral/:id', component: GeneralquizinterfaceComponent ,canActivate: [AuthGuard]},
+  { path: 'todo', component: TodoComponent ,canActivate: [AuthGuard]},
+  { path: 'addquiz', component:AddQuizComponent ,canActivate: [AuthGuard]},
+  { path: 'quizdetail/:id', component:QuizDetailsComponent},
   { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) }
   
   
@@ -88,3 +108,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+

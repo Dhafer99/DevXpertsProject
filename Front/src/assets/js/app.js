@@ -24,11 +24,7 @@ window.addEventListener("scroll", (ev) => {
 //
 /********************* light-dark js ************************/
 //
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> main
 const btn = document.getElementById("mode");
 btn.addEventListener("click", (e) => {
   let theme = localStorage.getItem("theme");
@@ -40,11 +36,7 @@ btn.addEventListener("click", (e) => {
     localStorage.setItem("theme", "light");
   }
 });
-<<<<<<< HEAD
 
-=======
- 
->>>>>>> main
 //
 /********************* Swicher js ************************/
 //

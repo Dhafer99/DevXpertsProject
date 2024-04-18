@@ -1,3 +1,30 @@
+import { ClassroomComponent } from "./Appointment/classroom/classroom.component";
+import { AfficherClassroomComponent } from "./Appointment/afficher-classroom/afficher-classroom.component";
+import { AddClassroomComponent } from "./Appointment/add-classroom/add-classroom.component";
+import { UpdateClassroomComponent } from "./Appointment/update-classroom/update-classroom.component";
+import { ChatbotComponent } from "./Appointment/chatbot/chatbot.component";
+import { Calander2Component } from "./Appointment/calander2/calander2.component";
+import { ScheduleModule } from "@syncfusion/ej2-angular-schedule";
+import { FullCalendarModule } from "@fullcalendar/angular";
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatNativeDateModule } from '@angular/material/core';
+import {NativeDateAdapter} from '@angular/material/core';
+import { IntlModule } from '@progress/kendo-angular-intl';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { LabelModule } from '@progress/kendo-angular-label';
+import { FormFieldModule } from '@progress/kendo-angular-inputs';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { IconsModule } from '@progress/kendo-angular-icons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { OnlineMeetingComponent } from './Appointment/online-meeting/online-meeting.component';
+import { RouterModule } from "@angular/router";
+import { QuestionComponent } from './Appointment/question/question.component';
+import { QuizComponent } from './Appointment/quiz/quiz.component';
+
+import { QuestionListComponent } from './Appointment/question-list/question-list.component';
+import { QuizListComponent } from './Appointment/quiz-list/quiz-list.component';
+import { AddroulsComponent } from './Appointment/addrouls/addrouls.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChangeDetectorRef } from '@angular/core';
@@ -33,14 +60,10 @@ import { TokenInterceptorInterceptor } from './token-interceptor.interceptor';
 
 
 import { ListUsersComponent } from './list-users/list-users.component';
-import { ClassroomComponent } from './Appointment/classroom/classroom.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { AfficherClassroomComponent } from './Appointment/afficher-classroom/afficher-classroom.component';
 import { CardClassroomComponent } from './Appointment/card-classroom/card-classroom.component';
-import { AddClassroomComponent } from './Appointment/add-classroom/add-classroom.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalenderComponent } from './Appointment/calender/calender.component';
-import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { EventsComponent } from './events/events.component';
 import { ChartModule } from 'angular-highcharts';
 import { EventCreateComponent } from './events/event-create/event-create.component';
@@ -101,8 +124,49 @@ import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/affich
     ListUsersComponent,
     ClassroomComponent,
     AfficherClassroomComponent,
-    CardClassroomComponent,
     AddClassroomComponent,
+    UpdateClassroomComponent,
+    ChatbotComponent,
+    Calander2Component,
+    OnlineMeetingComponent,
+    QuestionComponent,
+    QuizComponent,
+    QuestionListComponent,
+    QuizListComponent,
+    AddroulsComponent,
+
+    AfficherOfferAdminComponent,
+    AfficherCandidatureOffreAdminComponent,
+    StatAdminCandidatureComponent,
+    AddPackComponent,
+    ViewPackComponent,
+    UpdatePackComponent,
+    HistoriquePacksComponent,
+    ViewRoomsComponent,
+    DetailRoomComponent,
+    PackSalesPerYearComponent,
+    AuctionComponent,
+    PaymentListComponent,
+   
+
+   
+  ],
+  imports: [
+    CKEditorModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ScheduleModule,
+    FullCalendarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    IntlModule,
+    LabelModule,
+    ButtonsModule,
+    DateInputsModule,
+    FormFieldModule,
     CalenderComponent,
     EventsComponent,
     EventCreateComponent,
@@ -110,23 +174,26 @@ import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/affich
     EventListComponent,
     EventDisplayComponent,
     ScanPressenceComponent,
-  ],
-  imports: [
-   
+
     NgbModule,
     //NgChartsModule,
     NgApexchartsModule,
 
     AppRoutingModule,
-    FormsModule ,
+    FormsModule ,*/
     ReactiveFormsModule,
-    HttpClientModule,
+    FormsModule,
+    IconsModule,
+    BrowserAnimationsModule,
+    RouterModule,
     DragDropModule,
     CommonModule,
     MatDialogModule,
   
     MatButtonModule,
     MatIconModule,
+    MatTableModule
+ 
     MatTableModule,
     
     CKEditorModule,

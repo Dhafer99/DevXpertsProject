@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
@@ -6,10 +7,10 @@
         <option value="$PROJECT_DIR$/Appointement/pom.xml" />
         <option value="$PROJECT_DIR$/Events/pom.xml" />
         <option value="$PROJECT_DIR$/Booth/pom.xml" />
-        <option value="$PROJECT_DIR$/configServer/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway/pom.xml" />
         <option value="$PROJECT_DIR$/discovery/pom.xml" />
         <option value="$PROJECT_DIR$/Exhibitor/pom.xml" />
-        <option value="$PROJECT_DIR$/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/configServer/pom.xml" />
         <option value="$PROJECT_DIR$/Offer/pom.xml" />
         <option value="$PROJECT_DIR$/dhafer/pom.xml" />
         <option value="$PROJECT_DIR$/BoothAndSupplierManagement/pom.xml" />
@@ -31,7 +32,7 @@
       </set>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ProjectType">

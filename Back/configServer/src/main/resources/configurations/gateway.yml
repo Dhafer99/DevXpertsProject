@@ -11,6 +11,10 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: Appointement
+          uri: http://localhost:8095
+          predicates:
+            - Path=/api/AppointementAndClassrooms/**
         - id: events
           uri: http://localhost:8091
           predicates:
@@ -21,6 +25,8 @@ spring:
               allowedMethods:
                 - GET
                 - POST
+                - PUT
+                - DELETE
               allowedHeaders: "*"
               maxAge: 30
           filters:
@@ -118,6 +124,7 @@ spring:
           uri: http://localhost:8083
           predicates:
             - Path=/api/packs/**
+
         - id: authserviceUpload
           uri: http://localhost:8080
           predicates:

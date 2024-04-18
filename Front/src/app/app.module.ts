@@ -3,6 +3,20 @@ import { NgModule ,CUSTOM_ELEMENTS_SCHEMA,
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { DetailsComponent } from './quizdetails/details/details.component';
+import { QuizinterfaceComponent } from './quizdetails/quizinterface/quizinterface.component';
+import { GeneralquizinterfaceComponent } from './quizdetails/generalquizinterface/generalquizinterface.component';
+import { AddQuizComponent } from './quizdetails/add-quiz/add-quiz.component';
+import { TodoComponent } from './todo/todo.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { QuizDetailsComponent } from './quizdetails/quiz-details.component';
+import { QuizResultDisplayComponent } from './quizdetails/quiz-result-display/quiz-result-display.component';
+//import { ProfileComponent } from './profile/profile.component';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CalenderComponent } from './calender/calender.component';
@@ -31,7 +45,7 @@ import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.compone
 import { PaymentComponent } from './payment/payment.component';
 //import { StripeModule } from 'stripe-angular';
 import { RouletteComponent } from './RoomManagementUser/roulette/roulette.component';
-//import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
+import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -51,13 +65,22 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthenticationinterfaceComponent } from './authenticationinterface/authenticationinterface.component';
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-result-list.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
+    //ProfileComponent,
     CalenderComponent,
+    DetailsComponent,
+    QuizinterfaceComponent,
+    GeneralquizinterfaceComponent,
+    AddQuizComponent,
+    TodoComponent,
+    QuizDetailsComponent,
+    QuizResultDisplayComponent,
+    ProfileComponent,
     EventsComponent,
     AfficherOffreComponent,
     AjouterOffreComponent,
@@ -83,9 +106,24 @@ import { RouterModule } from '@angular/router';
     PaymentComponent,
     RouletteComponent,
     SignUpComponent,
+    QuizResultListComponent,
 
   ],
   imports: [
+    NgxWheelModule  ,
+    BrowserModule,
+    AppRoutingModule,
+    ScheduleModule, RecurrenceEditorModule,
+    HttpClientModule,
+    FullCalendarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ButtonsModule,
+    BrowserAnimationsModule ,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
     //NgxWheelModule  ,
     RouterModule,
     BrowserModule,
@@ -108,10 +146,8 @@ import { RouterModule } from '@angular/router';
     //ZXingScannerModule 
    //DragDropModule,
    MatTooltipModule,
-   BrowserAnimationsModule,
    MatNativeDateModule,
    MatDialogModule,
-    AppRoutingModule,HttpClientModule,
     //StripeModule.forRoot("pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC"),
 
   ],
@@ -126,6 +162,7 @@ import { RouterModule } from '@angular/router';
     }
     
   ],
+  ///[DatePipe],
   bootstrap: [AppComponent],
   schemas : [
     NO_ERRORS_SCHEMA]

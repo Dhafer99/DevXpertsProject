@@ -3,4 +3,7 @@ export class Classroom {
           block!: string ;
           classRoomNumber!:number;
          level!:string;
+         start!: Date;
+        end!: Date ;
+
 }

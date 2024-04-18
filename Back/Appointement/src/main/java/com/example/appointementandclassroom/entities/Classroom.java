@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -23,7 +24,15 @@ public class Classroom {
     private     String  block ;
     private     int  classRoomNumber;
     private     String   level;
+    @Temporal(TemporalType.TIMESTAMP)
+    private      Date start ;
+    @Temporal(TemporalType.TIMESTAMP)
+    private      Date end ;
+
+
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="classroom")
     private Set<Appointement> Appointements;
+
+
 }

@@ -25,15 +25,17 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
+
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css",
+
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
-              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
-=======
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css",
               "src/custom-theme.scss",
-              "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
->>>>>>> main
+
             ],
             "scripts": []
           },
@@ -99,14 +101,13 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
 
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
-              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
-=======
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
->>>>>>> main
             ],
             "scripts": []
           }
@@ -136,13 +137,8 @@
               "projects/back-office/src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
-              
-              "projects/back-office/src/styles.css"
-=======
               "projects/back-office/src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
->>>>>>> main
             ],
             "scripts": []
           },
@@ -192,11 +188,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-<<<<<<< HEAD
-            "port": "4202",
-=======
             "port":"4203",
->>>>>>> main
             "browserTarget": "backOffice:build"
           }
         },
