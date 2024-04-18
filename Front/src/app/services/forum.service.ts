@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Post} from '../models/post';
-import {Comment} from '../models/comment';
+import {Comment, Like} from '../models/comment';
 import { Tag } from '../models/tag';
 
 @Injectable({
@@ -35,28 +35,18 @@ export class ForumService {
 
   public getPost(IdPost: number): Observable<Post> {
     return this.http.get<Post>(`http://localhost:8222/api/Posts/retrieve-post/${IdPost}`);}
-  
 
- /* public getPost(permaLink: Number):Observable<Post>{
-    return this.http.get<Post>(`http://localhost:8040/api/Posts/retrieve-post/`+permaLink);
-  }*/
 
   public getComments(IdPost: number): Observable<Comment[]> {
     return this.http.get<Comment[]> (`http://localhost:8222/api/Comments/retrieve-comment/${IdPost}`);
   }
 
-  /*public addComment(comment: Comment, idComment: number): Observable<Comment> {
-    return this.http.put<Comment>(`http://localhost:8040/api/Comments/add-comment/${idComment}`, comment);
-  }*/
   addComment(c: Comment, idPost: number): Observable<Comment> {
     const url = `http://localhost:8222/api/Comments/add-comment/${idPost}`;
     console.log("current message =="+c.textComment)
     return this.http.post<Comment>(url, c);
   }
 
- /* public updateComment(comment: Comment): Observable<Comment> {
-    return this.http.put<Comment>(`http://localhost:8040/api/Comments/update-comment`, comment);
-  }*/
   public updateComment(comment: Comment, postId: number): Observable<Comment> {
     return this.http.put<Comment>(`http://localhost:8222/api/Comments/update-comment/${postId}`, comment);
   }
@@ -84,19 +74,11 @@ export class ForumService {
   findbyTags(tags:Tag[]): Observable<Post[]> {
     return this.http.post<Post[]>("http://localhost:8222/api/Posts/findByTags",tags);
   }
- /* public dislike(idPost: number, P: Post): any {
-    return this.http.put(`http://localhost:8222/api/Posts/dislikeSubject-id/${idPost}`, P);
+  addLike(Like:Like):Observable<Comment>{
+    return  this.http.post<Comment>("http://localhost:8222/api/Comments/addLike",Like);
   }
 
-  public dislikeComment(idComment: number, P: Post): any {
-    return this.http.put(`http://localhost:8222/api/Comments/dislikeComment-id/${idComment}`, P);
+  removeLike(Like:Like):Observable<Comment>{
+    return  this.http.post<Comment>("http://localhost:8222/api/Comments//removeLike",Like);
   }
-
-  public like(idPost: number, P: Post): any {
-    return this.http.put(`http://localhost:8222/api/Posts/likeSubject-id/${idPost}`, P);
-  }
-
-  public likeComment(idComment: number, P: Post): any {
-    return this.http.put(`http://localhost:8222/api/Comments/likeComment-id/${idComment}`, P);
-  }*/
 }

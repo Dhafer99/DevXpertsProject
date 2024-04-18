@@ -102,7 +102,7 @@
                                             <h6 class="text-blue mb-0">Mamie Barnett</h6>
                                             <p class="mb-0 f-14 text-muted">VERIFIED WRITER</p>
                                         </div>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center"  *ngIf="post.userId==user.id">
                                             <button mat-icon-button aria-label="Delete" (click)="deletePost(post.idPost)" class="delete-icon-container">
                                                 <mat-icon>delete</mat-icon>
                                             </button>

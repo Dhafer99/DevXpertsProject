@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { ForumService } from 'src/app/services/forum.service';
-import { Comment } from 'src/app/models/comment';
+import { Comment, Like } from 'src/app/models/comment';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
@@ -55,35 +55,12 @@ export class PostDetailComponent implements OnInit {
         })
       });
     this.post=data;
+    this.post.comment.forEach(element => {
+      element=this.findActiveLike(element)
+    });
    });
   }
 
-  /*addComment() {
-    this.service.addComment(this.comment, this.postId).subscribe(
-      (data: Comment) => {
-        console.log('Comment added successfully:', data);
-        // Optionally, reset the comment form or do other operations after adding the comment
-      },
-      (error) => {
-        console.error('Error adding comment:', error);
-      }
-    );
-  }*/
-
- /* addComment(): void {
-    
-    this.service.addComment(this.comment, this.postId)
-      .subscribe(
-        () => {
-          console.log('comment added successfully');
-          console.log(this.comment.textComment);
-          this.textComment = '';
-          location.reload(); 
-
-        },
-        error => console.log(error)
-      );
-  }*/
   
   addComment(): void {
     if (this.commentaire!='')
@@ -91,10 +68,6 @@ export class PostDetailComponent implements OnInit {
 
       this.comment.textComment=this.commentaire
       this.comment.userId=this.user.id
-      // Set the dateCreationComment property to the current date
-   // this.comment.dateCreationComment = this.datePipe.transform(new Date(), 'yyyy-MM-dd')!; // Format the date as needed
-
-
       this.service.addComment(this.comment, this.postId)
       .subscribe(
         (data) => {
@@ -102,6 +75,7 @@ export class PostDetailComponent implements OnInit {
           this.userservice.getUser(data.userId.toString()).subscribe(response=>{
             console.log(response)
             data.fullUser=response
+            data=this.findActiveLike(data)
             this.post.comment.push(data)
           })
          
@@ -120,38 +94,13 @@ export class PostDetailComponent implements OnInit {
       }
   }
 
-
- /* public getCommentsBySubject(subjectId: number): void {
-    this.commentSubjectId = subjectId;
-    this.service.getComments(subjectId).subscribe(
-      (response: Comment[]) => {
-        this.comments = response;
-        console.log(this.comments);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-    this.showComments = true;
-    this.global = false;
-  }*/
-
- /* public DeleteComment(idComment: number): void {
-    this.service.deleteComment(idComment).subscribe(
-      (response: void) => {
-        console.log(response);
-        this.getCommentsBySubject(this.commentSubjectId);
-      },
-      (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    );
-  }*/
-
   loadComments(): void {
     this.service.getComments(this.postId).subscribe(
       (comments: Comment[]) => {
         this.comments = comments;
+        this.comments.forEach(comment => { 
+          comment=this.findActiveLike(comment)
+        });
       },
       (error) => {
         console.error('Error loading comments:', error);
@@ -159,11 +108,58 @@ export class PostDetailComponent implements OnInit {
     );
   }
 
+  savelike(comment: Comment, status: string) {
+    console.log(comment);
+    if (!comment.ActiveLike.id) {
+      let like = new Like();
+      like.id = 0;
+      like.userID = this.user.id;
+      like.status = ' ';
+      like.commentID = comment.idComment;
+      comment.ActiveLike = like;
+    }
+    
+    comment.ActiveLike.status = status;
 
+    this.service.addLike(comment.ActiveLike).subscribe((data) => {
+      const correctCommentIndex = this.post.comment.findIndex(
+        (c) => c.idComment === comment.idComment
+      );
+      if (correctCommentIndex !== -1) {
+        console.log("Correct Index ")
+        data.fullUser=this.post.comment[correctCommentIndex].fullUser
+        console.log( this.post.comment[correctCommentIndex])
+        data = this.findActiveLike(data)
+        this.post.comment[correctCommentIndex] = data;
+        console.log( this.post.comment[correctCommentIndex])
+      }
+      else{
+        console.log("wrong index")
+      }
+     
+    });
+  }
 
-  
+  findActiveLike(comment:Comment):Comment {
+    let like = new Like();
+    like.id = 0;
+    like.userID = this.user.id;
+    like.status = ' ';
+ 
+      // Check if comment.comment.likes is not undefined before accessing it
+      if (comment.likes) {
+        comment.ActiveLike =
+          comment.likes.find((rate) => rate.userID == this.user.id) ||
+          like;
+      } else {
+        comment.ActiveLike = like;
+      }
+      comment.ActiveLike.commentID = comment.idComment;
 
-// ...
+      return comment;
+    };
+   
+
 deleteComment(commentId: number) {
   Swal.fire({
     title: "Are you sure?",
@@ -197,11 +193,11 @@ deleteComment(commentId: number) {
     }
   });
 }
+
 edit(comment: Comment, postId: number): void {
   // Copier l'objet post dans postToUpdate
   this.commentToUpdate = comment;
-  console.log("Comment to update")
-  console.log("mayssthis" + this.commentToUpdate)
+
   // Ouvrir une boîte de dialogue SweetAlert avec des champs d'entrée préremplis avec les informations existantes
   Swal.fire({
     title: 'Edit Comment',
@@ -236,7 +232,7 @@ edit(comment: Comment, postId: number): void {
           text: 'An error occurred while updating the comment. Please try again later.',
           confirmButtonText: 'OK'
         });
-        console.error('Error updating comment:', err);
+      
       }
     );
     }
@@ -253,39 +249,5 @@ public onLike(idPost: number): void {
     }
   );
 }
-
-/*public onLikeComment(idComment: number): void {
-  this.service.likeComment(idComment, this.P).subscribe(
-    (response: void) => {
-      console.log(response);
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-  );
-}
-
-public onDislikeComment(idComment: number): void {
-  this.service.dislikeComment(idComment, this.P).subscribe(
-    (response: void) => {
-      console.log(response);
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-  );
-}
-
-public onDislike(subjectId: number): void {
-  this.service.dislike(subjectId, this.P).subscribe(
-    (response: void) => {
-      console.log(response);
-    },
-    (error: HttpErrorResponse) => {
-      alert(error.message);
-    }
-  );
-}
-*/
 
 }

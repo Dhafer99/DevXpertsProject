@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="message ms-3">
                                         <h6 class="f-14 fw-semibold"><i
-                                                class="mdi mdi-message-outline text-muted f-18 align-middle me-2"></i>357
+                                                class="mdi mdi-message-outline text-muted f-18 align-middle me-2"></i>5
                                             Comments
                                         </h6>
                                     </div>
@@ -169,16 +169,19 @@
                                 </div>
                         
                                 <div class="process-content">
-                                    <p class="text-muted">{{c.textComment}}</p>
+                                    <p class="text-muted">{{c.textComment}}   </p>
                                     <div class="d-flex mb-4">
-                                        <div class="like d-flex align-items-center">
-                                            <i class="mdi mdi-thumb-up-outline f-20 text-blue "></i>
-                                            <p class="mb-0 ms-2 fw-semibold text-muted" >{{c.likesComment}} Like</p>
-                                        </div>
-                                        <div class="dislike d-flex align-items-center ms-4">
-                                            <i class="mdi mdi-thumb-down-outline f-20 text-dark "></i>
-                                            <p class="mb-0 ms-2 fw-semibold text-muted">1 Dislike</p>
-                                        </div>
+                                        <div class="comment-like"(click)="savelike(c,'Like')" >
+                                            <i class="mdi mdi-thumb-up-outline f-20 text-blue" *ngIf="c.ActiveLike.status!='Like'"></i>
+                            
+                                            <i class="mdi mdi-thumb-up f-20 text-blue" *ngIf="c.ActiveLike.status=='Like'"></i>
+                                            <p class="comment-like-count">{{ c.likesCount }} Like</p>
+                                          </div>
+                                          <div class="comment-dislike" (click)="savelike(c,'Dislike')" >
+                                            <i class="mdi mdi-thumb-down-outline f-20 text-dark" *ngIf="c.ActiveLike.status!='Dislike'"></i>
+                                            <i class="mdi mdi-thumb-down f-20 text-dark" *ngIf="c.ActiveLike.status=='Dislike'"></i>
+                                            <p class="comment-dislike-count">{{ c.dislikesCount }} Dislike</p>
+                                          </div>
                                     </div>
                                     <hr>
                                 </div>

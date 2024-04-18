@@ -17,8 +17,8 @@ public class Dislike {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id ;
     private int userID;
-    private int postID;
-    private int commentID;
+    private long postID;
+    private long commentID;
     private String status;
     private Date datetime;
 }

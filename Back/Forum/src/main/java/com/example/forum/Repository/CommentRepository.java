@@ -8,7 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface CommentRepository extends JpaRepository<Comment,Long> {
-    @Modifying
-    @Query(value="UPDATE comment c SET c.likesComment=:nb WHERE c.idComment=:id",nativeQuery= true)
-    int addLike(@Param("nb") int nb , @Param("id") long id);
+
 }

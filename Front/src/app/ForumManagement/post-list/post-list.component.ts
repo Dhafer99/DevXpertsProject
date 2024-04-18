@@ -57,6 +57,7 @@ export class PostListComponent implements OnInit {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
   ngOnInit(): void {
+    this.user=JSON.parse(localStorage.getItem("user"))
    // this.getPosts();
    console.log('ngOnInit called');
    this.loadPosts();

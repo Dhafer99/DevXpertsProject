@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,8 +18,8 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idComment ;
-    private int likesComment;
-    private int dislikesComment;
+    private int likesCount;
+    private int dislikesCount;
     private boolean mostPertinentComment;
     private String textComment;
     @Temporal(TemporalType.DATE)
@@ -29,4 +30,7 @@ public class Comment {
     @JsonIgnore
     @ManyToOne
     Post post;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Dislike> likes;
 }

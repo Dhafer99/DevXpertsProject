@@ -56,9 +56,9 @@ export class ClaimService {
     return this.http.get<Claim[]>(`http://localhost:8222/api/Claims/levelDesc`);
   }
 
-  // Method to update claim decision and status
   public updateClaimDecision(claimId: number): Observable<any> {
     return this.http.put<any>(`http://localhost:8222/api/Claims/decision/${claimId}`, {});
   }
+
   
 }

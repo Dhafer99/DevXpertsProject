@@ -30,12 +30,10 @@ import java.util.stream.Collectors;
 public class PostServiceImp implements PostService {
     private final PostRepository postRepo;
     private final TagService tagService;
-
     private final CommentRepository commentRepo;
     private final List<Consumer<Post>> listeners = new ArrayList<>();
     @Override
     public Post savePost(String title,String descriptionSubject,MultipartFile file,List<Tag> postTags,String userId){
-
         Post p = new Post();
         p.setUserId(Integer.parseInt(userId));
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -67,40 +65,9 @@ public class PostServiceImp implements PostService {
                 p.getPostTags().add(tagToAdd);
             });
         }
-
       return  postRepo.save(p);
         //  notifyNewPost(p);
     }
-
-//    @Override
-//    public Post savePost(Post post, MultipartFile imageFile){
-//        String imageUrl = saveImage(imageFile);
-//        post.getImage(imageUrl);
-//        return postRepo.save(post);
-//    }
-//    private String saveImage(MultipartFile imageFile) throws FileUploadException {
-//        try {
-//            String fileName = UUID.randomUUID().toString()+"_"+imageFile.getOriginalFilename();
-//            Path filePath = Paths.get(uploadDir + fileName);
-//            Files.copy(imageFile.getInputStream(),filePath);
-//            return "/uploads"+fileName;
-//        }catch (IOException e){
-//            e.printStackTrace();
-//            throw new FileUploadException("Failed to upload file");
-//        }
-//    }
-
-//    private void notifyNewPost(Post newPost) {
-//        listeners.forEach(listener -> listener.accept(newPost));
-//    }
-//
-//    public void addPostListener(Consumer<Post> listener) {
-//        listeners.add(listener);
-//    }
-//
-//    public void removePostListener(Consumer<Post> listener) {
-//        listeners.remove(listener);
-//    }
 
     @Override
     public List<Post> findAllPosts() {
@@ -122,23 +89,25 @@ public class PostServiceImp implements PostService {
     }
 
     @Override
-    public Post likePost(long postId) {
-        Post post = postRepo.findById(postId).orElse(null);
-        if (post != null) {
-            post.setLikesSubject(post.getLikesSubject() + 1);
-            return postRepo.save(post);
-        }
+    public Post likePost(long id) {
         return null;
     }
 
-
-
-
 //    @Override
-//    public int addLike(long id) {
-//        Post a = postRepo.findById(id).orElse(new Post());
-//        int nb = a.getLikesSubject() + 1;
-//        return postRepo.addLike(nb , id) ; }
+//    public Post likePost(long postId) {
+//        Post post = postRepo.findById(postId).orElse(null);
+//        if (post != null) {
+//            post.setLikesSubject(post.getLikesSubject() + 1);
+//            return postRepo.save(post);
+//        }
+//        return null;
+//    }
+
+    @Override
+    public int addLike(long id) {
+        Post a = postRepo.findById(id).orElse(new Post());
+        int nb = a.getLikesSubject() + 1;
+        return postRepo.addLike(nb , id) ; }
 
     @Override
     public int dislike(long id) {
@@ -168,30 +137,12 @@ public class PostServiceImp implements PostService {
                 .stream().map(this::postToPostResponse).collect(Collectors.toList());
     }
     private PostResponse postToPostResponse(Post post) {
-
-
         return PostResponse.builder()
                 .post(post)
                 .build();
     }
 
-//    public Comment addComment(long postId, String textComment) {
-//        Optional<Post> optionalPost = postRepo.findById(postId);
-//        if (optionalPost.isPresent()) {
-//            Post post = optionalPost.get();
-//
-//            // Create a new comment
-//            Comment comment = new Comment();
-//            comment.setTextComment(textComment);
-//            comment.setLikesComment(0); // Initialize likes count to 0
-//
-//            // Associate the comment with the post
-//            comment.setPost(post);
-//
-//            // Save the comment
-//            return commentRepo.save(comment);
-//        } else {
-//            throw new IllegalArgumentException("Post with ID " + postId + " not found");
-//        }
-//    }
+
+
+
 }

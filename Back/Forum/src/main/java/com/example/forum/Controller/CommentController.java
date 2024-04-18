@@ -1,9 +1,11 @@
 package com.example.forum.Controller;
 
 import com.example.forum.Entity.Comment;
+import com.example.forum.Entity.Dislike;
 import com.example.forum.Entity.Post;
 import com.example.forum.Service.CommentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,13 +43,17 @@ public class CommentController {
     public Comment retrieveComment(@PathVariable("comment-id") Long commentId) {
         return service.retrieveComment(commentId);
     }
-//    @PutMapping("/{postId}/like")
-//    public Post likePost(@PathVariable long id){service.(id);}
 
-    @PutMapping("/{commentId}/like")
-    public Comment likeComment(@PathVariable long commentId){
-        return service.likeComment(commentId);
+    @PostMapping("/addLike")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Comment addLike(@RequestBody Dislike dislike)
+    {
+        return   service.addLike(dislike);
     }
-    @PutMapping("/dilikeSubject-id")
-    public void dislike(@RequestParam("id") long id){service.dislike(id);}
+    @DeleteMapping("/removeLike" )
+    @ResponseStatus(HttpStatus.CREATED)
+    public Comment removeLike(@RequestBody Dislike dislike)
+    {
+        return service.removeLike(dislike);
+    }
 }

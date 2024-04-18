@@ -17,6 +17,7 @@ public interface PostService {
     Post modifyPost(Post post);
 
     Post likePost(long id) ;
+    int addLike(long id);
      int dislike(long id);
      List<Post> findByTags(List<Tag> tags);
     List<PostResponse> getPostByTagPaginate(Tag tag, Integer page, Integer size);
