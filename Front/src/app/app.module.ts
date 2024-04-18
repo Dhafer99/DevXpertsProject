@@ -3,9 +3,6 @@ import { NgModule ,CUSTOM_ELEMENTS_SCHEMA,
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { CalenderComponent } from './quizdetails/calender/calender.component';
-import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
-import { AppComponent } from './app.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
@@ -20,9 +17,14 @@ import {MatInputModule} from '@angular/material/input';
 import { QuizDetailsComponent } from './quizdetails/quiz-details.component';
 import { QuizResultDisplayComponent } from './quizdetails/quiz-result-display/quiz-result-display.component';
 //import { ProfileComponent } from './profile/profile.component';
+import { AppComponent } from './app.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CalenderComponent } from './calender/calender.component';
+import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
+import { EventsComponent } from './events/events.component';
+import { CarouselModule } from '@coreui/angular';
 import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
-import { FormGroup} from '@angular/forms';
 import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
 import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.component';
 import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
@@ -48,7 +50,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { AuthGuard } from './auth.guard';
 import { MessagestestComponent } from './messagestest/messagestest.component';
 import { NewsupplierfrontComponent } from './newsupplierfront/newsupplierfront.component';
 import { ExhibitorReservationComponent } from './exhibitor-reservation/exhibitor-reservation.component';
@@ -64,6 +66,7 @@ import { AuthenticationinterfaceComponent } from './authenticationinterface/auth
 import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-interceptor.interceptor';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-result-list.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -77,6 +80,8 @@ import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-res
     TodoComponent,
     QuizDetailsComponent,
     QuizResultDisplayComponent,
+    ProfileComponent,
+    EventsComponent,
     AfficherOffreComponent,
     AjouterOffreComponent,
     DetailOffreComponent,
@@ -119,7 +124,21 @@ import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-res
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    //NgxWheelModule  ,
+    RouterModule,
+    BrowserModule,
+    AppRoutingModule,
+    ScheduleModule,
     ReactiveFormsModule,
+    FormsModule,
+     RecurrenceEditorModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      NgbModule,
+      CarouselModule,
+    
+    HttpClientModule,
+
     
     NgbModule,
     //QRCodeModule,

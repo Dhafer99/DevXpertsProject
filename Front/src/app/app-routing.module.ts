@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileComponent } from './quizdetails/profile/profile.component';
 
 import { CalenderComponent } from './quizdetails/calender/calender.component';
-import { ListUsersComponent } from 'projects/back-office/src/app/list-users/list-users.component';
 import { DetailsComponent } from './quizdetails/details/details.component';
 import { QuizinterfaceComponent } from './quizdetails/quizinterface/quizinterface.component';
 import { GeneralquizinterfaceComponent } from './quizdetails/generalquizinterface/generalquizinterface.component';
@@ -11,6 +9,11 @@ import { TodoComponent } from './todo/todo.component';
 import { AddQuizComponent } from './quizdetails/add-quiz/add-quiz.component';
 import { QuizDetailsComponent } from './quizdetails/quiz-details.component';
 
+import { ProfileComponent } from './profile/profile.component';
+import { ListUsersComponent } from 'projects/back-office/src/app/list-users/list-users.component';
+import { DisplayComponent } from './events/display/display.component';
+import { EventsListComponent } from './events/events-list/events-list.component';
+import { InitialListEventComponent } from './events/initial-list-event/initial-list-event.component';
 import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
 import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
@@ -38,6 +41,16 @@ import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-res
 export * from '../../projects/back-office/src/app/app.module'; // <==== THAT WAS MISSING
 export * from '../../projects/back-office/src/app/supplier/supplier.component';
 const routes: Routes = [  
+  {path:'' ,redirectTo:'index',pathMatch:'full'},
+  { path: 'profile', component: ProfileComponent },
+  { path: 'backoffice', loadChildren: () => import('../../projects/back-office/src/app/app.module').then(m => m.AppModule) },
+  { path: 'display/:name', component: DisplayComponent },
+  { path: 'index', component: InitialListEventComponent  },
+  { path: 'list', component: EventsListComponent },
+  { path: 'events',
+   loadChildren: () => import('./events/events.module').then(m => m.EventsModule) },
+
+ 
 
   { path: 'signup', component: SignUpComponent },
   { path: 'auth', component: AuthenticationinterfaceComponent },

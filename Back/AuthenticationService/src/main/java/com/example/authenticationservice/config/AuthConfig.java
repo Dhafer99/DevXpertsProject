@@ -30,6 +30,7 @@ public class AuthConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/authImage/**").permitAll()
 
 
                         .anyRequest().authenticated()

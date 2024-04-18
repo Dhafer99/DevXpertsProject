@@ -54,6 +54,7 @@ export class AfficherCandidatureComponent implements OnInit{
   getAllAppByOffer(){
     this.candidatureService.getAllApplicationsByOffer(this.id).subscribe((data:Candidature[])=>{
     this.listCandidatures=data
+    console.log(data,"FFFF")
     for (let i of data){
       this.userService.getUser(i.idCandidat.toString()).subscribe((data:any)=>{
       console.log("AAA",data["firstname"])

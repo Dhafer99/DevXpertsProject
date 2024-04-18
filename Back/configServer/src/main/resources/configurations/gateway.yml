@@ -1,6 +1,10 @@
 server:
   port: 8222
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 spring:
   application:
     name: gateway
@@ -11,6 +15,10 @@ spring:
           uri: http://localhost:8095
           predicates:
             - Path=/api/AppointementAndClassrooms/**
+        - id: events
+          uri: http://localhost:8091
+          predicates:
+            - Path=/api/Event/**
           metadata:
             cors:
               allowedOrigins: "*"
@@ -23,6 +31,7 @@ spring:
               maxAge: 30
           filters:
             - AuthenticationFilter
+
         - id: booths
           uri: http://localhost:8763
           predicates:
@@ -85,6 +94,8 @@ spring:
               allowedMethods:
                 - GET
                 - POST
+                - PUT
+                - DELETE
               allowedHeaders: "*"
               maxAge: 30
           filters:
@@ -99,6 +110,8 @@ spring:
               allowedMethods:
                 - GET
                 - POST
+                - PUT
+                - DELETE
               allowedHeaders: "*"
               maxAge: 30
           filters:
@@ -112,6 +125,20 @@ spring:
           predicates:
             - Path=/api/packs/**
 
+        - id: authserviceUpload
+          uri: http://localhost:8080
+          predicates:
+            - Path=/authImage/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+              allowedHeaders: "*"
+              maxAge: 30
+            filters:
+              - AuthenticationFilter
 eureka:
   client:
     register-with-eureka: false
