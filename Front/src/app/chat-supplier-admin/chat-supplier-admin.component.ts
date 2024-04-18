@@ -10,6 +10,7 @@ import { supplierUser } from '../models/SupplierUser';
 import { User } from '../models/user';
 import { WebSocketService } from '../services/websocketservice';
 import { ServicefrontService } from '../services/servicefront.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-chat-supplier-admin',
@@ -36,14 +37,16 @@ UsersList : User[]=[
     content:"",
     senderFK: 0,
     receiverFK:0,
-    createdAt: ""
+    createdAt: "",
+    isButton : 0
   }
   messagecomingfromsocket: message = {
 
     content :"",
     senderFK:0,
     receiverFK: 0,
-    createdAt: ""
+    createdAt: "",
+     isButton : 0
    }
     
    get filteredUsersList() {
@@ -104,7 +107,7 @@ UsersList : User[]=[
        
 
         // Construct the message object here
-        const willbesent = new message(testmessage, this.sender.id, this.receiver.id);
+        const willbesent = new message(testmessage, this.sender.id, this.receiver.id,0);
         
         // Assuming sendMessage is a method that sends the message
         this.chatSocket.sendMessage(willbesent);
@@ -231,7 +234,7 @@ UsersList : User[]=[
 Suppliers : supplierUser[]=[];
 SupplyOffer : SupplierOffer[]=[];
 userID: number ;
-  constructor(private serviceback:ServicebackService ,private acr:ActivatedRoute,private renderer: Renderer2,private chatSocket:WebSocketService){}
+  constructor(private serviceback:ServicebackService ,private acr:ActivatedRoute,private renderer: Renderer2,private chatSocket:WebSocketService,private servicefront:ServicefrontService){}
   ngOnInit(): void {
 
 /*     
@@ -269,7 +272,8 @@ userID: number ;
             receiverFK: messageObject.receiver.id,
             senderFK: messageObject.sender.id,
             
-            createdAt: messageObject.createdAt
+            createdAt: messageObject.createdAt,
+            isButton :messageObject.isButton 
         };
         this.messages.push(parsedMessage);
         console.log("MESSAGES")
@@ -331,6 +335,38 @@ userID: number ;
   }
     );
    
+
+  }
+  handleButtonClick(message:string){
+    // Find the index of the start of the price and offer ID
+const priceIndex = message.indexOf("PRICE:") + "PRICE:".length;
+
+
+// Extract the price and offer ID from the message using substr or substring
+const price = message.substring(priceIndex, message.indexOf("OFFER ID:")).trim();
+// Find the index of the start of "OFFER ID:"
+const offerIdIndex = message.indexOf("OFFER ID:") + "OFFER ID:".length;
+
+// Extract the offer ID substring from the message using substring
+const offerIdSubstring = message.substring(offerIdIndex);
+
+const cutpart= offerIdSubstring.substring(10,12)
+
+console.log("Offer ID Substring:", offerIdSubstring);
+
+console.log("Price:", price); // Output: Price: 789798
+console.log("Offer ID:", cutpart); // Output: Offer ID: 5
+ Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'RequestOffer Price changed successfully.',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
+        })
+this.servicefront.AcceptAdminSuggestion(parseInt(cutpart),parseInt(price)).subscribe((data:SupplierOffer)=>{
+
+  console.log(data);
+})
 
   }
   

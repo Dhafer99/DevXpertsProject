@@ -356,6 +356,9 @@ updateSupplier(supplyRequestId:number){
     console.log("PRICE SUGGESTION BUTTON IS CLICKED")
   }
   sendSuggestionPrice() {
+
+     
+  this.acr.params.subscribe((params)=>{
     // Implement sending the message using socket or any other method
     const suggestedPrice = this.messageForm.value.SuggestedPrice;
 
@@ -369,8 +372,8 @@ updateSupplier(supplyRequestId:number){
       this.userID = parseInt(userIDString, 10);
       console.log("current user id")
       console.log(this.userID);
-      const testmessage = suggestedPrice;
-  
+      const testmessage = suggestedPrice + " \n Offer Id: " +
+      params['id'];
        
       this.serviceback.getUser(userIDString).subscribe((senderData: User) => {
         console.log("senderDATA")
@@ -396,6 +399,8 @@ updateSupplier(supplyRequestId:number){
        
       });
       this.newMessage = '';
+
+    });
     
  
   }

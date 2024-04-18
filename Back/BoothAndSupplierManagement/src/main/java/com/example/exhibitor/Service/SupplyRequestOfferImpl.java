@@ -89,8 +89,18 @@ public class SupplyRequestOfferImpl implements SupplyRequestOfferService {
         else {
             supplierRequest.setStatus(Status.NotApproved);
 
+            
+
         }
         return supplyRequestOfferRepository.save(supplierRequest);
+
+    }
+
+    @Override
+    public SupplyRequestOffer changeOfferPrice(Long price, Long supplyrequestId) {
+        SupplyRequestOffer offer = supplyRequestOfferRepository.findBySupplierRequestFK(supplyrequestId).get(0);
+        offer.setPrice(price);
+        return supplyRequestOfferRepository.save(offer);
 
     }
 

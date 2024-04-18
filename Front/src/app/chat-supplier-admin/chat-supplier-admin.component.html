@@ -48,11 +48,16 @@
             <div class="chat-panel" >
                 <div class="chat-messages" id="style-13">
                 <div class="row no-gutters" *ngFor="let message of messages">
-                    <div class="col-md-3" [ngClass]="{'offset-md-9': message.senderFK == this.userID}">
-                      <div class="chat-bubble" [ngClass]="{'chat-bubble--right': message.senderFK === this.userID, 'chat-bubble--left': message.senderFK !== ReceiverId}">
-                        {{ message.content }}
-                      </div>
+                  <div class="col-md-3" [ngClass]="{'offset-md-9': message.senderFK == this.userID}">
+                    <div class="chat-bubble" [ngClass]="{'chat-bubble--right': message.senderFK === this.userID, 'chat-bubble--left': message.senderFK !== ReceiverId}">
+                      <span *ngIf="message.isButton === 0">{{ message.content }}</span>
+                      <!-- Display the button if the message is a button -->
+                      
                     </div>
+                    <button *ngIf="message.isButton === 1" class ="btn btn-primary" (click)="handleButtonClick(message.content)">
+                      - Price: {{ message.content }}
+                  </button>
+                  </div>
                   </div>
              <!--  <div class="row no-gutters">
                 <div class="col-md-3 offset-md-9">

@@ -7,10 +7,11 @@ export class message{
     receiverFK: number
     senderFK: number
     createdAt:string
-    
-    constructor(content: string, senderFK: number, receiverFK: number) {
+    isButton : number 
+    constructor(content: string, senderFK: number, receiverFK: number ,isButton : number ) {
         this.content = content;
         this.senderFK = senderFK;
         this.receiverFK = receiverFK;
+        this.isButton = isButton ;
     }
 }

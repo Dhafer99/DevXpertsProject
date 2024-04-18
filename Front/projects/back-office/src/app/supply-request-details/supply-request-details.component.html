@@ -268,7 +268,7 @@
                         
                       </div>
                       <button *ngIf="message.isButton === 1" class ="btn btn-primary" (click)="handleButtonClick()">
-                        {{ message.content }} - Price: {{ messageForm.value.price }}
+                        - Price: {{ messageForm.value.price }} {{ message.content }} 
                     </button>
                     </div>
                   </div>

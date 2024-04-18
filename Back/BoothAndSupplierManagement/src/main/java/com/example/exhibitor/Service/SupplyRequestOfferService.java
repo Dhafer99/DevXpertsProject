@@ -16,4 +16,6 @@ public interface SupplyRequestOfferService {
 
     public void removeSupplyOffer(Long userId,Long SupplyOfferId);
     public SupplyRequestOffer changeSupplierRequestStatus(Status status, Long requestid) throws Exception ;
+
+    public SupplyRequestOffer changeOfferPrice(Long price,Long supplyrequestId);
 }

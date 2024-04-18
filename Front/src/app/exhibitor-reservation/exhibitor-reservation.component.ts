@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./exhibitor-reservation.component.scss']
 })
 export class ExhibitorReservationComponent implements OnInit{
+ isDragDisabled : boolean= true
   selectedImage: string | ArrayBuffer | null = '../../assets/images/Floor_plans_of_Sacred_Heart_School.jpg';
   booth:Booth = {
     id:0,

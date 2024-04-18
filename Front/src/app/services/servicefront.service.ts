@@ -86,4 +86,9 @@ export class ServicefrontService {
   getAllMessages(senderId:number,receiverId:number): Observable<message[]>{
     return this.http.get<message[]>(`${this.chatUrl}/getChatMessagesBySenderAndReceiver/${senderId}/${receiverId}`)
   }
+
+  //admin suggestion 
+  public AcceptAdminSuggestion(supplyRequestId:number,price:number): Observable<SupplierOffer> {
+    return this.http.post<SupplierOffer>(`${this.SupplierOfferSuggestion_URL}/changeOfferPriceSuggestion/${supplyRequestId}/${price}`,{})
+  }
 }

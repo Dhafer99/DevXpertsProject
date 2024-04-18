@@ -11,6 +11,8 @@ import { ServicefrontService } from '../services/servicefront.service';
   styleUrls: ['./booths-for-supplier.component.scss']
 })
 export class BoothsForSupplierComponent implements OnInit{
+
+  isDragDisabled : boolean = true
   selectedImage: string | ArrayBuffer | null = '../../assets/images/Floor_plans_of_Sacred_Heart_School.jpg';
   booth:Booth = {
     id:0,

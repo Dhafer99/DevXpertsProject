@@ -59,6 +59,15 @@ public class SupplyRequestOfferController {
     ) throws Exception {
         return  supplyRequestOfferService.changeSupplierRequestStatus(status,supplierRequestId);
     }
+    @PostMapping("/changeOfferPriceSuggestion/{supplierRequestId}/{price}")
+    public SupplyRequestOffer changePrice(@PathVariable("supplierRequestId") Long supplierRequestId,
+                                           @PathVariable("price") Long price
+    ) throws Exception {
+        return  supplyRequestOfferService.changeOfferPrice(price,supplierRequestId);
+    }
+
+
+
 
 
 

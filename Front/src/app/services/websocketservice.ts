@@ -45,7 +45,7 @@ export class WebSocketService {
   public sendMessage(message: message) {
     const encodedMessage = JSON.stringify(message);
    
-    this.stompClient.send(`/chat/sendMessage/${message.senderFK}/${message.receiverFK}`,{},message.content);
+    this.stompClient.send(`/chat/sendMessage/${message.senderFK}/${message.receiverFK}/0`,{},message.content);
   }
  
 }
