@@ -6,8 +6,13 @@ import com.example.authenticationservice.entity.Supplier;
 import com.example.authenticationservice.entity.UserCredential;
 import com.example.authenticationservice.repository.UserCredentialRepository;
 import lombok.AllArgsConstructor;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +20,12 @@ import com.example.authenticationservice.entity.role;
 
 import java.io.IOException;
 import java.time.LocalDate;
+
 import java.util.List;
+
+import java.util.HashMap;
+import java.util.Map;
+
 
 @Service
 @Slf4j
@@ -46,37 +56,8 @@ public class AuthService {
     private LocalDate creationDate;
     }*/
 
-    public UserCredential saveUser(UserCredential credential, String name , String email, role role , String password ,
-                                   String firstname, String lastname, String phoneNumber, MultipartFile cv) throws IOException {
-        credential.setName(name);
-        credential.setEmail(email);
-        credential.setRole(role);
-        credential.setPassword(passwordEncoder.encode(password));
-        credential.setFirstname(firstname);
-        credential.setLastname(lastname);
-        credential.setPhoneNumber(phoneNumber);
-        credential.setCreationDate(LocalDate.now());
-
-        ///sending data to supplier :
 
 
-        if (cv != null && !cv.isEmpty()) {
-            credential.setCv(cv.getBytes());
-        }
-        UserCredential savedUser = repository.save(credential);
-
-        // Pass the generated user ID along with other details to Microservice B
-        log.info("after Saved User ");
-        if(credential.getRole() == com.example.authenticationservice.entity.role.supplier) {
-            Supplier supplier = mapToSupplier(credential, savedUser.getId());
-            userClient.functionInMicroserviceB(supplier);
-        }
-        if(credential.getRole() == com.example.authenticationservice.entity.role.exhibitor) {
-            ExhibitorDTO exhibitorDTO = mapToExhibitor(credential, savedUser.getId());
-            userClient.AddingExhibitorFromAuthenticationService(exhibitorDTO);
-        }
-        return savedUser ;
-    }
     private Supplier mapToSupplier(UserCredential user, int userId) {
         Supplier supplier = new Supplier();
         supplier.setId(userId); // Set the same user ID in Microservice B
@@ -94,8 +75,46 @@ public class AuthService {
         return exhibitorDTO;
     }
 
-    public List<UserCredential> getAdmins(){
+    public List<UserCredential> getAdmins() {
         return repository.findByRole(role.admin);
+    }
+    public ResponseEntity<Map<String, Object>>  saveUser(UserCredential credential, String name , String email, role role , String password ,
+                                                        String firstname, String lastname, String phoneNumber, MultipartFile cv , String imageUrl,String imageId) throws IOException {
+        if(repository.findByEmail(email).isPresent()){
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "L'utilisateur existe déjà");
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+        else{
+            credential.setName(name);
+            credential.setEmail(email);
+            credential.setRole(role);
+            credential.setPassword(passwordEncoder.encode(password));
+            credential.setFirstname(firstname);
+            credential.setLastname(lastname);
+            credential.setPhoneNumber(phoneNumber);
+            credential.setCreationDate(LocalDate.now());
+            credential.setImageUrl(imageUrl);
+            credential.setImageId(imageId);
+            if (cv != null && !cv.isEmpty()) {
+                credential.setCv(cv.getBytes());
+            }
+            UserCredential savedUser = repository.save(credential);
+            if(credential.getRole() == com.example.authenticationservice.entity.role.supplier) {
+                Supplier supplier = mapToSupplier(credential, savedUser.getId());
+                userClient.functionInMicroserviceB(supplier);
+            }
+            if(credential.getRole() == com.example.authenticationservice.entity.role.exhibitor) {
+                ExhibitorDTO exhibitorDTO = mapToExhibitor(credential, savedUser.getId());
+                userClient.AddingExhibitorFromAuthenticationService(exhibitorDTO);
+            }
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Opération réussie");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }
+
+
     }
 
     public String generateToken(String username) {

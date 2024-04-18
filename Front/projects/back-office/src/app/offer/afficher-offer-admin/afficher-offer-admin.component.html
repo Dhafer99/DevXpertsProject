@@ -1,5 +1,4 @@
-
-    <div id="main-wrapper">
+<div >
 
 
 
@@ -30,7 +29,7 @@
                                             <tr *ngFor="let o of newListOffers ;let i=index" [routerLink]="['/admin/offer/candidatures/', o[0].id]">
                                                 <td>{{o[0].id}}</td>
                                                 <td>{{o[0].titre}}</td>
-                                                <td>{{o[0].exibitorId}} Nom entreprise</td>
+                                                <td>{{listUsers[i]["name"]}}</td>
                                                 <td>{{o[0].lastDateApplication | date:'dd MMMM yyyy'}}</td>
                                                 <div *ngIf="o[0].lastDateApplication >currentDate.toISOString() == true">
                                                     <td><span class="badge badge-rounded badge-success">Open</span></td>

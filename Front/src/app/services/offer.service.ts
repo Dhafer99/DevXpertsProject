@@ -65,13 +65,13 @@ export class OfferService {
     return this.http.get<Offer[]>("http://localhost:8000/donnees/"+id);
   }
   //PYTHON
-  getPourcentageMatch(id:string):Observable<any>{
+  getPourcentageMatch(idO:string,idU:string):Observable<any>{
     //return this.http.get<Offer[]>(this.offerUrl+'/consumeFlaskEndpoint/'+id);
-    return this.http.get<any>("http://localhost:8000/match/"+id);
+    return this.http.get<any>("http://localhost:8000/match/"+idO+"/"+idU);
   }
-  getPourcentageMatchE(id:string):Observable<any>{
+  getPourcentageMatchE(idC:string,idU:string):Observable<any>{
     //return this.http.get<Offer[]>(this.offerUrl+'/consumeFlaskEndpoint/'+id);
-    return this.http.get<any>("http://localhost:8000/matchE/"+id);
+    return this.http.get<any>("http://localhost:8000/matchE/"+idC+"/"+idU);
   }
 
 }

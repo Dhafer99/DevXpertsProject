@@ -2,9 +2,11 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Candidature, Status } from 'src/app/models/candidature';
+import { User } from 'src/app/models/user';
 import { CandidatureService } from 'src/app/services/candidature.service';
 //import { saveAs } from 'file-saver';
 import { OfferService } from 'src/app/services/offer.service';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,7 +16,8 @@ import Swal from 'sweetalert2';
 })
 export class AfficherCandidatureComponent implements OnInit{
 
-  constructor(private activateroute:ActivatedRoute,private candidatureService:CandidatureService,private http: HttpClient , private offerService:OfferService){  }
+  constructor(private activateroute:ActivatedRoute,private candidatureService:CandidatureService,
+    private http: HttpClient , private offerService:OfferService,private userService:UserService){  }
   
   //listCandidatures:Candidature[]=[]
   listCandidatures:any;
@@ -27,25 +30,47 @@ export class AfficherCandidatureComponent implements OnInit{
   formData = new FormData();
   titre:string='';
   pourcentage:any;
+  user!:User;
+  listUsers:any[] = [];
   
   ngOnInit(): void {
+    this.user=JSON.parse(localStorage.getItem("user"))
     this.encours=Status.en_cours;
     this.rejeter=Status.refusé;
     this.accepter=Status.accépté;
     this.id=this.activateroute.snapshot.params['id'];
     this.getAllAppByOffer();
+    //console.log(this.listCandidatures.length())
     //this.getMatchCVE();
+  }
+
+  getCandidat(id:string){
+      this.userService.getUser(id).subscribe((data:any)=>{
+      console.log("AAA",data)
+      //this.listUsers.append(data);
+    })
   }
 
   getAllAppByOffer(){
     this.candidatureService.getAllApplicationsByOffer(this.id).subscribe((data:Candidature[])=>{
     this.listCandidatures=data
+    console.log(data,"FFFF")
+    for (let i of data){
+      this.userService.getUser(i.idCandidat.toString()).subscribe((data:any)=>{
+      console.log("AAA",data["firstname"])
+      const newItem: any = { "firstname":data["firstname"],"lastname":data["lastname"] };
+      this.listUsers.push(newItem);
+    })
+      console.log(i.idCandidat,"éééé");
+    }
+    
+    console.log(this.listUsers,"eee")
     //console.log("mylist:"+JSON.stringify(this.listCandidatures))
     })
   }
 
-  getMatchCVE(idC: string){
-    this.offerService.getPourcentageMatchE(idC).subscribe((data:any)=>{
+  getMatchCVE(idC: string,idU:string){
+    this.offerService.getPourcentageMatchE(idC,idU).subscribe((data:any)=>{
     this.pourcentage=data;
     console.log(data)
     })

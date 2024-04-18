@@ -28,6 +28,6 @@ urlpatterns = [
     #path('admin/', admin.site.urls),
     path('donnees/<str:input>', afficher_donnees, name='afficher_donnees'),
     path('match/<str:id_offer>/<str:id_user>', getCV, name='getCV'),
-    path('matchE/<str:id_user>', getCVE, name='getCVE'),
+    path('matchE/<str:id_candidature>/<str:id_user>', getCVE, name='getCVE'),
     path('recherche/<str:id_user>/<str:mot_rechercher>', rechercheMotCV, name='rechercheMotCV'),
 ]

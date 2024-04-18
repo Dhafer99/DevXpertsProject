@@ -93,9 +93,10 @@ def evaluer_rebel(historique_offres, offre_demploi):
     for offre_demp in offre_demploi:
         titre_offre = offre_demp['titre']
         mots_offre = titre_offre.lower().split()
-
-        pourcentage = sum(occurrences_mots[mot] for mot in mots_offre) / len(historique_offres) * 100
-
+        if len(historique_offres) > 0:
+            pourcentage = sum(occurrences_mots[mot] for mot in mots_offre) / len(historique_offres) * 100
+        else :
+            pourcentage = 0
         if (pourcentage>49):
             result.append({'id': offre_demp['idOffer'], 'pourcentage': pourcentage})
         #'description': offre_demp['description'],  
