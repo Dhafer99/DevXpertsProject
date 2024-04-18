@@ -8,9 +8,9 @@ import * as SockJS from 'sockjs-client';
 })
 export class RoomServiceService {
   constructor(private http: HttpClient) {
-    this.initializeWebSocketConnection();
+    //this.initializeWebSocketConnection();
   }
-  url = "http://localhost:8083/api/rooms/";
+  url = "http://localhost:8222/api/rooms/";
    
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,9 +28,9 @@ export class RoomServiceService {
     return this.http.post<any>( this.url + "addRoom", data );
   }
 
-  public getAllRooms (  ): Observable<any>
+  public getAllRooms (  ): Observable<any[]>
   {
-    return this.http.get<any>( this.url + "getAllRooms" );
+    return this.http.get<any[]>( this.url + "getAllRooms" );
   }
 
   public getRoomById ( id: number ): Observable<any>
@@ -56,18 +56,28 @@ export class RoomServiceService {
     return this.http.put<any>( this.url + 'updateRoom', data );
   
   }
-
+  
+  
 
   ReservePack ( id: number, idRoom:number  ): Observable<any> 
   {
     return this.http.put<any>(`${this.url}ReservePack/${id}/${idRoom}`, {} );
   
   }
+
+  updateRoomParticipant ( idRoom:number  ): Observable<any> 
+  {
+    return this.http.put<any>(`${this.url}updateRoomPaticipant/${idRoom}`, {} );
+  
+  }
   UpdatePriceAuction ( points: number,id:number  ): Observable<any> {
     return this.http.put<any>(`${this.url}updatePrice/${points}/${id}`, {});
   }
+  updateRoomStatus ( id:number  ): Observable<any> {
+    return this.http.put<any>(`${this.url}updateRoomStatus/${id}`, {});
+  }
 
-
+  
 
   addEnchere ( companyId: number,idroom:number  ): Observable<any> {
     return this.http.post<any>(`${this.url}addEncherForUser/${companyId}/${idroom}`,{});
@@ -77,6 +87,12 @@ export class RoomServiceService {
   updatePricingEnchere ( companyId: number,idroom:number ,points:number ): Observable<any> {
     return this.http.put<any>(`${this.url}updatePricing/${companyId}/${idroom}/${points}`,{});
   }
+  ///////////////////////////////////////// Roulette
+  
+  SendRandomIndex ( idroom:number  ): Observable<any> {
+    return this.http.put<any>(`${this.url}SendRandomIndex/${idroom}`,{});
+  }
+  ///////////////////////////////////////// Roulette
 
   getUserEnchere ( companyId: number,idroom:number): Observable<any> {
     return this.http.get<any>(`${this.url}getUserEnchere/${companyId}/${idroom}`,{});
@@ -88,7 +104,23 @@ export class RoomServiceService {
   }
 
 
-
+  getUsersEnterningAuction (idroom:number): Observable<any> {
+    return this.http.get<any>(`${this.url}getUsersEnterningAuction/${idroom}`,{});
+  }
+  findHighestPricedEnchereByRoomId (idroom:number): Observable<any> {
+    return this.http.get<any>(`${this.url}findHighestPricedEnchereByRoomId/${idroom}`,{});
+  }
+  getCurrentUserBiding (idcompany:number,idroom:number): Observable<any> {
+    return this.http.get<any>(`${this.url}getCurrentUserBiding/${idcompany}/${idroom}`,{});
+  }
+  deleteUserSortieEnchere ( idcompany: number ,idroom: number): Observable<any>
+  {
+   
+    return this.http.delete(`${ this.url }deleteUserFromEnchere/${ idcompany }/${ idroom }` , {
+      
+    } );
+ 
+  }
   private auctionEndedSource = new Subject<void>();
 
   auctionEnded$ = this.auctionEndedSource.asObservable();
@@ -115,7 +147,6 @@ export class RoomServiceService {
   getNotifications() {
     return this.notificationsSubject.asObservable();
   }
-
   connect(): Observable<any> {
     const socket = new SockJS('http://localhost:8083/ws');
     this.stompClient = Stomp.over(socket);

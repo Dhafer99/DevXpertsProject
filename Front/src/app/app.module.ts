@@ -3,11 +3,37 @@ import { NgModule ,CUSTOM_ELEMENTS_SCHEMA,
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { DetailsComponent } from './quizdetails/details/details.component';
+import { QuizinterfaceComponent } from './quizdetails/quizinterface/quizinterface.component';
+import { GeneralquizinterfaceComponent } from './quizdetails/generalquizinterface/generalquizinterface.component';
+import { AddQuizComponent } from './quizdetails/add-quiz/add-quiz.component';
+import { TodoComponent } from './todo/todo.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { QuizDetailsComponent } from './quizdetails/quiz-details.component';
+import { QuizResultDisplayComponent } from './quizdetails/quiz-result-display/quiz-result-display.component';
+//import { ProfileComponent } from './profile/profile.component';
 import { AppComponent } from './app.component';
-import { ProfileComponent } from './profile/profile.component';
+import { PostListComponent } from './ForumManagement/post-list/post-list.component';
+import { PostDetailComponent } from './ForumManagement/post-detail/post-detail.component';
+import { ClaimFormComponent } from './ClaimManagement/claim-form/claim-form.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { PostFormComponent } from './ForumManagement/post-form/post-form.component';
+import Swal from 'sweetalert2';
+import { ClaimListComponent } from './ClaimManagement/claim-list/claim-list.component';
+
+
+import { CalenderComponent } from './calender/calender.component';
+import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
+import { EventsComponent } from './events/events.component';
+import { CarouselModule } from '@coreui/angular';
 import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
-import { FormGroup} from '@angular/forms';
 import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
 import { ModifierOfferComponent } from './offer/modifier-offer/modifier-offer.component';
 import { AfficherCandidatureComponent } from './candidature/afficher-candidature/afficher-candidature.component';
@@ -28,12 +54,12 @@ import { MyRoomsComponent } from './RoomManagementUser/my-rooms/my-rooms.compone
 import { PaymentComponent } from './payment/payment.component';
 //import { StripeModule } from 'stripe-angular';
 import { RouletteComponent } from './RoomManagementUser/roulette/roulette.component';
-//import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
+import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { AuthGuard } from './auth.guard';
 import { MessagestestComponent } from './messagestest/messagestest.component';
 import { NewsupplierfrontComponent } from './newsupplierfront/newsupplierfront.component';
 import { ExhibitorReservationComponent } from './exhibitor-reservation/exhibitor-reservation.component';
@@ -50,11 +76,28 @@ import { TokenInterceptorInterceptor } from 'projects/back-office/src/app/token-
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ChatSupplierAdminComponent } from './chat-supplier-admin/chat-supplier-admin.component';
 import { BoothsForSupplierComponent } from './booths-for-supplier/booths-for-supplier.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-result-list.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
+    PostListComponent,
+    PostDetailComponent,
+    PostFormComponent,
+    ClaimFormComponent,
+    ClaimListComponent,
     AppComponent,
-    ProfileComponent,
+    //ProfileComponent,
+    CalenderComponent,
+    DetailsComponent,
+    QuizinterfaceComponent,
+    GeneralquizinterfaceComponent,
+    AddQuizComponent,
+    TodoComponent,
+    QuizDetailsComponent,
+    QuizResultDisplayComponent,
+    EventsComponent,
     AfficherOffreComponent,
     AjouterOffreComponent,
     DetailOffreComponent,
@@ -81,15 +124,40 @@ import { BoothsForSupplierComponent } from './booths-for-supplier/booths-for-sup
     SignUpComponent,
     ChatSupplierAdminComponent,
     BoothsForSupplierComponent,
-
+    QuizResultListComponent,
   ],
   imports: [
-    //NgxWheelModule  ,
+    NgxWheelModule  ,
     BrowserModule,
     AppRoutingModule,
+    ScheduleModule, RecurrenceEditorModule,
     HttpClientModule,
+    FullCalendarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ButtonsModule,
+    BrowserAnimationsModule ,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormsModule,
+    //NgxWheelModule  ,
+    RouterModule,
+    BrowserModule,
+    AppRoutingModule,
+    ScheduleModule,
     ReactiveFormsModule,
+    MatAutocompleteModule,
+  MatInputModule,
+    FormsModule,
+     RecurrenceEditorModule,
+      BrowserAnimationsModule,
+      HttpClientModule,
+      NgbModule,
+      CarouselModule,
+    
+    HttpClientModule,
+
     
     NgbModule,
     //QRCodeModule,
@@ -97,10 +165,8 @@ import { BoothsForSupplierComponent } from './booths-for-supplier/booths-for-sup
     //ZXingScannerModule 
     DragDropModule,
    MatTooltipModule,
-   BrowserAnimationsModule,
    MatNativeDateModule,
    MatDialogModule,
-    AppRoutingModule,HttpClientModule,
     //StripeModule.forRoot("pk_test_51OpCPlJKKu0bIqcHkJm13XGfPK7iBH0BHkBLr2K7AZG0tlw4RFMeXtVdFMbrgTXF1Pdu6r6hCOFlzmT2I3YlZOTV00FBNKzXAC"),
 
   ],
@@ -108,6 +174,7 @@ import { BoothsForSupplierComponent } from './booths-for-supplier/booths-for-sup
   //providers: [DatePipe],
 
   providers: [ 
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorInterceptor,
@@ -115,6 +182,7 @@ import { BoothsForSupplierComponent } from './booths-for-supplier/booths-for-sup
     }
     
   ],
+  ///[DatePipe],
   bootstrap: [AppComponent],
   schemas : [
     NO_ERRORS_SCHEMA]

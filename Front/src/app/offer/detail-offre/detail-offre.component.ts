@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
 //import { Result } from '@zxing/library';
 //import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import Swal from 'sweetalert2';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-detail-offre',
@@ -34,6 +35,7 @@ export class DetailOffreComponent implements OnInit{
    user!:User;
    currentDate!:Date;
    comparaisonDate!:boolean;
+   entr!:any;
      @ViewChild('fileInput') fileInput!: ElementRef;
 
   @ViewChild('content', { static: true }) contentRef!: TemplateRef<any>;
@@ -54,15 +56,19 @@ export class DetailOffreComponent implements OnInit{
 
   constructor(private activateroute:ActivatedRoute,private offerService:OfferService,
     private route:Router,private candidatureService:CandidatureService,
-    private modalService: NgbModal,private http: HttpClient,private userS:UserAnasService){
+    private modalService: NgbModal,private http: HttpClient,private userS:UserAnasService,
+    private userService:UserService){
   }
   ngOnInit(): void {
     this.currentDate=new Date()
-    this.user=this.userS.getUser();
+    //this.user=this.userS.getUser();
+    this.user=JSON.parse(localStorage.getItem("user"))
     this.id=this.activateroute.snapshot.params['id'];
     this.hasApplied(this.user.id.toString(),this.id.toString());
     this.offerService.getOfferById(this.id).subscribe((data)=>{
     this.offer=data
+    this.entr=this.userService.getUser(this.offer.exibitorId.toString());
+    this.getEntreprise();
     this.comparaisonDate=new Date(this.offer.lastDateApplication)>this.currentDate;
     console.log("COMPARAISON"+this.comparaisonDate)
     //console.log("une offre:"+JSON.stringify(this.offer))
@@ -74,9 +80,16 @@ export class DetailOffreComponent implements OnInit{
     this.fileUrl = window.URL.createObjectURL(this.blob);
   }
 
-  getPourcentageMatch(id:string){
+  getEntreprise(){
+    this.userService.getUser(this.offer.exibitorId.toString()).subscribe((data:any)=>{
+      console.log("AAA",data)
+      this.entr=data;
+    })
+  }
+
+  getPourcentageMatch(idO:string,idU:string){
       console.log("aaa")
-    this.offerService.getPourcentageMatch(id).subscribe((data:any)=>{
+    this.offerService.getPourcentageMatch(idO,idU).subscribe((data:any)=>{
       console.log(data)
       console.log("aaa")
       this.titre=data;

@@ -3,10 +3,10 @@
   <div class="form-container sign-up-container">
     <form (ngSubmit)="updatePack()" #updatePackForm="ngForm"> 
       <select class="form-select" aria-label="Default select example" id="typePack" name="typePack" [(ngModel)]="pack.typePack">
-        <option selected>Category</option>
-        <option value="0">diamond</option>
-        <option value="1">silver</option>
-        <option value="2">standards</option>
+        <option selected>{{pack.typePack}}</option>
+        <option value="diamond">diamond</option>
+        <option value="silver">silver</option>
+        <option value="standard">standards</option>
       </select>
 
 

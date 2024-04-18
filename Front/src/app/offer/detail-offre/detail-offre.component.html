@@ -46,10 +46,10 @@
                             </span></a>
 
                         <div class="icon d-flex ms-auto">
-                            <div class="like" *ngIf="user.role=='exibitor'">
+                            <div class="like" *ngIf="user.role=='exhibitor'">
                                 <a><i class="mdi mdi-delete" (click)="supprimer()"></i></a>
                             </div>
-                            <div class="menu ms-3" *ngIf="user.role=='exibitor'">
+                            <div class="menu ms-3" *ngIf="user.role=='exhibitor'">
                                 <div class="dropdown" >
                                         <a href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                             aria-expanded="false"><i class="mdi mdi-update" [routerLink]="['/modifier', offer.id]">
@@ -73,7 +73,7 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-profile" type="button" role="tab"
-                                    aria-controls="pills-profile" aria-selected="false">Exibitor</button>
+                                    aria-controls="pills-profile" aria-selected="false">Exhibitor</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
@@ -88,9 +88,7 @@
                             </div>
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                                 aria-labelledby="pills-profile-tab">
-                                <p class="text-muted"> Today we want to share a design, NFT is a new method of
-                                    payment on the Internet using electronic currency. Each of the NFTs is unique
-                                    and exists. </p>
+                                <p class="text-muted">{{offer.exibitorId}} {{entr["name"]}} </p>
                             </div>
                             <div class="tab-pane fade" id="pills-contact" role="tabpanel"
                                 aria-labelledby="pills-contact-tab">
@@ -110,7 +108,7 @@
                     <div class="d-flex">
                         <div *ngIf="user.role=='student' && !applied && comparaisonDate   || user.role=='alumni' && !applied && comparaisonDate ">
                             <!--<button class="btn btn-primary" (click)="openLg(content)">Apply</button>-->
-                            <button class="btn btn-primary" (click)="getPourcentageMatch(offer.id.toString())">Apply</button>
+                            <button class="btn btn-primary" (click)="getPourcentageMatch(offer.id.toString(),user.id.toString())">Apply</button>
                         </div>
                         <div *ngIf="user.role=='student' && applied && comparaisonDate || user.role=='alumni' && applied && comparaisonDate">
                             <button class="btn btn-primary" disabled>Apply</button>
@@ -118,7 +116,7 @@
                         <div *ngIf="user.role=='student' && !comparaisonDate || user.role=='alumni' && !comparaisonDate">
                             <button class="btn btn-primary" disabled>Date expired</button>
                         </div>
-                        <div *ngIf="user.role=='exibitor'">
+                        <div *ngIf="user.role=='exhibitor'">
                             <button class="btn btn-outline-primary ms-2"[routerLink]="['/offer/applications', offer.id]">View Applications</button>
                         </div>
                     </div>

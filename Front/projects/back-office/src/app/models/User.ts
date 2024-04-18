@@ -25,7 +25,8 @@ export class User {
     role: String ;
     email: String;
     password: String;
-}
+    points : number
+    }
 
 export enum role {
     exhibitor,

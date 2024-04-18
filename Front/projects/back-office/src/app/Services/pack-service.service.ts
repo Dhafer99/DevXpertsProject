@@ -9,7 +9,7 @@ export class PackServiceService {
 
 
   
-  url = "http://localhost:8083/api/packs/";
+  url = "http://localhost:8222/api/packs/";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -28,6 +28,14 @@ public getPayments (  ): Observable<any>
   return this.http.get<any>( this.url + "getPayments" );
 }
 
+
+public getPacksByStatus ( status: boolean ): Observable<any>
+{
+  return this.http.get<any>( `${ this.url }getPacksByStatus/${ status }`, {
+    
+  } );
+
+}
 
 /********************* stat  */
 
@@ -129,4 +137,22 @@ public getPayments (  ): Observable<any>
       
     } );
   }
+
+
+  public findMinPriceByTypePack ( typePack: string ): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }findMinPriceByTypePack/${ typePack }`, {
+      
+    } );
+ 
+  }
+
+  public findNonReservedPackPerType ( typePack: string , status:boolean): Observable<any>
+  {
+    return this.http.get<any>( `${ this.url }findNonReservedPackPerType/${ typePack }/${ status }`, {
+      
+    } );
+ 
+  }
+  
 }

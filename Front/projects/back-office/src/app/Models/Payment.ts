@@ -4,6 +4,7 @@ export class Payment{
     amount!:number;
     quantity!:number;
     paymentDay!:Date;
+    companyId!:number;
  
   
 }

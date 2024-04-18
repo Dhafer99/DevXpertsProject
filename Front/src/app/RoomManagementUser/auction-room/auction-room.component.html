@@ -14,121 +14,33 @@
 
     <div class="row align-items-center">
       <div class="col-lg-3">
-        <div class="border-horizontal"></div>
-        <div class="home-image-gallery">
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-1.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-2.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-3.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
+        <div
+          class="seller-box"
+          *ngFor="let user of usersInRoom; let i = index"
+          [ngClass]="{ 'highest-price': user === highestPricingUser }"
+        >
+          <div class="badge">
+            <span class="badge-text">Top 1 </span>
           </div>
           <div class="row">
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-4.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
+            <div class="number text-center rounded-circle">
+              <h6 class="text-white f-12">01</h6>
             </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-5.png"
-                  alt=""
-                  class="img-fluid"
-                />
+            <div class="d-flex align-items-center">
+              <div class="flex-shrink-0 ms-3">
+                <div class="avatar-md rounded-circle">
+                  <img
+                    src="../assets/images/slider/user/img-4.jpg"
+                    alt="..."
+                    class="img-fluid rounded-circle box-shadow-lg"
+                  />
+                </div>
               </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-6.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-7.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-8.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-1.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row mb-0 mb-lg-4">
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-3.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-6.png"
-                  alt=""
-                  class="img-fluid"
-                />
-              </div>
-            </div>
-            <div class="col-sm-4">
-              <div class="mt-4">
-                <img
-                  src="../../../assets/images/blog-3/img-4.png"
-                  alt=""
-                  class="img-fluid"
-                />
+              <div class="flex-grow-1 ms-2">
+                <h5 class="mb-0 f-15">{{ user.name }}</h5>
+                <p class="mb-0 f-14 fw-semibold text-muted">
+                  {{ user.pricing }}
+                </p>
               </div>
             </div>
           </div>
@@ -232,6 +144,7 @@
                   <h6>Highest Bid:</h6>
                   <div class="d-flex">
                     <div
+                      type="button"
                       (click)="updatePrice(50)"
                       style="margin-right: 5%; width: 10%"
                       class="avatar-xs bg-primary rounded-circle text-center text-white"
@@ -239,6 +152,7 @@
                       50p
                     </div>
                     <div
+                      type="button"
                       (click)="updatePrice(100)"
                       style="margin-right: 5%; width: 10%"
                       class="avatar-xs bg-primary rounded-circle text-center text-white"
@@ -246,6 +160,7 @@
                       100p
                     </div>
                     <div
+                      type="button"
                       (click)="updatePrice(150)"
                       style="margin-right: 5%; width: 10%"
                       class="avatar-xs bg-primary rounded-circle text-center text-white"
@@ -253,11 +168,15 @@
                       150p
                     </div>
                     <div class="text ms-auto">
-                      <p class="mb-0 f-14 fw-semibold">2.51 ETH $314.00</p>
+                      <p class="mb-0 f-14 fw-semibold">
+                        you still have {{ CurentUser.points  }}
+                      </p>
+                      <p class="mb-0 f-14 fw-semibold">
+                        your biding is {{ currentEnchere.pricing }}
+                      </p>
                     </div>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
@@ -277,7 +196,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Auction Oufet</h5>
+        <h5 class="modal-title">Auction ended</h5>
         <button
           type="button"
           class="btn-close"
@@ -286,14 +205,17 @@
       </div>
       <div class="modal-body">
         <p>TIME IS OUT !</p>
+        <p> we have refunded your points
+          Other chance ! </p>
       </div>
       <div class="modal-footer">
         <button
           type="button"
           class="btn btn-primary"
-          [routerLink]="['roullette']"
+         
+          (click)="navigateToListeRooms()"
         >
-          Other chance
+       participate to onother room 
         </button>
       </div>
     </div>
@@ -309,7 +231,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Auction Oufet</h5>
+        <h5 class="modal-title">Auction ended</h5>
         <button
           type="button"
           class="btn-close"
@@ -323,7 +245,7 @@
         <button
           type="button"
           class="btn btn-primary"
-          [routerLink]="['roulette']"
+          (click)="navigateToRoolette()"
         >
           Get your pack
         </button>

@@ -72,7 +72,7 @@
         <div class="row">
           <div class="col-lg-3 col-md-4 label">Start date</div>
           <div class="col-lg-9 col-md-8">
-            {{ room.dateDebut | date : "MMMM d, y" }}
+            {{ room.dateDebut | date : "MMMM d, y , HH:mm" }}
           </div>
         </div>
 
@@ -87,13 +87,16 @@
         </div>
       </div>
 
-      <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-        <div class="card-body profile-card">
+      <div class="tab-pane fade profile-edit pt-3" id="profile-edit" >
+        <div class="card-body profile-card" *ngFor="let user of users">
           <img
-            src="assets/img/profile-img.jpg"
+            src="../../../assets/images/pic1.jpg"
             alt="Profile"
             class="rounded-circle"
           />
+          <label for="fullName" class="col-md-4 col-lg-3 col-form-label"
+          > <strong>{{user.nom}}</strong></label
+        >
         </div>
       </div>
 
@@ -101,16 +104,16 @@
         <form (ngSubmit)="updateRoom()" #updateRoomForm="ngForm">
           <div class="row mb-3">
             <label for="fullName" class="col-md-4 col-lg-3 col-form-label"
-              >Start date</label
+              >Start date is <strong>{{room.dateDebut | date : "MMMM d, y, HH:mm"}}</strong></label
             >
             <div class="col-md-8 col-lg-9">
               <input
                 id="dateDebut"
                 [(ngModel)]="room.dateDebut"
                 name="dateDebut"
-                type="date"
+                type="datetime-local"
                 class="form-control"
-                value="Kevin Anderson"
+                value="room.dateDebut"
               />
             </div>
           </div>
@@ -160,7 +163,7 @@
           </div>
           <div class="row mb-3">
             <label for="fullName" class="col-md-4 col-lg-3 col-form-label"
-              >Enter price</label
+              >Enter points</label
             >
             <div class="col-md-8 col-lg-9">
               <input

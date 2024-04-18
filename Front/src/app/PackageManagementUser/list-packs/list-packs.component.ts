@@ -14,9 +14,22 @@ export class ListPacksComponent implements OnInit {
   packsStandard: Pack[] = [];
   packsSilver: Pack[] = [];
   constructor(private packService: PackServiceService, private route: Router,private roomService: RoomServiceService) {}
-
+minSilverPrice : number ; 
+minStandardPrice : number ; 
+minDiamondPrice : number ; 
   
   ngOnInit() {
+
+    this.packService.findMinPriceByTypePack('diamond').subscribe(res => {
+      this.minDiamondPrice = res;
+    });
+
+    this.packService.findMinPriceByTypePack('standard').subscribe(res => {
+      this.minStandardPrice = res;
+    });
+    this.packService.findMinPriceByTypePack('silver').subscribe(res => {
+      this.minSilverPrice = res;
+    });
     this.packService.findByTypePack('diamond').subscribe(res => {
       this.packsDiamond = res;
     });

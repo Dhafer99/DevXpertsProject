@@ -22,15 +22,15 @@ public class Pack {
     private Long idPack;
     @Enumerated(EnumType.STRING)
     private TypePack typePack ;
-    @Enumerated(EnumType.STRING)
-    private TypeAchat typeachat ;
+   // @Enumerated(EnumType.STRING)
+   // private TypeAchat typeachat ;
 
     private String description ;
     private boolean status ;
     private boolean reserved ;
     private Date creationDate ;
 
-    private Long company;
+    private int company;
     // supplier
     // company
     private float price ;

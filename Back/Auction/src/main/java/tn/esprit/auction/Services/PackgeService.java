@@ -1,15 +1,15 @@
 package tn.esprit.auction.Services;
 
 import lombok.AllArgsConstructor;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import tn.esprit.auction.Entites.*;
-import tn.esprit.auction.Repository.CompanyRepository;
+import tn.esprit.auction.Entites.CheckoutPayment;
+import tn.esprit.auction.Entites.Pack;
+import tn.esprit.auction.Entites.Room;
+import tn.esprit.auction.Entites.TypePack;
 import tn.esprit.auction.Repository.PackgeRepository;
 import tn.esprit.auction.Repository.PaymentRepository;
 import tn.esprit.auction.Repository.RoomRepository;
-
 
 import java.time.Year;
 import java.util.*;
@@ -17,16 +17,40 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class PackgeService implements PackageInterface {
-    PackgeRepository packgeRepository ;
-    RoomRepository roomRepository ;
-    CompanyRepository companyRepository ;
-    PaymentRepository paymentRepository ;
- //  private final SimpMessagingTemplate messagingTemplate;
+    PackgeRepository packgeRepository;
+    RoomRepository roomRepository;
+
+    PaymentRepository paymentRepository;
+    //  private final SimpMessagingTemplate messagingTemplate;
+
+    @Override
+    public float findMinPriceByTypePack(TypePack typePack) {
+        return packgeRepository.findMinPriceByTypePack(typePack);
+    }
 
     @Override
     public List<Pack> getpackBYType(TypePack typePack) {
+
+
+
         return packgeRepository.findByTypePack(typePack);
+    }
+
+    @Override
+    public List<Pack> findNonReservedPackPerType(TypePack typePack , Boolean etat) {
+        List<Pack> result = new ArrayList<>();
+        List<Pack> list = packgeRepository.findByTypePackAndStatus(typePack,etat);
+        for (Pack p : list)
+        {
+            if (p.isReserved() )
+            {}
+            else{
+                result.add(p);
+            }
+        }
+        return result;
     }
 
     @Override
@@ -39,7 +63,7 @@ public class PackgeService implements PackageInterface {
 
 
         Pack pack = packgeRepository.findById(packid).get();
-Room  room = roomRepository.findById(roomId).orElse(null);
+        Room room = roomRepository.findById(roomId).orElse(null);
         pack.setStatus(false);
         pack.setRoom(room);
         System.out.println(roomId);
@@ -50,19 +74,24 @@ Room  room = roomRepository.findById(roomId).orElse(null);
     @Override
     public Pack addPackge(Pack pack) {
         Date dateAujourdhui = new Date();
-               pack.setCreationDate(dateAujourdhui);
-
+        pack.setCreationDate(dateAujourdhui);
+        List<Room> rooms = roomRepository.findAll();
+        if(rooms.size()>0){ Room room = roomRepository.findByTypePack(pack.getTypePack());
+           // log.info(room.toString());
+            if (room != null && pack.isStatus()) {
+                room.setMaxWinners(room.getPackages().size() + 1);
+                roomRepository.save(room);
+                pack.setRoom(room);
+            }
+        }
 
         return packgeRepository.save(pack);
     }
 
     @Override
     public Pack updatePackage(Pack pack) {
-
-
-
-
-
+        Date dateAujourdhui = new Date();
+        pack.setCreationDate(dateAujourdhui);
         return packgeRepository.save(pack);
     }
 
@@ -73,8 +102,8 @@ Room  room = roomRepository.findById(roomId).orElse(null);
 
     @Override
     public List<Pack> findRoomPackages(Long idRoom) {
-      Room room = roomRepository.findById(idRoom).get();
-        return  room.getPackages();
+        Room room = roomRepository.findById(idRoom).get();
+        return room.getPackages();
 
     }
 
@@ -82,8 +111,8 @@ Room  room = roomRepository.findById(roomId).orElse(null);
     public List<Pack> findReservedPacks() {
         List<Pack> packs = packgeRepository.findAll();
         List<Pack> packsReserved = new ArrayList<>();
-        for (Pack p : packs){
-            if (p.isReserved()){
+        for (Pack p : packs) {
+            if (p.isReserved()) {
 
                 packsReserved.add(p);
             }
@@ -96,8 +125,8 @@ Room  room = roomRepository.findById(roomId).orElse(null);
     public List<Pack> finfNonReservedPacks() {
         List<Pack> packs = packgeRepository.findAll();
         List<Pack> packsNonReserved = new ArrayList<>();
-        for (Pack p : packs){
-            if (!p.isReserved()){
+        for (Pack p : packs) {
+            if (!p.isReserved()) {
 
                 packsNonReserved.add(p);
             }
@@ -120,8 +149,22 @@ Room  room = roomRepository.findById(roomId).orElse(null);
     public void delete(Long idpack) {
 
         Pack p = packgeRepository.findById(idpack).get();
-
+        //   Room room = roomRepository.findByTypePack(p.getTypePack());
+        // if(room!=null && p.isStatus())
+        // {
+        //    room.setMaxWinners(room.getPackages().size()-1);
+        //       roomRepository.save(room);
+        // p.setRoom(room);
+        //   packgeRepository.delete(p);
+        //  }
+        //
         packgeRepository.delete(p);
+
+    }
+
+    @Override
+    public List<Pack> getPacksByStatus(Boolean status) {
+        return packgeRepository.findByStatus(status);
     }
 
     @Override
@@ -160,21 +203,22 @@ Room  room = roomRepository.findById(roomId).orElse(null);
 
     public double getReservationPercentages(TypePack typePack) {
 
-            List<Pack> allPacks = packgeRepository.findByTypePack(typePack);
-            long totalPacks = allPacks.size();
+        List<Pack> allPacks = packgeRepository.findByTypePack(typePack);
+        long totalPacks = allPacks.size();
 
-            if (totalPacks == 0) {
-                return 0.0; // Éviter une division par zéro
-            }
+        if (totalPacks == 0) {
+            return 0.0; // Éviter une division par zéro
+        }
 
-            long reservedPacks = allPacks.stream()
-                    .filter(Pack::isReserved)
-                    .count();
+        long reservedPacks = allPacks.stream()
+                .filter(Pack::isReserved)
+                .count();
 
         double percentage = ((double) reservedPacks / totalPacks) * 100.0;
         return Math.round(percentage * 100.0) / 100.0;
 
     }
+
     @Override
     public List<Double> calculateReservationPercentageByType() {
         List<Double> percentages = new ArrayList<>();
@@ -184,26 +228,26 @@ Room  room = roomRepository.findById(roomId).orElse(null);
         percentages.add(this.getReservationPercentages(TypePack.silver));
         percentages.add(this.getReservationPercentages(TypePack.standard));
 
-        return percentages ;
+        return percentages;
     }
 
-    @Override
-    public List<Company> findTopLoyalCustomers(int topCount) {
-        List<Pack> reservedPacks = packgeRepository.findByReserved(Boolean.TRUE);
-        Map<Long, Integer> reservationsByCompany = new HashMap<>();
+   /* @Override
+    public List<int> findTopLoyalCustomers(int topCount) {
+       List<Pack> reservedPacks = packgeRepository.findByReserved(Boolean.TRUE);
+        Map<Integer, Integer> reservationsByCompany = new HashMap<>();
 
         for (Pack pack : reservedPacks) {
-            if(pack.getCompany()!=null) {
-                Long companyId = pack.getCompany();
+            if(pack.getCompany()!=0) {
+                int companyId = pack.getCompany();
                 reservationsByCompany.put(companyId, reservationsByCompany.getOrDefault(companyId, 0) + 1);
             }  }
 
-        List<Long> loyalCustomerIds = reservationsByCompany.entrySet().stream()
+        List<Integer> loyalCustomerIds = reservationsByCompany.entrySet().stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .limit(topCount)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
-        List<Company> topLoyalCustomers = new ArrayList<>();
+        List<int> topLoyalCustomers = new ArrayList<>();
         if(loyalCustomerIds!=null){
           topLoyalCustomers = loyalCustomerIds.stream()
                 .map(companyId -> companyRepository.findById(companyId).get())
@@ -211,22 +255,18 @@ Room  room = roomRepository.findById(roomId).orElse(null);
 
 
         return topLoyalCustomers;
-    }
+    }*/
 
     @Override
-    public void sendCoderoom(String emailCompany,String codeRoom) {
+    public void sendCoderoom(String emailCompany, String codeRoom) {
 
         Room room = roomRepository.findByCodeRoom(codeRoom);
         int nbr = room.getMaxParticipants();
-        if(room.getConfirmedParticipant()<nbr)
-        {
-            int nbrEntrant = room.getConfirmedParticipant()+1 ;
-        room.setConfirmedParticipant(nbrEntrant);
+        if (room.getConfirmedParticipant() < nbr) {
+            int nbrEntrant = room.getConfirmedParticipant() + 1;
+            room.setConfirmedParticipant(nbrEntrant);
             roomRepository.save(room);
         }
-
-
-
 
 
     }
@@ -238,7 +278,7 @@ Room  room = roomRepository.findById(roomId).orElse(null);
         int quantite = 0;
 
         for (Pack pack : packs) {
-            if (pack.getTypePack() == typePack && isCreationYear(pack,currentYear)) {
+            if (pack.getTypePack() == typePack && isCreationYear(pack, currentYear)) {
                 quantite++;
             }
         }
@@ -252,7 +292,7 @@ Room  room = roomRepository.findById(roomId).orElse(null);
         List<Pack> packs = packgeRepository.findAll();
         float revenuTotal = 0;
         for (Pack pack : packs) {
-            if ( isCreationYear(pack,currentYear)&&pack.isReserved()) {
+            if (isCreationYear(pack, currentYear) && pack.isReserved()) {
                 revenuTotal += pack.getPrice();
             }
         }
@@ -272,7 +312,6 @@ Room  room = roomRepository.findById(roomId).orElse(null);
         int creationYear = cal.get(Calendar.YEAR);
         return creationYear == currentYear;
     }
-
 
 
 }

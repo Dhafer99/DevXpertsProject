@@ -18,7 +18,7 @@ export class AddPackComponent {
 
   pack: Pack = new Pack();
   validateForm(): boolean {
-    if (!this.pack.typePack ||!this.pack.price ||!this.pack.description  ) {
+    if (!this.pack.typePack ||!this.pack.price ||!this.pack.description    ) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',

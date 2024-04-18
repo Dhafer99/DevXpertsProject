@@ -4,17 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.core.io.Resource;
 
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.auction.Entites.CheckoutPayment;
-import tn.esprit.auction.Entites.Company;
 
 import tn.esprit.auction.Entites.Pack;
+import tn.esprit.auction.Entites.RandomRoulette;
 import tn.esprit.auction.Entites.TypePack;
+import tn.esprit.auction.Repository.RadomRouletteRepository;
 import tn.esprit.auction.Services.PackageInterface;
 import org.springframework.core.io.ClassPathResource;
 import java.nio.charset.StandardCharsets;
@@ -23,11 +23,10 @@ import org.apache.commons.io.IOUtils;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*, http://localhost:4203")
+//@CrossOrigin(origins = "*, http://localhost:4203")
 @Slf4j
 @RestController
 @AllArgsConstructor
@@ -72,6 +71,11 @@ public class PackageController {
     public  Map<Integer, Map<Long, Long>> getPackStatisticsByYearAndStatus() {
         return  packageInterface.getPackStatisticsByYear();
     }
+    @GetMapping("/getPacksByStatus/{status}")
+    public  List<Pack> getPacksByStatus(@PathVariable("status") Boolean status) {
+        return  packageInterface.getPacksByStatus(status);
+    }
+
     @GetMapping("/QuantitePeTypePack/{typePack}")
     public  int QuantitePeTypePack(@PathVariable("typePack") TypePack typePack) {
         return  packageInterface.QuantitePeTypePack(typePack);
@@ -88,12 +92,12 @@ public class PackageController {
     public   List<Double> calculateReservationPercentageByType() {
         return  packageInterface.calculateReservationPercentageByType();
     }
-    @GetMapping("/toployalcustomers")
+    /*@GetMapping("/toployalcustomers")
     public List<Company> getTopLoyalCustomers() {
 
         return packageInterface.findTopLoyalCustomers(5);
     }
-
+*/
 
 
     // Afficher les packs d'un room
@@ -149,5 +153,17 @@ public class PackageController {
           packageInterface.delete(id);
     }
 
+    @GetMapping("/findMinPriceByTypePack/{typePack}")
+    public float findMinPriceByTypePack(@PathVariable("typePack") TypePack typePack) {
+        return  packageInterface.findMinPriceByTypePack(typePack);
+    }
+
+    @GetMapping("/findNonReservedPackPerType/{typePack}/{status}")
+    public List<Pack> findNonReservedPackPerType(@PathVariable("typePack") TypePack typePack
+
+
+    , @PathVariable("status") Boolean status) {
+        return  packageInterface.findNonReservedPackPerType(typePack,status);
+    }
 
 }

@@ -30,3 +30,10 @@ export class User{
     numeroTelephone : String;
 
 }
+export class MockRoulette {
+    id: number;
+    randomValue: number;
+    spinned: boolean;
+    spinCounter: number;
+    adminSpinning: boolean;
+}

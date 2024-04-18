@@ -6,5 +6,6 @@ export class Enchere{
     pricing!:number;
     status!:boolean;
     room!: Room ; 
+    
   
 }

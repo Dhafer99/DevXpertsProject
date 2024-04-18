@@ -9,9 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserCredentialRepository  extends JpaRepository<UserCredential,Integer> {
+public interface UserCredentialRepository extends JpaRepository<UserCredential, Integer> {
     Optional<UserCredential> findByName(String name);
+
+    List<UserCredential> findAllByRoomid(long roomId);
+
     Optional<UserCredential> findByEmail(String email);
+
     Optional<UserCredential> findById(int id);
 
     List<UserCredential> findByRole(com.example.authenticationservice.entity.role role);
