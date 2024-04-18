@@ -160,14 +160,17 @@ public class RoomService implements RoomInterface {
 
     @Override
     public void ReservePack(Long idpack, Long idRoom) {
+
         List<Enchere> encheres = enchereInterface.getTopEncheresByRoomId(idRoom);
+
         Pack pack = packgeRepository.findById(idpack).get();
 
-        //pack.setCompany(encheres.get(0).getIdcompany());
-        //encheres.get(0).setStatus(false);
-        //enchereRepository.save(encheres.get(0));
+        pack.setCompany(encheres.get(0).getIdcompany());
 
-        //pack.setReserved(true);
+        encheres.get(0).setStatus(false);
+        enchereRepository.save(encheres.get(0));
+
+        pack.setReserved(true);
         packgeRepository.save(pack);
     }
 

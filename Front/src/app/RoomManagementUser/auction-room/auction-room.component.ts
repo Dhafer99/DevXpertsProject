@@ -182,7 +182,7 @@ export class AuctionRoomComponent implements OnInit {
   navigateToListeRooms(){
     this.userserv.RemoveUserRoom(parseInt(localStorage.getItem("userID"))).subscribe(()=>{})
     this.roomService.updateRoomStatus(this.id).subscribe(()=>{})
-    this.roomService
+   /*  this.roomService
       .deleteUserSortieEnchere(parseInt(localStorage.getItem("userID")), this.room.idRoom)
       .subscribe(
         () => {
@@ -194,12 +194,12 @@ export class AuctionRoomComponent implements OnInit {
             error
           );
         }
-      );
+      ); */
     this.router.navigate(['/ListPacks/ListRooms']);
   }
 
   navigateToRoolette(){
-    this.roomService
+   /*  this.roomService
     .deleteUserSortieEnchere(parseInt(localStorage.getItem("userID")), this.room.idRoom)
       .subscribe(
         () => {
@@ -211,7 +211,7 @@ export class AuctionRoomComponent implements OnInit {
             error
           );
         }
-      );
+      ); */
   //  this.userserv.RemoveUserRoom(parseInt(localStorage.getItem("userID"))).subscribe(()=>{})
     this.roomService.updateRoomStatus(this.id).subscribe(()=>{})
     this.router.navigate(['roulette', this.id]);
