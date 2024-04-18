@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { JwtClientService } from '../services/jwt-client.service';
 import { ServicebackService } from '../services/serviceback.service';
+import { JwtClientService } from '../Services/jwt-client.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-authentification',
@@ -11,11 +13,12 @@ import { ServicebackService } from '../services/serviceback.service';
 export class AuthentificationComponent implements OnInit {
   authForm!: FormGroup;
   userID !: number ;
+  user!:User;
   request ={
-    username: "",
+    email: "",
     password: ""
   }
-  constructor(private formBuilder: FormBuilder,private serviceToken : JwtClientService,private serviceback: ServicebackService) { }
+  constructor(private formBuilder: FormBuilder,private serviceToken : JwtClientService,private serviceback: ServicebackService,private userService:UserService) { }
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({
@@ -30,19 +33,30 @@ export class AuthentificationComponent implements OnInit {
   login() {
     if (this.authForm.valid) {
       // Perform login operation, e.g., send data to server
-      this.request.username=this.authForm.get('email').value
+      this.request.email=this.authForm.get('email').value
       this.request.password=this.authForm.get('password').value
       this.serviceToken.generateToken(this.request).subscribe(data =>
         {
           console.log(data);
           this.serviceToken.setToken(data);
 
-          this.serviceback.getUserId(this.request.username).subscribe( (data:number) => {
+          this.serviceback.getUserId(this.request.email).subscribe( (data:number) => {
                 this.userID= data ;
                 console.log("user id ")
                 console.log(data);
 
+                this.userService.getUser(this.userID.toString()).subscribe(res=>{
+                  //this.nbrCandidature.push(res);
+                  this.user=res;
+                  localStorage.setItem("user",JSON.stringify(res));
+                })
                 localStorage.setItem("userID",this.userID.toString())
+
+                this.userService.getUser(this.userID.toString()).subscribe(res=>{
+                  //this.nbrCandidature.push(res);
+                  this.user=res;
+                  localStorage.setItem("user",JSON.stringify(res));
+                })
 
           })
         }
