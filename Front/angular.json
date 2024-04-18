@@ -25,27 +25,33 @@
               "src/assets"
             ],
             "styles": [
+
               "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css",
+
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
-              "src/custom-theme.scss"
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css",
+              "src/custom-theme.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
-            
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "6mb",
+                  "maximumError": "10mb"
                 },
-                
+
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "6mb"
                 }
               ],
               "outputHashing": "all"
@@ -63,11 +69,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options":{
-            "port":4201
+          "options": {
+            "port": 4201
           },
           "configurations": {
-            
             "production": {
               "browserTarget": "ProjetPi:build:production"
             },
@@ -96,7 +101,11 @@
               "src/assets"
             ],
             "styles": [
+
               "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
@@ -162,11 +171,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options":{
+          "options": {
             "port": 4203
           },
           "configurations": {
-            
+
             "production": {
               "browserTarget": "backOffice:build:production"
             },
@@ -261,9 +270,6 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "options":{
-              "port": 4203
-            },
             "production": {
               "browserTarget": "Front-Office:build:production"
             },

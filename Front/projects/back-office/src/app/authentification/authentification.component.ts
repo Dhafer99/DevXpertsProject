@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicebackService } from '../services/serviceback.service';
 import { JwtClientService } from '../Services/jwt-client.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-authentification',
@@ -11,11 +13,12 @@ import { JwtClientService } from '../Services/jwt-client.service';
 export class AuthentificationComponent implements OnInit {
   authForm!: FormGroup;
   userID !: number ;
+  user!:User;
   request ={
     email: "",
     password: ""
   }
-  constructor(private formBuilder: FormBuilder,private serviceToken : JwtClientService,private serviceback: ServicebackService) { }
+  constructor(private formBuilder: FormBuilder,private serviceToken : JwtClientService,private serviceback: ServicebackService,private userService:UserService) { }
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({
@@ -42,7 +45,18 @@ export class AuthentificationComponent implements OnInit {
                 console.log("user id ")
                 console.log(data);
 
+                this.userService.getUser(this.userID.toString()).subscribe(res=>{
+                  //this.nbrCandidature.push(res);
+                  this.user=res;
+                  localStorage.setItem("user",JSON.stringify(res));
+                })
                 localStorage.setItem("userID",this.userID.toString())
+
+                this.userService.getUser(this.userID.toString()).subscribe(res=>{
+                  //this.nbrCandidature.push(res);
+                  this.user=res;
+                  localStorage.setItem("user",JSON.stringify(res));
+                })
 
           })
         }
