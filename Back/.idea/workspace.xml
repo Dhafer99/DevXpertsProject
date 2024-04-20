@@ -6,21 +6,57 @@
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Controller/RoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Services/ClientUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Services/ClientUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Services/RoomService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Services/RoomService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/Controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoothAndSupplierManagement/src/main/java/com/example/exhibitor/Repository/BoothRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BoothAndSupplierManagement/src/main/java/com/example/exhibitor/Repository/BoothRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoothAndSupplierManagement/src/main/java/com/example/exhibitor/Service/CloudinaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BoothAndSupplierManagement/src/main/java/com/example/exhibitor/Service/CloudinaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/classroom.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/classroom.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Models/Message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/Models/Message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/PackManagementAdmin/view-pack/view-pack.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/PackManagementAdmin/view-pack/view-pack.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/RoomManagement/detail-room/detail-room.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/RoomManagement/detail-room/detail-room.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/RoomManagement/view-rooms/view-rooms.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/RoomManagement/view-rooms/view-rooms.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/RoomManagement/view-rooms/view-rooms.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/RoomManagement/view-rooms/view-rooms.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/authentification/authentification.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/authentification/authentification.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/authentification/authentification.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/authentification/authentification.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/boothplacement/boothplacement.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/boothplacement/boothplacement.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/models/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/models/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/newsupplyrequestsdashboard/newsupplyrequestsdashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/newsupplyrequestsdashboard/newsupplyrequestsdashboard.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/serviceback.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/services/serviceback.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/stat/stat-admin-candidature/stat-admin-candidature.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/stat/stat-admin-candidature/stat-admin-candidature.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/supply-request-details/supply-request-details.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/supply-request-details/supply-request-details.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/app/supply-requests-dashboard/supply-requests-dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/app/supply-requests-dashboard/supply-requests-dashboard.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/projects/back-office/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/projects/back-office/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/rooms-list/rooms-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/rooms-list/rooms-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/roulette/roulette.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/roulette/roulette.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/roulette/roulette.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/roulette/roulette.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Front/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/quizdetails/add-quiz/add-quiz.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/quizdetails/add-quiz/add-quiz.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/quizdetails/add-quiz/add-quiz.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/quizdetails/add-quiz/add-quiz.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/quizdetails/generalquizinterface/generalquizinterface.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/quizdetails/generalquizinterface/generalquizinterface.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/quizdetails/generalquizinterface/generalquizinterface.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/quizdetails/generalquizinterface/generalquizinterface.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/quizdetails/quiz-result-display/quiz-result-display.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/quizdetails/quiz-result-display/quiz-result-display.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/Controller/CloudinaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AuthenticationService/src/main/java/com/example/authenticationservice/Controller/CloudinaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Events/src/main/java/com/example/Event/Controller/InterestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" beforeDir="false" afterPath="$PROJECT_DIR$/configServer/src/main/resources/configurations/gateway.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/authenticationinterface/authenticationinterface.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/authenticationinterface/authenticationinterface.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/booths-for-supplier/booths-for-supplier.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/booths-for-supplier/booths-for-supplier.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/candidature/afficher-candidature/afficher-candidature.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/candidature/afficher-candidature/afficher-candidature.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/chat-supplier-admin/chat-supplier-admin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/chat-supplier-admin/chat-supplier-admin.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/events-list/events-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/events-list/events-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/events/events.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/events/events.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/models/SupplierUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/models/SupplierUser.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/models/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/newsupplierfront/newsupplierfront.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/newsupplierfront/newsupplierfront.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/payment/payment.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/payment/payment.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/quizdetails/calender/calender.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/quizdetails/calender/calender.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/services/user.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +82,9 @@
     <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/3.2.2/spring-data-commons-3.2.2.jar!/org/springframework/data/repository/CrudRepository.class" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Appointement/src/main/java/com/example/appointementandclassroom/controllers/AppointementManagement.java" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -60,27 +99,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;appoi&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/fares/OneDrive/Documents/GitHub/DevXpertsProject/Back&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "offre",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/fares/OneDrive/Documents/GitHub/DevXpertsProject/Back",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "spring.configuration.checksum": "b4b2bc58a16614a40f9bee5390a6a26a",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -100,8 +141,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthenticationServiceApplication">
-  <component name="RunManager" selected="Spring Boot.ConfigServerApplication">
+  <component name="RunManager" selected="Spring Boot.BoothAndSupplier">
     <configuration name="AppointementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="AppointementAndClassroom" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.appointementandclassroom.AppointementApplication" />
@@ -123,6 +163,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BoothAndSupplier" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="BoothAndSupplierManagement" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.exhibitor.ExhibitorApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BoothApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Booth" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.Event.BoothApplication" />
@@ -133,6 +182,13 @@
     <configuration name="BoothApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Booth" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.supplier.BoothApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClaimApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Claim" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.claim.ClaimApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -180,7 +236,7 @@
       </method>
     </configuration>
     <configuration name="ExhibitorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="Exhibitor" />
+      <module name="BoothAndSupplierManagement" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.exhibitor.ExhibitorApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -189,6 +245,13 @@
     <configuration name="ExhibitorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="BoothAndSupplierManagement" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.exhibitor.ExhibitorApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ForumApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Forum" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.forum.ForumApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -208,12 +271,16 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Spring Boot.ForumApplication" />
       <item itemvalue="Spring Boot.AuctionApplication" />
+      <item itemvalue="Spring Boot.AppointementApplication" />
+      <item itemvalue="Spring Boot.BoothAndSupplier" />
+      <item itemvalue="Spring Boot.ClaimApplication" />
+      <item itemvalue="Spring Boot.EventApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
       <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
       <item itemvalue="Spring Boot.OfferApplication" />
-      <item itemvalue="Spring Boot.AppointementApplication" />
       <item itemvalue="Spring Boot.DiscoveryApplication" />
-      <item itemvalue="Spring Boot.GatewayApplication" />
       <item itemvalue="Spring Boot.BoothApplication" />
       <item itemvalue="Spring Boot.ConfigServerApplication" />
       <item itemvalue="Spring Boot.ExhibitorApplication" />
@@ -278,6 +345,7 @@
       <workItem from="1713183639406" duration="698000" />
       <workItem from="1713196237963" duration="8389000" />
       <workItem from="1713309595727" duration="11619000" />
+      <workItem from="1713422466322" duration="16997000" />
     </task>
     <servers />
   </component>

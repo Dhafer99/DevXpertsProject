@@ -115,7 +115,7 @@ export class RoomsListComponent implements OnInit ,AfterViewInit{
       (vare) => {
 
         this.packService
-        .sendcodeMail(this.user.email, vare.codeRoom)
+        .sendcodeMail(this.user.email.toString(), vare.codeRoom)
         .subscribe(
           () => {
             Swal.fire({
@@ -132,7 +132,7 @@ export class RoomsListComponent implements OnInit ,AfterViewInit{
         );
       })
    
-    this.userserv.affecterRoomTouser(id,this.user.id, 0).subscribe((r)=>{});
+    this.userserv.affecterRoomTouser(id,this.user.id, this.user.points).subscribe((r)=>{console.log(r)});
     this.roomService.updateRoomParticipant(id).subscribe(r=>{});
     
    // this.modal.nativeElement.dismiss();

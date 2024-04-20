@@ -9,7 +9,7 @@ import { Booth } from '../models/Booth';
 import { BoothRepresentation } from '../models/BoothRepresentation';
 import { SupplierOffer } from '../models/SupplierOffer';
 import { message } from '../models/Message';
-import { User } from '../models/user';
+import { User } from '../models/User';
 @Injectable({
   providedIn: 'root'
 })
@@ -178,8 +178,8 @@ getUser(id:String): Observable<any> {
   return this.http.get<any>(this.userUrl+'currentUser/'+id)
 }
 
-getAdmins():Observable<User[]> {
-  return this.http.get<User[]>(this.userUrl+'admins')
+getAdmins():Observable<any[]> {
+  return this.http.get<any[]>(this.userUrl+'admins')
 }
 
 /////Messaging

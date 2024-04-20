@@ -129,7 +129,7 @@ export class PaymentComponent implements OnInit {
 
   mail() {
     this.packService
-      .sendcodeMail(this.user.email, this.room.codeRoom)
+      .sendcodeMail(this.user.email.toString(), this.room.codeRoom)
       .subscribe(
         () => {
           Swal.fire({

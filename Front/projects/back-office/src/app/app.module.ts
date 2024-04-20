@@ -61,9 +61,9 @@ import { TokenInterceptorInterceptor } from './token-interceptor.interceptor';
 import { ClaimBackofficeComponent } from './claim-backoffice/claim-backoffice.component';
 import { ListUsersComponent } from './list-users/list-users.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { CardClassroomComponent } from './Appointment/card-classroom/card-classroom.component';
+//import { CardClassroomComponent } from './Appointment/card-classroom/card-classroom.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CalenderComponent } from './Appointment/calender/calender.component';
+//import { CalenderComponent } from './Appointment/calender/calender.component';
 import { EventsComponent } from './events/events.component';
 import { ChartModule } from 'angular-highcharts';
 import { EventCreateComponent } from './events/event-create/event-create.component';
@@ -102,7 +102,7 @@ import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/affich
     ViewPackComponent,
     UpdatePackComponent,
     HistoriquePacksComponent,
-    ViewRoomsComponent,
+    
     DetailRoomComponent,
     PackSalesPerYearComponent,
     AuctionComponent,
@@ -120,7 +120,12 @@ import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/affich
     SupplyRequestDetailsComponent,
     AuthentificationComponent,
   
-
+    
+    EventsComponent,
+    EventCreateComponent,
+    EventsStatsComponent,
+    EventListComponent,
+    EventDisplayComponent,
     ListUsersComponent,
     ClassroomComponent,
     ClaimBackofficeComponent,
@@ -149,6 +154,7 @@ import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/affich
     AuctionComponent,
     PaymentListComponent,
    
+    ScanPressenceComponent,
 
    
   ],
@@ -168,20 +174,14 @@ import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/affich
     ButtonsModule,
     DateInputsModule,
     FormFieldModule,
-    CalenderComponent,
-    EventsComponent,
-    EventCreateComponent,
-    EventsStatsComponent,
-    EventListComponent,
-    EventDisplayComponent,
-    ScanPressenceComponent,
+    //CalenderComponent,
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatSelectModule,
+    //MatFormFieldModule,
+    //MatInputModule,
+    //MatAutocompleteModule,
+    //MatSelectModule,
     NgbModule,
     //NgChartsModule,
     NgApexchartsModule,
@@ -203,7 +203,7 @@ import { AfficherOfferAdminComponent } from './offer/afficher-offer-admin/affich
  
     MatTableModule,
     
-    CKEditorModule,
+   
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

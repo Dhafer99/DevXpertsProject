@@ -16,6 +16,8 @@ export class NewsupplyrequestsdashboardComponent implements OnInit{
   myFilter: any = { name: '' };
   SupplyRequestList : Supplier[]=[]
   ngOnInit(): void {
+
+    console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
     this.serviceBack.getsupplier().subscribe((data:Supplier[])=>{
         this.SupplyRequestList=data
 

@@ -19,6 +19,7 @@ export class ViewRoomsComponent implements OnInit{
   }
   ngOnInit() {
     this.roomService.getAllRooms().subscribe(res => {
+      console.log(res)
       this.rooms = res;
     });
   }

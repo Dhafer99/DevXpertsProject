@@ -32,6 +32,7 @@ export class NewsupplierfrontComponent implements OnInit{
       this.servicefront.addSupplierOffer(this.supplierOffer,this.userID,itemId).subscribe((data:any)=>{
         console.log("returned data after supplier suggestion :")
         console.log(data);
+        location.reload()
       })
     });
   }

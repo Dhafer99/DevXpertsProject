@@ -1,10 +1,6 @@
 server:
   port: 8222
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+
 spring:
   application:
     name: gateway
@@ -27,6 +23,7 @@ spring:
               maxAge: 30
           filters:
             - AuthenticationFilter
+
         - id: postsForum
           uri: http://localhost:8040
           predicates:
@@ -43,14 +40,39 @@ spring:
               maxAge: 30
           filters:
             - AuthenticationFilter
+
         - id: commentForum
           uri: http://localhost:8040
           predicates:
             - Path=/api/Comments/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
         - id: Appointement
           uri: http://localhost:8095
           predicates:
             - Path=/api/AppointementAndClassrooms/**
+          metadata:
+            cors:
+              allowedOrigins: "*"
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+              allowedHeaders: "*"
+              maxAge: 30
+          filters:
+            - AuthenticationFilter
         - id: events
           uri: http://localhost:8091
           predicates:
@@ -74,6 +96,7 @@ spring:
             - Path=/api/BoothAndSupplier/**
           filters:
             - AuthenticationFilter
+
         - id: suppliers
           uri: http://localhost:8763
           predicates:
@@ -90,6 +113,7 @@ spring:
               maxAge: 30
           filters:
             - AuthenticationFilter
+
         - id: supplyoffer
           uri: http://localhost:8763
           predicates:
@@ -105,6 +129,7 @@ spring:
               maxAge: 30
           filters:
             - AuthenticationFilter
+
         - id: authservice
           uri: http://localhost:8080
           predicates:
@@ -115,14 +140,18 @@ spring:
               allowedMethods:
                 - GET
                 - POST
+                - PUT
+                - DELETE
               allowedHeaders: "*"
               maxAge: 30
           filters:
             - AuthenticationFilter
+
         - id: exhibitors
           uri: http://localhost:8070
           predicates:
             - Path=/exhibitor/api/Exhibitors/**
+
         - id: offers
           uri: http://localhost:8899
           predicates:
@@ -139,6 +168,7 @@ spring:
               maxAge: 30
           filters:
             - AuthenticationFilter
+
         - id: applications
           uri: http://localhost:8899
           predicates:
@@ -155,14 +185,6 @@ spring:
               maxAge: 30
           filters:
             - AuthenticationFilter
-        - id: rooms
-          uri: http://localhost:8083
-          predicates:
-            - Path=/api/rooms/**
-        - id: packs
-          uri: http://localhost:8083
-          predicates:
-            - Path=/api/packs/**
 
         - id: authserviceUpload
           uri: http://localhost:8080
@@ -176,40 +198,42 @@ spring:
                 - POST
               allowedHeaders: "*"
               maxAge: 30
-            filters:
-              - AuthenticationFilter
-      - id: rooms
-            uri: http://localhost:8083
-            predicates:
-              - Path=/api/rooms/**
-            metadata:
-              cors:
-                allowedOrigins: '*'
-                allowedMethods:
-                  - GET
-                  - POST
-                  - PUT
-                  - DELETE
-                allowedHeaders: '*'
-                maxAge: 2000
-            filters:
-              - AuthenticationFilter
-      - id: packs
-            uri: http://localhost:8083
-            predicates:
-               - Path=/api/packs/**
-            metadata:
-              cors:
-                allowedOrigins: '*'
-                allowedMethods:
-                  - GET
-                  - POST
-                  - PUT
-                  - DELETE
-                allowedHeaders: '*'
-                maxAge: 2000
-            filters:
-              - AuthenticationFilter
+
+
+        - id: rooms
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/rooms/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+              allowedHeaders: '*'
+              maxAge: 2000
+          filters:
+            - AuthenticationFilter
+
+        - id: packs
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/packs/**
+          metadata:
+            cors:
+              allowedOrigins: '*'
+              allowedMethods:
+                - GET
+                - POST
+                - PUT
+                - DELETE
+              allowedHeaders: '*'
+              maxAge: 2000
+          filters:
+            - AuthenticationFilter
+
 eureka:
   client:
     register-with-eureka: false

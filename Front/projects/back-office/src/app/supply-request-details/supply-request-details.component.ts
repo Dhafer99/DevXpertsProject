@@ -9,9 +9,10 @@ import $ from 'jquery';
 import { message } from '../models/Message';
 import { WebSocketService } from '../services/websocketservice';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { User } from '../models/user';
+import { User } from '../models/User';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-supply-request-details',
   templateUrl: './supply-request-details.component.html',
@@ -213,7 +214,7 @@ userID: number ;
 updateSupplier(supplyRequestId:number){
   this.router.navigate(['/supplier',supplyRequestId]);
 }
-  constructor(private formBuilder: FormBuilder,private router:Router,private serviceback:ServicebackService ,private acr:ActivatedRoute,private renderer: Renderer2,private chatSocket:WebSocketService){}
+  constructor(private userservice:UserService ,private formBuilder: FormBuilder,private router:Router,private serviceback:ServicebackService ,private acr:ActivatedRoute,private renderer: Renderer2,private chatSocket:WebSocketService){}
   ngOnInit(): void {
 
     this.messageForm = this.formBuilder.group({
@@ -229,6 +230,12 @@ updateSupplier(supplyRequestId:number){
 
 
     this.serviceback.getAllUserSuppliers().subscribe((data:supplierUser[])=>{
+      /* data.forEach(element => {
+        this.userservice.getUser(element.id.toString()).subscribe((data)=>{
+
+          element.fullUser=data;
+        });
+      }); */
       this.UsersList = data ;
     })
 

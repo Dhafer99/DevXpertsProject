@@ -114,14 +114,14 @@ export class StatAdminCandidatureComponent implements OnInit{
       series: data,
       chart: {
         type: "donut",
-        width: 390
+        width: 300//CAAAAAA
       },
       
       labels: /*["In progress","Accepted","Refused"],*/this.lab,
       colors: /*["#F6B600", "#08CC0A", "#FF0000"], */this.colors,
       responsive: [
         {
-          breakpoint: 480,
+          breakpoint: 300,
           options: {
             legend: {
               position: "bottom"
@@ -148,7 +148,7 @@ export class StatAdminCandidatureComponent implements OnInit{
         }],
         chart: {
           type: 'bar',
-          width: 390
+          width: 330
         },
         xaxis: {
           categories: labels // Labels for x-axis
@@ -188,7 +188,7 @@ export class StatAdminCandidatureComponent implements OnInit{
     series: data,
     chart: {
       type: "pie", // Mettez à jour le type de graphique en "pie"
-      width: 370
+      width: 300
     },
     labels: labels,
     colors: ["#F6B600", "#08CC0A", "#FF0000"],

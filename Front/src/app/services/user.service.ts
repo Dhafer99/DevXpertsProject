@@ -10,7 +10,7 @@ import { Image } from '../models/image';
 })
 export class UserService {
     
-  userUrl ='http://localhost:8222/auth';
+  userUrl ='http://localhost:8222/auth/';
 
   constructor(private http:HttpClient) { }
 
@@ -72,12 +72,12 @@ export class UserService {
   }
 
   deleteImage(id:String) : Observable<Image>{
-    return this.http.get<Image>(this.userUrl+"Image/delete/"+id)
+    return this.http.get<Image>("http://localhost:8222/authImage/delete/"+id)
   }
    upload(image: File): Observable<any> {
     const formData = new FormData();
     formData.append('multipartFile', image);
-    return this.http.post<any>(this.userUrl+ "Image/upload", formData);
+    return this.http.post<any>("http://localhost:8222/authImage/upload", formData);
   }
   
 }

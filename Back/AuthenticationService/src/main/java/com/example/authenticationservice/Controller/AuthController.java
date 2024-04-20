@@ -38,7 +38,7 @@ public class AuthController {
      */
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, Object>> addNewUser(@RequestParam("name") String name,
+    public UserCredential addNewUser(@RequestParam("name") String name,
             @RequestParam("email") String email,
             @RequestParam("password") String password,
             @RequestParam("role") role role,
@@ -49,8 +49,8 @@ public class AuthController {
             @RequestParam("imageUrl") String imageUrl,
             @RequestParam("imageId") String imageId) throws IOException {
         UserCredential user = new UserCredential();
-        ResponseEntity<Map<String, Object>> savedUser = service.saveUser(user, name, email, role, password, firstname,
-                lastname, phoneNumber, cv, imageUrl, imageId);
+        UserCredential savedUser = service.saveUser(user, name, email, role, password, firstname,
+                lastname, phoneNumber, cv , imageUrl,imageId);
         return savedUser;
     }
 

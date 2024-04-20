@@ -28,16 +28,16 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="AppointementAndClassroom" options="" />
-      <module name="Auction" options="" />
+      <module name="AppointementAndClassroom" options="-parameters" />
+      <module name="Auction" options="-parameters" />
       <module name="AuthenticationService" options="-parameters" />
       <module name="Booth" options="-parameters" />
-      <module name="BoothAndSupplierManagement" options="" />
+      <module name="BoothAndSupplierManagement" options="-parameters" />
       <module name="Claim" options="-parameters" />
-      <module name="Events" options="" />
+      <module name="Events" options="-parameters" />
       <module name="Exhibitor" options="-parameters" />
       <module name="Forum" options="-parameters" />
-      <module name="Offer" options="" />
+      <module name="Offer" options="-parameters" />
       <module name="configServer" options="-parameters" />
       <module name="discovery" options="-parameters" />
       <module name="gateway" options="-parameters" />

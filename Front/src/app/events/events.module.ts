@@ -18,7 +18,7 @@ import { CommentComponent } from './comment/comment.component';
     DisplayComponent,
     EventsListComponent,
     InitialListEventComponent,
-    CommentComponent
+    CommentComponent,
   ],
   imports: [
     CommonModule,

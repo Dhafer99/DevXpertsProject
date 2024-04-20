@@ -227,7 +227,6 @@ UsersList : User[]=[
     servicename: 'String' ,
     type : 'String' ,
     createdAt : 'String',
-    
    
    image:null
 }
@@ -260,12 +259,11 @@ userID: number ;
       /////Socket 
       this.chatSocket.connectToChat();
       //message 
-      this.chatSocket.getMessageSubject().subscribe(messageObject => {
+      this.chatSocket.getMessageSubjectD().subscribe(messageObject => {
        
         console.log(messageObject)
         
-         if ((messageObject.sender.id === this.userID && messageObject.receiver.id === this.ReceiverId) ||
-        (messageObject.sender.id === this.ReceiverId && messageObject.receiver.id === this.userID)) {
+        
         const containingmessage = messageObject.content;
         const parsedMessage = {
             content: containingmessage,
@@ -275,10 +273,11 @@ userID: number ;
             createdAt: messageObject.createdAt,
             isButton :messageObject.isButton 
         };
+        
         this.messages.push(parsedMessage);
         console.log("MESSAGES")
-        console.log(this.messages)
-    }
+        console.log(parsedMessage)
+    
       });
     
 
@@ -344,18 +343,15 @@ const priceIndex = message.indexOf("PRICE:") + "PRICE:".length;
 
 // Extract the price and offer ID from the message using substr or substring
 const price = message.substring(priceIndex, message.indexOf("OFFER ID:")).trim();
-// Find the index of the start of "OFFER ID:"
-const offerIdIndex = message.indexOf("OFFER ID:") + "OFFER ID:".length;
 
-// Extract the offer ID substring from the message using substring
-const offerIdSubstring = message.substring(offerIdIndex);
+const offerIndex = message.indexOf("OFFER ID:") + "OFFER ID:".length;
 
-const cutpart= offerIdSubstring.substring(10,12)
 
-console.log("Offer ID Substring:", offerIdSubstring);
+// Extract the price and offer ID from the message using substr or substring
+const offerId = message.substring(offerIndex+7).trim();
 
 console.log("Price:", price); // Output: Price: 789798
-console.log("Offer ID:", cutpart); // Output: Offer ID: 5
+console.log("Offer ID:", offerId); // Output: Offer ID: 5
  Swal.fire({
           icon: 'success',
           title: 'Success!',
@@ -363,11 +359,19 @@ console.log("Offer ID:", cutpart); // Output: Offer ID: 5
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'OK'
         })
-this.servicefront.AcceptAdminSuggestion(parseInt(cutpart),parseInt(price)).subscribe((data:SupplierOffer)=>{
+this.servicefront.AcceptAdminSuggestion(parseInt(offerId),parseInt(price)).subscribe((data:SupplierOffer)=>{
 
   console.log(data);
 })
 
   }
-  
+   extractOfferId(str:string):number {
+    const regex = /OFFER ID: (\d+)/;
+    const match = str.match(regex);
+    if (match && match[1]) {
+        return parseInt(match[1]);
+    } else {
+        return null;
+    }
+}
 }

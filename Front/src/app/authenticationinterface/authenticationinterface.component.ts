@@ -4,6 +4,7 @@ import { JwtClientService } from '../services/jwt-client.service';
 import { ServicebackService } from 'projects/back-office/src/app/services/serviceback.service';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authenticationinterface',
@@ -18,7 +19,7 @@ export class AuthenticationinterfaceComponent implements OnInit {
     email: "",
     password: ""
   }
-  constructor(private formBuilder: FormBuilder,private serviceToken : JwtClientService,private serviceback: ServicebackService,private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder,private serviceToken : JwtClientService,private serviceback: ServicebackService,private userService: UserService,private route:Router) { }
 
   ngOnInit() {
     this.authForm = this.formBuilder.group({
@@ -50,7 +51,9 @@ export class AuthenticationinterfaceComponent implements OnInit {
                   localStorage.setItem("user",JSON.stringify(res));
                 })
                 localStorage.setItem("userID",this.userID.toString())
-
+                
+                this.route.navigate(['/list'])
+                
           })
         }
         ,(err) => {

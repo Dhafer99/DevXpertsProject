@@ -49,12 +49,13 @@ export class RouletteComponent implements OnInit {
   textAlignment: TextAlignment = TextAlignment.OUTER;
   room: Room = new Room();
   pack!: any[];
-  id = 0;
+  id = 1;
   packNames: Pack[] = [];
   seed: any[] = [];
   isSpinning: boolean = false;
   spinNumber = 0;
   role: any;
+  testButtonAdmin : boolean=false;
   testSocket() {
     console.log('RESULTS FROM BACK');
     // console.log(this.webSocketService.getResults(this.id));
@@ -63,11 +64,14 @@ export class RouletteComponent implements OnInit {
   varInterval: any;
   valuee:any ; 
   ngOnInit() :void  {
+   
     this.getPack();
  
-    this.role = localStorage.getItem('role');
+    this.role = JSON.parse(localStorage.getItem("user"));
+        this.id = this.activate.snapshot.params['id'];
+console.log("roleeeeeeeeeeee"+this.role.role)
     //this.idToLandOn =this.seed[Math.floor(Math.random() * this.seed.length)];
-     if (this.role == 'admin') {
+     if (this.role === 'admin') {
       this.roomService.getRoomPackages(this.id).subscribe(
         (data: any) => {
           console.log(data);
@@ -78,7 +82,7 @@ export class RouletteComponent implements OnInit {
             this.seed[Math.floor(Math.random() * this.seed.length)];
           this.webSocketService
             .saveRandomNumber(this.id, this.idToLandOn)
-            .subscribe(() => {});
+            .subscribe((r) => {console.log("RESPONSE");console.log(r)});
           console.log('test anas');
           console.log(this.number);
         //  this.getPack();
@@ -99,7 +103,6 @@ export class RouletteComponent implements OnInit {
       // Appel toutes les 1000 millisecondes (1 seconde
     } 
 
-    this.id = this.activate.snapshot.params['id'];
 
     // this.idToLandOn= 1
     // this.webSocketService.getDataPolling(2000,this.id).subscribe(data => {

@@ -28,10 +28,9 @@ import Swal from 'sweetalert2';
 import { ClaimListComponent } from './ClaimManagement/claim-list/claim-list.component';
 
 
-import { CalenderComponent } from './calender/calender.component';
+import { CalenderComponent } from './quizdetails/calender/calender.component';
 import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
 import { EventsComponent } from './events/events.component';
-import { CarouselModule } from '@coreui/angular';
 import { AfficherOffreComponent } from './offer/afficher-offre/afficher-offre.component';
 import { AjouterOffreComponent } from './offer/ajouter-offre/ajouter-offre.component';
 import { DetailOffreComponent } from './offer/detail-offre/detail-offre.component';
@@ -41,6 +40,8 @@ import { DetailCandidatureComponent } from './candidature/detail-candidature/det
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AfficherCandidatursUserComponent } from './candidature/afficher-candidaturs-user/afficher-candidaturs-user.component';
 import { DatePipe } from '@angular/common';
+import { CKEditorModule } from 'ckeditor4-angular';
+
 //import { ZXingScannerModule } from '@zxing/ngx-scanner';
 //import { QRCodeModule } from 'angularx-qrcode';
 //import { ZXingScannerModule } from '@zxing/ngx-scanner';
@@ -57,7 +58,7 @@ import { RouletteComponent } from './RoomManagementUser/roulette/roulette.compon
 import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from './auth.guard';
 import { MessagestestComponent } from './messagestest/messagestest.component';
@@ -79,7 +80,8 @@ import { BoothsForSupplierComponent } from './booths-for-supplier/booths-for-sup
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { QuizResultListComponent } from './quizdetails/quiz-result-list/quiz-result-list.component';
 import { RouterModule } from '@angular/router';
-
+//import { CommentComponent } from './events/comment/comment.component';
+import { CarouselModule } from '@coreui/angular';
 @NgModule({
   declarations: [
     PostListComponent,
@@ -125,8 +127,11 @@ import { RouterModule } from '@angular/router';
     ChatSupplierAdminComponent,
     BoothsForSupplierComponent,
     QuizResultListComponent,
+    //CommentComponent,
   ],
   imports: [
+    CKEditorModule,
+    CommonModule,
     NgxWheelModule  ,
     BrowserModule,
     AppRoutingModule,
@@ -154,8 +159,8 @@ import { RouterModule } from '@angular/router';
       BrowserAnimationsModule,
       HttpClientModule,
       NgbModule,
-      CarouselModule,
-    
+     CarouselModule,
+    //FormGroup,
     HttpClientModule,
 
     
@@ -184,7 +189,7 @@ import { RouterModule } from '@angular/router';
   ],
   ///[DatePipe],
   bootstrap: [AppComponent],
-  schemas : [
+  schemas : [CUSTOM_ELEMENTS_SCHEMA,
     NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

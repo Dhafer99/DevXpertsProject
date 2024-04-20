@@ -47,8 +47,8 @@ public class AuthService {
      * }
      */
 
-    public UserCredential saveUser(UserCredential credential, String name, String email, role role, String password,
-            String firstname, String lastname, String phoneNumber, MultipartFile cv) throws IOException {
+    public UserCredential saveUser(UserCredential credential, String name , String email, role role , String password ,
+                                   String firstname, String lastname, String phoneNumber, MultipartFile cv , String imageUrl,String imageId) throws IOException {
         credential.setName(name);
         credential.setEmail(email);
         credential.setRole(role);
@@ -57,8 +57,11 @@ public class AuthService {
         credential.setLastname(lastname);
         credential.setPhoneNumber(phoneNumber);
         credential.setCreationDate(LocalDate.now());
+        credential.setImageId(imageId);
+        credential.setImageUrl(imageUrl);
+    credential.setPoints(100);
+        ///sending data to supplier :
 
-        /// sending data to supplier :
 
         if (cv != null && !cv.isEmpty()) {
             credential.setCv(cv.getBytes());
@@ -67,17 +70,16 @@ public class AuthService {
 
         // Pass the generated user ID along with other details to Microservice B
         log.info("after Saved User ");
-        if (credential.getRole() == com.example.authenticationservice.entity.role.supplier) {
+        if(credential.getRole() == com.example.authenticationservice.entity.role.supplier) {
             Supplier supplier = mapToSupplier(credential, savedUser.getId());
             userClient.functionInMicroserviceB(supplier);
         }
-        if (credential.getRole() == com.example.authenticationservice.entity.role.exhibitor) {
+        if(credential.getRole() == com.example.authenticationservice.entity.role.exhibitor) {
             ExhibitorDTO exhibitorDTO = mapToExhibitor(credential, savedUser.getId());
             userClient.AddingExhibitorFromAuthenticationService(exhibitorDTO);
         }
-        return savedUser;
+        return savedUser ;
     }
-
     private Supplier mapToSupplier(UserCredential user, int userId) {
         Supplier supplier = new Supplier();
         supplier.setId(userId); // Set the same user ID in Microservice B
@@ -86,7 +88,6 @@ public class AuthService {
         // Set other attributes as needed
         return supplier;
     }
-
     private ExhibitorDTO mapToExhibitor(UserCredential user, int userId) {
         ExhibitorDTO exhibitorDTO = new ExhibitorDTO();
         exhibitorDTO.setId(userId); // Set the same user ID in Microservice B
@@ -95,6 +96,9 @@ public class AuthService {
         // Set other attributes as needed
         return exhibitorDTO;
     }
+
+
+
 
     public List<UserCredential> getAdmins() {
         return repository.findByRole(role.admin);

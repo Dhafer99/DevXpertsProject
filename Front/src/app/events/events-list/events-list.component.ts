@@ -22,6 +22,7 @@ export class EventsListComponent implements OnInit{
   }
   eventList : Event[] =[]
   ngOnInit(): void {
+    
     this.fetchEvents();
     
     throw new Error('Method not implemented.');

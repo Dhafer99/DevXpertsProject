@@ -58,16 +58,15 @@ public class RoomService implements RoomInterface {
 
     @Override
     public List<Room> findAllRooms() {
-
-
-
-
-
-        return roomRepository.findByStatus(true);
+        return roomRepository.findAll();
+        //test al true
     }
 
     @Override
     public Room updateRoom(Room room) {
+
+        room.setStatus(true);
+
         return roomRepository.save(room);
     }
 

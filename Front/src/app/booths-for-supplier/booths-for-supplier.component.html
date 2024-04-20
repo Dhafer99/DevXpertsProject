@@ -19,7 +19,7 @@
  
   
  <div class="example-container">
-    <h3 style="margin-left:200px">These Are The booths that you will supply</h3>
+    <h3 style="margin-left:200px">Your booth</h3>
   <div class="example-boundary" >
     <img [src]="selectedImage" alt="Selected Image" >
     <div class="small-box" *ngFor="let boothName of boothNames ;let i = index" cdkDragBoundary=".example-boundary" [cdkDragFreeDragPosition]="initialPositions[i]"
@@ -29,7 +29,7 @@
       [cdkDragDisabled]="isDragDisabled"
       >
       
-      <p *ngIf="boothOwnershipMap[boothName]">This is The booth you serve</p>
+      <p *ngIf="boothOwnershipMap[boothName]">Your booth</p>
       <p *ngIf="!boothOwnershipMap[boothName]">{{ boothName }}</p>
       
      
@@ -70,7 +70,7 @@
   (mouseenter)="tooltipText(bigBoothName)"
  
   >
-  <p *ngIf="boothOwnershipMap[bigBoothName]">This is The booth you serve</p>
+  <p *ngIf="boothOwnershipMap[bigBoothName]">Your booth</p>
         <p *ngIf="!boothOwnershipMap[bigBoothName]">{{ bigBoothName }}</p>
   
   

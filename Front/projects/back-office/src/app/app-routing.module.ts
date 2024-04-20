@@ -17,7 +17,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { ClassroomComponent } from './Appointment/classroom/classroom.component';
 import { AfficherClassroomComponent } from './Appointment/afficher-classroom/afficher-classroom.component';
 import { AddClassroomComponent } from './Appointment/add-classroom/add-classroom.component';
-import { CalenderComponent } from './Appointment/calender/calender.component';
+//import { CalenderComponent } from './Appointment/calender/calender.component';
 import { EventsComponent } from './events/events.component';
 import { EventCreateComponent } from './events/event-create/event-create.component';
 import { EventListComponent } from './events/event-list/event-list.component';
@@ -103,7 +103,7 @@ const routes: Routes = [
     {path: 'listequestion', component: QuestionListComponent ,canActivate: [AuthGuard]},
     {path: 'addroule', component: AddroulsComponent ,canActivate: [AuthGuard]},
 
-{path: 'calender', component: CalenderComponent ,canActivate: [AuthGuard]},
+//{path: 'calender', component: CalenderComponent ,canActivate: [AuthGuard]},
 {path: 'create/:id', component: EventCreateComponent ,canActivate: [AuthGuard]},
 {path: 'details/:name', component: EventDisplayComponent,canActivate: [AuthGuard] },
 {path: 'Eventlist', component: EventListComponent,canActivate: [AuthGuard] },
@@ -126,10 +126,7 @@ const routes: Routes = [
     { path: 'viewPack', component: ViewPackComponent ,canActivate: [AuthGuard]},
     { path: 'viewPack/detail/:id', component: UpdatePackComponent ,canActivate: [AuthGuard]},
     { path: 'HistoriquePacks', component: HistoriquePacksComponent ,canActivate: [AuthGuard]},
-    { path: 'viewRooms', component: ViewRoomsComponent ,canActivate: [AuthGuard]},
-    { path: 'viewRooms/detailRoom/:id', component: DetailRoomComponent ,canActivate: [AuthGuard]},
-    { path: 'packSalesPerYear', component: PackSalesPerYearComponent ,canActivate: [AuthGuard]},
-    { path: 'checkPayments', component: PaymentListComponent ,canActivate: [AuthGuard]}, 
+     
      
 ];
 

@@ -56,7 +56,8 @@ message : string = '';
 
     this.supplierService.getsupplier().subscribe((data:Supplier[])=>{
       this.SupplyRequestList= data
-      console.log(data);
+      console.log("SUPPLY REQUESTS LIST")
+      console.log(this.SupplyRequestList);
   })
 
  

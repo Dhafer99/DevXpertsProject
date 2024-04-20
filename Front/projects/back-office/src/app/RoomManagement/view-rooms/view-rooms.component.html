@@ -28,7 +28,7 @@
                                     <div [innerHTML]="sanitizeHtml(room.description.length > 500 ? room.description.slice(0, 500) + '...' : room.description )" class="formatted-text"></div>
                                 </div>
                                 <div>
-                                    <a href="javascript:void(0);" class="btn btn-danger"  [routerLink]="['detailRoom', room.idRoom]" >detail</a>
+                                    <a  class="btn btn-danger"  [routerLink]="['detailRoom', room.idRoom]" >detail</a>
                                 </div>
                             </div>
                         </div>	
@@ -62,7 +62,7 @@
                                 </div>
                                 
                                 <div>
-                                    <a  href="javascript:void(0);" class="btn btn-danger"  [routerLink]="['detailRoom', room.idRoom]" >detail</a>
+                                    <a  class="btn btn-danger"  [routerLink]="['detailRoom', room.idRoom]" >detail</a>
                                 </div>
                             </div>
                         </div>	

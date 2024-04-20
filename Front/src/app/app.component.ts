@@ -10,9 +10,11 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit{
   token = localStorage.getItem("token");
   title = 'ProjetPi';
+currentUser :any;
 
-
-  ngOnInit(): void { // Supposons que le token est stocké dans le local storage
+  ngOnInit(): void { 
+    this.currentUser=JSON.parse(localStorage.getItem("user"));
+    // Supposons que le token est stocké dans le local storage
 
   }
 

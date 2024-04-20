@@ -14,6 +14,7 @@ export class User {
     role: String ;
     email: String;
     password: String;
+    roomid!:number;
 }
 
 export enum role {

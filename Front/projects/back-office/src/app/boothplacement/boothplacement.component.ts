@@ -471,7 +471,7 @@ showList(boothName: string) {
       Swal.fire('Selected', `You selected: ${selectedOption}`, 'success');
       setTimeout(()=> 
       {
-        //location.reload();
+        location.reload();
       },1000)
     }
   });

@@ -174,7 +174,12 @@ public class RoomController {
                 roulette.setRandomValue(randomNumber);
                 radomRouletteRepository.save(roulette);
             }
-    }}
+    }
+        roulette.setRandomValue(randomNumber);
+
+        radomRouletteRepository.save(roulette);
+
+    }
 
     @GetMapping("/GetRandomIndex")
     public RandomRoulette GetRandomIndex( ) {

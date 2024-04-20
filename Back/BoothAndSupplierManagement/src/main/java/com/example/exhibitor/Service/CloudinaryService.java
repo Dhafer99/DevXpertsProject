@@ -19,9 +19,9 @@ public class CloudinaryService {
     Cloudinary cloudinary;
     public CloudinaryService(){
         Map<String,String> valuesMap=new HashMap<>();
-        valuesMap.put("cloud_name","dqecul6za");
-        valuesMap.put("api_key","643461244345981");
-        valuesMap.put("api_secret","024w7xruIanerZQM5MGUWpNg4Rw");
+        valuesMap.put("cloud_name","dstjfvua2");
+        valuesMap.put("api_key","189665265381495");
+        valuesMap.put("api_secret","WJgEfoVTjn7fZg8Il19Ru5ekZOQ");
         cloudinary=new Cloudinary(valuesMap);
     }
     public Map upload (MultipartFile multipartFile) throws IOException {
