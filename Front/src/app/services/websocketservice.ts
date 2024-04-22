@@ -96,7 +96,7 @@ export class WebSocketService {
     this.stompClient.send(`/startRoulette/${roomId}`)
   } 
  public startRoulette(){
-    this.stompClient2.send(`/eyaharfa`)
+    this.stompClient2.send(`/eyaharfa/1`)
   }
   public getStartRouletteSubject(): Subject<any> {
     return this.startRouletteSubject ;

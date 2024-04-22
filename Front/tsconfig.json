@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+   
     "strictNullChecks": false,
     "strictPropertyInitialization": false,
     "allowSyntheticDefaultImports": true,
@@ -28,6 +29,7 @@
     ]
   },
   "angularCompilerOptions": {
+    
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

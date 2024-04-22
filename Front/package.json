@@ -2,8 +2,8 @@
   "name": "projet-pi",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve | ng serve backOffice",
+    "ng": "node --max_old_space_size=10000 ./node_modules/.bin/npm",
+    "start": "node --max_old_space_size=8048 ./node_modules/@angular/cli/bin/ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -81,6 +81,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.0.0",
+    "@angular-devkit/core": "^17.3.5",
     "@angular/compiler-cli": "^15.0.0",
     "@angular/localize": "^15.0.0",
     "@types/file-saver": "^2.0.7",

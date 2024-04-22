@@ -225,12 +225,16 @@ public class RoomController {
 
     }
 
-    @MessageMapping("/eyaharfa")
+    @MessageMapping("/eyaharfa/{roomId}")
     @SendTo("/test/startroulette")
-    public void startRoulette() throws JsonProcessingException {
+    public void startRoulette(
+
+            @DestinationVariable  Long roomId
+    ) throws JsonProcessingException {
 
 
-    rouletteInterface.startRoulette();
+
+    rouletteInterface.sendRandom(roomId);
 
 
 

@@ -9,4 +9,6 @@ public interface RouletteInterface {
     public void sendToRoulette(RouletteDTO rouletteDTO) throws JsonProcessingException;
 
     public void startRoulette() throws JsonProcessingException;
+
+    public void sendRandom(Long roomid) throws JsonProcessingException;
 }

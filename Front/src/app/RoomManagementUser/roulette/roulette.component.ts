@@ -66,135 +66,38 @@ export class RouletteComponent implements OnInit {
   ngOnInit() :void  {
    
     this.getPack();
- 
-    this.role = JSON.parse(localStorage.getItem("user"));
-        this.id = this.activate.snapshot.params['id'];
-console.log("roleeeeeeeeeeee"+this.role.role)
-    //this.idToLandOn =this.seed[Math.floor(Math.random() * this.seed.length)];
-     if (this.role === 'admin') {
-      this.roomService.getRoomPackages(this.id).subscribe(
-        (data: any) => {
-          console.log(data);
-          this.packNames = data;
-          this.seed = this.packNames.map((pack) => pack.idPack);
 
-          this.idToLandOn =
-            this.seed[Math.floor(Math.random() * this.seed.length)];
-          this.webSocketService
-            .saveRandomNumber(this.id, this.idToLandOn)
-            .subscribe((r) => {console.log("RESPONSE");console.log(r)});
-          console.log('test anas');
-          console.log(this.number);
-        //  this.getPack();
-        },
-        (error) => {
-          console.error(
-            'Erreur lors de la récupération des noms de pack :',
-            error
-          );
-        }
-      );
-      } else {
-      this.webSocketService.getDataPolling(4000).subscribe((res) => {
-        
-        console.log(res.randomValue, 'khraa');
-        this.idToLandOn = res.randomValue;
-      });
-      // Appel toutes les 1000 millisecondes (1 seconde
-    } 
+   
 
 
-    // this.idToLandOn= 1
-    // this.webSocketService.getDataPolling(2000,this.id).subscribe(data => {
+   
 
-    // });
-    /*  this.webSocketService.saveRandomNumber(this.id).subscribe(()=>{})
-    this.webSocketService.GetRandomIndex().subscribe((res)=>{
-      console.log("eeeeeeeeeeeeeee")
-      console.log(res)
-      this.idToLandOn = res ;
-    }) */
-    /*  this.idToLandOn= data;
-     console.log(data)
-    });*/
-
-    //this.webSocketService.connectToRouletteSocket(this.id);
-    /* this.webSocketService.getListObservable().subscribe((list) => {
-      console.log('Test Observable Object TAB ');
-      console.log(list);
-    });*/
-
-   /* this.webSocketService.getMessageSubject().subscribe((messageObject) => {
-      const parsedMessage = {
-        result: messageObject.result,
-        spin: messageObject.spin,
-      };
-      //this.idToLandOn = messageObject.result;
-      console.log('teest eya ');
-      console.log(this.idToLandOn);
-
-      this.resultWinner.push(this.idToLandOn);
-      console.log('TAAB eya ');
-
-      console.log(this.resultWinner);
-      // if(parsedMessage)
-      //this.wheel.spin();
-
-      // if (parsedMessage.spin === true) {
-      // Spin the wheel when spin is true
-      //  this.wheel.spin();
-
-      //  }
-    });
-*/
-    // this.webSocketService.getResults(this.id);
     this.webSocketService.connectToStartRouletteSocket();
 
     this.webSocketService
       .getStartRouletteSubject()
-      .subscribe((messageObject) => {
+      .subscribe(async(messageObject) => {
         console.log('MESSAGE OBJECT');
         console.log(messageObject);
-        //this.idToLandOn = this.wheel.spin();
-
-        // if(parsedMessage)
-         this.wheel.spin();
-
-        // if (parsedMessage.spin === true) {
-        // Spin the wheel when spin is true
-        //  this.wheel.spin();
-
-        //  }
+        this.idToLandOn = messageObject;
+  
+        // Check if this.idToLandOn is properly set
+        if (this.idToLandOn) {
+          try {
+            // Call this.wheel.spin() after a short delay to ensure idToLandOn is set
+            await new Promise(resolve => setTimeout(resolve, 500)); // Adjust the delay as needed
+            await this.wheel.spin();
+          } catch (error) {
+            console.error('Error occurred while calling this.wheel.spin():', error);
+          }
+        } else {
+          console.error('idToLandOn is not properly set.');
+        }
       });
 
     console.log(this.id);
 
-    /*   this.socket.on('connect', () => {
-      console.log('Connected to WebSocket server eyaaaaaaaa');
-    });
-    this.socket.on('rouletteResult', (result: number) => {
-      this.wheel.idToLandOn = result;
-      this.wheel.spin(); // Trigger spin animation
-    });*/
-    /* this.webSocketService.getRouletteResult().subscribe(
-      result => {
-        this.rouletteResult = result;
-        // Traitez le résultat de la roulette ici, par exemple, affichez-le dans la console
-        console.log('Résultat de la roulette :', this.rouletteResult);
-      },
-      error => {
-        console.error('Erreur lors de la réception du résultat de la roulette :', error);
-      }
-    );*/
-
-    /* this.socket.on('connect', () => {
-      console.log('Connected to WebSocket server eyaa');
-    });
-    this.socket.on('rouletteResult', (result: number) => {
-      this.wheel.idToLandOn = result;
-      this.wheel.spin(); // Trigger spin animation
-    });
-   */
+    
   }
 
   getPack() {
@@ -245,54 +148,20 @@ console.log("roleeeeeeeeeeee"+this.role.role)
     });
     // alert('Your wheel is about to spin');
     console.log("before")
-    this.idToLandOn =
-    this.seed[Math.floor(Math.random() * this.seed.length)];
-    console.log("AJAJAJAJJA",this.idToLandOn)
+   
   }
   stoppedAt: number = -1;
 
-  async spin(prize: number) {
-    this.spinNumber = this.spinNumber + 1;
+  async spin(idTolandOn: any) {
+    this.idToLandOn =idTolandOn ;
+  
    
-    // this.resultWinner.splice(0, this.resultWinner.length);
     this.reset();
-     this.roomService.getRoomPackages(this.id).subscribe(
-      (data: any) => {
-        console.log(data);
-        this.packNames = data;
-        this.seed = this.packNames.map((pack) => pack.idPack);
 
-        this.idToLandOn =
-          this.seed[Math.floor(Math.random() * this.seed.length)];
-        this.webSocketService
-          .saveRandomNumber(this.id, this.idToLandOn)
-          .subscribe(() => {});
-        console.log('test anas');
-        console.log(this.number);
-       // this.getPack();
-
-        //this.getPack();
-      },
-      (error) => {
-        console.error(
-          'Erreur lors de la récupération des noms de pack :',
-          error
-        );
-      }
-    ); 
-    //   this.webSocketService.getResults(this.id);
     this.webSocketService.startRoulette();
 
-    //
-    //this.socket.emit('startRoulette', this.id);
 
-     this.wheel.spin();
-
-    // if (parsedMessage.spin === true) {
-    // Spin the wheel when spin is true
-    //  this.wheel.spin();
-
-    //  }
+   
    
   }
 
@@ -319,7 +188,7 @@ console.log("roleeeeeeeeeeee"+this.role.role)
     Swal.fire({
       position: 'top-end',
       icon: 'success',
-      title: 'campany x with id win pack ' + this.valuee,
+      title: 'campany x with id win pack ' + this.idToLandOn,
       showConfirmButton: false,
       timer: 2500,
       
