@@ -1,21 +1,31 @@
-<br> 
-<br>
-<form [formGroup]="authForm" (ngSubmit)="login()">
-    <div class="form-group">
+<section>
+<div class="login-container">
+  <div class="form-box">
+    <form [formGroup]="authForm" (ngSubmit)="login()">
+      <div class="form-group">
         <label for="email">Email</label>
         <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter email">
-        <div class="invalid-feedback">
-            <div *ngIf="authForm.get('email').errors['required']">Email is required.</div>
-            <div *ngIf="authForm.get('email').errors['email']">Invalid email format.</div>
+        <div *ngIf="authForm.get('email').invalid && (authForm.get('email').dirty || authForm.get('email').touched)"
+          class="error-text">
+          <div *ngIf="authForm.get('email').errors['required']">Email is required.</div>
+          <div *ngIf="authForm.get('email').errors['email']">Invalid email format.</div>
+                  
         </div>
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
         <div *ngIf="authForm.get('password').invalid && (authForm.get('password').dirty || authForm.get('password').touched)"
-            class="invalid-feedback">
-            <div *ngIf="authForm.get('password').errors['required']">Password is required.</div>
+          class="error-text">
+          <div *ngIf="authForm.get('password').errors['required']">Password is required.</div>
         </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+      <div class="register-text">
+        <div class="small">Don't have an account yet? <a href="/signup">Register</a></div>
+      </div>
+    </form>
+  </div>
+</div>
+
+</section>
