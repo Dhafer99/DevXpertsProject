@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be8f8e60-5f0d-4a20-b41b-1d8b9eb70c0e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Controller/RoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Controller/RoomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Services/RouletteInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Services/RouletteInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Services/RouletteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Auction/src/main/java/tn/esprit/auction/Services/RouletteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/roulette/roulette.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/roulette/roulette.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/roulette/roulette.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/RoomManagementUser/roulette/roulette.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/src/app/services/websocketservice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/services/websocketservice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/tsconfig.app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front/src/app/booths-for-supplier/booths-for-supplier.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Front/src/app/booths-for-supplier/booths-for-supplier.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,29 +50,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Integration Finale/DevXpertsProject/Back",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "spring.configuration.checksum": "67d45e22e9bf447ca834e80569854d17",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Integration Finale/DevXpertsProject/Back&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;67d45e22e9bf447ca834e80569854d17&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -232,13 +223,13 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.ForumApplication" />
+      <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
       <item itemvalue="Spring Boot.AuctionApplication" />
       <item itemvalue="Spring Boot.AppointementApplication" />
       <item itemvalue="Spring Boot.BoothAndSupplier" />
       <item itemvalue="Spring Boot.ClaimApplication" />
       <item itemvalue="Spring Boot.EventApplication" />
       <item itemvalue="Spring Boot.GatewayApplication" />
-      <item itemvalue="Spring Boot.AuthenticationServiceApplication" />
       <item itemvalue="Spring Boot.OfferApplication" />
       <item itemvalue="Spring Boot.DiscoveryApplication" />
       <item itemvalue="Spring Boot.BoothApplication" />
@@ -307,7 +298,16 @@
       <workItem from="1713309595727" duration="11619000" />
       <workItem from="1713422466322" duration="16997000" />
       <workItem from="1713714387812" duration="4843000" />
-      <workItem from="1713774238361" duration="419000" />
+      <workItem from="1713774238361" duration="1539000" />
+      <workItem from="1713884025139" duration="3171000" />
+      <workItem from="1713908390616" duration="2417000" />
+      <workItem from="1714036185626" duration="1258000" />
+      <workItem from="1715213623508" duration="470000" />
+      <workItem from="1715530197355" duration="2178000" />
+      <workItem from="1715604316972" duration="1904000" />
+      <workItem from="1715724205482" duration="5264000" />
+      <workItem from="1717090933834" duration="1497000" />
+      <workItem from="1717344916398" duration="1440000" />
     </task>
     <servers />
   </component>
