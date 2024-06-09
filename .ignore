@@ -11,6 +11,9 @@ ChatbotPython/chatbot/venv
 .env
 .env.*
 
+# Ignore workspace.xml in the .idea directory
+Back/.idea/workspace.xml
+
 # Ignore local development settings
 *.env.local
 *.env.development.local
