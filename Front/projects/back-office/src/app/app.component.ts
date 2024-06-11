@@ -30,7 +30,23 @@ export class AppComponent implements OnInit{
   }
   ngOnInit(): void {
     
-
+   /*  document.addEventListener('DOMContentLoaded', () => {
+      const menuItems: NodeListOf<HTMLUListElement> = document.querySelectorAll('.col-3 ul[aria-expanded]');
+    
+      menuItems.forEach(item => {
+        const previousElement = item.previousElementSibling as HTMLElement;
+        if (previousElement) {
+          previousElement.addEventListener('click', () => {
+            const expanded = item.getAttribute('aria-expanded') === 'true';
+            item.setAttribute('aria-expanded', (!expanded).toString());
+            item.style.display = expanded ? 'none' : 'block';
+          });
+          item.style.display = 'none';
+        }
+      });
+    });
+     */
+    
    /*  $(document).on("click", "notificationReadJava", function() {
       alert("Test");
     }); 

@@ -90,10 +90,20 @@
     </a>
 <div *ngIf="token">
    <nav class="navbar navbar-expand-lg fixed-top sticky" id="navbar">
-    <div class="container-fluid custom-container">
+    <div class="container-fluid custom-container" style="
+        
+        padding : 5px ;
+        background: linear-gradient(90deg, rgba(250,249,255,1) 0%, rgba(255,70,70,1) 16%, rgba(249,131,131,1) 100%);
+         border-radius: 4px; 
+        margin-top:10px;
+        margin-left:40px;
+        margin-right:40px;
+         font-family: 'DM Serif Text', serif;
+         
+         ">
         <a class="navbar-brand logo f-30 text-dark fw-bold" href="index.html">
 
-          <img src="../assets/images/logoEsprit.png" class="logo-dark" alt="" height="80">
+          <img src="../assets/images/logoHDESPRIT.png" class="logo-dark" alt="" height="70px" width="250px">
 
         </a>
         <div>
@@ -106,7 +116,9 @@
             <ul class="navbar-nav mx-auto navbar-center">
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" href="index.html" id="homedrop" role="button"
-                        data-bs-toggle="dropdown">
+                        data-bs-toggle="dropdown"
+                        style="color:black"
+                        >
                         Event
                     </a>
                     <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
@@ -115,19 +127,19 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="http://localhost:4201/myRooms/17/1" class="nav-link">My Room</a>
+                    <a href="http://localhost:4201/myRooms/17/1" class="nav-link"  style="color:black">My Room</a>
+                </li>
+                <li class="nav-item"  >
+                    <a routerLink="/exhibitor/front"  style="color:black" class="nav-link">Exhibitor Reservation</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/exhibitor/front" class="nav-link">Exhibitor Reservation</a>
+                    <a href="http://localhost:4201/supplierBooth/front" class="nav-link"  style="color:black" >Check Your Supply Booths</a>
                 </li>
                 <li class="nav-item">
-                    <a href="http://localhost:4201/supplierBooth/front" class="nav-link">Check Your Supply Booths</a>
-                </li>
-                <li class="nav-item">
-                    <a routerLink="/supplier/front" class="nav-link">Supplier Requests</a>
+                    <a routerLink="/supplier/front" class="nav-link"  style="color:black" >Supplier Requests</a>
 
                 <li class="nav-item dropdown dropdown-hover">
-                    <a class="nav-link dropdown-toggle" href="index.html" id="homedrop" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle"  style="color:black" href="index.html" id="homedrop" role="button" data-bs-toggle="dropdown">
                         Booth managment 
                     </a>
                     <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
@@ -162,7 +174,8 @@
   
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="pagedropdown" role="button"
-                        data-bs-toggle="dropdown">
+                        data-bs-toggle="dropdown"
+                        style="color:black">
                         Forum
                     </a>
                     <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
@@ -178,27 +191,29 @@
   
                 <li class="nav-item dropdown dropdown-hover">
                     <a class="nav-link dropdown-toggle" href="index.html" id="homedrop" role="button"
-                        data-bs-toggle="dropdown">
+                        data-bs-toggle="dropdown"
+                        style="color:black">
                        Time and Interview management
+
                     </a>
                     <ul class="dropdown-menu dropdown-menu-center" aria-labelledby="homedrop">
                         <li><a class="dropdown-item" routerLink="/calender"><i
-                                    class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>Calendrier</a></li>
+                                    class="mdi mdi-account-box-outline f-20 me-2 align-middle"></i>Calendar</a></li>
                         <li *ngIf="user.role=='exhibitor'"><a class="dropdown-item" [routerLink]="['quizgeneral', user.id]"><i
                                     class="mdi mdi-account-edit f-20 me-2 align-middle"></i>All quiz</a></li>
                     </ul>
                 </li>
 
                 <li class="nav-item dropdown dropdown-hover">
-                    <a class="nav-link dropdown-toggle" routerLink="/offers" id="homedrop" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle" routerLink="/offers" id="homedrop" role="button" data-bs-toggle="dropdown"  style="color:black">
                         Offers
                     </a>
                 </li>
 
                 <!--end dropdown-->
 
-                <li class="nav-item">
-                    <a href="contact.html" class="nav-link">Contact</a>
+                <li class="nav-item" >
+                    <a href="contact.html" class="nav-link"  style="color:black" >Contact</a>
                 </li>
                 <!--end dropdown-->
             </ul>
@@ -222,7 +237,7 @@
     </div>
     <!--end container-->
   </nav>
-</div>
+<
   <section class="footer">
     <div class="container">
         <div class="top-footer">

@@ -3,7 +3,10 @@
 
 
 
-  <h1 class="text-center">Welcome to our New chatbot</h1>
+  <h1 class="text-center" 
+  
+  style="font-family: 'DM Serif Text', serif; margin-top:30px; background-color: #cbcbcb ; border-radius:10px;"
+  >Welcome to our New chatbot</h1>
  
 
 
@@ -12,16 +15,32 @@
 <p></p>
 <p></p>
   <form [formGroup]="chatForm" (ngSubmit)="add()">
-    <input type="text" class="form-control" formControlName="message" id="message" style="marker-mid: 100px;" >
+    <input type="text" class="form-control" formControlName="message" id="message" style="marker-mid: 100px; width: 500px; margin-top: 40px; color: black;">
   
-    <button type="submit" aria-label="add" class="btn btn-primary" >Get Chatbot Response</button>
+    <button type="submit" aria-label="add" class="btn btn-primary" style="margin-top:50px;" >Get Chatbot Response</button>
   <!-- //Start Listening -->
-  <button id="start-btn"  (click)="startListening()">startListening
-    
+  <img id="start-btn" 
+     src="../../../assets/images/microphone.png" 
+     style="cursor: pointer;
+     margin-top:50px; 
+    margin-left:50px;
+     " 
+     width="50px" 
+     height="50px" 
+     (click)="startListening()">
 
-  </button>
   <!-- Stop Listening -->
-<button id="stop-btn" (click)="stopListening()" style="display:none" > stop Listening </button>
+<!-- <button id="stop-btn" (click)="stopListening()" style="display:none" > stop Listening </button> -->
+ <img id="stop-btn" 
+src="../../../assets/images/blackmicrophone.png" 
+style="cursor: pointer;
+margin-top:50px; 
+margin-left:50px;
+display:none;
+" 
+width="50px" 
+height="50px"  
+(click)="stopListening()" >  
 </form>
 
 <div *ngIf="chatbotResponse">

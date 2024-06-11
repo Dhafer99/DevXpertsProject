@@ -27,7 +27,52 @@ export class AuthenticationinterfaceComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-
+    const navbarMenu = document.querySelector<HTMLDivElement>(".navbar .links");
+    const hamburgerBtn = document.querySelector<HTMLButtonElement>(".hamburger-btn");
+    const hideMenuBtn = navbarMenu?.querySelector<HTMLButtonElement>(".close-btn");
+    const showPopupBtn = document.querySelector<HTMLButtonElement>(".login-btn");
+    const formPopup = document.querySelector<HTMLDivElement>(".form-popup");
+    const hidePopupBtn = formPopup?.querySelector<HTMLButtonElement>(".close-btn");
+    const signupLoginLink = formPopup?.querySelectorAll<HTMLAnchorElement>(".bottom-link a");
+    
+    if (hamburgerBtn && navbarMenu) {
+        // Show mobile menu
+        hamburgerBtn.addEventListener("click", () => {
+            navbarMenu.classList.toggle("show-menu");
+        });
+    
+        // Hide mobile menu
+        if (hideMenuBtn) {
+            hideMenuBtn.addEventListener("click", () =>  hamburgerBtn.click());
+        }
+    }
+    
+    if (showPopupBtn && formPopup) {
+        // Show login popup
+        showPopupBtn.addEventListener("click", () => {
+            document.body.classList.toggle("show-popup");
+        });
+    
+        // Hide login popup
+        if (hidePopupBtn) {
+            hidePopupBtn.addEventListener("click", () => showPopupBtn.click());
+        }
+    
+        // Show or hide signup form
+        if (signupLoginLink) {
+            signupLoginLink.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    if (link.id === 'signup-link') {
+                        formPopup.classList.add("show-signup");
+                    } else {
+                        formPopup.classList.remove("show-signup");
+                    }
+                });
+            });
+        }
+    }
+    
    
   }
 
