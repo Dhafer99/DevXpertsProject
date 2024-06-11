@@ -41,47 +41,48 @@
 </div>
   <div class="row">
     <div class="col-3">
-      <div class="deznav" style="background: radial-gradient(circle, rgba(250,249,255,1) 0%, rgba(174,0,0,1) 83%, rgba(249,131,131,1) 100%); margin-top:20px;border-radius:10px;height:700px;">
+      <div class="deznav" style="metismenustyle">
         <div class="deznav-scroll" *ngIf="token">
           <ul class="metismenu scrollable-ul" id="menu" >
-            <ul aria-expanded="false">
-              <li><a routerLink="/booth" 
+            <ul aria-expanded="false" >
+        
+            <li><a routerLink="/booth" 
                 style="color: white; font-size: 18px;" 
-                onmouseover="this.style.color='black'; this.style.fontSize='22px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">Booths placement</a></li>
-              <li><a style="color: white; font-size: 18px;"  routerLink="/supplier" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">Add a supplier request</a></li>
-              <li><a style="color: white; font-size: 18px;"  routerLink="/boothDashboard" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';" >Supply Requests Table </a></li>
+                onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';">	<mat-icon> map</mat-icon>Booths placement</a> </li>
+              <li><a style="color: white; font-size: 18px;"  routerLink="/supplier" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';"><mat-icon>shopping_basket</mat-icon>    Add a supplier request</a></li>
+              <li><a style="color: white; font-size: 18px;"  routerLink="/boothDashboard" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';" ><mat-icon>search</mat-icon>Supply Requests Table </a></li>
             </ul>
               <ul aria-expanded="false">
-                <li><a style="color: white; font-size: 18px;"  routerLink="/viewPack" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">viewPack</a></li>
-                <li><a style="color: white; font-size: 18px;"  routerLink="/viewRooms" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">viewRooms</a></li>
-                <li><a style="color: white; font-size: 18px;" routerLink="/checkPayments" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">ckeckOutPayment</a></li>
-                <li><a style="color: white; font-size: 18px;"  routerLink="/packSalesPerYear" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">Statics</a></li>
+                <li><a style="color: white; font-size: 18px;"  routerLink="/viewPack" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';">	<mat-icon>view_carousel</mat-icon>View Pack</a></li>
+                <li><a style="color: white; font-size: 18px;"  routerLink="/viewRooms" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';"><mat-icon>room_service</mat-icon> View Rooms</a></li>
+                <li><a style="color: white; font-size: 18px;" routerLink="/checkPayments" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';"><mat-icon>credit_card</mat-icon> Ckeck Out Payment</a></li>
+                <li><a style="color: white; font-size: 18px;"  routerLink="/packSalesPerYear" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';"><mat-icon> assessment</mat-icon>Payment Statistics</a></li>
               </ul>
               <ul aria-expanded="false">
-                <li><a style="color: white; font-size: 18px;"  routerLink="/admin/offers" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">Offers</a></li>
-                <li><a style="color: white; font-size: 18px;"  routerLink="/admin/stat" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">Stats</a></li>
+                <li><a style="color: white; font-size: 18px;"  routerLink="/admin/offers" onmouseover="this.style.color='black'; " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';"><mat-icon>assignment_ind</mat-icon> Offers</a></li>
+                <li><a style="color: white; font-size: 18px;"  routerLink="/admin/stat" onmouseover="this.style.color='black'; " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';"> <mat-icon> assessment</mat-icon>Offre Statistics </a></li>
               </ul>
             <ul aria-expanded="false">
-              <li><a style="color: white; font-size: 18px;"  routerLink="/Eventlist" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">Event List</a></li>
-              <li><a style="color: white; font-size: 18px;"  routerLink="/stats" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">Stats</a></li>
-              <li><a style="color: white; font-size: 18px;"  routerLink="/events/create" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';">Create events</a></li>
+              <li><a style="color: white; font-size: 18px;"  routerLink="/Eventlist" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';"><mat-icon>view_list</mat-icon>Event List</a></li>
+              <li><a style="color: white; font-size: 18px;"  routerLink="/stats" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';"><mat-icon> assessment</mat-icon> Event Statistics</a></li>
+              <li><a style="color: white; font-size: 18px;"  routerLink="/events/create" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';"><mat-icon>add_to_queue</mat-icon>Create events</a></li>
             
             </ul>
             <ul aria-expanded="false">
-              <li><a style="color: white; font-size: 18px;"  routerLink="/chatBot" onmouseover="this.style.color='black'; this.style.fontSize='20px';" 
-               onmouseout="this.style.color='white'; this.style.fontSize='18px';" >ChatBot</a></li>
+              <li><a style="color: white; font-size: 18px;"  routerLink="/chatBot" onmouseover="this.style.color='black';  " 
+               onmouseout="this.style.color='white'; this.style.fontSize='18px';" ><mat-icon>assistant</mat-icon>ChatBot</a></li>
              
             
             </ul>
